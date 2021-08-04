@@ -1,0 +1,3 @@
+SlimDX - https://github.com/SlimDX/slimdx/blob/master/License.txt
+Json.NET - https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md
+LibUsbDotNet - https://github.com/LibUsbDotNet/LibUsbDotNet/blob/master/LICENSE

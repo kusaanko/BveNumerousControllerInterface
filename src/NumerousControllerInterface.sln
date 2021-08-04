@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumerousControllerInterface", "NumerousControllerInterface.csproj", "{7B46C49E-4431-47C5-BBF5-85C39B1B012B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumerousControllerInterface.NET4", "NumerousControllerInterface.NET4\NumerousControllerInterface.NET4.csproj", "{67A83604-732D-4087-A7BB-BE89A19FD536}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B46C49E-4431-47C5-BBF5-85C39B1B012B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B46C49E-4431-47C5-BBF5-85C39B1B012B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B46C49E-4431-47C5-BBF5-85C39B1B012B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B46C49E-4431-47C5-BBF5-85C39B1B012B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67A83604-732D-4087-A7BB-BE89A19FD536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67A83604-732D-4087-A7BB-BE89A19FD536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67A83604-732D-4087-A7BB-BE89A19FD536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67A83604-732D-4087-A7BB-BE89A19FD536}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D299FD5-C3F5-47AE-B0F5-79810A9E0620}
+	EndGlobalSection
+EndGlobal
