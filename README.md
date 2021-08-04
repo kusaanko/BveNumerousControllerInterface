@@ -18,10 +18,11 @@ Bve5、6用のコントローラー入力プラグイン
 * Bve起動中にコントローラが切断後、再接続された場合自動復帰します
 * 各ボタンに機能が割り当てられます
 * 複数のコントローラーが接続中でも動作します(ただし、同じ名前のコントローラーが複数接続中だとうまくコントローラーを選択できません)
+* ATC操作専用コントローラーが使えます
 # インストール
 [Releases](https://github.com/kusaanko/BveNumerousControllerInterface/releases)ページから最新版をダウンロードします。
 
-Bve5.8以前なら`Kusaanko.NumerousController.zip`、Bve6.0以降なら`Kusaanko.NumerousController.NET4.zip`をダウンロードして下さい。
+Bve5.8以前なら`Kusaanko.NumerousControllerInterface.zip`、Bve6.0以降なら`Kusaanko.NumerousControllerInterface.NET4.zip`をダウンロードして下さい。
 
 Bve5.8以前なら`C:\Program Files (x86)\mackoy\BveTs5`、Bve6.0以降なら`C:\Program Files\mackoy\BveTs6`を開き、ダウンロードしたzipファイルを展開し、中身を配置します。
 
@@ -31,18 +32,95 @@ Bve5.8以前なら`C:\Program Files (x86)\mackoy\BveTs5`、Bve6.0以降なら`C:
 ![許可](pic/1.jpg)  
 Bveを起動し、設定画面を開き、入力デバイスを開きます。
 
-BveNumerousControllerInterfaceにチェックを入れ、その他の不要な入力プラグインを無効化します。
+NumerousControllerInterfaceにチェックを入れ、その他の不要な入力プラグインを無効化します。
+
+# ドライバーをインストールする
+USB接続でコントローラーとして認識されないデバイスにはドライバーを当てる必要があります。[Zadig](https://zadig.akeo.ie/)を使用してドライバーを当ててください。ドライバーにはWinUSBを使用してください。
+
 # マスコンを使用する
 Bveの設定画面を開き、入力デバイスを開きます。
 
-BveNumerousControllerInterfaceを選択してプロパティーをクリックして下さい。
+NumerousControllerInterfaceを選択してプロパティーをクリックして下さい。
 
 コントローラーから使いたいコントローラーを選択して、出てきた画面の指示に従って下さい 。
 
 コントローラーを使用するには、コントローラーを有効にするにチェックを入れる必要があります。
 
+# このプラグインに対応コントローラーを追加する
+LibUsbDotNetを使用してUSB接続のマスコンなどを追加できます。  
+仕組みとしては、コントローラーをボタンと軸のコントローラーとして認識させてあとは他のコントローラーと同じように処理します。  
+PS2DenshadeGoType2.csなどを参考にしてください。  
+IControllerをインターフェイスにすることでコントローラーを制御するクラスを作成できます。  
+その後、ControllerProfile.csのGetAllControllers関数内の最後に以下の行を追加します。
+
+```c#
+controllers.AddRange(NewController.Get());
+```
+デフォルトのプロファイルを用意する場合はSettings.cs内のコンストラクター内に記述します。  
+JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)の例
+
+```c#
+
+{
+    ControllerProfile profile = new ControllerProfile();
+    profile.IsTwoHandle = true;
+    profile.IsMasterController = true;
+    profile.PowerAxises = new int[] { 21 };
+    profile.PowerAxisStatus = new int[,] {
+        { -1000 },
+        { 1000 },
+        { 1000 },
+        { -1000 },
+        { -1000 },
+        { -8 }
+    };
+    profile.PowerButtons = new int[] { 0 };
+    profile.PowerButtonStatus = new bool[,] {
+        { false },
+        { true },
+        { false },
+        { true },
+        { false },
+        { true }
+    };
+    profile.BreakButtons = new int[] { 4, 5, 6, 7};
+    profile.BreakButtonStatus = new bool[,] { 
+        { true, true, false, true },
+        { false, true, true, true },
+        { false, true, false, true },
+        { true, true, true, false },
+        { true, true, false, false },
+        { false, true, true, false },
+        { false, true, false, false },
+        { true, false, true, true },
+        { true, false, false, true },
+        { false, false, false, false }
+    };
+    profile.CalcDuplicated();
+    profile.KeyMap = new Dictionary<int, int[]>();
+    profile.KeyMap.Add(1, new int[] { 0, 2});
+    profile.KeyMap.Add(2, new int[] { 0, 0 });
+    profile.KeyMap.Add(3, new int[] { -1, 1 });
+    profile.KeyMap.Add(9, new int[] { -3, 12 });
+    profile.KeyMap.Add(8, new int[] { -3, 11 });
+    Profiles.Add("JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)", profile);
+    ProfileMap.Add("JC-PS101U", "JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)");
+}
+```
+ここで、プロファイル名はファイル名であるため、ファイル名に使えない文字は使わないでください。エラーを起こします。  
+ProfileMapはコントローラー名、プロファイル名です。これでコントローラーとプロファイルを紐付けます。
+また、
+
+```c#
+profile.CalcDuplicated();
+```
+この記述を忘れないでください。これをすることで重複した組み合わせの計算を行っています。また、Null回避のためにも必ず最後に実行するようにしてください。
+
+また、NumerousInterface.NET4にも追加するのを忘れないでください。ファイルは既存の項目として **リンクとして追加** してください。
+
 # 協力
 サハ209 - [@saha209](https://github.com/saha209)
+
 # ライセンス
 [SlimDX](https://github.com/SlimDX/slimdx) - Copyright (c) 2007-2012 SlimDX Group [MIT License](https://github.com/SlimDX/slimdx/blob/master/License.txt)
 
