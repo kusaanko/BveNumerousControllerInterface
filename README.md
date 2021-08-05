@@ -51,6 +51,9 @@ NumerousControllerInterfaceを選択してプロパティーをクリックし�
 
 コントローラーを使用するには、コントローラーを有効にするにチェックを入れる必要があります。
 
+# コーディング規約
+こちらのコーディング規約に従います。[C# のコーディング規則](https://docs.microsoft.com/ja-jp/dotnet/csharp/fundamentals/coding-style/coding-conventions)
+
 # このプラグインに対応コントローラーを追加する
 LibUsbDotNetを使用してUSB接続のマスコンなどを追加できます。  
 仕組みとしては、コントローラーをボタンと軸のコントローラーとして認識させてあとは他のコントローラーと同じように処理します。  
