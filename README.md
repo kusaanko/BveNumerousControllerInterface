@@ -12,7 +12,7 @@ Bve5、6用のコントローラー入力プラグイン
 
 また、マスコンだけでなくATS操作用のコントローラーも使用できます。
 
-対応コントローラーの追加要望にも対応します。[Issues](https://github.com/kusaanko/BveNumerousControllerInterface/issues)ページで報告していただけるとありがたいです。Twitterでの報告でも可能です。
+対応コントローラーの追加要望にも対応します。[Issues](https://github.com/kusaanko/BveNumerousControllerInterface/issues)ページで報告していただけるとありがたいです。[Twitter](https://twitter.com/kusaanko)での報告でも可能です。
 
 ※「電車で GO！」は、日本およびその他の国における株式会社 タイトーの商標または登録商標です。
 
