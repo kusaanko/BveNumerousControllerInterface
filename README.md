@@ -1,14 +1,18 @@
 # BveNumerousControllerInterface
 Bve5、6用のコントローラー入力プラグイン  
-このプラグインは次の商品に対応しています
+コントローラーごとに入力プラグインが不要になり、このプラグインだけであらゆるコントローラーが使えるようにするのが目標です。  
+このプラグインは次のコントローラーに対応しています
 
 * TCPP-20001 電車でGO!コントローラー ワンハンドタイプ
 * SLPH-00051 電車でGO!コントローラー ツーハンドタイプ
 * TCPP-20001 電車でGO!コントローラー TYPE2
 * マルチトレインコントローラー P4B6/P4B7/P5B5/P5B8
+* Xbox用のコントローラー
 * その他DirectInputに対応したコントローラー
 
 また、マスコンだけでなくATS操作用のコントローラーも使用できます。
+
+対応コントローラーの追加要望にも対応します。[Issues](https://github.com/kusaanko/BveNumerousControllerInterface/issues)ページで報告していただけるとありがたいです。Twitterでの報告でも可能です。
 
 ※「電車で GO！」は、日本およびその他の国における株式会社 タイトーの商標または登録商標です。
 
@@ -19,12 +23,13 @@ Bve5、6用のコントローラー入力プラグイン
 * 各ボタンに機能が割り当てられます
 * 複数のコントローラーが接続中でも動作します(ただし、同じ名前のコントローラーが複数接続中だとうまくコントローラーを選択できません)
 * ATC操作専用コントローラーが使えます
+
 # インストール
 [Releases](https://github.com/kusaanko/BveNumerousControllerInterface/releases)ページから最新版をダウンロードします。
 
 Bve5.8以前なら`Kusaanko.NumerousControllerInterface.zip`、Bve6.0以降なら`Kusaanko.NumerousControllerInterface.NET4.zip`をダウンロードして下さい。
 
-Bve5.8以前なら`C:\Program Files (x86)\mackoy\BveTs5`、Bve6.0以降なら`C:\Program Files\mackoy\BveTs6`を開き、ダウンロードしたzipファイルを展開し、中身を配置します。
+Bve5.8以前なら`C:\Program Files (x86)\mackoy\BveTs5`、Bve6.0以降なら`C:\Program Files\mackoy\BveTs6`を開き(もしくはBveをインストールしたディレクトリ)、ダウンロードしたzipファイルを展開し、中身を配置します。
 
 配置したdllファイルを右クリックしてプロパティを開きます。(Newtonsoft.Json.dll、LibUsbDotNet.dll、Input Devices\Kusaanko.NumerousControllerInterface.dll)  
 セキュリティを許可して下さい。
@@ -56,6 +61,10 @@ IControllerをインターフェイスにすることでコントローラーを
 ```c#
 controllers.AddRange(NewController.Get());
 ```
+
+また、NumerousInterface.NET4にも追加するのを忘れないでください。ファイルは既存の項目として **リンクとして追加** してください。
+
+## デフォルトのプロファイルを追加する
 デフォルトのプロファイルを用意する場合はSettings.cs内のコンストラクター内に記述します。  
 JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)の例
 
@@ -115,8 +124,6 @@ ProfileMapはコントローラー名、プロファイル名です。これで�
 profile.CalcDuplicated();
 ```
 この記述を忘れないでください。これをすることで重複した組み合わせの計算を行っています。また、Null回避のためにも必ず最後に実行するようにしてください。
-
-また、NumerousInterface.NET4にも追加するのを忘れないでください。ファイルは既存の項目として **リンクとして追加** してください。
 
 # 協力
 サハ209 - [@saha209](https://github.com/saha209)
