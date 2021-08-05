@@ -35,7 +35,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private static string masterController;
 
-        private Stopwatch stopwatch = new Stopwatch();
         public static Timer timer;
         private bool updateController;
         private bool isDisposeRequested;
