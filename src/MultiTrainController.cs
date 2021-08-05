@@ -23,33 +23,33 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private static int DOWN_BUTTON = 0x8;
         private static int LEFT_BUTTON = 0x10;
         private static int RIGHT_BUTTON = 0x20;
-        private static List<MTCCartridge> cartridges = new List<MTCCartridge>();
-        private UsbDevice device;
-        private UsbEndpointReader reader;
-        private int breakNotchCount;
-        private int powerNotchCount;
-        private int power;
-        private int breakNotch;
-        private bool[] buttons;
-        private int[] sliders;
-        private bool loop;
-        private bool A_DEEP;
-        private bool A_SHALLOW;
-        private long A_milli;
-        private int RevPos;
-        private long Rev_milli;
+        private static List<MTCCartridge> _cartridges = new List<MTCCartridge>();
+        private UsbDevice _device;
+        private UsbEndpointReader _reader;
+        private int _breakNotchCount;
+        private int _powerNotchCount;
+        private int _power;
+        private int _breakNotch;
+        private bool[] _buttons;
+        private int[] _sliders;
+        private bool _loop;
+        private bool _A_DEEP;
+        private bool _A_SHALLOW;
+        private long _A_milli;
+        private int _revPos;
+        private long _rev_milli;
         public static List<IController> Get()
         {
-            if (cartridges.Count == 0)
+            if (_cartridges.Count == 0)
             {
-                cartridges.Add(new MTCCartridge(0x0AE4, 0x0101, 0400, 4, 6));//P4B6
-                cartridges.Add(new MTCCartridge(0x0AE4, 0x0101, 0300, 4, 7));//P4B7
-                cartridges.Add(new MTCCartridge(0x1C06, 0x77A7, 0202, 5, 5));//P5B5
+                _cartridges.Add(new MTCCartridge(0x0AE4, 0x0101, 0400, 4, 6));//P4B6
+                _cartridges.Add(new MTCCartridge(0x0AE4, 0x0101, 0300, 4, 7));//P4B7
+                _cartridges.Add(new MTCCartridge(0x1C06, 0x77A7, 0202, 5, 5));//P5B5
             }
             List<IController> controllers = new List<IController>();
             foreach (UsbRegistry registry in UsbDevice.AllDevices)
             {
-                foreach (MTCCartridge cartridge in cartridges)
+                foreach (MTCCartridge cartridge in _cartridges)
                 {
                     if (registry.Vid == cartridge.Vid && registry.Pid == cartridge.Pid && registry.Rev == cartridge.Rev)
                     {
@@ -72,64 +72,64 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         }
         public MultiTrainController(UsbDevice device, int powerNotchCount, int breakNotchCount)
         {
-            this.device = device;
-            reader = device.OpenEndpointReader(ReadEndpointID.Ep01);
-            sliders = new int[0];
-            buttons = new bool[23];
-            loop = true;
-            this.powerNotchCount = powerNotchCount;
-            this.breakNotchCount = breakNotchCount;
+            this._device = device;
+            _reader = device.OpenEndpointReader(ReadEndpointID.Ep01);
+            _sliders = new int[0];
+            _buttons = new bool[23];
+            _loop = true;
+            this._powerNotchCount = powerNotchCount;
+            this._breakNotchCount = breakNotchCount;
             new Thread(() =>
             {
-                while (loop)
+                while (_loop)
                 {
                     byte[] buffer = new byte[8];
                     int len;
-                    ErrorCode code = reader.Read(buffer, 2000, out len);
+                    ErrorCode code = _reader.Read(buffer, 2000, out len);
                     if (code != ErrorCode.None) continue;
                     //ハンドル
                     int notch = buffer[1] & 0x0F;
                     if(notch <= breakNotchCount + 1)
                     {
-                        power = 0;
-                        breakNotch = breakNotchCount - notch + 2;
+                        _power = 0;
+                        _breakNotch = breakNotchCount - notch + 2;
                     }else if(notch == breakNotchCount + 2)
                     {
-                        power = 0;
-                        breakNotch = 0;
+                        _power = 0;
+                        _breakNotch = 0;
                     }else
                     {
-                        power = notch - breakNotchCount - 2;
-                        breakNotch = 0;
+                        _power = notch - breakNotchCount - 2;
+                        _breakNotch = 0;
                     }
-                    buttons[15] = (power & 0x1) == 0x1;
-                    buttons[16] = (power & 0x2) == 0x2;
-                    buttons[17] = (power & 0x4) == 0x4;
-                    buttons[18] = (breakNotch & 0x1) == 0x1;
-                    buttons[19] = (breakNotch & 0x2) == 0x2;
-                    buttons[20] = (breakNotch & 0x4) == 0x4;
-                    buttons[21] = (breakNotch & 0x8) == 0x8;
+                    _buttons[15] = (_power & 0x1) == 0x1;
+                    _buttons[16] = (_power & 0x2) == 0x2;
+                    _buttons[17] = (_power & 0x4) == 0x4;
+                    _buttons[18] = (_breakNotch & 0x1) == 0x1;
+                    _buttons[19] = (_breakNotch & 0x2) == 0x2;
+                    _buttons[20] = (_breakNotch & 0x4) == 0x4;
+                    _buttons[21] = (_breakNotch & 0x8) == 0x8;
                     //ボタン
                     int button = buffer[2];
                     SetButton(button, ATS_BUTTON, 0);
                     SetButton(button, D_BUTTON, 1);
-                    A_SHALLOW = (button & A_SHALLOW_BUTTON) == A_SHALLOW_BUTTON;
-                    A_DEEP = (button & A_DEEP_BUTTON) == A_DEEP_BUTTON;
-                    if(!A_SHALLOW && !A_DEEP)
+                    _A_SHALLOW = (button & A_SHALLOW_BUTTON) == A_SHALLOW_BUTTON;
+                    _A_DEEP = (button & A_DEEP_BUTTON) == A_DEEP_BUTTON;
+                    if(!_A_SHALLOW && !_A_DEEP)
                     {
-                        A_milli = 0;
-                        buttons[2] = buttons[3] = false;
+                        _A_milli = 0;
+                        _buttons[2] = _buttons[3] = false;
                     }
-                    if(A_milli == 0 && A_SHALLOW && !A_DEEP)
+                    if(_A_milli == 0 && _A_SHALLOW && !_A_DEEP)
                     {
-                        A_milli = DateTime.Now.Ticks;
-                        buttons[2] = buttons[3] = false;
+                        _A_milli = DateTime.Now.Ticks;
+                        _buttons[2] = _buttons[3] = false;
                     }
-                    if(A_DEEP)
+                    if(_A_DEEP)
                     {
-                        A_milli = 0;
-                        buttons[2] = false;
-                        buttons[3] = true;
+                        _A_milli = 0;
+                        _buttons[2] = false;
+                        _buttons[3] = true;
                     }
                     SetButton(button, B_BUTTON, 4);
                     SetButton(button, C_BUTTON, 5);
@@ -143,25 +143,25 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     //レバーサー
                     button = (buffer[1] & 0xF0) >> 4;
                     //前
-                    buttons[12] = button == 0x8 || button == 0x2;
-                    if (RevPos != 0 && buttons[12])
+                    _buttons[12] = button == 0x8 || button == 0x2;
+                    if (_revPos != 0 && _buttons[12])
                     {
-                        Rev_milli = DateTime.Now.Ticks;
-                        RevPos = 0;
+                        _rev_milli = DateTime.Now.Ticks;
+                        _revPos = 0;
                     }
                     //切
-                    buttons[13] = button == 0x0;
-                    if (RevPos != 1 && buttons[13])
+                    _buttons[13] = button == 0x0;
+                    if (_revPos != 1 && _buttons[13])
                     {
-                        Rev_milli = DateTime.Now.Ticks;
-                        RevPos = 1;
+                        _rev_milli = DateTime.Now.Ticks;
+                        _revPos = 1;
                     }
                     //後
-                    buttons[14] = button == 0x4 || button == 0x1;
-                    if (RevPos != 2 && buttons[14])
+                    _buttons[14] = button == 0x4 || button == 0x1;
+                    if (_revPos != 2 && _buttons[14])
                     {
-                        Rev_milli = DateTime.Now.Ticks;
-                        RevPos = 2;
+                        _rev_milli = DateTime.Now.Ticks;
+                        _revPos = 2;
                     }
 
                 }
@@ -174,7 +174,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void SetButton(int button, int bit, int index)
         {
-            buttons[index] = (button & bit) == bit;
+            _buttons[index] = (button & bit) == bit;
         }
         public State Read()
         {
@@ -183,35 +183,35 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public void Dispose()
         {
-            loop = false;
+            _loop = false;
         }
 
         public bool[] GetButtons()
         {
-            if(A_milli != 0 && DateTime.Now.Ticks - A_milli > 50 * TimeSpan.TicksPerMillisecond)//50ミリ秒以上Aボタンを浅く押したら浅く押した判定
+            if(_A_milli != 0 && DateTime.Now.Ticks - _A_milli > 50 * TimeSpan.TicksPerMillisecond)//50ミリ秒以上Aボタンを浅く押したら浅く押した判定
             {
-                buttons[2] = true;
+                _buttons[2] = true;
             }
-            if(DateTime.Now.Ticks - Rev_milli > 100 * TimeSpan.TicksPerMillisecond)//100ミリ以上経ったらリバーサーのボタンを離す
+            if(DateTime.Now.Ticks - _rev_milli > 100 * TimeSpan.TicksPerMillisecond)//100ミリ以上経ったらリバーサーのボタンを離す
             {
-                buttons[12] = buttons[13] = buttons[14] = false;
+                _buttons[12] = _buttons[13] = _buttons[14] = false;
             }
-            return buttons;
+            return _buttons;
         }
 
         public string GetControllerType()
         {
-            return "LibUsbDotNet VID:0x" + Convert.ToString(device.UsbRegistryInfo.Vid, 16).ToUpper() + " PID:0x" + Convert.ToString(device.UsbRegistryInfo.Pid, 16).ToUpper() + " Rev:" + device.UsbRegistryInfo.Rev;
+            return "LibUsbDotNet VID:0x" + Convert.ToString(_device.UsbRegistryInfo.Vid, 16).ToUpper() + " PID:0x" + Convert.ToString(_device.UsbRegistryInfo.Pid, 16).ToUpper() + " Rev:" + _device.UsbRegistryInfo.Rev;
         }
 
         public string GetName()
         {
-            return "MultiTrainController P" + powerNotchCount + "B" + breakNotchCount;
+            return "MultiTrainController P" + _powerNotchCount + "B" + _breakNotchCount;
         }
 
         public int[] GetSliders()
         {
-            return sliders;
+            return _sliders;
         }
     }
 

@@ -11,18 +11,18 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public partial class SelectMasterControllerForm : Form
     {
-        private Action<string> action;
+        private Action<string> _action;
         public SelectMasterControllerForm(List<string> controllers, Action<string> action)
         {
             InitializeComponent();
             controllerList.Items.AddRange(controllers.ToArray());
             controllerList.SelectedIndex = 0;
-            this.action = action;
+            this._action = action;
         }
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            action.Invoke(controllerList.SelectedItem.ToString());
+            _action.Invoke(controllerList.SelectedItem.ToString());
             Close();
         }
     }

@@ -14,99 +14,99 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public partial class ControllerSetupForm : Form
     {
-        private IController stick;
-        private int step;
-        private bool setupPower;
-        private bool[] initButtonState;
-        private int[] initSliders;
-        private bool[] buttons;
-        private int[] sliders;
-        private List<int> useButtons;
-        private List<int> useSliders;
-        private int notchPos;
-        private ControllerProfile profile;
-        private int mode;
-        private int useAxis;
-        private int axisMin;
-        private int axisMax;
-        private int[] PowerButtons = new int[0];
-        private bool[,] PowerButtonStatus = new bool[0, 0];
-        private int[] PowerAxises = new int[0];
-        private int[,] PowerAxisStatus = new int[0,0];
-        private int[] BreakButtons = new int[0];
-        private bool[,] BreakButtonStatus = new bool[0, 0];
-        private int[] BreakAxises = new int[0];
-        private int[,] BreakAxisStatus = new int[0, 0];
+        private IController _stick;
+        private int _step;
+        private bool _setupPower;
+        private bool[] _initButtonState;
+        private int[] _initSliders;
+        private bool[] _buttons;
+        private int[] _sliders;
+        private List<int> _useButtons;
+        private List<int> _useSliders;
+        private int _notchPos;
+        private ControllerProfile _profile;
+        private int _mode;
+        private int _useAxis;
+        private int _axisMin;
+        private int _axisMax;
+        private int[] _powerButtons = new int[0];
+        private bool[,] _powerButtonStatus = new bool[0, 0];
+        private int[] _powerAxises = new int[0];
+        private int[,] _powerAxisStatus = new int[0,0];
+        private int[] _breakButtons = new int[0];
+        private bool[,] _breakButtonStatus = new bool[0, 0];
+        private int[] _breakAxises = new int[0];
+        private int[,] _breakAxisStatus = new int[0, 0];
         public ControllerSetupForm(IController controller, ControllerProfile profile, bool setupPower)
         {
-            stick = controller;
+            _stick = controller;
             InitializeComponent();
-            stick.Read();
-            initButtonState = stick.GetButtons();
-            initSliders = profile.GetSliders(stick);
+            _stick.Read();
+            _initButtonState = _stick.GetButtons();
+            _initSliders = profile.GetSliders(_stick);
             timer1.Start();
-            this.setupPower = setupPower;
-            this.profile = profile;
-            useButtons = new List<int>();
-            useSliders = new List<int>();
+            this._setupPower = setupPower;
+            this._profile = profile;
+            _useButtons = new List<int>();
+            _useSliders = new List<int>();
             countLabel.Text = "";
-            step = -1;
+            _step = -1;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            buttons = stick.GetButtons();
-            sliders = profile.GetSliders(stick);
-            if(mode == 0)
+            _buttons = _stick.GetButtons();
+            _sliders = _profile.GetSliders(_stick);
+            if(_mode == 0)
             {
-                if(step == 0)
+                if(_step == 0)
                 {
-                    for(int i = 0;i < sliders.Length;i++)
+                    for(int i = 0;i < _sliders.Length;i++)
                     {
-                        if(Math.Abs(sliders[i] - initSliders[i]) > 400)
+                        if(Math.Abs(_sliders[i] - _initSliders[i]) > 400)
                         {
-                            useAxis = i;
-                            step++;
-                            infoLabel.Text = (setupPower ? "力行" : "ブレーキ") + "を切にして次へを押してください。";
+                            _useAxis = i;
+                            _step++;
+                            infoLabel.Text = (_setupPower ? "力行" : "ブレーキ") + "を切にして次へを押してください。";
                             break;
                         }
                     }
-                }else if (step == 1)
+                }else if (_step == 1)
                 {
-                    axisMin = sliders[useAxis];
-                    countLabel.Text = "現在の値:" + sliders[useAxis];
-                }else if(step == 2)
+                    _axisMin = _sliders[_useAxis];
+                    countLabel.Text = "現在の値:" + _sliders[_useAxis];
+                }else if(_step == 2)
                 {
-                    axisMax = sliders[useAxis];
-                    countLabel.Text = "現在の値:" + sliders[useAxis];
+                    _axisMax = _sliders[_useAxis];
+                    countLabel.Text = "現在の値:" + _sliders[_useAxis];
                 }
             }
-            else if (mode == 1)
+            else if (_mode == 1)
             {
-                if (step == 0)
+                if (_step == 0)
                 {
-                    for (int i = 0; i < buttons.Length; i++)
+                    for (int i = 0; i < _buttons.Length; i++)
                     {
-                        if (initButtonState[i] != buttons[i] && !useButtons.Contains(i))
+                        if (_initButtonState[i] != _buttons[i] && !_useButtons.Contains(i))
                         {
-                            useButtons.Add(i);
-                            useButtons.Sort();
+                            _useButtons.Add(i);
+                            _useButtons.Sort();
                         }
                     }
-                    for (int i = 0; i < sliders.Length; i++)
+                    for (int i = 0; i < _sliders.Length; i++)
                     {
-                        if (initSliders[i] != sliders[i] && !useSliders.Contains(i))
+                        if (_initSliders[i] != _sliders[i] && !_useSliders.Contains(i))
                         {
-                            useSliders.Add(i);
-                            useSliders.Sort();
+                            _useSliders.Add(i);
+                            _useSliders.Sort();
                         }
                     }
-                }else if(step == 2)
+                }else if(_step == 2)
                 {
-                    countLabel.Text = "現在のノッチ:" + (setupPower ? profile.GetPower(stick, 99) : profile.GetBreak(stick, 99));
+                    countLabel.Text = "現在のノッチ:" + (_setupPower ? _profile.GetPower(_stick, 99) : _profile.GetBreak(_stick, 99));
                     InaccuracyModeCheckBox.Visible = true;
                 }
-                else if (step == 3)
+                else if (_step == 3)
                 {
                     Close();
                 }
@@ -115,161 +115,161 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-            if(mode == 0)
+            if(_mode == 0)
             {
-                if(step == 1)
+                if(_step == 1)
                 {
-                    step++;
-                    infoLabel.Text = (setupPower ? "力行" : "ブレーキ") + "を最大にして次へを押してください。";
-                }else if(step == 2)
+                    _step++;
+                    infoLabel.Text = (_setupPower ? "力行" : "ブレーキ") + "を最大にして次へを押してください。";
+                }else if(_step == 2)
                 {
-                    step++;
-                    if(setupPower)
+                    _step++;
+                    if(_setupPower)
                     {
-                        profile.PowerButtons = new int[0];
-                        profile.PowerButtonStatus = new bool[0, 0];
-                        profile.PowerAxises = new int[] { useAxis };
-                        profile.PowerAxisStatus = new int[,] { { axisMin, axisMax } };
-                        profile.InaccuracyModePower = false;
+                        _profile.PowerButtons = new int[0];
+                        _profile.PowerButtonStatus = new bool[0, 0];
+                        _profile.PowerAxises = new int[] { _useAxis };
+                        _profile.PowerAxisStatus = new int[,] { { _axisMin, _axisMax } };
+                        _profile.InaccuracyModePower = false;
                     }else
                     {
-                        profile.BreakButtons = new int[0];
-                        profile.BreakButtonStatus = new bool[0, 0];
-                        profile.BreakAxises = new int[] { useAxis };
-                        profile.BreakAxisStatus = new int[,] { { axisMin, axisMax } };
-                        profile.InaccuracyModeBreak = false;
+                        _profile.BreakButtons = new int[0];
+                        _profile.BreakButtonStatus = new bool[0, 0];
+                        _profile.BreakAxises = new int[] { _useAxis };
+                        _profile.BreakAxisStatus = new int[,] { { _axisMin, _axisMax } };
+                        _profile.InaccuracyModeBreak = false;
                     }
-                    profile.CalcDuplicated();
+                    _profile.CalcDuplicated();
                     countLabel.Text = "";
                     infoLabel.Text = "完了しました。次へを押して終了します。";
-                }else if(step == 3)
+                }else if(_step == 3)
                 {
                     Close();
                 }
             }
-            else if (mode == 1)
+            else if (_mode == 1)
             {
-                if (step == 0)
+                if (_step == 0)
                 {
-                    if (setupPower)
+                    if (_setupPower)
                     {
-                        PowerButtons = useButtons.ToArray();
-                        PowerButtonStatus = new bool[1, PowerButtons.Length];
-                        PowerAxises = useSliders.ToArray();
-                        PowerAxisStatus = new int[1, PowerAxises.Length];
+                        _powerButtons = _useButtons.ToArray();
+                        _powerButtonStatus = new bool[1, _powerButtons.Length];
+                        _powerAxises = _useSliders.ToArray();
+                        _powerAxisStatus = new int[1, _powerAxises.Length];
                     }
                     else
                     {
-                        BreakButtons = useButtons.ToArray();
-                        BreakButtonStatus = new bool[1, BreakButtons.Length];
-                        BreakAxises = useSliders.ToArray();
-                        BreakAxisStatus = new int[1, BreakAxises.Length];
+                        _breakButtons = _useButtons.ToArray();
+                        _breakButtonStatus = new bool[1, _breakButtons.Length];
+                        _breakAxises = _useSliders.ToArray();
+                        _breakAxisStatus = new int[1, _breakAxises.Length];
                     }
-                    step++;
-                    infoLabel.Text = (setupPower ? "力行" : "ブレーキ") + "を切から順番に入れ、次へをクリックして下さい。\n終了時は2回次へをクリックして下さい。";
+                    _step++;
+                    infoLabel.Text = (_setupPower ? "力行" : "ブレーキ") + "を切から順番に入れ、次へをクリックして下さい。\n終了時は2回次へをクリックして下さい。";
                     countLabel.Text = "登録するノッチ:0";
                 }
-                else if (step == 1)
+                else if (_step == 1)
                 {
-                    if (setupPower)
+                    if (_setupPower)
                     {
-                        int k = PowerButtonStatus.GetLength(0) - 1;
+                        int k = _powerButtonStatus.GetLength(0) - 1;
                         int match = 0;
-                        for (int i = 0; i < PowerButtons.Length; i++)
+                        for (int i = 0; i < _powerButtons.Length; i++)
                         {
-                            if (PowerButtonStatus[k, i] == buttons[PowerButtons[i]])
+                            if (_powerButtonStatus[k, i] == _buttons[_powerButtons[i]])
                             {
                                 match++;
                             }
                         }
-                        for (int i = 0; i < PowerAxises.Length; i++)
+                        for (int i = 0; i < _powerAxises.Length; i++)
                         {
-                            if (PowerAxisStatus[k, i] == sliders[PowerAxises[i]])
+                            if (_powerAxisStatus[k, i] == _sliders[_powerAxises[i]])
                             {
                                 match++;
                             }
                         }
-                        if (match == PowerButtons.Length + PowerAxises.Length)
+                        if (match == _powerButtons.Length + _powerAxises.Length)
                         {
                             //終了
-                            if (k == notchPos - 1)
+                            if (k == _notchPos - 1)
                             {
-                                step++;
+                                _step++;
                                 infoLabel.Text = "完了しました。次へを押して終了";
-                                profile.PowerButtons = PowerButtons;
-                                profile.PowerButtonStatus = PowerButtonStatus;
-                                profile.PowerAxises = PowerAxises;
-                                profile.PowerAxisStatus = PowerAxisStatus;
-                                profile.InaccuracyModePower = false;
-                                profile.CalcDuplicated();
+                                _profile.PowerButtons = _powerButtons;
+                                _profile.PowerButtonStatus = _powerButtonStatus;
+                                _profile.PowerAxises = _powerAxises;
+                                _profile.PowerAxisStatus = _powerAxisStatus;
+                                _profile.InaccuracyModePower = false;
+                                _profile.CalcDuplicated();
                                 return;
                             }
                         }
-                        PowerButtonStatus = ResizeBoolTwo(PowerButtonStatus, notchPos + 1, PowerButtons.Length);
-                        PowerAxisStatus = ResizeIntTwo(PowerAxisStatus, notchPos + 1, PowerAxises.Length);
-                        for (int i = 0; i < PowerButtons.Length; i++)
+                        _powerButtonStatus = ResizeBoolTwo(_powerButtonStatus, _notchPos + 1, _powerButtons.Length);
+                        _powerAxisStatus = ResizeIntTwo(_powerAxisStatus, _notchPos + 1, _powerAxises.Length);
+                        for (int i = 0; i < _powerButtons.Length; i++)
                         {
-                            PowerButtonStatus[notchPos, i] =
-                                buttons[PowerButtons[i]];
+                            _powerButtonStatus[_notchPos, i] =
+                                _buttons[_powerButtons[i]];
                         }
-                        for (int i = 0; i < PowerAxises.Length; i++)
+                        for (int i = 0; i < _powerAxises.Length; i++)
                         {
-                            PowerAxisStatus[notchPos, i] = sliders[PowerAxises[i]];
+                            _powerAxisStatus[_notchPos, i] = _sliders[_powerAxises[i]];
                         }
-                        profile.CalcDuplicated();
+                        _profile.CalcDuplicated();
                     }
                     else
                     {
-                        int k = BreakButtonStatus.GetLength(0) - 1;
+                        int k = _breakButtonStatus.GetLength(0) - 1;
                         int match = 0;
-                        for (int i = 0; i < BreakButtons.Length; i++)
+                        for (int i = 0; i < _breakButtons.Length; i++)
                         {
-                            if (BreakButtonStatus[k, i] == buttons[BreakButtons[i]])
+                            if (_breakButtonStatus[k, i] == _buttons[_breakButtons[i]])
                             {
                                 match++;
                             }
                         }
-                        for (int i = 0; i < BreakAxises.Length; i++)
+                        for (int i = 0; i < _breakAxises.Length; i++)
                         {
-                            if (BreakAxisStatus[k, i] == sliders[BreakAxises[i]])
+                            if (_breakAxisStatus[k, i] == _sliders[_breakAxises[i]])
                             {
                                 match++;
                             }
                         }
-                        if (match == BreakButtons.Length + BreakAxises.Length)
+                        if (match == _breakButtons.Length + _breakAxises.Length)
                         {
                             //終了
-                            if (k == notchPos - 1)
+                            if (k == _notchPos - 1)
                             {
-                                step++;
+                                _step++;
                                 infoLabel.Text = "完了しました。次へを押して終了";
-                                profile.BreakButtons = BreakButtons;
-                                profile.BreakButtonStatus = BreakButtonStatus;
-                                profile.BreakAxises = BreakAxises;
-                                profile.BreakAxisStatus = BreakAxisStatus;
-                                profile.InaccuracyModeBreak = false;
-                                profile.CalcDuplicated();
+                                _profile.BreakButtons = _breakButtons;
+                                _profile.BreakButtonStatus = _breakButtonStatus;
+                                _profile.BreakAxises = _breakAxises;
+                                _profile.BreakAxisStatus = _breakAxisStatus;
+                                _profile.InaccuracyModeBreak = false;
+                                _profile.CalcDuplicated();
                                 return;
                             }
                         }
-                        BreakButtonStatus = ResizeBoolTwo(BreakButtonStatus, notchPos + 1, BreakButtons.Length);
-                        BreakAxisStatus = ResizeIntTwo(BreakAxisStatus, notchPos + 1, BreakAxises.Length);
-                        for (int i = 0; i < BreakButtons.Length; i++)
+                        _breakButtonStatus = ResizeBoolTwo(_breakButtonStatus, _notchPos + 1, _breakButtons.Length);
+                        _breakAxisStatus = ResizeIntTwo(_breakAxisStatus, _notchPos + 1, _breakAxises.Length);
+                        for (int i = 0; i < _breakButtons.Length; i++)
                         {
-                            BreakButtonStatus[notchPos, i] =
-                                buttons[BreakButtons[i]];
+                            _breakButtonStatus[_notchPos, i] =
+                                _buttons[_breakButtons[i]];
                         }
-                        for (int i = 0; i < BreakAxises.Length; i++)
+                        for (int i = 0; i < _breakAxises.Length; i++)
                         {
-                            BreakAxisStatus[notchPos, i] = sliders[BreakAxises[i]];
+                            _breakAxisStatus[_notchPos, i] = _sliders[_breakAxises[i]];
                         }
                     }
-                    notchPos++;
-                    countLabel.Text = "登録するノッチ:" + notchPos + "";
+                    _notchPos++;
+                    countLabel.Text = "登録するノッチ:" + _notchPos + "";
                 }
-                else if (step == 2)
+                else if (_step == 2)
                 {
-                    step++;
+                    _step++;
                 }
             }
         }
@@ -295,8 +295,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void useAxisButton_Click(object sender, EventArgs e)
         {
-            mode = 0;
-            step = 0;
+            _mode = 0;
+            _step = 0;
             useAxisButton.Hide();
             useButtonAxisButton.Hide();
             infoLabel.Text = "使用する軸を動かして下さい。";
@@ -304,21 +304,21 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void useButtonAxisButton_Click(object sender, EventArgs e)
         {
-            mode = 1;
-            step = 0;
+            _mode = 1;
+            _step = 0;
             useAxisButton.Hide();
             useButtonAxisButton.Hide();
-            infoLabel.Text = "一度すべての" + (setupPower ? "力行" : "ブレーキ") + "に入れてください。";
+            infoLabel.Text = "一度すべての" + (_setupPower ? "力行" : "ブレーキ") + "に入れてください。";
         }
 
         private void InaccuracyModeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if(setupPower)
+            if(_setupPower)
             {
-                this.profile.InaccuracyModeBreak = InaccuracyModeCheckBox.Checked;
+                this._profile.InaccuracyModeBreak = InaccuracyModeCheckBox.Checked;
             }else
             {
-                this.profile.InaccuracyModeBreak = InaccuracyModeCheckBox.Checked;
+                this._profile.InaccuracyModeBreak = InaccuracyModeCheckBox.Checked;
             }
         }
     }

@@ -9,13 +9,13 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public class DIJoystick : IController
     {
-        private Joystick stick;
-        private string name;
+        private Joystick _stick;
+        private string _name;
 
         public DIJoystick(Joystick stick, string name)
         {
-            this.stick = stick;
-            this.name = name;
+            this._stick = stick;
+            this._name = name;
             try
             {
                 stick.Acquire();
@@ -32,7 +32,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public string GetName()
         {
-            return name;
+            return _name;
         }
         public State Read()
         {
@@ -43,14 +43,14 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public void Dispose()
         {
-            stick.Unacquire();
-            stick.Dispose();
+            _stick.Unacquire();
+            _stick.Dispose();
         }
 
         public bool[] GetButtons()
         {
-            int pov = stick.GetCurrentState().GetPointOfViewControllers()[0];
-            bool[] buttons = stick.GetCurrentState().GetButtons();
+            int pov = _stick.GetCurrentState().GetPointOfViewControllers()[0];
+            bool[] buttons = _stick.GetCurrentState().GetButtons();
             Array.Resize(ref buttons, 132);
             buttons[128] = (pov >= 0 && pov <= 4500) || (pov >= 31500 && pov <= 36000);
             buttons[129] = pov >= 4500 && pov <= 13500;
@@ -61,7 +61,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public int[] GetSliders()
         {
-            JoystickState state = stick.GetCurrentState();
+            JoystickState state = _stick.GetCurrentState();
             int[] sliders = new int[24];
             int pos = 0;
             sliders[pos++] = state.AccelerationX;

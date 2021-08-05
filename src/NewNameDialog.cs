@@ -12,11 +12,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public partial class NewNameDialog : Form
     {
-        private Func<string, bool> ret;
+        private Func<string, bool> _ret;
         public NewNameDialog(string initName, Func<string, bool> ret)
         {
             InitializeComponent();
-            this.ret = ret;
+            this._ret = ret;
             textBox1.Text = initName;
         }
 
@@ -33,7 +33,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             else
             {
-                if (ret.Invoke(textBox1.Text))
+                if (_ret.Invoke(textBox1.Text))
                 {
                     Close();
                 }

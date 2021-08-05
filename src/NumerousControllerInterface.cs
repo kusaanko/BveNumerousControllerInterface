@@ -10,52 +10,52 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public class NumerousControllerInterface : IInputDevice
     {
-        public static DirectInput input;
-        public static List<IController> controllers;
+        public static DirectInput Input;
+        public static List<IController> Controllers;
 
-        public static Settings settings = null;
-        public static ConfigForm configForm;
+        public static Settings SettingsInstance = null;
+        public static ConfigForm ConfigFormInstance;
 
         public event InputEventHandler KeyDown;
         public event InputEventHandler KeyUp;
         public event InputEventHandler LeverMoved;
 
-        private Dictionary<IController, int> prePowerLevel;
-        private Dictionary<IController, int> preBreakLevel;
-        private Dictionary<IController, List<int>> preButtons;
+        private Dictionary<IController, int> _prePowerLevel;
+        private Dictionary<IController, int> _preBreakLevel;
+        private Dictionary<IController, List<int>> _preButtons;
 
-        private int onePowerMax;
-        private int oneBreakMax;
-        private int twoPowerMax;
-        private int twoBreakMax;
-        private int powerNotch;
-        private int breakNotch;
+        private int _onePowerMax;
+        private int _oneBreakMax;
+        private int _twoPowerMax;
+        private int _twoBreakMax;
+        private int _powerNotch;
+        private int _breakNotch;
 
-        private static int preControllerCount;
+        private static int s_preControllerCount;
 
-        private static string masterController;
+        private static string s_masterController;
 
-        public static Timer timer;
-        private bool updateController;
-        private bool isDisposeRequested;
+        public static Timer TimerController;
+        private bool _isUpdateController;
+        private bool _isDisposeRequested;
 
         public NumerousControllerInterface()
         {
-            controllers = new List<IController>();
-            prePowerLevel = new Dictionary<IController, int>();
-            preBreakLevel = new Dictionary<IController, int>();
-            preButtons = new Dictionary<IController, List<int>>();
-            masterController = "";
-            preControllerCount = -1;
-            if (timer == null)
+            Controllers = new List<IController>();
+            _prePowerLevel = new Dictionary<IController, int>();
+            _preBreakLevel = new Dictionary<IController, int>();
+            _preButtons = new Dictionary<IController, List<int>>();
+            s_masterController = "";
+            s_preControllerCount = -1;
+            if (TimerController == null)
             {
-                timer = new Timer();
-                timer.Interval = 1000;
-                timer.Tick += new System.EventHandler(TimerTick);
+                TimerController = new Timer();
+                TimerController.Interval = 1000;
+                TimerController.Tick += new System.EventHandler(TimerTick);
             }
-            timer.Start();
+            TimerController.Start();
             System.Threading.Thread mainThread = new System.Threading.Thread(new System.Threading.ThreadStart(() => {
-                while (!isDisposeRequested)
+                while (!_isDisposeRequested)
                 {
                     MainTick();
                 }
@@ -65,7 +65,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private static void TimerTick(object sender, EventArgs e)
         {
-            if (configForm != null && !configForm.IsDisposed && (configForm.controllerSetupForm == null || configForm.controllerSetupForm.IsDisposed)) 
+            if (ConfigFormInstance != null && !ConfigFormInstance.IsDisposed && (ConfigFormInstance.ControllerSetupForm == null || ConfigFormInstance.ControllerSetupForm.IsDisposed)) 
             {
                 GetAllControllers();
             }
@@ -73,34 +73,34 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public static void GetAllControllers()
         {
-            controllers.Clear();
+            Controllers.Clear();
             ControllerProfile.GetAllControllers();
             foreach(IController controller in ControllerProfile.controllers)
             {
-                if(settings.GetIsEnabled(controller.GetName()))
+                if(SettingsInstance.GetIsEnabled(controller.GetName()))
                 {
-                    controllers.Add(controller);
+                    Controllers.Add(controller);
                 }
             }
-            masterController = "";
-            if(configForm != null && !configForm.IsDisposed && ControllerProfile.controllers.Count != preControllerCount)
+            s_masterController = "";
+            if(ConfigFormInstance != null && !ConfigFormInstance.IsDisposed && ControllerProfile.controllers.Count != s_preControllerCount)
             {
-                configForm.updateControllers();
+                ConfigFormInstance.updateControllers();
             }
-            if (controllers.Count == 0)
+            if (Controllers.Count == 0)
             {
-                if (settings.AlertNoControllerFound && preControllerCount != ControllerProfile.controllers.Count)
+                if (SettingsInstance.AlertNoControllerFound && s_preControllerCount != ControllerProfile.controllers.Count)
                 {
-                    preControllerCount = ControllerProfile.controllers.Count;
+                    s_preControllerCount = ControllerProfile.controllers.Count;
                     MessageBox.Show("有効化されたコントローラーを検出できませんでした。", "NumerousControllerInterface", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
                 List<string> masterControllerList = new List<string>();
-                foreach(IController controller in controllers)
+                foreach(IController controller in Controllers)
                 {
-                    if (settings.GetProfile(controller).IsMasterController)
+                    if (SettingsInstance.GetProfile(controller).IsMasterController)
                     {
                         masterControllerList.Add(controller.GetName());
                     }
@@ -109,56 +109,56 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 {
                     using(SelectMasterControllerForm form = new SelectMasterControllerForm(masterControllerList, controller =>
                     {
-                        masterController = controller;
+                        s_masterController = controller;
                     }))
                     {
                         form.ShowDialog();
                     }
                 }else if(masterControllerList.Count == 1)
                 {
-                    masterController = masterControllerList[0];
+                    s_masterController = masterControllerList[0];
                 }
             }
-            preControllerCount = ControllerProfile.controllers.Count;
+            s_preControllerCount = ControllerProfile.controllers.Count;
         }
 
         public void Load(string settingsPath)
         {
-            input = new DirectInput();
-            settings = Settings.LoadFromXml(settingsPath);
+            Input = new DirectInput();
+            SettingsInstance = Settings.LoadFromXml(settingsPath);
 
             GetAllControllers();
         }
 
         public void SetAxisRanges(int[][] ranges)
         {
-            onePowerMax = ranges[3][1] + 1;
-            oneBreakMax = -ranges[3][0] + 1;
-            twoPowerMax = ranges[2][1] + 1;
-            twoBreakMax = -ranges[2][0] + 1;
+            _onePowerMax = ranges[3][1] + 1;
+            _oneBreakMax = -ranges[3][0] + 1;
+            _twoPowerMax = ranges[2][1] + 1;
+            _twoBreakMax = -ranges[2][0] + 1;
         }
 
         public int GetPowerMax()
         {
-            if(onePowerMax > 1)
+            if(_onePowerMax > 1)
             {
-                return onePowerMax;
+                return _onePowerMax;
             }
-            return twoPowerMax;
+            return _twoPowerMax;
         }
 
         public int GetBreakMax()
         {
-            if (oneBreakMax > 1)
+            if (_oneBreakMax > 1)
             {
-                return oneBreakMax;
+                return _oneBreakMax;
             }
-            return twoBreakMax;
+            return _twoBreakMax;
         }
 
         public bool IsTwoHandle()
         {
-            if (oneBreakMax > 1)
+            if (_oneBreakMax > 1)
             {
                 return false;
             }
@@ -167,52 +167,52 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public void Tick()
         {
-            updateController = true;
+            _isUpdateController = true;
         }
 
         public void MainTick()
         {
-            if(!updateController)
+            if(!_isUpdateController)
             {
                 System.Threading.Thread.Sleep(16);
                 return;
             }
-            updateController = false;
-            if (configForm != null && !configForm.IsDisposed)
+            _isUpdateController = false;
+            if (ConfigFormInstance != null && !ConfigFormInstance.IsDisposed)
             {
                 return;
             }
-            if (controllers.Count == 0)
+            if (Controllers.Count == 0)
             {
                 return;
             }
-            foreach(IController controller in controllers)
+            foreach(IController controller in Controllers)
             {
-                ControllerProfile profile = settings.Profiles[settings.ProfileMap[controller.GetName()]];
+                ControllerProfile profile = SettingsInstance.Profiles[SettingsInstance.ProfileMap[controller.GetName()]];
                 controller.Read();
-                if(profile.IsMasterController && controller.GetName().Equals(masterController))
+                if(profile.IsMasterController && controller.GetName().Equals(s_masterController))
                 {
                     int powerLevel = profile.GetPower(controller, GetPowerMax());
                     int breakLevel = profile.GetBreak(controller, GetBreakMax());
                     int prePower;
-                    if (!prePowerLevel.ContainsKey(controller))
+                    if (!_prePowerLevel.ContainsKey(controller))
                     {
-                        prePowerLevel.Add(controller, -1);
+                        _prePowerLevel.Add(controller, -1);
                         prePower = -1;
                     }
                     else
                     {
-                        prePower = prePowerLevel[controller];
+                        prePower = _prePowerLevel[controller];
                     }
                     int preBreak;
-                    if (!preBreakLevel.ContainsKey(controller))
+                    if (!_preBreakLevel.ContainsKey(controller))
                     {
-                        preBreakLevel.Add(controller, -1);
+                        _preBreakLevel.Add(controller, -1);
                         preBreak = -1;
                     }
                     else
                     {
-                        preBreak = preBreakLevel[controller];
+                        preBreak = _preBreakLevel[controller];
                     }
                     bool two = IsTwoHandle();
                     if(prePower != powerLevel)
@@ -237,15 +237,15 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             onLeverMoved(3, -breakLevel);
                         }
                     }
-                    prePowerLevel[controller] = powerLevel;
-                    preBreakLevel[controller] = breakLevel;
+                    _prePowerLevel[controller] = powerLevel;
+                    _preBreakLevel[controller] = breakLevel;
                 }
                 List<int> buttons = profile.GetButtons(controller);
-                if(!preButtons.ContainsKey(controller))
+                if(!_preButtons.ContainsKey(controller))
                 {
-                    preButtons.Add(controller, new List<int>());
+                    _preButtons.Add(controller, new List<int>());
                 }
-                List<int> preButton = preButtons[controller];
+                List<int> preButton = _preButtons[controller];
                 foreach(int i in buttons)
                 {
                     if(!preButton.Contains(i))
@@ -268,28 +268,28 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         }
                     }
                 }
-                preButtons[controller] = buttons;
+                _preButtons[controller] = buttons;
             }
         }
 
         public void Configure(IWin32Window owner)
         {
-            using (configForm= new ConfigForm())
+            using (ConfigFormInstance= new ConfigForm())
             {
-                configForm.ShowDialog(owner);
+                ConfigFormInstance.ShowDialog(owner);
             }
         }
 
         public void Dispose()
         {
             ControllerProfile.DisposeAllControllers();
-            if (settings != null)
+            if (SettingsInstance != null)
             {
-                settings.SaveToXml();
-                settings = null;
+                SettingsInstance.SaveToXml();
+                SettingsInstance = null;
             }
-            timer.Stop();
-            isDisposeRequested = true;
+            TimerController.Stop();
+            _isDisposeRequested = true;
         }
 
         private void onLeverMoved(int axis, int notch)
@@ -300,12 +300,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 {
                     if(notch < 0)
                     {
-                        breakNotch = -notch;
-                        powerNotch = 0;
+                        _breakNotch = -notch;
+                        _powerNotch = 0;
                     }else
                     {
-                        breakNotch = 0;
-                        powerNotch = notch;
+                        _breakNotch = 0;
+                        _powerNotch = notch;
                     }
                 }
                 LeverMoved(this, new InputEventArgs(axis, notch));
@@ -320,75 +320,75 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 {
                     switch(keyCode)
                     {
-                        case 0://非常にする
-                            breakNotch = GetBreakMax() - 1;
-                            powerNotch = 0;
+                        case 0:// 非常にする
+                            _breakNotch = GetBreakMax() - 1;
+                            _powerNotch = 0;
                             break;
-                        case 1://全て切にする
-                            breakNotch = 0;
-                            powerNotch = 0;
+                        case 1:// 全て切にする
+                            _breakNotch = 0;
+                            _powerNotch = 0;
                             break;
-                        case 2://ブレーキ切
-                            breakNotch = 0;
+                        case 2:// ブレーキ切
+                            _breakNotch = 0;
                             break;
-                        case 3://ブレーキ上げ
-                            breakNotch++;
+                        case 3:// ブレーキ上げ
+                            _breakNotch++;
                             break;
-                        case 4://ブレーキ下げ
-                            breakNotch--;
+                        case 4:// ブレーキ下げ
+                            _breakNotch--;
                             break;
-                        case 5://力行切
-                            powerNotch = 0;
+                        case 5:// 力行切
+                            _powerNotch = 0;
                             break;
-                        case 6://力行上げ
-                            powerNotch++;
+                        case 6:// 力行上げ
+                            _powerNotch++;
                             break;
-                        case 7://力行下げ
-                            powerNotch--;
+                        case 7:// 力行下げ
+                            _powerNotch--;
                             break;
-                        case 8://ノッチ上げ
-                            if (breakNotch > 0)
+                        case 8:// ノッチ上げ
+                            if (_breakNotch > 0)
                             {
-                                breakNotch--;
-                                powerNotch = 0;
+                                _breakNotch--;
+                                _powerNotch = 0;
                             }
                             else
                             {
-                                breakNotch = 0;
-                                powerNotch++;
+                                _breakNotch = 0;
+                                _powerNotch++;
                             }
                             break;
                         case 9://ノッチ下げ
-                            if (powerNotch > 0)
+                            if (_powerNotch > 0)
                             {
-                                breakNotch = 0;
-                                powerNotch--;
+                                _breakNotch = 0;
+                                _powerNotch--;
                             }
                             else
                             {
-                                breakNotch++;
-                                powerNotch = 0;
+                                _breakNotch++;
+                                _powerNotch = 0;
                             }
                             break;
                     }
-                    if(breakNotch < 0)
+                    if(_breakNotch < 0)
                     {
-                        breakNotch = 0;
+                        _breakNotch = 0;
                     }
-                    if(breakNotch >= GetBreakMax())
+                    if(_breakNotch >= GetBreakMax())
                     {
-                        breakNotch = GetBreakMax() - 1;
+                        _breakNotch = GetBreakMax() - 1;
                     }
-                    if (powerNotch < 0)
+                    if (_powerNotch < 0)
                     {
-                        powerNotch = 0;
+                        _powerNotch = 0;
                     }
-                    if (powerNotch>= GetPowerMax())
+                    if (_powerNotch>= GetPowerMax())
                     {
-                        powerNotch = GetPowerMax() - 1;
+                        _powerNotch = GetPowerMax() - 1;
                     }
                     bool two = IsTwoHandle();
-                    if (breakNotch == 0 && powerNotch == 0)
+                    if (_breakNotch == 0 && _powerNotch == 0)
                     {
                         if (two)
                         {
@@ -399,26 +399,26 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         {
                             onLeverMoved(3, 0);
                         }
-                    }else if(breakNotch > 0)
+                    }else if(_breakNotch > 0)
                     {
                         if (two)
                         {
-                            onLeverMoved(2, breakNotch);
+                            onLeverMoved(2, _breakNotch);
                         }
                         else
                         {
-                            onLeverMoved(3, -breakNotch);
+                            onLeverMoved(3, -_breakNotch);
                         }
                     }
                     else
                     {
                         if (two)
                         {
-                            onLeverMoved(1, powerNotch);
+                            onLeverMoved(1, _powerNotch);
                         }
                         else
                         {
-                            onLeverMoved(3, powerNotch);
+                            onLeverMoved(3, _powerNotch);
                         }
                     }
                 }

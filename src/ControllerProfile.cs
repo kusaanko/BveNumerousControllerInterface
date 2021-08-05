@@ -439,7 +439,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public static void GetAllControllers()
         {
-            if (NumerousControllerInterface.input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly).Count != controllers.Count)
+            if (NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly).Count != controllers.Count)
             {
                 foreach (IController controller in controllers)
                 {
@@ -447,11 +447,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
                 controllers = new List<IController>();
                 List<string> addedControllerName = new List<string>();
-                foreach (DeviceInstance device in NumerousControllerInterface.input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
+                foreach (DeviceInstance device in NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
                 {
                     try
                     {
-                        Joystick stick = new Joystick(NumerousControllerInterface.input, device.InstanceGuid);
+                        Joystick stick = new Joystick(NumerousControllerInterface.Input, device.InstanceGuid);
                         if (!addedControllerName.Contains(device.ProductName))
                         {
                             IController controller = new DIJoystick(stick, device.ProductName);

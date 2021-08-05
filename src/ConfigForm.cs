@@ -8,20 +8,20 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public partial class ConfigForm : Form
     {
-        private string[] reverserSwitchKeyTexts = { "リバーサー後退", "リバーサー中", "リバーサー前進" };
-        private string[] cabSwitchKeyTexts = { "電笛", "空笛", "低速運転", "乗降促進" };
-        private string[] gameControlKeyTexts = { "視点を上に移動", "視点を下に移動", "視点を左に移動", "視点を右に移動", 
+        private string[] _reverserSwitchKeyTexts = { "リバーサー後退", "リバーサー中", "リバーサー前進" };
+        private string[] _cabSwitchKeyTexts = { "電笛", "空笛", "低速運転", "乗降促進" };
+        private string[] _gameControlKeyTexts = { "視点を上に移動", "視点を下に移動", "視点を左に移動", "視点を右に移動", 
             "視点をデフォルトに戻す", "視界をズームイン", "視界をズームアウト", "視点を切り替える", "時刻表示切り替え", "シナリオ再読み込み",
             "列車速度の変更", "早送り", "一時停止"};
-        private string[] atsKeyTexts = { "ATS0(ATS確認)(S)(Space)", "ATS1(警報維持)(A1)(Insert)", "ATS2(EBリセット)(A2)(Delete)", 
+        private string[] _atsKeyTexts = { "ATS0(ATS確認)(S)(Space)", "ATS1(警報維持)(A1)(Insert)", "ATS2(EBリセット)(A2)(Delete)", 
             "ATS3(復帰)(B1)(Home)", "ATS4(ATS-Pブレーキ解放)(B2)(End)", "ATS5(ATSに切り替え)(C1)(PageUp)", "ATS6(ATCに切り替え)(C2)(Next/PageDown)",
             "ATS7(D)(2)", "ATS8(E)(3)", "ATS9(F)(4)", "ATS10(G)(5)", "ATS11(H)(6)", "ATS12(I)(7)", "ATS13(J)(8)", "ATS14(K)(9)", "ATS15(L)(0)"};
-        private string[] notchControlTexts = { "非常にする", "全て切にする", 
+        private string[] _notchControlTexts = { "非常にする", "全て切にする", 
             "ブレーキ切", "ブレーキ上げ", "ブレーキ下げ", "力行切", "力行上げ", "力行下げ", "ノッチ上げ", "ノッチ下げ"};
-        private List<int[]> keyCodeTable = new List<int[]>();
-        private Dictionary<string, IController> controllers = new Dictionary<string, IController>();
+        private List<int[]> _keyCodeTable = new List<int[]>();
+        private Dictionary<string, IController> _controllers = new Dictionary<string, IController>();
         private System.ComponentModel.ComponentResourceManager resources;
-        public ControllerSetupForm controllerSetupForm;
+        public ControllerSetupForm ControllerSetupForm;
 
         public ConfigForm()
         {
@@ -33,46 +33,46 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             base.OnLoad(e);
 
-            for (int i = 0; i < reverserSwitchKeyTexts.Length; i++)
+            for (int i = 0; i < _reverserSwitchKeyTexts.Length; i++)
             {
-                addKey(reverserSwitchKeyTexts[i]);
-                keyCodeTable.Add(new int[2] { 0, i });
+                addKey(_reverserSwitchKeyTexts[i]);
+                _keyCodeTable.Add(new int[2] { 0, i });
             }
-            for (int i = 0; i < cabSwitchKeyTexts.Length; i++)
+            for (int i = 0; i < _cabSwitchKeyTexts.Length; i++)
             {
-                addKey(cabSwitchKeyTexts[i]);
-                keyCodeTable.Add(new int[2] { -1, i });
+                addKey(_cabSwitchKeyTexts[i]);
+                _keyCodeTable.Add(new int[2] { -1, i });
             }
-            for (int i = 0; i < atsKeyTexts.Length; i++)
+            for (int i = 0; i < _atsKeyTexts.Length; i++)
             {
-                addKey(atsKeyTexts[i]);
-                keyCodeTable.Add(new int[2] { -2, i });
+                addKey(_atsKeyTexts[i]);
+                _keyCodeTable.Add(new int[2] { -2, i });
             }
-            for (int i = 0; i < gameControlKeyTexts.Length; i++)
+            for (int i = 0; i < _gameControlKeyTexts.Length; i++)
             {
-                addKey(gameControlKeyTexts[i]);
-                keyCodeTable.Add(new int[2] { -3, i });
+                addKey(_gameControlKeyTexts[i]);
+                _keyCodeTable.Add(new int[2] { -3, i });
             }
-            for (int i = 0; i < notchControlTexts.Length; i++)
+            for (int i = 0; i < _notchControlTexts.Length; i++)
             {
-                addKey(notchControlTexts[i]);
-                keyCodeTable.Add(new int[2] { 99, i });
+                addKey(_notchControlTexts[i]);
+                _keyCodeTable.Add(new int[2] { 99, i });
             }
             ControllerProfile.GetAllControllers();
             updateControllers();
             timer1.Start();
-            alertNoCountrollerFoundCheckBox.Checked = NumerousControllerInterface.settings.AlertNoControllerFound;
+            alertNoCountrollerFoundCheckBox.Checked = NumerousControllerInterface.SettingsInstance.AlertNoControllerFound;
         }
 
         public void updateControllers()
         {
             timer1.Stop();
             controllerList.Items.Clear();
-            controllers.Clear();
+            _controllers.Clear();
             foreach (IController controller in ControllerProfile.controllers)
             {
                 controllerList.Items.Add(controller.GetName());
-                controllers.Add(controller.GetName(), controller);
+                _controllers.Add(controller.GetName(), controller);
             }
             updateProfile();
             setEnabled(false);
@@ -100,33 +100,33 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             switch (assign[0])
             {
                 case 0:
-                    if (assign[1] >= 0 && assign[1] < reverserSwitchKeyTexts.Length)
+                    if (assign[1] >= 0 && assign[1] < _reverserSwitchKeyTexts.Length)
                     {
                         list.SelectedIndex = assign[1];
                     }
                     break;
                 case -1:
-                    if (assign[1] >= 0 && assign[1] < cabSwitchKeyTexts.Length)
+                    if (assign[1] >= 0 && assign[1] < _cabSwitchKeyTexts.Length)
                     {
-                        list.SelectedIndex = assign[1] + reverserSwitchKeyTexts.Length;
+                        list.SelectedIndex = assign[1] + _reverserSwitchKeyTexts.Length;
                     }
                     break;
                 case -2:
-                    if (assign[1] >= 0 && assign[1] < atsKeyTexts.Length)
+                    if (assign[1] >= 0 && assign[1] < _atsKeyTexts.Length)
                     {
-                        list.SelectedIndex = assign[1] + reverserSwitchKeyTexts.Length + cabSwitchKeyTexts.Length;
+                        list.SelectedIndex = assign[1] + _reverserSwitchKeyTexts.Length + _cabSwitchKeyTexts.Length;
                     }
                     break;
                 case -3:
-                    if (assign[1] >= 0 && assign[1] < gameControlKeyTexts.Length)
+                    if (assign[1] >= 0 && assign[1] < _gameControlKeyTexts.Length)
                     {
-                        list.SelectedIndex = assign[1] + reverserSwitchKeyTexts.Length + cabSwitchKeyTexts.Length + atsKeyTexts.Length;
+                        list.SelectedIndex = assign[1] + _reverserSwitchKeyTexts.Length + _cabSwitchKeyTexts.Length + _atsKeyTexts.Length;
                     }
                     break;
                 case 99:
-                    if (assign[1] >= 0 && assign[1] < notchControlTexts.Length)
+                    if (assign[1] >= 0 && assign[1] < _notchControlTexts.Length)
                     {
-                        list.SelectedIndex = assign[1] + reverserSwitchKeyTexts.Length + cabSwitchKeyTexts.Length + atsKeyTexts.Length + gameControlKeyTexts.Length;
+                        list.SelectedIndex = assign[1] + _reverserSwitchKeyTexts.Length + _cabSwitchKeyTexts.Length + _atsKeyTexts.Length + _gameControlKeyTexts.Length;
                     }
                     break;
             }
@@ -135,7 +135,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private void updateProfile()
         {
             profileComboBox.Items.Clear();
-            foreach (string name in NumerousControllerInterface.settings.Profiles.Keys)
+            foreach (string name in NumerousControllerInterface.SettingsInstance.Profiles.Keys)
             {
                 profileComboBox.Items.Add(name);
             }
@@ -156,7 +156,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void loadFromProfile()
         {
-            ControllerProfile profile = NumerousControllerInterface.settings.Profiles[profileComboBox.Text];
+            ControllerProfile profile = NumerousControllerInterface.SettingsInstance.Profiles[profileComboBox.Text];
             isMasterControllerCheckBox.Checked = profile.IsMasterController;
             isTwoHandleComboBox.Checked = profile.IsTwoHandle;
             isFlexibleNotchCheckBox.Checked = profile.IsFlexibleNotch;
@@ -169,7 +169,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void loadControllerEnabled()
         {
-            isEnabledCheckBox.Checked = NumerousControllerInterface.settings.GetIsEnabled(controllerList.Text);
+            isEnabledCheckBox.Checked = NumerousControllerInterface.SettingsInstance.GetIsEnabled(controllerList.Text);
         }
 
         private void okButton_Click(object sender, EventArgs e)
@@ -182,17 +182,17 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             string controller = controllerList.Text;
             if (controller == null || controller.Equals("")) return;
-            if (!NumerousControllerInterface.settings.ProfileMap.ContainsKey(controller))
+            if (!NumerousControllerInterface.SettingsInstance.ProfileMap.ContainsKey(controller))
             {
-                if (!NumerousControllerInterface.settings.Profiles.ContainsKey("無名のプロファイル"))
+                if (!NumerousControllerInterface.SettingsInstance.Profiles.ContainsKey("無名のプロファイル"))
                 {
                     ControllerProfile profile = new ControllerProfile();
-                    NumerousControllerInterface.settings.Profiles.Add("無名のプロファイル", profile);
+                    NumerousControllerInterface.SettingsInstance.Profiles.Add("無名のプロファイル", profile);
                 }
-                NumerousControllerInterface.settings.ProfileMap.Add(controller, "無名のプロファイル");
+                NumerousControllerInterface.SettingsInstance.ProfileMap.Add(controller, "無名のプロファイル");
                 updateProfile();
             }
-            selectProfile(NumerousControllerInterface.settings.ProfileMap[controller]);
+            selectProfile(NumerousControllerInterface.SettingsInstance.ProfileMap[controller]);
             loadFromProfile();
             loadControllerEnabled();
             controllerTypeLabel.Text = this.resources.GetString("controllerTypeLabel.Text") + GetController().GetControllerType();
@@ -200,14 +200,14 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private ControllerProfile GetProfile()
         {
-            if (!NumerousControllerInterface.settings.Profiles.ContainsKey(profileComboBox.Text)) return null;
-            return NumerousControllerInterface.settings.Profiles[profileComboBox.Text];
+            if (!NumerousControllerInterface.SettingsInstance.Profiles.ContainsKey(profileComboBox.Text)) return null;
+            return NumerousControllerInterface.SettingsInstance.Profiles[profileComboBox.Text];
         }
 
         private IController GetController()
         {
-            if (!controllers.ContainsKey(controllerList.Text)) return null;
-            return controllers[controllerList.Text];
+            if (!_controllers.ContainsKey(controllerList.Text)) return null;
+            return _controllers[controllerList.Text];
         }
 
         private void isMasterControllerCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -291,29 +291,29 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             if (buttonList.SelectedItem == null) return;
             if (GetProfile().KeyMap.ContainsKey((int)buttonList.SelectedItem))
             {
-                GetProfile().KeyMap[(int)buttonList.SelectedItem] = keyCodeTable[buttonFunctionComboBox.SelectedIndex];
+                GetProfile().KeyMap[(int)buttonList.SelectedItem] = _keyCodeTable[buttonFunctionComboBox.SelectedIndex];
             }
         }
 
         private void settingPowerButton_Click(object sender, EventArgs e)
         {
-            using (controllerSetupForm = new ControllerSetupForm(
-                controllers[controllerList.Text],
+            using (ControllerSetupForm = new ControllerSetupForm(
+                _controllers[controllerList.Text],
                 GetProfile(),
                 true))
             {
-                controllerSetupForm.ShowDialog(this);
+                ControllerSetupForm.ShowDialog(this);
             }
         }
 
         private void settingBreakButton_Click(object sender, EventArgs e)
         {
-            using (controllerSetupForm = new ControllerSetupForm(
-                controllers[controllerList.Text], 
+            using (ControllerSetupForm = new ControllerSetupForm(
+                _controllers[controllerList.Text], 
                 GetProfile(), 
                 false))
             {
-                controllerSetupForm.ShowDialog(this);
+                ControllerSetupForm.ShowDialog(this);
             }
         }
 
@@ -345,13 +345,13 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private void profileComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             loadFromProfile();
-            if(NumerousControllerInterface.settings.ProfileMap.ContainsKey(controllerList.Text))
+            if(NumerousControllerInterface.SettingsInstance.ProfileMap.ContainsKey(controllerList.Text))
             {
-                NumerousControllerInterface.settings.ProfileMap[controllerList.Text] = profileComboBox.Text;
+                NumerousControllerInterface.SettingsInstance.ProfileMap[controllerList.Text] = profileComboBox.Text;
             }
             else
             {
-                NumerousControllerInterface.settings.ProfileMap.Add(controllerList.Text, profileComboBox.Text);
+                NumerousControllerInterface.SettingsInstance.ProfileMap.Add(controllerList.Text, profileComboBox.Text);
             }
         }
 
@@ -361,7 +361,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             int i = 1;
             while(true)
             {
-                if (NumerousControllerInterface.settings.Profiles.ContainsKey(name + i))
+                if (NumerousControllerInterface.SettingsInstance.Profiles.ContainsKey(name + i))
                 {
                     i++;
                 }else
@@ -372,13 +372,13 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             name = name + i;
             using(NewNameDialog dialog = new NewNameDialog(name, (s) =>
             {
-                if(NumerousControllerInterface.settings.Profiles.ContainsKey(s))
+                if(NumerousControllerInterface.SettingsInstance.Profiles.ContainsKey(s))
                 {
                     MessageBox.Show(s + "はすでに存在します。別の名前にして下さい。");
                     return false;
                 }else
                 {
-                    NumerousControllerInterface.settings.Profiles.Add(s, new ControllerProfile());
+                    NumerousControllerInterface.SettingsInstance.Profiles.Add(s, new ControllerProfile());
                 }
                 updateProfile();
                 selectProfile(s);
@@ -394,7 +394,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             string oldName = profileComboBox.Text;
             using (NewNameDialog dialog = new NewNameDialog(profileComboBox.Text, (s) =>
             {
-                if (NumerousControllerInterface.settings.Profiles.ContainsKey(s))
+                if (NumerousControllerInterface.SettingsInstance.Profiles.ContainsKey(s))
                 {
                     MessageBox.Show(s + "はすでに存在します。別の名前にして下さい。");
                     return false;
@@ -402,22 +402,22 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 else
                 {
                     ControllerProfile profile = GetProfile();
-                    if (!NumerousControllerInterface.settings.removeProfilesList.Contains(oldName)) NumerousControllerInterface.settings.removeProfilesList.Add(oldName);
-                    NumerousControllerInterface.settings.Profiles.Remove(oldName);
-                    NumerousControllerInterface.settings.Profiles.Add(s, profile);
+                    if (!NumerousControllerInterface.SettingsInstance.removeProfilesList.Contains(oldName)) NumerousControllerInterface.SettingsInstance.removeProfilesList.Add(oldName);
+                    NumerousControllerInterface.SettingsInstance.Profiles.Remove(oldName);
+                    NumerousControllerInterface.SettingsInstance.Profiles.Add(s, profile);
                     List<string> changeNames = new List<string>();
-                    foreach (string key in NumerousControllerInterface.settings.ProfileMap.Keys)
+                    foreach (string key in NumerousControllerInterface.SettingsInstance.ProfileMap.Keys)
                     {
-                        if (NumerousControllerInterface.settings.ProfileMap[key].Equals(oldName))
+                        if (NumerousControllerInterface.SettingsInstance.ProfileMap[key].Equals(oldName))
                         {
                             changeNames.Add(key);
                         }
                     }
                     foreach (string key in changeNames)
                     {
-                        NumerousControllerInterface.settings.ProfileMap[key] = s;
+                        NumerousControllerInterface.SettingsInstance.ProfileMap[key] = s;
                     }
-                    NumerousControllerInterface.settings.removeProfilesList.Remove(s);
+                    NumerousControllerInterface.SettingsInstance.removeProfilesList.Remove(s);
                     updateProfile();
                     selectProfile(s);
                 }
@@ -433,14 +433,14 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             using (NewNameDialog dialog = new NewNameDialog(profileComboBox.Text, (s) =>
             {
-                if (NumerousControllerInterface.settings.Profiles.ContainsKey(s))
+                if (NumerousControllerInterface.SettingsInstance.Profiles.ContainsKey(s))
                 {
                     MessageBox.Show(s + "はすでに存在します。別の名前にして下さい。");
                     return false;
                 }
                 else
                 {
-                    NumerousControllerInterface.settings.Profiles.Add(s, GetProfile().Clone());
+                    NumerousControllerInterface.SettingsInstance.Profiles.Add(s, GetProfile().Clone());
                     updateProfile();
                     selectProfile(s);
                 }
@@ -456,20 +456,20 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             string name = profileComboBox.Text;
             if (MessageBox.Show("本当に " + name + " を削除しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                NumerousControllerInterface.settings.Profiles.Remove(name);
+                NumerousControllerInterface.SettingsInstance.Profiles.Remove(name);
                 List<string> removeNames = new List<string>();
-                foreach (string key in NumerousControllerInterface.settings.ProfileMap.Keys)
+                foreach (string key in NumerousControllerInterface.SettingsInstance.ProfileMap.Keys)
                 {
-                    if (NumerousControllerInterface.settings.ProfileMap[key].Equals(name))
+                    if (NumerousControllerInterface.SettingsInstance.ProfileMap[key].Equals(name))
                     {
                         removeNames.Add(key);
                     }
                 }
                 foreach (string key in removeNames)
                 {
-                    NumerousControllerInterface.settings.ProfileMap.Remove(key);
+                    NumerousControllerInterface.SettingsInstance.ProfileMap.Remove(key);
                 }
-                if (!NumerousControllerInterface.settings.removeProfilesList.Contains(name)) NumerousControllerInterface.settings.removeProfilesList.Add(name);
+                if (!NumerousControllerInterface.SettingsInstance.removeProfilesList.Contains(name)) NumerousControllerInterface.SettingsInstance.removeProfilesList.Add(name);
                 updateProfile();
                 profileComboBox.SelectedIndex = 0;
             }
@@ -477,13 +477,13 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void isEnabledCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (!NumerousControllerInterface.settings.IsEnabled.ContainsKey(controllerList.Text))
+            if (!NumerousControllerInterface.SettingsInstance.IsEnabled.ContainsKey(controllerList.Text))
             {
-                NumerousControllerInterface.settings.IsEnabled.Add(controllerList.Text, isEnabledCheckBox.Checked);
+                NumerousControllerInterface.SettingsInstance.IsEnabled.Add(controllerList.Text, isEnabledCheckBox.Checked);
             }
             else
             {
-                NumerousControllerInterface.settings.IsEnabled[controllerList.Text] = isEnabledCheckBox.Checked;
+                NumerousControllerInterface.SettingsInstance.IsEnabled[controllerList.Text] = isEnabledCheckBox.Checked;
             }
         }
 
@@ -494,7 +494,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void alertNoCountrollerFoundCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            NumerousControllerInterface.settings.AlertNoControllerFound = alertNoCountrollerFoundCheckBox.Checked;
+            NumerousControllerInterface.SettingsInstance.AlertNoControllerFound = alertNoCountrollerFoundCheckBox.Checked;
         }
     }
 }

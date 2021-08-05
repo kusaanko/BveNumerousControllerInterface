@@ -9,9 +9,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public class Settings
     {
-        private const string filename = "Kusaanko.NumerousControllerInterface.json";
-        private const string profileDirectory = "Kusaanko.NumerousControllerInterface.Profiles/";
-        private string directory = string.Empty;
+        private const string _filename = "Kusaanko.NumerousControllerInterface.json";
+        private const string _profileDirectory = "Kusaanko.NumerousControllerInterface.Profiles/";
+        private string _directory = string.Empty;
 
         [JsonIgnore]
         public Dictionary<string, ControllerProfile> Profiles = new Dictionary<string, ControllerProfile>();
@@ -286,26 +286,26 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         }
         public void SaveToXml()
         {
-            if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+            if (!Directory.Exists(_directory)) Directory.CreateDirectory(_directory);
 
             string json = JsonConvert.SerializeObject(this);
-            using (FileStream fs = new FileStream(Path.Combine(directory, filename), FileMode.Create)) // ファイルを開く
+            using (FileStream fs = new FileStream(Path.Combine(_directory, _filename), FileMode.Create)) // ファイルを開く
             {
                 StreamWriter writer = new StreamWriter(fs);
                 writer.Write(json);
                 writer.Close();
             }
-            if (!Directory.Exists(Path.Combine(directory, profileDirectory))) Directory.CreateDirectory(Path.Combine(directory, profileDirectory));
+            if (!Directory.Exists(Path.Combine(_directory, _profileDirectory))) Directory.CreateDirectory(Path.Combine(_directory, _profileDirectory));
             foreach (string name in removeProfilesList)
             {
-                File.Delete(Path.Combine(directory, profileDirectory + name + ".json"));
+                File.Delete(Path.Combine(_directory, _profileDirectory + name + ".json"));
             }
             foreach (string name in Profiles.Keys)
             {
                 ControllerProfile profile = Profiles[name];
                 json = JsonConvert.SerializeObject(profile);
 
-                using (FileStream fs = new FileStream(Path.Combine(directory, profileDirectory + name + ".json"), FileMode.Create)) // ファイルを開く
+                using (FileStream fs = new FileStream(Path.Combine(_directory, _profileDirectory + name + ".json"), FileMode.Create)) // ファイルを開く
                 {
                     StreamWriter writer = new StreamWriter(fs);
                     writer.Write(json);
@@ -319,7 +319,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             Settings settings;
             try
             {
-                settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Path.Combine(directory, filename)));
+                settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Path.Combine(directory, _filename)));
 
             }
             catch
@@ -327,8 +327,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 settings = new Settings();
             }
             string key = "";
-            if (!Directory.Exists(Path.Combine(directory, profileDirectory))) Directory.CreateDirectory(Path.Combine(directory, profileDirectory));
-            foreach (string file in Directory.GetFiles(Path.Combine(directory, profileDirectory)))
+            if (!Directory.Exists(Path.Combine(directory, _profileDirectory))) Directory.CreateDirectory(Path.Combine(directory, _profileDirectory));
+            foreach (string file in Directory.GetFiles(Path.Combine(directory, _profileDirectory)))
             {
                 try
                 {
@@ -365,7 +365,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 settings.ProfileMap[name] = key;
             }
 
-            settings.directory = directory;
+            settings._directory = directory;
 
             return settings;
         }
