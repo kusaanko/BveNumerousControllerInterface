@@ -41,7 +41,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             _stick = controller;
             InitializeComponent();
-            _stick.Read();
             _initButtonState = _stick.GetButtons();
             _initSliders = profile.GetSliders(_stick);
             timer1.Start();

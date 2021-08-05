@@ -9,13 +9,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
     {
         bool[] GetButtons();
         int[] GetSliders();
-        State Read();
         string GetName();
         string GetControllerType();
-    }
-
-    public class State
-    {
-        public bool IsFailure;
     }
 }

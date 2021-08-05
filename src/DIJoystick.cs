@@ -34,12 +34,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             return _name;
         }
-        public State Read()
-        {
-            State state = new State();
-            state.IsFailure = false;
-            return state;
-        }
 
         public void Dispose()
         {

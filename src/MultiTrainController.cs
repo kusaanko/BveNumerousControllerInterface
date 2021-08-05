@@ -176,10 +176,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             _buttons[index] = (button & bit) == bit;
         }
-        public State Read()
-        {
-            return new State();
-        }
 
         public void Dispose()
         {

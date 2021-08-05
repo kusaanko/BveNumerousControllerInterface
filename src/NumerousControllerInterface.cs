@@ -189,7 +189,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             foreach(IController controller in Controllers)
             {
                 ControllerProfile profile = SettingsInstance.Profiles[SettingsInstance.ProfileMap[controller.GetName()]];
-                controller.Read();
                 if(profile.IsMasterController && controller.GetName().Equals(s_masterController))
                 {
                     int powerLevel = profile.GetPower(controller, GetPowerMax());

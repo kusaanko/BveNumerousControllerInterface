@@ -225,14 +225,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             timer1.Stop();
             IController controller = GetController();
             ControllerProfile profile = GetProfile();
-            if (controller.Read().IsFailure) return;
             addButtonButton.Text = "ボタンを押す...";
             List<int> buttons = profile.GetButtons(controller);
             Thread thread = new Thread(new ThreadStart(() => {
                 int buttonIndex = -1;
                 while (true)
                 {
-                    if (controller.Read().IsFailure) break;
                     List<int> list = profile.GetButtons(controller);
                     foreach (int button in list)
                     {
@@ -322,7 +320,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             IController controller = GetController();
             ControllerProfile profile = GetProfile();
             if (controller == null || profile == null) return;
-            controller.Read();
             breakLabel.Text = this.resources.GetString("breakLabel.Text") + profile.GetBreak(controller, 10);
             powerLabel.Text = this.resources.GetString("powerLabel.Text") + profile.GetPower(controller, 6);
             buttonLabel.Text = this.resources.GetString("buttonLabel.Text");

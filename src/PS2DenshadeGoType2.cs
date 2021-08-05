@@ -234,10 +234,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
             }).Start();
         }
-        public State Read()
-        {
-            return new State();
-        }
 
         public void Dispose()
         {
