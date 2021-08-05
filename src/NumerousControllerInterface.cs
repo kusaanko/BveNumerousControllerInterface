@@ -37,6 +37,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private Stopwatch stopwatch = new Stopwatch();
         public static Timer timer;
+        private bool updateController;
+        private bool isDisposeRequested;
 
         public NumerousControllerInterface()
         {
@@ -53,6 +55,13 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 timer.Tick += new System.EventHandler(TimerTick);
             }
             timer.Start();
+            System.Threading.Thread mainThread = new System.Threading.Thread(new System.Threading.ThreadStart(() => {
+                while (!isDisposeRequested)
+                {
+                    MainTick();
+                }
+            }));
+            mainThread.Start();
         }
 
         private static void TimerTick(object sender, EventArgs e)
@@ -159,6 +168,17 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public void Tick()
         {
+            updateController = true;
+        }
+
+        public void MainTick()
+        {
+            if(!updateController)
+            {
+                System.Threading.Thread.Sleep(16);
+                return;
+            }
+            updateController = false;
             if (configForm != null && !configForm.IsDisposed)
             {
                 return;
@@ -270,6 +290,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 settings = null;
             }
             timer.Stop();
+            isDisposeRequested = true;
         }
 
         private void onLeverMoved(int axis, int notch)
