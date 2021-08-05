@@ -27,7 +27,7 @@ Bve5、6用のコントローラー入力プラグイン
 # インストール
 [Releases](https://github.com/kusaanko/BveNumerousControllerInterface/releases)ページから最新版をダウンロードします。
 
-Bve5.8以前なら`Kusaanko.NumerousControllerInterface.zip`、Bve6.0以降なら`Kusaanko.NumerousControllerInterface.NET4.zip`をダウンロードして下さい。
+Bve5.8以前なら`NumerousControllerInterface_Bve5.zip`、Bve6.0以降なら`NumerousControllerInterface_Bve6.zip`をダウンロードして下さい。
 
 Bve5.8以前なら`C:\Program Files (x86)\mackoy\BveTs5`、Bve6.0以降なら`C:\Program Files\mackoy\BveTs6`を開き(もしくはBveをインストールしたディレクトリ)、ダウンロードしたzipファイルを展開し、中身を配置します。
 
