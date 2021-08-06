@@ -51,84 +51,8 @@ NumerousControllerInterfaceを選択してプロパティーをクリックし�
 
 コントローラーを使用するには、コントローラーを有効にするにチェックを入れる必要があります。
 
-# コーディング規約
-こちらのコーディング規約に従います。[C# のコーディング規則](https://docs.microsoft.com/ja-jp/dotnet/csharp/fundamentals/coding-style/coding-conventions)
-
-# このプラグインに対応コントローラーを追加する
-LibUsbDotNetを使用してUSB接続のマスコンなどを追加できます。  
-PS2DenshadeGoType2.csなどを参考にしてください。  
-NCIControllerをインターフェイスにすることでコントローラーを制御するクラスを作成できます。  
-通常のコントローラーと同じように、ボタンと軸の値を報告するか、GetPowerとGetBreakを実装して直接力行と制動を報告することができます。  
-その後、ControllerProfile.csのGetAllControllers関数内の最後に以下の行を追加します。
-
-```c#
-controllers.AddRange(NewController.Get());
-```
-
-コントローラーの制御を行うクラスはControllerフォルダ内に作成し、名前空間は`Kusaanko.Bvets.NumerousControllerInterface.Controller`としておいてください。
-
-また、NumerousInterface.NET4にも追加するのを忘れないでください。ファイルは既存の項目として **リンクとして追加** してください。
-
-## デフォルトのプロファイルを追加する
-デフォルトのプロファイルを用意する場合はSettings.cs内のコンストラクター内に記述します。  
-JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)の例
-
-```c#
-
-{
-    ControllerProfile profile = new ControllerProfile();
-    profile.IsTwoHandle = true;
-    profile.IsMasterController = true;
-    profile.PowerAxises = new int[] { 21 };
-    profile.PowerAxisStatus = new int[,] {
-        { -1000 },
-        { 1000 },
-        { 1000 },
-        { -1000 },
-        { -1000 },
-        { -8 }
-    };
-    profile.PowerButtons = new int[] { 0 };
-    profile.PowerButtonStatus = new bool[,] {
-        { false },
-        { true },
-        { false },
-        { true },
-        { false },
-        { true }
-    };
-    profile.BreakButtons = new int[] { 4, 5, 6, 7};
-    profile.BreakButtonStatus = new bool[,] { 
-        { true, true, false, true },
-        { false, true, true, true },
-        { false, true, false, true },
-        { true, true, true, false },
-        { true, true, false, false },
-        { false, true, true, false },
-        { false, true, false, false },
-        { true, false, true, true },
-        { true, false, false, true },
-        { false, false, false, false }
-    };
-    profile.CalcDuplicated();
-    profile.KeyMap = new Dictionary<int, int[]>();
-    profile.KeyMap.Add(1, new int[] { 0, 2});
-    profile.KeyMap.Add(2, new int[] { 0, 0 });
-    profile.KeyMap.Add(3, new int[] { -1, 1 });
-    profile.KeyMap.Add(9, new int[] { -3, 12 });
-    profile.KeyMap.Add(8, new int[] { -3, 11 });
-    Profiles.Add("JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)", profile);
-    ProfileMap.Add("JC-PS101U", "JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)");
-}
-```
-ここで、プロファイル名はファイル名であるため、ファイル名に使えない文字は使わないでください。エラーを起こします。  
-ProfileMapはコントローラー名、プロファイル名です。これでコントローラーとプロファイルを紐付けます。
-また、
-
-```c#
-profile.CalcDuplicated();
-```
-この記述を忘れないでください。これをすることで重複した組み合わせの計算を行っています。また、Null回避のためにも必ず最後に実行するようにしてください。
+# コントリビュート、内部APIの利用方法について
+[こちら](https://github.com/kusaanko/BveNumerousControllerInterface/how_to_contribute.md)を御覧ください。
 
 # 協力
 サハ209 - [@saha209](https://github.com/saha209)
