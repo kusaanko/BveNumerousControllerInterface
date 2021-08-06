@@ -75,16 +75,16 @@
     <Compile Include="ControllerSetupForm.Designer.cs">
       <DependentUpon>ControllerSetupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DIJoystick.cs" />
-    <Compile Include="NCIController.cs" />
-    <Compile Include="MultiTrainController.cs" />
+    <Compile Include="Controller\DIJoystick.cs" />
+    <Compile Include="Controller\NCIController.cs" />
+    <Compile Include="Controller\MultiTrainController.cs" />
     <Compile Include="NewNameDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="NewNameDialog.Designer.cs">
       <DependentUpon>NewNameDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="PS2DenshadeGoType2.cs" />
+    <Compile Include="Controller\PS2DenshadeGoType2.cs" />
     <Compile Include="SelectMasterControllerForm.cs">
       <SubType>Form</SubType>
     </Compile>

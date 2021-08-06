@@ -84,14 +84,17 @@
     <Compile Include="..\ControllerSetupForm.Designer.cs">
       <Link>ControllerSetupForm.Designer.cs</Link>
     </Compile>
-    <Compile Include="..\DIJoystick.cs">
+    <Compile Include="..\Controller\DIJoystick.cs">
       <Link>DIJoystick.cs</Link>
     </Compile>
-    <Compile Include="..\MultiTrainController.cs">
+    <Compile Include="..\Controller\MultiTrainController.cs">
       <Link>MultiTrainController.cs</Link>
     </Compile>
-    <Compile Include="..\NCIController.cs">
+    <Compile Include="..\Controller\NCIController.cs">
       <Link>NCIController.cs</Link>
+    </Compile>
+    <Compile Include="..\Controller\PS2DenshadeGoType2.cs">
+      <Link>PS2DenshadeGoType2.cs</Link>
     </Compile>
     <Compile Include="..\NewNameDialog.cs">
       <Link>NewNameDialog.cs</Link>
@@ -105,9 +108,6 @@
     </Compile>
     <Compile Include="..\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\PS2DenshadeGoType2.cs">
-      <Link>PS2DenshadeGoType2.cs</Link>
     </Compile>
     <Compile Include="..\SelectMasterControllerForm.cs">
       <Link>SelectMasterControllerForm.cs</Link>

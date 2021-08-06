@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using System.Windows.Forms;
+using Kusaanko.Bvets.NumerousControllerInterface.Controller;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {

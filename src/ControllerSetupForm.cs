@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using SlimDX.DirectInput;
 using System.Threading;
 using System.Diagnostics;
+using Kusaanko.Bvets.NumerousControllerInterface.Controller;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {

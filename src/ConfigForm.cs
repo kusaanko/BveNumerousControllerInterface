@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Threading;
 using System.Diagnostics;
+using Kusaanko.Bvets.NumerousControllerInterface.Controller;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {

@@ -8,7 +8,7 @@ using LibUsbDotNet.Main;
 using LibUsbDotNet;
 using System.Threading;
 
-namespace Kusaanko.Bvets.NumerousControllerInterface
+namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
 {
     public class PS2DenshadeGoType2 : NCIController
     {

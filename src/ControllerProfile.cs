@@ -7,6 +7,7 @@ using SlimDX.DirectInput;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using LibUsbDotNet;
+using Kusaanko.Bvets.NumerousControllerInterface.Controller;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {

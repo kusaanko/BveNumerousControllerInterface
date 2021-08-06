@@ -5,7 +5,7 @@ using System.Text;
 using SlimDX.DirectInput;
 using System.Diagnostics;
 
-namespace Kusaanko.Bvets.NumerousControllerInterface
+namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
 {
     public class DIJoystick : NCIController
     {

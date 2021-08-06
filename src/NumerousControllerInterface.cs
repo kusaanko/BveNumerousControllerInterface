@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using SlimDX.DirectInput;
 using System.Diagnostics;
 using Mackoy.Bvets;
+using Kusaanko.Bvets.NumerousControllerInterface.Controller;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {

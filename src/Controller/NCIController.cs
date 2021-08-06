@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Kusaanko.Bvets.NumerousControllerInterface
+namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
 {
     public abstract class NCIController : IDisposable
     {

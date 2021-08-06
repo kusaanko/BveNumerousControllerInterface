@@ -7,7 +7,7 @@ using LibUsbDotNet.Main;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Kusaanko.Bvets.NumerousControllerInterface
+namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
 {
     public class MultiTrainController : NCIController
     {
