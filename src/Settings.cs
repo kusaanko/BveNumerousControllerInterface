@@ -95,28 +95,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 ControllerProfile profile = new ControllerProfile();
                 profile.IsTwoHandle = true;
                 profile.IsMasterController = true;
-                profile.PowerButtons = new int[] { 11, 12, 13 };
-                profile.PowerButtonStatus = new bool[,] {
-                    { false, false, false },
-                    { true, false, false },
-                    { false, true, false },
-                    { true, true, false },
-                    { false, false, true },
-                    { true, false, true }
-                };
-                profile.BreakButtons = new int[] { 14, 15, 16, 17 };
-                profile.BreakButtonStatus = new bool[,] {
-                    { false, false, false, false },
-                    { true, false, false, false },
-                    { false, true, false, false },
-                    { true, true, false, false },
-                    { false, false, true, false },
-                    { true, false, true, false },
-                    { false, true, true, false },
-                    { true, true, true, false },
-                    { false, false, false, true},
-                    { true, false, false, true }
-                };
                 profile.CalcDuplicated();
                 profile.KeyMap = new Dictionary<int, int[]>();
                 profile.KeyMap.Add(1, new int[] { 0, 2 });//C
@@ -132,28 +110,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 ControllerProfile profile = new ControllerProfile();
                 profile.IsTwoHandle = false;
                 profile.IsMasterController = true;
-                profile.PowerButtons = new int[] { 11, 12, 13 };
-                profile.PowerButtonStatus = new bool[,] {
-                    { false, false, false },
-                    { true, false, false },
-                    { false, true, false },
-                    { true, true, false },
-                    { false, false, true },
-                    { true, false, true }
-                };
-                profile.BreakButtons = new int[] { 14, 15, 16, 17 };
-                profile.BreakButtonStatus = new bool[,] {
-                    { false, false, false, false },
-                    { true, false, false, false },
-                    { false, true, false, false },
-                    { true, true, false, false },
-                    { false, false, true, false },
-                    { true, false, true, false },
-                    { false, true, true, false },
-                    { true, true, true, false },
-                    { false, false, false, true},
-                    { true, false, false, true }
-                };
                 profile.CalcDuplicated();
                 profile.KeyMap = new Dictionary<int, int[]>();
                 profile.KeyMap.Add(1, new int[] { 0, 2 });//C
@@ -169,25 +125,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 ControllerProfile profile = new ControllerProfile();
                 profile.IsTwoHandle = false;
                 profile.IsMasterController = true;
-                profile.PowerButtons = new int[] { 15, 16, 17 };
-                profile.PowerButtonStatus = new bool[,] {
-                    { false, false, false },
-                    { true, false, false },
-                    { false, true, false },
-                    { true, true, false },
-                    { false, false, true }
-                };
-                profile.BreakButtons = new int[] { 18, 19, 20, 21 };
-                profile.BreakButtonStatus = new bool[,] {
-                    { false, false, false, false },
-                    { true, false, false, false },
-                    { false, true, false, false },
-                    { true, true, false, false },
-                    { false, false, true, false },
-                    { true, false, true, false },
-                    { false, true, true, false },
-                    { true, true, true, false }
-                };
                 profile.CalcDuplicated();
                 profile.KeyMap = new Dictionary<int, int[]>();
                 profile.KeyMap.Add(4, new int[] { -1, 1 });//B
@@ -208,26 +145,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 ControllerProfile profile = new ControllerProfile();
                 profile.IsTwoHandle = false;
                 profile.IsMasterController = true;
-                profile.PowerButtons = new int[] { 15, 16, 17 };
-                profile.PowerButtonStatus = new bool[,] {
-                    { false, false, false },
-                    { true, false, false },
-                    { false, true, false },
-                    { true, true, false },
-                    { false, false, true }
-                };
-                profile.BreakButtons = new int[] { 18, 19, 20, 21 };
-                profile.BreakButtonStatus = new bool[,] {
-                    { false, false, false, false },
-                    { true, false, false, false },
-                    { false, true, false, false },
-                    { true, true, false, false },
-                    { false, false, true, false },
-                    { true, false, true, false },
-                    { false, true, true, false },
-                    { true, true, true, false },
-                    { false, false, false, true}
-                };
                 profile.CalcDuplicated();
                 profile.KeyMap = new Dictionary<int, int[]>();
                 profile.KeyMap.Add(4, new int[] { -1, 1 });//B
@@ -248,25 +165,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 ControllerProfile profile = new ControllerProfile();
                 profile.IsTwoHandle = false;
                 profile.IsMasterController = true;
-                profile.PowerButtons = new int[] { 15, 16, 17 };
-                profile.PowerButtonStatus = new bool[,] {
-                    { false, false, false },
-                    { true, false, false },
-                    { false, true, false },
-                    { true, true, false },
-                    { false, false, true },
-                    { true, false, true }
-                };
-                profile.BreakButtons = new int[] { 18, 19, 20, 21 };
-                profile.BreakButtonStatus = new bool[,] {
-                    { false, false, false, false },
-                    { true, false, false, false },
-                    { false, true, false, false },
-                    { true, true, false, false },
-                    { false, false, true, false },
-                    { true, false, true, false },
-                    { false, true, true, false },
-                };
                 profile.CalcDuplicated();
                 profile.KeyMap = new Dictionary<int, int[]>();
                 profile.KeyMap.Add(4, new int[] { -1, 1 });//B
