@@ -38,6 +38,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public bool InaccuracyModeBreak;
         private int prePowerNotch;
         private int preBreakNotch;
+        private static int s_preDirectInputCount = -1;
+        private static int s_preUsbCount = -1;
 
         public static List<NCIController> controllers = new List<NCIController>();
 
@@ -461,7 +463,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public static void GetAllControllers()
         {
-            if (NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly).Count != controllers.Count)
+            bool update = false;
+            if (NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly).Count != s_preDirectInputCount || 
+                UsbDevice.AllDevices.Count != s_preUsbCount) update = true;
+            if (update)
             {
                 foreach (NCIController controller in controllers)
                 {
@@ -472,6 +477,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 controllers.AddRange(PS2DenshadeGoType2.Get());
                 controllers.AddRange(MultiTrainController.Get());
             }
+            s_preDirectInputCount = NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly).Count;
+            s_preUsbCount = UsbDevice.AllDevices.Count;
         }
 
         public static void DisposeAllControllers()
