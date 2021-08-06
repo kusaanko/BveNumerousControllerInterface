@@ -13,7 +13,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
     public class Settings
     {
         private const string _filename = "Kusaanko.NumerousControllerInterface.json";
-        private const string _profileDirectory = "Kusaanko.NumerousControllerInterface.Profiles/";
+        private const string _profileDirectory = "Kusaanko.NumerousControllerInterface.Profiles\\";
         private string _directory = string.Empty;
 
         [JsonIgnore]
@@ -220,6 +220,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 writer.Write(json);
                 writer.Close();
             }
+        }
+
+        public string GetProfileSavePath(ControllerProfile profile)
+        {
+            return Path.Combine(_directory, _profileDirectory + GetSHA256Hash(profile.Name) + ".json");
         }
 
         public static Settings LoadFromXml(string directory)

@@ -56,6 +56,8 @@
             this.isEnabledCheckBox = new System.Windows.Forms.CheckBox();
             this.profileToUseLabel = new System.Windows.Forms.Label();
             this.profileComboBox = new System.Windows.Forms.ComboBox();
+            this.profileContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openProfileInExplorer = new System.Windows.Forms.ToolStripMenuItem();
             this.newProfileButton = new System.Windows.Forms.Button();
             this.removeProfileButton = new System.Windows.Forms.Button();
             this.duplicateProfileButton = new System.Windows.Forms.Button();
@@ -66,31 +68,29 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.settingsGroup.SuspendLayout();
+            this.profileContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // okButton
             // 
             resources.ApplyResources(this.okButton, "okButton");
             this.okButton.Name = "okButton";
-            this.toolTip1.SetToolTip(this.okButton, resources.GetString("okButton.ToolTip"));
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
             // panel1
             // 
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Controls.Add(this.cancelButton);
             this.panel1.Controls.Add(this.okButton);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
-            this.toolTip1.SetToolTip(this.panel1, resources.GetString("panel1.ToolTip"));
             // 
             // cancelButton
             // 
             resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Name = "cancelButton";
-            this.toolTip1.SetToolTip(this.cancelButton, resources.GetString("cancelButton.ToolTip"));
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // toolTip1
@@ -102,57 +102,48 @@
             resources.ApplyResources(this.controllerAssignmentLabel, "controllerAssignmentLabel");
             this.controllerAssignmentLabel.ForeColor = System.Drawing.SystemColors.Highlight;
             this.controllerAssignmentLabel.Name = "controllerAssignmentLabel";
-            this.toolTip1.SetToolTip(this.controllerAssignmentLabel, resources.GetString("controllerAssignmentLabel.ToolTip"));
             // 
             // controllerList
             // 
-            resources.ApplyResources(this.controllerList, "controllerList");
             this.controllerList.FormattingEnabled = true;
+            resources.ApplyResources(this.controllerList, "controllerList");
             this.controllerList.Name = "controllerList";
-            this.toolTip1.SetToolTip(this.controllerList, resources.GetString("controllerList.ToolTip"));
             this.controllerList.SelectedIndexChanged += new System.EventHandler(this.controllerList_SelectedIndexChanged);
             // 
             // selectControllerLabel
             // 
             resources.ApplyResources(this.selectControllerLabel, "selectControllerLabel");
             this.selectControllerLabel.Name = "selectControllerLabel";
-            this.toolTip1.SetToolTip(this.selectControllerLabel, resources.GetString("selectControllerLabel.ToolTip"));
             // 
             // statusLabel
             // 
             resources.ApplyResources(this.statusLabel, "statusLabel");
             this.statusLabel.Name = "statusLabel";
-            this.toolTip1.SetToolTip(this.statusLabel, resources.GetString("statusLabel.ToolTip"));
             // 
             // powerLabel
             // 
             resources.ApplyResources(this.powerLabel, "powerLabel");
             this.powerLabel.Name = "powerLabel";
-            this.toolTip1.SetToolTip(this.powerLabel, resources.GetString("powerLabel.ToolTip"));
             // 
             // breakLabel
             // 
             resources.ApplyResources(this.breakLabel, "breakLabel");
             this.breakLabel.Name = "breakLabel";
-            this.toolTip1.SetToolTip(this.breakLabel, resources.GetString("breakLabel.ToolTip"));
             // 
             // buttonLabel
             // 
             resources.ApplyResources(this.buttonLabel, "buttonLabel");
             this.buttonLabel.Name = "buttonLabel";
-            this.toolTip1.SetToolTip(this.buttonLabel, resources.GetString("buttonLabel.ToolTip"));
             // 
             // settingPowerButton
             // 
             resources.ApplyResources(this.settingPowerButton, "settingPowerButton");
             this.settingPowerButton.Name = "settingPowerButton";
-            this.toolTip1.SetToolTip(this.settingPowerButton, resources.GetString("settingPowerButton.ToolTip"));
             this.settingPowerButton.UseVisualStyleBackColor = true;
             this.settingPowerButton.Click += new System.EventHandler(this.settingPowerButton_Click);
             // 
             // settingsGroup
             // 
-            resources.ApplyResources(this.settingsGroup, "settingsGroup");
             this.settingsGroup.Controls.Add(this.isFlexibleNotchCheckBox);
             this.settingsGroup.Controls.Add(this.removeButtonButton);
             this.settingsGroup.Controls.Add(this.addButtonButton);
@@ -164,15 +155,14 @@
             this.settingsGroup.Controls.Add(this.isTwoHandleComboBox);
             this.settingsGroup.Controls.Add(this.settingBreakButton);
             this.settingsGroup.Controls.Add(this.settingPowerButton);
+            resources.ApplyResources(this.settingsGroup, "settingsGroup");
             this.settingsGroup.Name = "settingsGroup";
             this.settingsGroup.TabStop = false;
-            this.toolTip1.SetToolTip(this.settingsGroup, resources.GetString("settingsGroup.ToolTip"));
             // 
             // isFlexibleNotchCheckBox
             // 
             resources.ApplyResources(this.isFlexibleNotchCheckBox, "isFlexibleNotchCheckBox");
             this.isFlexibleNotchCheckBox.Name = "isFlexibleNotchCheckBox";
-            this.toolTip1.SetToolTip(this.isFlexibleNotchCheckBox, resources.GetString("isFlexibleNotchCheckBox.ToolTip"));
             this.isFlexibleNotchCheckBox.UseVisualStyleBackColor = true;
             this.isFlexibleNotchCheckBox.CheckedChanged += new System.EventHandler(this.isFlexibleNotchCheckBox_CheckedChanged);
             // 
@@ -180,7 +170,6 @@
             // 
             resources.ApplyResources(this.removeButtonButton, "removeButtonButton");
             this.removeButtonButton.Name = "removeButtonButton";
-            this.toolTip1.SetToolTip(this.removeButtonButton, resources.GetString("removeButtonButton.ToolTip"));
             this.removeButtonButton.UseVisualStyleBackColor = true;
             this.removeButtonButton.Click += new System.EventHandler(this.removeButtonButton_Click);
             // 
@@ -188,7 +177,6 @@
             // 
             resources.ApplyResources(this.addButtonButton, "addButtonButton");
             this.addButtonButton.Name = "addButtonButton";
-            this.toolTip1.SetToolTip(this.addButtonButton, resources.GetString("addButtonButton.ToolTip"));
             this.addButtonButton.UseVisualStyleBackColor = true;
             this.addButtonButton.Click += new System.EventHandler(this.addButtonButton_Click);
             // 
@@ -196,15 +184,13 @@
             // 
             resources.ApplyResources(this.buttonFunctionLabel, "buttonFunctionLabel");
             this.buttonFunctionLabel.Name = "buttonFunctionLabel";
-            this.toolTip1.SetToolTip(this.buttonFunctionLabel, resources.GetString("buttonFunctionLabel.ToolTip"));
             // 
             // buttonFunctionComboBox
             // 
-            resources.ApplyResources(this.buttonFunctionComboBox, "buttonFunctionComboBox");
             this.buttonFunctionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.buttonFunctionComboBox, "buttonFunctionComboBox");
             this.buttonFunctionComboBox.FormattingEnabled = true;
             this.buttonFunctionComboBox.Name = "buttonFunctionComboBox";
-            this.toolTip1.SetToolTip(this.buttonFunctionComboBox, resources.GetString("buttonFunctionComboBox.ToolTip"));
             this.buttonFunctionComboBox.SelectedIndexChanged += new System.EventHandler(this.buttonFunctionComboBox_SelectedIndexChanged);
             // 
             // buttonsAssignmentLabel
@@ -212,30 +198,26 @@
             resources.ApplyResources(this.buttonsAssignmentLabel, "buttonsAssignmentLabel");
             this.buttonsAssignmentLabel.ForeColor = System.Drawing.SystemColors.Highlight;
             this.buttonsAssignmentLabel.Name = "buttonsAssignmentLabel";
-            this.toolTip1.SetToolTip(this.buttonsAssignmentLabel, resources.GetString("buttonsAssignmentLabel.ToolTip"));
             // 
             // isMasterControllerCheckBox
             // 
             resources.ApplyResources(this.isMasterControllerCheckBox, "isMasterControllerCheckBox");
             this.isMasterControllerCheckBox.Name = "isMasterControllerCheckBox";
-            this.toolTip1.SetToolTip(this.isMasterControllerCheckBox, resources.GetString("isMasterControllerCheckBox.ToolTip"));
             this.isMasterControllerCheckBox.UseVisualStyleBackColor = true;
             this.isMasterControllerCheckBox.CheckedChanged += new System.EventHandler(this.isMasterControllerCheckBox_CheckedChanged);
             // 
             // buttonList
             // 
-            resources.ApplyResources(this.buttonList, "buttonList");
             this.buttonList.FormattingEnabled = true;
+            resources.ApplyResources(this.buttonList, "buttonList");
             this.buttonList.Name = "buttonList";
             this.buttonList.Sorted = true;
-            this.toolTip1.SetToolTip(this.buttonList, resources.GetString("buttonList.ToolTip"));
             this.buttonList.SelectedIndexChanged += new System.EventHandler(this.buttonList_SelectedIndexChanged);
             // 
             // isTwoHandleComboBox
             // 
             resources.ApplyResources(this.isTwoHandleComboBox, "isTwoHandleComboBox");
             this.isTwoHandleComboBox.Name = "isTwoHandleComboBox";
-            this.toolTip1.SetToolTip(this.isTwoHandleComboBox, resources.GetString("isTwoHandleComboBox.ToolTip"));
             this.isTwoHandleComboBox.UseVisualStyleBackColor = true;
             this.isTwoHandleComboBox.CheckedChanged += new System.EventHandler(this.isTwoHandleComboBox_CheckedChanged);
             // 
@@ -243,7 +225,6 @@
             // 
             resources.ApplyResources(this.settingBreakButton, "settingBreakButton");
             this.settingBreakButton.Name = "settingBreakButton";
-            this.toolTip1.SetToolTip(this.settingBreakButton, resources.GetString("settingBreakButton.ToolTip"));
             this.settingBreakButton.UseVisualStyleBackColor = true;
             this.settingBreakButton.Click += new System.EventHandler(this.settingBreakButton_Click);
             // 
@@ -251,7 +232,6 @@
             // 
             resources.ApplyResources(this.isEnabledCheckBox, "isEnabledCheckBox");
             this.isEnabledCheckBox.Name = "isEnabledCheckBox";
-            this.toolTip1.SetToolTip(this.isEnabledCheckBox, resources.GetString("isEnabledCheckBox.ToolTip"));
             this.isEnabledCheckBox.UseVisualStyleBackColor = true;
             this.isEnabledCheckBox.CheckedChanged += new System.EventHandler(this.isEnabledCheckBox_CheckedChanged);
             // 
@@ -259,22 +239,33 @@
             // 
             resources.ApplyResources(this.profileToUseLabel, "profileToUseLabel");
             this.profileToUseLabel.Name = "profileToUseLabel";
-            this.toolTip1.SetToolTip(this.profileToUseLabel, resources.GetString("profileToUseLabel.ToolTip"));
             // 
             // profileComboBox
             // 
-            resources.ApplyResources(this.profileComboBox, "profileComboBox");
+            this.profileComboBox.ContextMenuStrip = this.profileContextMenuStrip;
             this.profileComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.profileComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.profileComboBox, "profileComboBox");
             this.profileComboBox.Name = "profileComboBox";
-            this.toolTip1.SetToolTip(this.profileComboBox, resources.GetString("profileComboBox.ToolTip"));
             this.profileComboBox.SelectedIndexChanged += new System.EventHandler(this.profileComboBox_SelectedIndexChanged);
+            // 
+            // profileContextMenuStrip
+            // 
+            this.profileContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openProfileInExplorer});
+            this.profileContextMenuStrip.Name = "profileContextMenuStrip";
+            resources.ApplyResources(this.profileContextMenuStrip, "profileContextMenuStrip");
+            // 
+            // openProfileInExplorer
+            // 
+            this.openProfileInExplorer.Name = "openProfileInExplorer";
+            resources.ApplyResources(this.openProfileInExplorer, "openProfileInExplorer");
+            this.openProfileInExplorer.Click += new System.EventHandler(this.openProfileInExplorer_Click);
             // 
             // newProfileButton
             // 
             resources.ApplyResources(this.newProfileButton, "newProfileButton");
             this.newProfileButton.Name = "newProfileButton";
-            this.toolTip1.SetToolTip(this.newProfileButton, resources.GetString("newProfileButton.ToolTip"));
             this.newProfileButton.UseVisualStyleBackColor = true;
             this.newProfileButton.Click += new System.EventHandler(this.newProfileButton_Click);
             // 
@@ -282,7 +273,6 @@
             // 
             resources.ApplyResources(this.removeProfileButton, "removeProfileButton");
             this.removeProfileButton.Name = "removeProfileButton";
-            this.toolTip1.SetToolTip(this.removeProfileButton, resources.GetString("removeProfileButton.ToolTip"));
             this.removeProfileButton.UseVisualStyleBackColor = true;
             this.removeProfileButton.Click += new System.EventHandler(this.removeProfileButton_Click);
             // 
@@ -290,7 +280,6 @@
             // 
             resources.ApplyResources(this.duplicateProfileButton, "duplicateProfileButton");
             this.duplicateProfileButton.Name = "duplicateProfileButton";
-            this.toolTip1.SetToolTip(this.duplicateProfileButton, resources.GetString("duplicateProfileButton.ToolTip"));
             this.duplicateProfileButton.UseVisualStyleBackColor = true;
             this.duplicateProfileButton.Click += new System.EventHandler(this.duplicateProfileButton_Click);
             // 
@@ -298,13 +287,11 @@
             // 
             resources.ApplyResources(this.controllerTypeLabel, "controllerTypeLabel");
             this.controllerTypeLabel.Name = "controllerTypeLabel";
-            this.toolTip1.SetToolTip(this.controllerTypeLabel, resources.GetString("controllerTypeLabel.ToolTip"));
             // 
             // changeNameButton
             // 
             resources.ApplyResources(this.changeNameButton, "changeNameButton");
             this.changeNameButton.Name = "changeNameButton";
-            this.toolTip1.SetToolTip(this.changeNameButton, resources.GetString("changeNameButton.ToolTip"));
             this.changeNameButton.UseVisualStyleBackColor = true;
             this.changeNameButton.Click += new System.EventHandler(this.changeNameButton_Click);
             // 
@@ -313,7 +300,6 @@
             resources.ApplyResources(this.settingsOfNumerousControllerInterfaceLabel, "settingsOfNumerousControllerInterfaceLabel");
             this.settingsOfNumerousControllerInterfaceLabel.ForeColor = System.Drawing.SystemColors.Highlight;
             this.settingsOfNumerousControllerInterfaceLabel.Name = "settingsOfNumerousControllerInterfaceLabel";
-            this.toolTip1.SetToolTip(this.settingsOfNumerousControllerInterfaceLabel, resources.GetString("settingsOfNumerousControllerInterfaceLabel.ToolTip"));
             // 
             // alertNoCountrollerFoundCheckBox
             // 
@@ -321,7 +307,6 @@
             this.alertNoCountrollerFoundCheckBox.Checked = true;
             this.alertNoCountrollerFoundCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.alertNoCountrollerFoundCheckBox.Name = "alertNoCountrollerFoundCheckBox";
-            this.toolTip1.SetToolTip(this.alertNoCountrollerFoundCheckBox, resources.GetString("alertNoCountrollerFoundCheckBox.ToolTip"));
             this.alertNoCountrollerFoundCheckBox.UseVisualStyleBackColor = true;
             this.alertNoCountrollerFoundCheckBox.CheckedChanged += new System.EventHandler(this.alertNoCountrollerFoundCheckBox_CheckedChanged);
             // 
@@ -361,11 +346,11 @@
             this.MinimizeBox = false;
             this.Name = "ConfigForm";
             this.ShowInTaskbar = false;
-            this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConfigForm_FormClosing);
             this.panel1.ResumeLayout(false);
             this.settingsGroup.ResumeLayout(false);
             this.settingsGroup.PerformLayout();
+            this.profileContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -406,5 +391,7 @@
         private System.Windows.Forms.CheckBox isFlexibleNotchCheckBox;
         private System.Windows.Forms.Label settingsOfNumerousControllerInterfaceLabel;
         private System.Windows.Forms.CheckBox alertNoCountrollerFoundCheckBox;
+        private System.Windows.Forms.ContextMenuStrip profileContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem openProfileInExplorer;
     }
 }

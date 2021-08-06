@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Diagnostics;
 using Kusaanko.Bvets.NumerousControllerInterface.Controller;
+using System.IO;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
@@ -500,6 +501,21 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private void alertNoCountrollerFoundCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             NumerousControllerInterface.SettingsInstance.AlertNoControllerFound = alertNoCountrollerFoundCheckBox.Checked;
+        }
+
+        private void openProfileInExplorer_Click(object sender, EventArgs e)
+        {
+            string filePath = NumerousControllerInterface.SettingsInstance.GetProfileSavePath(GetProfile());
+            if (!File.Exists(filePath))
+            {
+                NumerousControllerInterface.SettingsInstance.SaveProfileToXml(GetProfile());
+            }
+
+            try
+            {
+                Process.Start("explorer.exe", "/select," + filePath);
+            }
+            catch (Exception) { }
         }
     }
 }
