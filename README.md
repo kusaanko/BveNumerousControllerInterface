@@ -56,14 +56,16 @@ NumerousControllerInterfaceを選択してプロパティーをクリックし�
 
 # このプラグインに対応コントローラーを追加する
 LibUsbDotNetを使用してUSB接続のマスコンなどを追加できます。  
-仕組みとしては、コントローラーをボタンと軸のコントローラーとして認識させてあとは他のコントローラーと同じように処理します。  
 PS2DenshadeGoType2.csなどを参考にしてください。  
-IControllerをインターフェイスにすることでコントローラーを制御するクラスを作成できます。  
+NCIControllerをインターフェイスにすることでコントローラーを制御するクラスを作成できます。  
+通常のコントローラーと同じように、ボタンと軸の値を報告するか、GetPowerとGetBreakを実装して直接力行と制動を報告することができます。  
 その後、ControllerProfile.csのGetAllControllers関数内の最後に以下の行を追加します。
 
 ```c#
 controllers.AddRange(NewController.Get());
 ```
+
+コントローラーの制御を行うクラスはControllerフォルダ内に作成し、名前空間は`Kusaanko.Bvets.NumerousControllerInterface.Controller`としておいてください。
 
 また、NumerousInterface.NET4にも追加するのを忘れないでください。ファイルは既存の項目として **リンクとして追加** してください。
 
