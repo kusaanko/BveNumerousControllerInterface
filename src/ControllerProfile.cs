@@ -13,6 +13,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public class ControllerProfile
     {
+        public string Name;
         public Dictionary<int, int[]> KeyMap;
         public int[] PowerButtons;
         public bool[,] PowerButtonStatus;

@@ -27,16 +27,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+            if (_ret.Invoke(textBox1.Text))
             {
-                MessageBox.Show("使用できない文字が含まれています。", "NumerousControllerInterface");
-            }
-            else
-            {
-                if (_ret.Invoke(textBox1.Text))
-                {
-                    Close();
-                }
+                Close();
             }
         }
     }

@@ -378,7 +378,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     return false;
                 }else
                 {
-                    NumerousControllerInterface.SettingsInstance.Profiles.Add(s, new ControllerProfile());
+                    ControllerProfile newProfile = new ControllerProfile();
+                    newProfile.Name = s;
+                    NumerousControllerInterface.SettingsInstance.Profiles.Add(s, newProfile);
                 }
                 updateProfile();
                 selectProfile(s);
@@ -402,6 +404,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 else
                 {
                     ControllerProfile profile = GetProfile();
+                    profile.Name = s;
                     if (!NumerousControllerInterface.SettingsInstance.removeProfilesList.Contains(oldName)) NumerousControllerInterface.SettingsInstance.removeProfilesList.Add(oldName);
                     NumerousControllerInterface.SettingsInstance.Profiles.Remove(oldName);
                     NumerousControllerInterface.SettingsInstance.Profiles.Add(s, profile);
@@ -440,7 +443,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
                 else
                 {
-                    NumerousControllerInterface.SettingsInstance.Profiles.Add(s, GetProfile().Clone());
+                    ControllerProfile newProfile = GetProfile().Clone();
+                    newProfile.Name = s;
+                    NumerousControllerInterface.SettingsInstance.Profiles.Add(s, newProfile);
                     updateProfile();
                     selectProfile(s);
                 }

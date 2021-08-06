@@ -5,6 +5,8 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using System.Windows.Forms;
 using Kusaanko.Bvets.NumerousControllerInterface.Controller;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
@@ -183,6 +185,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             AlertNoControllerFound = true;
         }
+
         public void SaveToXml()
         {
             if (!Directory.Exists(_directory)) Directory.CreateDirectory(_directory);
@@ -198,18 +201,24 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             foreach (string name in removeProfilesList)
             {
                 File.Delete(Path.Combine(_directory, _profileDirectory + name + ".json"));
+                File.Delete(Path.Combine(_directory, _profileDirectory + GetSHA256Hash(name) + ".json"));
             }
             foreach (string name in Profiles.Keys)
             {
                 ControllerProfile profile = Profiles[name];
-                json = JsonConvert.SerializeObject(profile);
+                SaveProfileToXml(profile);
+            }
+        }
 
-                using (FileStream fs = new FileStream(Path.Combine(_directory, _profileDirectory + name + ".json"), FileMode.Create)) // ファイルを開く
-                {
-                    StreamWriter writer = new StreamWriter(fs);
-                    writer.Write(json);
-                    writer.Close();
-                }
+        public void SaveProfileToXml(ControllerProfile profile)
+        {
+            string json = JsonConvert.SerializeObject(profile);
+
+            using (FileStream fs = new FileStream(Path.Combine(_directory, _profileDirectory + GetSHA256Hash(profile.Name) + ".json"), FileMode.Create)) // ファイルを開く
+            {
+                StreamWriter writer = new StreamWriter(fs);
+                writer.Write(json);
+                writer.Close();
             }
         }
 
@@ -225,6 +234,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 settings = new Settings();
             }
+
+            settings._directory = directory;
             string key = "";
             if (!Directory.Exists(Path.Combine(directory, _profileDirectory))) Directory.CreateDirectory(Path.Combine(directory, _profileDirectory));
             foreach (string file in Directory.GetFiles(Path.Combine(directory, _profileDirectory)))
@@ -237,12 +248,25 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     {
                         settings.Profiles.Remove(key);
                     }
-                    settings.Profiles.Add(key, profile);
+                    if(profile.Name == null)
+                    {
+                        profile.Name = key;
+                    }
+                    if(!key.Equals(GetSHA256Hash(key)))
+                    {
+                        File.Delete(Path.Combine(directory, _profileDirectory + key + ".json"));
+                        settings.SaveProfileToXml(profile);
+                    }
+                    if (settings.Profiles.ContainsKey(profile.Name))
+                    {
+                        settings.Profiles.Remove(profile.Name);
+                    }
+                    settings.Profiles.Add(profile.Name, profile);
                     profile.CalcDuplicated();
                 }
                 catch(Exception e)
                 {
-                    MessageBox.Show("プロファイルの読み込みに失敗しました。\n" + file + "\n" + e.Message, "DenshadeGoInterface");
+                    MessageBox.Show("プロファイルの読み込みに失敗しました。\n" + file + "\n" + e.Message, "NumerousControllerInterface");
                 }
             }
             List<string> changeList = new List<string>();
@@ -260,13 +284,26 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             foreach (string name in changeList)
             {
-                MessageBox.Show(name + " のプロファイル " + settings.ProfileMap[name] + " が見つからなかったため " + name + "に変更しました。", "DenshadeGoInterface");
+                MessageBox.Show(name + " のプロファイル " + settings.ProfileMap[name] + " が見つからなかったため " + key + "に変更しました。", "NumerousControllerInterface");
                 settings.ProfileMap[name] = key;
             }
 
-            settings._directory = directory;
-
             return settings;
+        }
+
+        public static string GetSHA256Hash(string data)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(data);
+            SHA256CryptoServiceProvider sha256 = new SHA256CryptoServiceProvider();
+            byte[] bs = sha256.ComputeHash(bytes);
+            sha256.Clear();
+
+            StringBuilder result = new StringBuilder();
+            foreach (byte b in bs)
+            {
+                result.Append(b.ToString("x2"));
+            }
+            return result.ToString();
         }
 
         public ControllerProfile GetProfile(NCIController controller)
