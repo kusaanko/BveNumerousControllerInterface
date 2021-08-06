@@ -9,22 +9,22 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         public abstract string GetName();
         public abstract string GetControllerType();
 
-        public int GetPowerCount()
+        public virtual int GetPowerCount()
         {
             return 0;
         }
 
-        public int GetPower()
+        public virtual int GetPower()
         {
             return 0;
         }
 
-        public int GetBreakCount()
+        public virtual int GetBreakCount()
         {
             return 0;
         }
 
-        public int GetBreak()
+        public virtual int GetBreak()
         {
             return 0;
         }
