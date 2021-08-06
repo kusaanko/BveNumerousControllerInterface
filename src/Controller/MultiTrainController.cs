@@ -29,9 +29,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         private int _breakNotchCount;
         private int _powerNotchCount;
         private int _power;
-        private int _breakNotch;
+        private int _break;
         private bool[] _buttons;
-        private int[] _sliders;
         private bool _loop;
         private bool _A_DEEP;
         private bool _A_SHALLOW;
@@ -74,8 +73,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         {
             this._device = device;
             _reader = device.OpenEndpointReader(ReadEndpointID.Ep01);
-            _sliders = new int[0];
-            _buttons = new bool[23];
+            _buttons = new bool[16];
             _loop = true;
             this._powerNotchCount = powerNotchCount;
             this._breakNotchCount = breakNotchCount;
@@ -92,23 +90,16 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                     if(notch <= breakNotchCount + 1)
                     {
                         _power = 0;
-                        _breakNotch = breakNotchCount - notch + 2;
+                        _break = breakNotchCount - notch + 2;
                     }else if(notch == breakNotchCount + 2)
                     {
                         _power = 0;
-                        _breakNotch = 0;
+                        _break = 0;
                     }else
                     {
                         _power = notch - breakNotchCount - 2;
-                        _breakNotch = 0;
+                        _break = 0;
                     }
-                    _buttons[15] = (_power & 0x1) == 0x1;
-                    _buttons[16] = (_power & 0x2) == 0x2;
-                    _buttons[17] = (_power & 0x4) == 0x4;
-                    _buttons[18] = (_breakNotch & 0x1) == 0x1;
-                    _buttons[19] = (_breakNotch & 0x2) == 0x2;
-                    _buttons[20] = (_breakNotch & 0x4) == 0x4;
-                    _buttons[21] = (_breakNotch & 0x8) == 0x8;
                     //ボタン
                     int button = buffer[2];
                     SetButton(button, ATS_BUTTON, 0);
@@ -182,6 +173,26 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
             _loop = false;
         }
 
+        public override int GetPowerCount()
+        {
+            return _powerNotchCount;
+        }
+
+        public override int GetPower()
+        {
+            return _power;
+        }
+
+        public override int GetBreakCount()
+        {
+            return _breakNotchCount;
+        }
+
+        public override int GetBreak()
+        {
+            return _break;
+        }
+
         public override bool[] GetButtons()
         {
             if(_A_milli != 0 && DateTime.Now.Ticks - _A_milli > 50 * TimeSpan.TicksPerMillisecond)//50ミリ秒以上Aボタンを浅く押したら浅く押した判定
@@ -207,7 +218,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
 
         public override int[] GetSliders()
         {
-            return _sliders;
+            return null;
         }
     }
 

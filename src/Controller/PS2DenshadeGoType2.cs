@@ -18,13 +18,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         private static int D_BUTTON = 0x8;
         private static int SELECT_BUTTON = 0x10;
         private static int START_BUTTON = 0x20;
-        private static UsbDeviceFinder s_usbDeviceFinder = new UsbDeviceFinder(0x0AE4, 0x0004);
         private UsbDevice _device;
         private UsbEndpointReader _reader;
         private int _power;
-        private int _breakNotch;
+        private int _break;
         private bool[] _buttons;
-        private int[] _sliders;
         private bool _loop;
         public static List<NCIController> Get()
         {
@@ -53,8 +51,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         {
             this._device = device;
             _reader = device.OpenEndpointReader(ReadEndpointID.Ep01);
-            _sliders = new int[0];
-            _buttons = new bool[18];
+            _buttons = new bool[11];
             _loop = true;
             new Thread(() =>
             {
@@ -88,47 +85,40 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                                 _power = 5;
                                 break;
                         }
-                        _buttons[11] = (_power & 0x1) == 0x1;
-                        _buttons[12] = (_power & 0x2) == 0x2;
-                        _buttons[13] = (_power & 0x4) == 0x4;
                         //ブレーキ
                         switch (buffer[1])
                         {
                             case 0x79:
-                                _breakNotch = 0;
+                                _break = 0;
                                 break;
                             case 0x8A:
-                                _breakNotch = 1;
+                                _break = 1;
                                 break;
                             case 0x94:
-                                _breakNotch = 2;
+                                _break = 2;
                                 break;
                             case 0x9A:
-                                _breakNotch = 3;
+                                _break = 3;
                                 break;
                             case 0xA2:
-                                _breakNotch = 4;
+                                _break = 4;
                                 break;
                             case 0xA8:
-                                _breakNotch = 5;
+                                _break = 5;
                                 break;
                             case 0xAF:
-                                _breakNotch = 6;
+                                _break = 6;
                                 break;
                             case 0xB2:
-                                _breakNotch = 7;
+                                _break = 7;
                                 break;
                             case 0xB5:
-                                _breakNotch = 8;
+                                _break = 8;
                                 break;
                             case 0xB9:
-                                _breakNotch = 9;
+                                _break = 9;
                                 break;
                         }
-                        _buttons[14] = (_breakNotch & 0x1) == 0x1;
-                        _buttons[15] = (_breakNotch & 0x2) == 0x2;
-                        _buttons[16] = (_breakNotch & 0x4) == 0x4;
-                        _buttons[17] = (_breakNotch & 0x8) == 0x8;
                         //ボタン
                         int button = buffer[5];
                         if ((button & B_BUTTON) == B_BUTTON)
@@ -240,6 +230,26 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
             _loop = false;
         }
 
+        public override int GetPowerCount()
+        {
+            return 5;
+        }
+
+        public override int GetPower()
+        {
+            return _power;
+        }
+
+        public override int GetBreakCount()
+        {
+            return 9;
+        }
+
+        public override int GetBreak()
+        {
+            return _break;
+        }
+
         public override bool[] GetButtons()
         {
             return _buttons;
@@ -261,7 +271,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
 
         public override int[] GetSliders()
         {
-            return _sliders;
+            return null;
         }
     }
 }
