@@ -59,9 +59,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             InaccuracyModeBreak = false;
         }
 
-        public int[] GetSliders(NCIController state)
+        public int[] GetSliders(NCIController controller)
         {
-            return state.GetSliders();
+            return controller.GetSliders();
         }
 
         public int GetPowerCount(NCIController controller)
@@ -292,10 +292,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        public List<int> GetButtons(NCIController state)
+        public List<int> GetButtons(NCIController controller)
         {
             List<int> list = new List<int>();
-            bool[] buttons = state.GetButtons();
+            bool[] buttons = controller.GetButtons();
             for(int i = 0;i < buttons.Length;i++)
             {
                 if (buttons[i] && Array.IndexOf(PowerButtons, i) == -1 && Array.IndexOf(BreakButtons, i) == -1)
