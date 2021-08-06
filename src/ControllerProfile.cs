@@ -98,6 +98,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             bool[] buttons = controller.GetButtons();
             int[] sliders = GetSliders(controller);
+            if (buttons == null || sliders == null) return 0;
             if (PowerAxises.Length != PowerAxisStatus.GetLength(1))
             {
                 int pos = -sliders[PowerAxises[0]] + PowerAxisStatus[0, 0];
@@ -202,6 +203,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             bool[] buttons = controller.GetButtons();
             int[] sliders = GetSliders(controller);
+            if (buttons == null || sliders == null) return 0;
             if (BreakAxises.Length != BreakAxisStatus.GetLength(1))
             {
                 int pos = -sliders[BreakAxises[0]] + BreakAxisStatus[0, 0];
