@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
-    public class DIJoystick : IController
+    public class DIJoystick : Controller
     {
         private Joystick _stick;
         private string _name;
@@ -30,18 +30,18 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        public string GetName()
+        public override string GetName()
         {
             return _name;
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             _stick.Unacquire();
             _stick.Dispose();
         }
 
-        public bool[] GetButtons()
+        public override bool[] GetButtons()
         {
             int pov = _stick.GetCurrentState().GetPointOfViewControllers()[0];
             bool[] buttons = _stick.GetCurrentState().GetButtons();
@@ -53,7 +53,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return buttons;
         }
 
-        public int[] GetSliders()
+        public override int[] GetSliders()
         {
             JoystickState state = _stick.GetCurrentState();
             int[] sliders = new int[24];
@@ -85,7 +85,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return sliders;
         }
 
-        public string GetControllerType()
+        public override string GetControllerType()
         {
             return "DirectInput";
         }

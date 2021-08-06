@@ -11,7 +11,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
     public class NumerousControllerInterface : IInputDevice
     {
         public static DirectInput Input;
-        public static List<IController> Controllers;
+        public static List<Controller> Controllers;
 
         public static Settings SettingsInstance = null;
         public static ConfigForm ConfigFormInstance;
@@ -20,9 +20,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public event InputEventHandler KeyUp;
         public event InputEventHandler LeverMoved;
 
-        private Dictionary<IController, int> _prePowerLevel;
-        private Dictionary<IController, int> _preBreakLevel;
-        private Dictionary<IController, List<int>> _preButtons;
+        private Dictionary<Controller, int> _prePowerLevel;
+        private Dictionary<Controller, int> _preBreakLevel;
+        private Dictionary<Controller, List<int>> _preButtons;
 
         private int _onePowerMax;
         private int _oneBreakMax;
@@ -41,10 +41,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public NumerousControllerInterface()
         {
-            Controllers = new List<IController>();
-            _prePowerLevel = new Dictionary<IController, int>();
-            _preBreakLevel = new Dictionary<IController, int>();
-            _preButtons = new Dictionary<IController, List<int>>();
+            Controllers = new List<Controller>();
+            _prePowerLevel = new Dictionary<Controller, int>();
+            _preBreakLevel = new Dictionary<Controller, int>();
+            _preButtons = new Dictionary<Controller, List<int>>();
             s_masterController = "";
             s_preControllerCount = -1;
             if (TimerController == null)
@@ -75,7 +75,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             Controllers.Clear();
             ControllerProfile.GetAllControllers();
-            foreach(IController controller in ControllerProfile.controllers)
+            foreach(Controller controller in ControllerProfile.controllers)
             {
                 if(SettingsInstance.GetIsEnabled(controller.GetName()))
                 {
@@ -98,7 +98,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             else
             {
                 List<string> masterControllerList = new List<string>();
-                foreach(IController controller in Controllers)
+                foreach(Controller controller in Controllers)
                 {
                     if (SettingsInstance.GetProfile(controller).IsMasterController)
                     {
@@ -186,7 +186,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 return;
             }
-            foreach(IController controller in Controllers)
+            foreach(Controller controller in Controllers)
             {
                 ControllerProfile profile = SettingsInstance.Profiles[SettingsInstance.ProfileMap[controller.GetName()]];
                 if(profile.IsMasterController && controller.GetName().Equals(s_masterController))

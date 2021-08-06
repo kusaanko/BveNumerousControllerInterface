@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
-    public class PS2DenshadeGoType2 : IController
+    public class PS2DenshadeGoType2 : Controller
     {
         private static int B_BUTTON = 0x1;
         private static int A_BUTTON = 0x2;
@@ -26,9 +26,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private bool[] _buttons;
         private int[] _sliders;
         private bool _loop;
-        public static List<IController> Get()
+        public static List<Controller> Get()
         {
-            List<IController> controllers = new List<IController>();
+            List<Controller> controllers = new List<Controller>();
             foreach (UsbRegistry registry in UsbDevice.AllDevices)
             {
                 if (registry.Vid == 0x0AE4 && registry.Pid == 0x0004)
@@ -235,22 +235,22 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }).Start();
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             _loop = false;
         }
 
-        public bool[] GetButtons()
+        public override bool[] GetButtons()
         {
             return _buttons;
         }
 
-        public string GetControllerType()
+        public override string GetControllerType()
         {
             return "LibUsbDotNet VID:0x" + Convert.ToString(_device.UsbRegistryInfo.Vid, 16).ToUpper() + " PID:0x" + Convert.ToString(_device.UsbRegistryInfo.Pid, 16).ToUpper() + " Rev:" + _device.UsbRegistryInfo.Rev;
         }
 
-        public string GetName()
+        public override string GetName()
         {
             if (_device.UsbRegistryInfo.Rev == 0102)
             {
@@ -259,7 +259,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return "MultiTrainController P5B8";
         }
 
-        public int[] GetSliders()
+        public override int[] GetSliders()
         {
             return _sliders;
         }

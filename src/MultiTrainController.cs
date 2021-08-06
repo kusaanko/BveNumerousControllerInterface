@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
-    public class MultiTrainController : IController
+    public class MultiTrainController : Controller
     {
         private static int ATS_BUTTON = 0x1;
         private static int D_BUTTON = 0x2;
@@ -38,7 +38,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private long _A_milli;
         private int _revPos;
         private long _rev_milli;
-        public static List<IController> Get()
+        public static List<Controller> Get()
         {
             if (_cartridges.Count == 0)
             {
@@ -46,7 +46,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 _cartridges.Add(new MTCCartridge(0x0AE4, 0x0101, 0300, 4, 7));//P4B7
                 _cartridges.Add(new MTCCartridge(0x1C06, 0x77A7, 0202, 5, 5));//P5B5
             }
-            List<IController> controllers = new List<IController>();
+            List<Controller> controllers = new List<Controller>();
             foreach (UsbRegistry registry in UsbDevice.AllDevices)
             {
                 foreach (MTCCartridge cartridge in _cartridges)
@@ -177,12 +177,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             _buttons[index] = (button & bit) == bit;
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             _loop = false;
         }
 
-        public bool[] GetButtons()
+        public override bool[] GetButtons()
         {
             if(_A_milli != 0 && DateTime.Now.Ticks - _A_milli > 50 * TimeSpan.TicksPerMillisecond)//50ミリ秒以上Aボタンを浅く押したら浅く押した判定
             {
@@ -195,17 +195,17 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return _buttons;
         }
 
-        public string GetControllerType()
+        public override string GetControllerType()
         {
             return "LibUsbDotNet VID:0x" + Convert.ToString(_device.UsbRegistryInfo.Vid, 16).ToUpper() + " PID:0x" + Convert.ToString(_device.UsbRegistryInfo.Pid, 16).ToUpper() + " Rev:" + _device.UsbRegistryInfo.Rev;
         }
 
-        public string GetName()
+        public override string GetName()
         {
             return "MultiTrainController P" + _powerNotchCount + "B" + _breakNotchCount;
         }
 
-        public int[] GetSliders()
+        public override int[] GetSliders()
         {
             return _sliders;
         }

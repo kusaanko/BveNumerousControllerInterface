@@ -37,7 +37,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private int prePowerNotch;
         private int preBreakNotch;
 
-        public static List<IController> controllers = new List<IController>();
+        public static List<Controller> controllers = new List<Controller>();
 
         public ControllerProfile()
         {
@@ -57,7 +57,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             InaccuracyModeBreak = false;
         }
 
-        public int[] GetSliders(IController state)
+        public int[] GetSliders(Controller state)
         {
             return state.GetSliders();
         }
@@ -80,7 +80,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return BreakButtonStatus.GetLength(0);
         }
 
-        public int GetPower(IController controller, int maxStep)
+        public int GetPower(Controller controller, int maxStep)
         {
             bool[] buttons = controller.GetButtons();
             int[] sliders = GetSliders(controller);
@@ -179,7 +179,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        public int GetBreak(IController controller, int maxStep)
+        public int GetBreak(Controller controller, int maxStep)
         {
             bool[] buttons = controller.GetButtons();
             int[] sliders = GetSliders(controller);
@@ -270,7 +270,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        public List<int> GetButtons(IController state)
+        public List<int> GetButtons(Controller state)
         {
             List<int> list = new List<int>();
             bool[] buttons = state.GetButtons();
@@ -441,11 +441,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             if (NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly).Count != controllers.Count)
             {
-                foreach (IController controller in controllers)
+                foreach (Controller controller in controllers)
                 {
                     controller.Dispose();
                 }
-                controllers = new List<IController>();
+                controllers = new List<Controller>();
                 List<string> addedControllerName = new List<string>();
                 foreach (DeviceInstance device in NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
                 {
@@ -454,7 +454,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         Joystick stick = new Joystick(NumerousControllerInterface.Input, device.InstanceGuid);
                         if (!addedControllerName.Contains(device.ProductName))
                         {
-                            IController controller = new DIJoystick(stick, device.ProductName);
+                            Controller controller = new DIJoystick(stick, device.ProductName);
                             controllers.Add(controller);
                             addedControllerName.Add(controller.GetName());
                         }
@@ -470,11 +470,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public static void DisposeAllControllers()
         {
-            foreach (IController controller in controllers)
+            foreach (Controller controller in controllers)
             {
                 controller.Dispose();
             }
-            controllers = new List<IController>();
+            controllers = new List<Controller>();
             UsbDevice.Exit();
         }
     }

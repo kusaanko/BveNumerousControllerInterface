@@ -14,7 +14,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public partial class ControllerSetupForm : Form
     {
-        private IController _stick;
+        private Controller _stick;
         private int _step;
         private bool _setupPower;
         private bool[] _initButtonState;
@@ -37,7 +37,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private bool[,] _breakButtonStatus = new bool[0, 0];
         private int[] _breakAxises = new int[0];
         private int[,] _breakAxisStatus = new int[0, 0];
-        public ControllerSetupForm(IController controller, ControllerProfile profile, bool setupPower)
+        public ControllerSetupForm(Controller controller, ControllerProfile profile, bool setupPower)
         {
             _stick = controller;
             InitializeComponent();

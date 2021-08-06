@@ -76,18 +76,13 @@
       <DependentUpon>ControllerSetupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DIJoystick.cs" />
-    <Compile Include="IController.cs" />
+    <Compile Include="Controller.cs" />
     <Compile Include="MultiTrainController.cs" />
     <Compile Include="NewNameDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="NewNameDialog.Designer.cs">
       <DependentUpon>NewNameDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="PS2DenshadeGoType2.cs" />
     <Compile Include="SelectMasterControllerForm.cs">
@@ -109,10 +104,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewNameDialog.resx">
       <DependentUpon>NewNameDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectMasterControllerForm.resx">
       <DependentUpon>SelectMasterControllerForm.cs</DependentUpon>
