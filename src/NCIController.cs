@@ -2,7 +2,7 @@
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
-    public abstract class Controller : IDisposable
+    public abstract class NCIController : IDisposable
     {
         public abstract bool[] GetButtons();
         public abstract int[] GetSliders();

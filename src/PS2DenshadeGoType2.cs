@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
-    public class PS2DenshadeGoType2 : Controller
+    public class PS2DenshadeGoType2 : NCIController
     {
         private static int B_BUTTON = 0x1;
         private static int A_BUTTON = 0x2;
@@ -26,9 +26,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private bool[] _buttons;
         private int[] _sliders;
         private bool _loop;
-        public static List<Controller> Get()
+        public static List<NCIController> Get()
         {
-            List<Controller> controllers = new List<Controller>();
+            List<NCIController> controllers = new List<NCIController>();
             foreach (UsbRegistry registry in UsbDevice.AllDevices)
             {
                 if (registry.Vid == 0x0AE4 && registry.Pid == 0x0004)

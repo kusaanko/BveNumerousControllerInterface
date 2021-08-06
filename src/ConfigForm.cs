@@ -19,7 +19,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private string[] _notchControlTexts = { "非常にする", "全て切にする", 
             "ブレーキ切", "ブレーキ上げ", "ブレーキ下げ", "力行切", "力行上げ", "力行下げ", "ノッチ上げ", "ノッチ下げ"};
         private List<int[]> _keyCodeTable = new List<int[]>();
-        private Dictionary<string, Controller> _controllers = new Dictionary<string, Controller>();
+        private Dictionary<string, NCIController> _controllers = new Dictionary<string, NCIController>();
         private System.ComponentModel.ComponentResourceManager resources;
         public ControllerSetupForm ControllerSetupForm;
 
@@ -69,7 +69,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             timer1.Stop();
             controllerList.Items.Clear();
             _controllers.Clear();
-            foreach (Controller controller in ControllerProfile.controllers)
+            foreach (NCIController controller in ControllerProfile.controllers)
             {
                 controllerList.Items.Add(controller.GetName());
                 _controllers.Add(controller.GetName(), controller);
@@ -204,7 +204,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return NumerousControllerInterface.SettingsInstance.Profiles[profileComboBox.Text];
         }
 
-        private Controller GetController()
+        private NCIController GetController()
         {
             if (!_controllers.ContainsKey(controllerList.Text)) return null;
             return _controllers[controllerList.Text];
@@ -223,7 +223,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private void addButtonButton_Click(object sender, EventArgs e)
         {
             timer1.Stop();
-            Controller controller = GetController();
+            NCIController controller = GetController();
             ControllerProfile profile = GetProfile();
             addButtonButton.Text = "ボタンを押す...";
             List<int> buttons = profile.GetButtons(controller);
@@ -317,7 +317,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Controller controller = GetController();
+            NCIController controller = GetController();
             ControllerProfile profile = GetProfile();
             if (controller == null || profile == null) return;
             breakLabel.Text = this.resources.GetString("breakLabel.Text") + profile.GetBreak(controller, 10);

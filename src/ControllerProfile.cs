@@ -37,7 +37,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private int prePowerNotch;
         private int preBreakNotch;
 
-        public static List<Controller> controllers = new List<Controller>();
+        public static List<NCIController> controllers = new List<NCIController>();
 
         public ControllerProfile()
         {
@@ -57,12 +57,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             InaccuracyModeBreak = false;
         }
 
-        public int[] GetSliders(Controller state)
+        public int[] GetSliders(NCIController state)
         {
             return state.GetSliders();
         }
 
-        public int GetPowerCount(Controller controller)
+        public int GetPowerCount(NCIController controller)
         {
             if (controller.GetPowerCount() > 0)
             {
@@ -75,7 +75,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return PowerButtonStatus.GetLength(0);
         }
 
-        public int GetBreakCount(Controller controller)
+        public int GetBreakCount(NCIController controller)
         {
             if (controller.GetBreakCount() > 0)
             {
@@ -88,7 +88,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return BreakButtonStatus.GetLength(0);
         }
 
-        public int GetPower(Controller controller, int maxStep)
+        public int GetPower(NCIController controller, int maxStep)
         {
             if (controller.GetPowerCount() > 0)
             {
@@ -192,7 +192,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        public int GetBreak(Controller controller, int maxStep)
+        public int GetBreak(NCIController controller, int maxStep)
         {
             if(controller.GetBreakCount() > 0)
             {
@@ -288,7 +288,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        public List<int> GetButtons(Controller state)
+        public List<int> GetButtons(NCIController state)
         {
             List<int> list = new List<int>();
             bool[] buttons = state.GetButtons();
@@ -459,11 +459,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             if (NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly).Count != controllers.Count)
             {
-                foreach (Controller controller in controllers)
+                foreach (NCIController controller in controllers)
                 {
                     controller.Dispose();
                 }
-                controllers = new List<Controller>();
+                controllers = new List<NCIController>();
                 List<string> addedControllerName = new List<string>();
                 foreach (DeviceInstance device in NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
                 {
@@ -472,7 +472,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         Joystick stick = new Joystick(NumerousControllerInterface.Input, device.InstanceGuid);
                         if (!addedControllerName.Contains(device.ProductName))
                         {
-                            Controller controller = new DIJoystick(stick, device.ProductName);
+                            NCIController controller = new DIJoystick(stick, device.ProductName);
                             controllers.Add(controller);
                             addedControllerName.Add(controller.GetName());
                         }
@@ -488,11 +488,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public static void DisposeAllControllers()
         {
-            foreach (Controller controller in controllers)
+            foreach (NCIController controller in controllers)
             {
                 controller.Dispose();
             }
-            controllers = new List<Controller>();
+            controllers = new List<NCIController>();
             UsbDevice.Exit();
         }
     }

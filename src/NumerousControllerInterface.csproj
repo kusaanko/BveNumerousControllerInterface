@@ -76,7 +76,7 @@
       <DependentUpon>ControllerSetupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DIJoystick.cs" />
-    <Compile Include="Controller.cs" />
+    <Compile Include="NCIController.cs" />
     <Compile Include="MultiTrainController.cs" />
     <Compile Include="NewNameDialog.cs">
       <SubType>Form</SubType>

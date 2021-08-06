@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
-    public class MultiTrainController : Controller
+    public class MultiTrainController : NCIController
     {
         private static int ATS_BUTTON = 0x1;
         private static int D_BUTTON = 0x2;
@@ -38,7 +38,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private long _A_milli;
         private int _revPos;
         private long _rev_milli;
-        public static List<Controller> Get()
+        public static List<NCIController> Get()
         {
             if (_cartridges.Count == 0)
             {
@@ -46,7 +46,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 _cartridges.Add(new MTCCartridge(0x0AE4, 0x0101, 0300, 4, 7));//P4B7
                 _cartridges.Add(new MTCCartridge(0x1C06, 0x77A7, 0202, 5, 5));//P5B5
             }
-            List<Controller> controllers = new List<Controller>();
+            List<NCIController> controllers = new List<NCIController>();
             foreach (UsbRegistry registry in UsbDevice.AllDevices)
             {
                 foreach (MTCCartridge cartridge in _cartridges)

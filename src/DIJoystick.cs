@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
-    public class DIJoystick : Controller
+    public class DIJoystick : NCIController
     {
         private Joystick _stick;
         private string _name;

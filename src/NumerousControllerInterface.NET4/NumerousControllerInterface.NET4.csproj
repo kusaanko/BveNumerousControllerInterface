@@ -74,9 +74,6 @@
     <Compile Include="..\ConfigForm.Designer.cs">
       <Link>ConfigForm.Designer.cs</Link>
     </Compile>
-    <Compile Include="..\Controller.cs">
-      <Link>Controller.cs</Link>
-    </Compile>
     <Compile Include="..\ControllerProfile.cs">
       <Link>ControllerProfile.cs</Link>
     </Compile>
@@ -92,6 +89,9 @@
     </Compile>
     <Compile Include="..\MultiTrainController.cs">
       <Link>MultiTrainController.cs</Link>
+    </Compile>
+    <Compile Include="..\NCIController.cs">
+      <Link>NCIController.cs</Link>
     </Compile>
     <Compile Include="..\NewNameDialog.cs">
       <Link>NewNameDialog.cs</Link>

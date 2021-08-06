@@ -370,7 +370,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return settings;
         }
 
-        public ControllerProfile GetProfile(Controller controller)
+        public ControllerProfile GetProfile(NCIController controller)
         {
             return Profiles[ProfileMap[controller.GetName()]];
         }
