@@ -468,23 +468,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     controller.Dispose();
                 }
                 controllers = new List<NCIController>();
-                List<string> addedControllerName = new List<string>();
-                foreach (DeviceInstance device in NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
-                {
-                    try
-                    {
-                        Joystick stick = new Joystick(NumerousControllerInterface.Input, device.InstanceGuid);
-                        if (!addedControllerName.Contains(device.ProductName))
-                        {
-                            NCIController controller = new DIJoystick(stick, device.ProductName);
-                            controllers.Add(controller);
-                            addedControllerName.Add(controller.GetName());
-                        }
-                    }
-                    catch (DirectInputException)
-                    {
-                    }
-                }
+                controllers.AddRange(DIJoystick.Get());
                 controllers.AddRange(PS2DenshadeGoType2.Get());
                 controllers.AddRange(MultiTrainController.Get());
             }
