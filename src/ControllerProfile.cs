@@ -62,17 +62,25 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return state.GetSliders();
         }
 
-        public int GetPowersCount()
+        public int GetPowerCount(Controller controller)
         {
-            if(PowerAxises.Length != PowerAxisStatus.GetLength(1))
+            if (controller.GetPowerCount() > 0)
+            {
+                return controller.GetPowerCount();
+            }
+            if (PowerAxises.Length != PowerAxisStatus.GetLength(1))
             {
                 return 6;
             }
             return PowerButtonStatus.GetLength(0);
         }
 
-        public int GetBreaksCount()
+        public int GetBreakCount(Controller controller)
         {
+            if (controller.GetBreakCount() > 0)
+            {
+                return controller.GetBreakCount();
+            }
             if (BreakAxises.Length != BreakAxisStatus.GetLength(1))
             {
                 return 10;
@@ -82,6 +90,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public int GetPower(Controller controller, int maxStep)
         {
+            if (controller.GetPowerCount() > 0)
+            {
+                prePowerNotch = controller.GetPower();
+                goto ret;
+            }
             bool[] buttons = controller.GetButtons();
             int[] sliders = GetSliders(controller);
             if (PowerAxises.Length != PowerAxisStatus.GetLength(1))
@@ -167,11 +180,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         ret:
             if (IsFlexibleNotch)
             {
-                if (prePowerNotch + 1 == GetBreaksCount())
+                if (prePowerNotch + 1 == GetPowerCount(controller))
                 {
                     return maxStep - 1;
                 }
-                return (int)Math.Floor(prePowerNotch * ((float) maxStep / GetPowersCount()));
+                return (int)Math.Floor(prePowerNotch * ((float) maxStep / GetPowerCount(controller)));
             }
             else
             {
@@ -181,6 +194,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public int GetBreak(Controller controller, int maxStep)
         {
+            if(controller.GetBreakCount() > 0)
+            {
+                preBreakNotch = controller.GetBreak();
+                goto ret;
+            }
             bool[] buttons = controller.GetButtons();
             int[] sliders = GetSliders(controller);
             if (BreakAxises.Length != BreakAxisStatus.GetLength(1))
@@ -258,11 +276,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         ret:
             if (IsFlexibleNotch)
             {
-                if(preBreakNotch + 1 == GetBreaksCount())
+                if(preBreakNotch + 1 == GetBreakCount(controller))
                 {
                     return maxStep - 1;
                 }
-                return (int)Math.Floor(preBreakNotch * ((float) maxStep / GetBreaksCount()));
+                return (int)Math.Floor(preBreakNotch * ((float) maxStep / GetBreakCount(controller)));
             }
             else
             {
