@@ -94,7 +94,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 if (SettingsInstance.AlertNoControllerFound && s_preControllerCount != ControllerProfile.controllers.Count)
                 {
                     s_preControllerCount = ControllerProfile.controllers.Count;
-                    MessageBox.Show("有効化されたコントローラーを検出できませんでした。", "NumerousControllerInterface", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("有効化されたコントローラーを検出できませんでした。\nコントローラーが正常に検出されている場合は設定から使用するコントローラーを有効にしてください。", "NumerousControllerInterface", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
