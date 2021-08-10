@@ -14,7 +14,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
     public class ControllerProfile
     {
         public string Name;
-        public Dictionary<int, int[]> KeyMap;
+        public Dictionary<int, ButtonFeature> KeyMap;
         public int[] PowerButtons;
         public bool[,] PowerButtonStatus;
         public int[] PowerAxises;
@@ -45,7 +45,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public ControllerProfile()
         {
-            KeyMap = new Dictionary<int, int[]>();
+            KeyMap = new Dictionary<int, ButtonFeature>();
             PowerAxises = new int[0];
             PowerAxisStatus = new int[0, 0];
             PowerButtons = new int[0];
@@ -455,7 +455,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (profile.KeyMap != null)
             {
-                profile.KeyMap = new Dictionary<int, int[]>(KeyMap);
+                profile.KeyMap = new Dictionary<int, ButtonFeature>(KeyMap);
             }
             profile.CalcDuplicated();
             return profile;

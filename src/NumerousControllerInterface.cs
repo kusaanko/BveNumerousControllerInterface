@@ -42,6 +42,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public NumerousControllerInterface()
         {
+            ButtonFeature.Initialize();
             Controllers = new List<NCIController>();
             _prePowerLevel = new Dictionary<NCIController, int>();
             _preBreakLevel = new Dictionary<NCIController, int>();
@@ -252,8 +253,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     {
                         if (profile.KeyMap.ContainsKey(i))
                         {
-                            int[] key = profile.KeyMap[i];
-                            onKeyDown(key[0], key[1]);
+                            ButtonFeature key = profile.KeyMap[i];
+                            onKeyDown(key.Axis, key.Value);
                         }
                     }
                 }
@@ -263,8 +264,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     {
                         if (profile.KeyMap.ContainsKey(i))
                         {
-                            int[] key = profile.KeyMap[i];
-                            onKeyUp(key[0], key[1]);
+                            ButtonFeature key = profile.KeyMap[i];
+                            onKeyUp(key.Axis, key.Value);
                         }
                     }
                 }
@@ -424,7 +425,14 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
                 else
                 {
-                    KeyDown(this, new InputEventArgs(axis, keyCode));
+                    if(axis < 0)
+                    {
+                        KeyDown(this, new InputEventArgs(axis, keyCode));
+                    }
+                    else
+                    {
+                        LeverMoved(this, new InputEventArgs(axis, keyCode));
+                    }
                 }
             }
         }

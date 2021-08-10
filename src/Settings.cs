@@ -62,12 +62,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     { false, false, false, false }
                 };
                 profile.CalcDuplicated();
-                profile.KeyMap = new Dictionary<int, int[]>();
-                profile.KeyMap.Add(1, new int[] { 0, 2});
-                profile.KeyMap.Add(2, new int[] { 0, 0 });
-                profile.KeyMap.Add(3, new int[] { -1, 1 });
-                profile.KeyMap.Add(9, new int[] { -3, 12 });
-                profile.KeyMap.Add(8, new int[] { -3, 11 });
+                profile.KeyMap.Add(1, ButtonFeature.ReverserBackward);
+                profile.KeyMap.Add(2, ButtonFeature.ReverserForward);
+                profile.KeyMap.Add(3, ButtonFeature.Horn);
+                profile.KeyMap.Add(9, ButtonFeature.Pause);
+                profile.KeyMap.Add(8, ButtonFeature.Fastforward);
                 Profiles.Add("JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)", profile);
                 ProfileMap.Add("JC-PS101U", "JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)");
             }
@@ -76,21 +75,20 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 profile.IsTwoHandle = true;
                 profile.IsMasterController = true;
                 profile.CalcDuplicated();
-                profile.KeyMap = new Dictionary<int, int[]>();
                 //力行
-                profile.KeyMap.Add(128, new int[] { 99, 7 });
-                profile.KeyMap.Add(130, new int[] { 99, 6 });
+                profile.KeyMap.Add(128, ButtonFeature.BringPowerDown);
+                profile.KeyMap.Add(130, ButtonFeature.BringPowerUp);
                 //ブレーキ
-                profile.KeyMap.Add(2, new int[] { 99, 4 });
-                profile.KeyMap.Add(3, new int[] { 99, 3 });
+                profile.KeyMap.Add(2, ButtonFeature.BringBreakDown);
+                profile.KeyMap.Add(3, ButtonFeature.BringBreakUp);
                 //非常
-                profile.KeyMap.Add(0, new int[] { 99, 0 });
+                profile.KeyMap.Add(0, ButtonFeature.SetNotchEB);
                 //警笛
-                profile.KeyMap.Add(1, new int[] { -1, 1 });
-                profile.KeyMap.Add(6, new int[] { 99, 1 });
-                profile.KeyMap.Add(7, new int[] { 99, 1 });
-                profile.KeyMap.Add(9, new int[] { -3, 12 });
-                profile.KeyMap.Add(8, new int[] { -3, 11 });
+                profile.KeyMap.Add(1, ButtonFeature.Horn);
+                profile.KeyMap.Add(6, ButtonFeature.SetNotchOff);
+                profile.KeyMap.Add(7, ButtonFeature.SetNotchOff);
+                profile.KeyMap.Add(9, ButtonFeature.Pause);
+                profile.KeyMap.Add(8, ButtonFeature.Fastforward);
                 Profiles.Add("JC-PS101U DualShock2", profile);
             }
             {
@@ -98,13 +96,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 profile.IsTwoHandle = true;
                 profile.IsMasterController = true;
                 profile.CalcDuplicated();
-                profile.KeyMap = new Dictionary<int, int[]>();
-                profile.KeyMap.Add(1, new int[] { 0, 2 });//C
-                profile.KeyMap.Add(0, new int[] { 0, 0 });//B
-                profile.KeyMap.Add(2, new int[] { -1, 1 });//A
-                profile.KeyMap.Add(3, new int[] { -2, 0 });//D
-                profile.KeyMap.Add(4, new int[] { -3, 12 });//SELECT
-                profile.KeyMap.Add(5, new int[] { -3, 11 });//START
+                profile.KeyMap.Add(1, ButtonFeature.ReverserBackward);//C
+                profile.KeyMap.Add(0, ButtonFeature.ReverserForward);//B
+                profile.KeyMap.Add(2, ButtonFeature.Horn);//A
+                profile.KeyMap.Add(3, ButtonFeature.Ats0);//D
+                profile.KeyMap.Add(4, ButtonFeature.Pause);//SELECT
+                profile.KeyMap.Add(5, ButtonFeature.Fastforward);//START
                 Profiles.Add("TCPP-20009 PS2用電車でGO!コントローラー TYPE2", profile);
                 ProfileMap.Add("PS2用電車でGO!コントローラー TYPE2", "TCPP-20009 PS2用電車でGO!コントローラー TYPE2");
             }
@@ -113,13 +110,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 profile.IsTwoHandle = false;
                 profile.IsMasterController = true;
                 profile.CalcDuplicated();
-                profile.KeyMap = new Dictionary<int, int[]>();
-                profile.KeyMap.Add(1, new int[] { 0, 2 });//C
-                profile.KeyMap.Add(0, new int[] { 0, 0 });//B
-                profile.KeyMap.Add(2, new int[] { -1, 1 });//A
-                profile.KeyMap.Add(3, new int[] { -2, 0 });//D
-                profile.KeyMap.Add(4, new int[] { -3, 12 });//SELECT
-                profile.KeyMap.Add(5, new int[] { -3, 11 });//START
+                profile.KeyMap.Add(1, ButtonFeature.ReverserBackward);//C
+                profile.KeyMap.Add(0, ButtonFeature.ReverserForward);//B
+                profile.KeyMap.Add(2, ButtonFeature.Horn);//A
+                profile.KeyMap.Add(3, ButtonFeature.Ats0);//D
+                profile.KeyMap.Add(4, ButtonFeature.Pause);//SELECT
+                profile.KeyMap.Add(5, ButtonFeature.Fastforward);//START
                 Profiles.Add("MultiTrainController P5B8", profile);
                 ProfileMap.Add("MultiTrainController P5B8", "MultiTrainController P5B8");
             }
@@ -128,18 +124,17 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 profile.IsTwoHandle = false;
                 profile.IsMasterController = true;
                 profile.CalcDuplicated();
-                profile.KeyMap = new Dictionary<int, int[]>();
-                profile.KeyMap.Add(4, new int[] { -1, 1 });//B
-                profile.KeyMap.Add(0, new int[] { -2, 0 });//ATS
-                profile.KeyMap.Add(2, new int[] { -2, 1 });//A Shallow
-                profile.KeyMap.Add(3, new int[] { -2, 2 });//A Deep
-                profile.KeyMap.Add(5, new int[] { -2, 3 });//C
-                profile.KeyMap.Add(1, new int[] { -2, 4 });//D
-                profile.KeyMap.Add(7, new int[] { -3, 12 });//SELECT
-                profile.KeyMap.Add(6, new int[] { -3, 11 });//START
-                profile.KeyMap.Add(12, new int[] { 0, 2 });//Reverser Front
-                profile.KeyMap.Add(13, new int[] { 0, 1 });//Reverser Center
-                profile.KeyMap.Add(14, new int[] { 0, 0 });//Reverser Back
+                profile.KeyMap.Add(4, ButtonFeature.Horn);//B
+                profile.KeyMap.Add(0, ButtonFeature.Ats0);//ATS
+                profile.KeyMap.Add(2, ButtonFeature.Ats1);//A Shallow
+                profile.KeyMap.Add(3, ButtonFeature.Ats2);//A Deep
+                profile.KeyMap.Add(5, ButtonFeature.Ats3);//C
+                profile.KeyMap.Add(1, ButtonFeature.Ats4);//D
+                profile.KeyMap.Add(7, ButtonFeature.Pause);//SELECT
+                profile.KeyMap.Add(6, ButtonFeature.Fastforward);//START
+                profile.KeyMap.Add(12, ButtonFeature.ReverserBackward);//Reverser Front
+                profile.KeyMap.Add(13, ButtonFeature.ReverserCenter);//Reverser Center
+                profile.KeyMap.Add(14, ButtonFeature.ReverserForward);//Reverser Back
                 Profiles.Add("MultiTrainController P4B6", profile);
                 ProfileMap.Add("MultiTrainController P4B6", "MultiTrainController P4B6");
             }
@@ -148,18 +143,17 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 profile.IsTwoHandle = false;
                 profile.IsMasterController = true;
                 profile.CalcDuplicated();
-                profile.KeyMap = new Dictionary<int, int[]>();
-                profile.KeyMap.Add(4, new int[] { -1, 1 });//B
-                profile.KeyMap.Add(0, new int[] { -2, 0 });//ATS
-                profile.KeyMap.Add(2, new int[] { -2, 1 });//A Shallow
-                profile.KeyMap.Add(3, new int[] { -2, 2 });//A Deep
-                profile.KeyMap.Add(5, new int[] { -2, 3 });//C
-                profile.KeyMap.Add(1, new int[] { -2, 4 });//D
-                profile.KeyMap.Add(7, new int[] { -3, 12 });//SELECT
-                profile.KeyMap.Add(6, new int[] { -3, 11 });//START
-                profile.KeyMap.Add(12, new int[] { 0, 2 });//Reverser Front
-                profile.KeyMap.Add(13, new int[] { 0, 1 });//Reverser Center
-                profile.KeyMap.Add(14, new int[] { 0, 0 });//Reverser Back
+                profile.KeyMap.Add(4, ButtonFeature.Horn);//B
+                profile.KeyMap.Add(0, ButtonFeature.Ats0);//ATS
+                profile.KeyMap.Add(2, ButtonFeature.Ats1);//A Shallow
+                profile.KeyMap.Add(3, ButtonFeature.Ats2);//A Deep
+                profile.KeyMap.Add(5, ButtonFeature.Ats3);//C
+                profile.KeyMap.Add(1, ButtonFeature.Ats4);//D
+                profile.KeyMap.Add(7, ButtonFeature.Pause);//SELECT
+                profile.KeyMap.Add(6, ButtonFeature.Fastforward);//START
+                profile.KeyMap.Add(12, ButtonFeature.ReverserBackward);//Reverser Front
+                profile.KeyMap.Add(13, ButtonFeature.ReverserCenter);//Reverser Center
+                profile.KeyMap.Add(14, ButtonFeature.ReverserForward);//Reverser Back
                 Profiles.Add("MultiTrainController P4B7", profile);
                 ProfileMap.Add("MultiTrainController P4B7", "MultiTrainController P4B7");
             }
@@ -168,18 +162,17 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 profile.IsTwoHandle = false;
                 profile.IsMasterController = true;
                 profile.CalcDuplicated();
-                profile.KeyMap = new Dictionary<int, int[]>();
-                profile.KeyMap.Add(4, new int[] { -1, 1 });//B
-                profile.KeyMap.Add(0, new int[] { -2, 0 });//ATS
-                profile.KeyMap.Add(2, new int[] { -2, 1 });//A Shallow
-                profile.KeyMap.Add(3, new int[] { -2, 2 });//A Deep
-                profile.KeyMap.Add(5, new int[] { -2, 3 });//C
-                profile.KeyMap.Add(1, new int[] { -2, 4 });//D
-                profile.KeyMap.Add(7, new int[] { -3, 12 });//SELECT
-                profile.KeyMap.Add(6, new int[] { -3, 11 });//START
-                profile.KeyMap.Add(12, new int[] { 0, 2 });//Reverser Front
-                profile.KeyMap.Add(13, new int[] { 0, 1 });//Reverser Center
-                profile.KeyMap.Add(14, new int[] { 0, 0 });//Reverser Back
+                profile.KeyMap.Add(4, ButtonFeature.Horn);//B
+                profile.KeyMap.Add(0, ButtonFeature.Ats0);//ATS
+                profile.KeyMap.Add(2, ButtonFeature.Ats1);//A Shallow
+                profile.KeyMap.Add(3, ButtonFeature.Ats2);//A Deep
+                profile.KeyMap.Add(5, ButtonFeature.Ats3);//C
+                profile.KeyMap.Add(1, ButtonFeature.Ats4);//D
+                profile.KeyMap.Add(7, ButtonFeature.Pause);//SELECT
+                profile.KeyMap.Add(6, ButtonFeature.Fastforward);//START
+                profile.KeyMap.Add(12, ButtonFeature.ReverserBackward);//Reverser Front
+                profile.KeyMap.Add(13, ButtonFeature.ReverserCenter);//Reverser Center
+                profile.KeyMap.Add(14, ButtonFeature.ReverserForward);//Reverser Back
                 Profiles.Add("MultiTrainController P5B5", profile);
                 ProfileMap.Add("MultiTrainController P5B5", "MultiTrainController P5B5");
             }
@@ -232,7 +225,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             Settings settings;
             try
             {
-                settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Path.Combine(directory, _filename)));
+                settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Path.Combine(directory, _filename)), new JsonSerializerSettings());
 
             }
             catch
