@@ -67,6 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\ButtonFeature.cs">
+      <Link>ButtonFeature.cs</Link>
+    </Compile>
     <Compile Include="..\ConfigForm.cs">
       <Link>ConfigForm.cs</Link>
       <SubType>Form</SubType>
