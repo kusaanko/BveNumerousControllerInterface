@@ -147,21 +147,6 @@
   <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="cancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>664, 12</value>
-  </data>
-  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 26</value>
-  </data>
-  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="cancelButton.Text" xml:space="preserve">
-    <value>キャンセル</value>
-  </data>
   <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
     <value>cancelButton</value>
   </data>
@@ -197,6 +182,33 @@
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
     <value>19</value>
+  </data>
+  <data name="cancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>664, 12</value>
+  </data>
+  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 26</value>
+  </data>
+  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
+    <value>cancelButton</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -391,7 +403,7 @@
     <value>12</value>
   </data>
   <data name="settingPowerButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>260, 18</value>
+    <value>14, 18</value>
   </data>
   <data name="settingPowerButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 23</value>
@@ -412,7 +424,61 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;settingPowerButton.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
+  </data>
+  <data name="removeBreakButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="removeBreakButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>331, 18</value>
+  </data>
+  <data name="removeBreakButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 23</value>
+  </data>
+  <data name="removeBreakButton.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="removeBreakButton.Text" xml:space="preserve">
+    <value>ブレーキを削除</value>
+  </data>
+  <data name="&gt;&gt;removeBreakButton.Name" xml:space="preserve">
+    <value>removeBreakButton</value>
+  </data>
+  <data name="&gt;&gt;removeBreakButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;removeBreakButton.Parent" xml:space="preserve">
+    <value>settingsGroup</value>
+  </data>
+  <data name="&gt;&gt;removeBreakButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="removePowerButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="removePowerButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>230, 18</value>
+  </data>
+  <data name="removePowerButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 23</value>
+  </data>
+  <data name="removePowerButton.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="removePowerButton.Text" xml:space="preserve">
+    <value>力行を削除</value>
+  </data>
+  <data name="&gt;&gt;removePowerButton.Name" xml:space="preserve">
+    <value>removePowerButton</value>
+  </data>
+  <data name="&gt;&gt;removePowerButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;removePowerButton.Parent" xml:space="preserve">
+    <value>settingsGroup</value>
+  </data>
+  <data name="&gt;&gt;removePowerButton.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="isFlexibleNotchCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -439,7 +505,7 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;isFlexibleNotchCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="removeButtonButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>115, 234</value>
@@ -463,7 +529,7 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;removeButtonButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="addButtonButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 234</value>
@@ -487,7 +553,7 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;addButtonButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="buttonFunctionLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -514,7 +580,7 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;buttonFunctionLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="buttonFunctionComboBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -538,7 +604,7 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;buttonFunctionComboBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="buttonsAssignmentLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -568,34 +634,7 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;buttonsAssignmentLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="isMasterControllerCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="isMasterControllerCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 22</value>
-  </data>
-  <data name="isMasterControllerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 19</value>
-  </data>
-  <data name="isMasterControllerCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="isMasterControllerCheckBox.Text" xml:space="preserve">
-    <value>このコントローラーはマスコンである</value>
-  </data>
-  <data name="&gt;&gt;isMasterControllerCheckBox.Name" xml:space="preserve">
-    <value>isMasterControllerCheckBox</value>
-  </data>
-  <data name="&gt;&gt;isMasterControllerCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;isMasterControllerCheckBox.Parent" xml:space="preserve">
-    <value>settingsGroup</value>
-  </data>
-  <data name="&gt;&gt;isMasterControllerCheckBox.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="buttonList.ItemHeight" type="System.Int32, mscorlib">
     <value>15</value>
@@ -619,7 +658,7 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;buttonList.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="isTwoHandleComboBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -646,10 +685,10 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;isTwoHandleComboBox.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="settingBreakButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>361, 18</value>
+    <value>115, 18</value>
   </data>
   <data name="settingBreakButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 23</value>
@@ -670,7 +709,7 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;settingBreakButton.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="settingsGroup.Location" type="System.Drawing.Point, System.Drawing">
     <value>188, 229</value>
@@ -753,12 +792,6 @@
   <metadata name="profileContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>201, 17</value>
   </metadata>
-  <data name="openProfileInExplorer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 22</value>
-  </data>
-  <data name="openProfileInExplorer.Text" xml:space="preserve">
-    <value>ファイルをエクスプローラーで開く</value>
-  </data>
   <data name="profileContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 26</value>
   </data>
@@ -788,6 +821,12 @@
   </data>
   <data name="&gt;&gt;profileComboBox.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="openProfileInExplorer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 22</value>
+  </data>
+  <data name="openProfileInExplorer.Text" xml:space="preserve">
+    <value>ファイルをエクスプローラーで開く</value>
   </data>
   <data name="newProfileButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>402, 209</value>

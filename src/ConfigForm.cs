@@ -92,7 +92,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private void loadFromProfile()
         {
             ControllerProfile profile = NumerousControllerInterface.SettingsInstance.Profiles[profileComboBox.Text];
-            isMasterControllerCheckBox.Checked = profile.IsMasterController;
             isTwoHandleComboBox.Checked = profile.IsTwoHandle;
             isFlexibleNotchCheckBox.Checked = profile.IsFlexibleNotch;
             buttonList.Items.Clear();
@@ -145,11 +144,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             if (!_controllers.ContainsKey(controllerList.Text)) return null;
             return _controllers[controllerList.Text];
-        }
-
-        private void isMasterControllerCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            GetProfile().IsMasterController = isMasterControllerCheckBox.Checked;
         }
 
         private void isTwoHandleComboBox_CheckedChanged(object sender, EventArgs e)
@@ -273,7 +267,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void ConfigForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            NumerousControllerInterface.IsMasterControllerUpdateRequested = true;
         }
 
         private void profileComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -449,6 +443,22 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 Process.Start("explorer.exe", "/select," + filePath);
             }
             catch (Exception) { }
+        }
+
+        private void removePowerButton_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("本当に力行を削除しますか？", "NumerousControllerInput", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                GetProfile().ResetPower();
+            }
+        }
+
+        private void removeBreakButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("本当にブレーキを削除しますか？", "NumerousControllerInput", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                GetProfile().ResetBreak();
+            }
         }
     }
 }

@@ -32,7 +32,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         [JsonIgnore]
         public bool[] BreakDuplicated;
         public bool IsTwoHandle;
-        public bool IsMasterController;
         public bool IsFlexibleNotch;
         public bool InaccuracyModePower;
         public bool InaccuracyModeBreak;
@@ -59,6 +58,36 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             IsFlexibleNotch = false;
             InaccuracyModePower = false;
             InaccuracyModeBreak = false;
+        }
+
+        public void ResetPower()
+        {
+            PowerAxises = new int[0];
+            PowerAxisStatus = new int[0, 0];
+            PowerButtons = new int[0];
+            PowerButtonStatus = new bool[0, 0];
+            PowerDuplicated = new bool[0];
+            InaccuracyModePower = false;
+        }
+
+        public void ResetBreak()
+        {
+            BreakAxises = new int[0];
+            BreakAxisStatus = new int[0, 0];
+            BreakButtons = new int[0];
+            BreakButtonStatus = new bool[0, 0];
+            BreakDuplicated = new bool[0];
+            InaccuracyModeBreak = false;
+        }
+
+        public bool HasPower(NCIController controller)
+        {
+            return GetPowerCount(controller) > 0;
+        }
+
+        public bool HasBreak(NCIController controller)
+        {
+            return GetBreakCount(controller) > 0;
         }
 
         public int[] GetSliders(NCIController controller)
@@ -99,6 +128,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 prePowerNotch = controller.GetPower();
                 goto ret;
             }
+            if (GetPowerCount(controller) == 0) return 0;
             bool[] buttons = controller.GetButtons();
             int[] sliders = GetSliders(controller);
             if (buttons == null || sliders == null) return 0;
@@ -204,6 +234,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 preBreakNotch = controller.GetBreak();
                 goto ret;
             }
+            if (GetBreakCount(controller) == 0) return 0;
             bool[] buttons = controller.GetButtons();
             int[] sliders = GetSliders(controller);
             if (buttons == null || sliders == null) return 0;

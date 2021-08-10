@@ -6,6 +6,7 @@ using SlimDX.DirectInput;
 using System.Diagnostics;
 using Mackoy.Bvets;
 using Kusaanko.Bvets.NumerousControllerInterface.Controller;
+using System.Linq;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
@@ -16,6 +17,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public static Settings SettingsInstance = null;
         public static ConfigForm ConfigFormInstance;
+        private static SelectMasterControllerForm s_selectMasterControllerForm;
 
         public event InputEventHandler KeyDown;
         public event InputEventHandler KeyUp;
@@ -33,8 +35,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private int _breakNotch;
 
         private static int s_preControllerCount;
+        private static int s_preEnabledMasterControllerCount;
 
-        private static string s_masterController;
+        private static string s_powerController;
+        private static string s_breakController;
+
+        public static bool IsMasterControllerUpdateRequested;
 
         public static Timer TimerController;
         private bool _isUpdateController;
@@ -47,7 +53,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             _prePowerLevel = new Dictionary<NCIController, int>();
             _preBreakLevel = new Dictionary<NCIController, int>();
             _preButtons = new Dictionary<NCIController, List<int>>();
-            s_masterController = "";
+            s_powerController = "";
+            s_breakController = "";
             s_preControllerCount = -1;
             if (TimerController == null)
             {
@@ -67,7 +74,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private static void TimerTick(object sender, EventArgs e)
         {
-            if (ConfigFormInstance != null && !ConfigFormInstance.IsDisposed && (ConfigFormInstance.ControllerSetupForm == null || ConfigFormInstance.ControllerSetupForm.IsDisposed)) 
+            if (s_selectMasterControllerForm == null || s_selectMasterControllerForm.IsDisposed) 
             {
                 GetAllControllers();
             }
@@ -84,8 +91,29 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     Controllers.Add(controller);
                 }
             }
-            s_masterController = "";
-            if(ConfigFormInstance != null && !ConfigFormInstance.IsDisposed && ControllerProfile.controllers.Count != s_preControllerCount)
+            bool isPowerControllerExists = false;
+            bool isBreakControllerExists = false;
+            foreach (NCIController controller in Controllers)
+            {
+                ControllerProfile profile = SettingsInstance.GetProfile(controller);
+                if (s_powerController.Equals(controller.GetName()) && profile.HasPower(controller))
+                {
+                    isPowerControllerExists = true;
+                }
+                if (s_breakController.Equals(controller.GetName()) && profile.HasBreak(controller))
+                {
+                    isBreakControllerExists = true;
+                }
+            }
+            if(!isPowerControllerExists)
+            {
+                s_powerController = "";
+            }
+            if (!isBreakControllerExists)
+            {
+                s_breakController = "";
+            }
+            if (ConfigFormInstance != null && !ConfigFormInstance.IsDisposed && ControllerProfile.controllers.Count != s_preControllerCount)
             {
                 ConfigFormInstance.updateControllers();
             }
@@ -99,29 +127,154 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             else
             {
-                List<string> masterControllerList = new List<string>();
-                foreach(NCIController controller in Controllers)
+                if (s_preEnabledMasterControllerCount != Controllers.Count || IsMasterControllerUpdateRequested)
                 {
-                    if (SettingsInstance.GetProfile(controller).IsMasterController)
+                    // マスコン、力行のみのコントローラー、ブレーキのみのコントローラーの重複をチェック
+                    bool isMasterControllerOnly = true;
+                    List<string> masterControllerList = new List<string>();
+                    int[] masterList = new int[] { ButtonFeature.BringNotchUp.Value, ButtonFeature.BringNotchDown.Value };
+                    foreach (NCIController controller in Controllers)
                     {
-                        masterControllerList.Add(controller.GetName());
+                        ControllerProfile profile = SettingsInstance.GetProfile(controller);
+                        bool hasMaster = false;
+                        if (profile.HasPower(controller) && profile.HasBreak(controller))
+                        {
+                            hasMaster = true;
+                        }
+                        else
+                        {
+                            foreach (ButtonFeature feature in profile.KeyMap.Values)
+                            {
+                                if (masterList.Contains(feature.Value))
+                                {
+                                    hasMaster = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (hasMaster)
+                        {
+                            masterControllerList.Add(controller.GetName());
+                            if (!masterControllerList.Contains(controller.GetName()))
+                            {
+                                isMasterControllerOnly = false;
+                            }
+                        }
                     }
-                }
-                if(masterControllerList.Count >= 2)
-                {
-                    using(SelectMasterControllerForm form = new SelectMasterControllerForm(masterControllerList, controller =>
+                    List<string> powerControllerList = new List<string>();
+                    int[] powerList = new int[] { ButtonFeature.BringNotchUp.Value, ButtonFeature.BringNotchDown.Value, ButtonFeature.BringPowerUp.Value, ButtonFeature.BringPowerDown.Value };
+                    foreach (NCIController controller in Controllers)
                     {
-                        s_masterController = controller;
-                    }))
-                    {
-                        form.ShowDialog();
+                        ControllerProfile profile = SettingsInstance.GetProfile(controller);
+                        bool hasPower = false;
+                        if (profile.HasPower(controller))
+                        {
+                            hasPower = true;
+                        }
+                        else
+                        {
+                            foreach (ButtonFeature feature in profile.KeyMap.Values)
+                            {
+                                if (powerList.Contains(feature.Value))
+                                {
+                                    hasPower = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (hasPower)
+                        {
+                            powerControllerList.Add(controller.GetName());
+                            if (!masterControllerList.Contains(controller.GetName()))
+                            {
+                                isMasterControllerOnly = false;
+                            }
+                        }
                     }
-                }else if(masterControllerList.Count == 1)
-                {
-                    s_masterController = masterControllerList[0];
+                    List<string> breakControllerList = new List<string>();
+                    int[] breakList = new int[] { ButtonFeature.BringNotchUp.Value, ButtonFeature.BringNotchDown.Value, ButtonFeature.BringBreakUp.Value, ButtonFeature.BringBreakDown.Value };
+                    foreach (NCIController controller in Controllers)
+                    {
+                        ControllerProfile profile = SettingsInstance.GetProfile(controller);
+                        bool hasBreak = false;
+                        if (profile.HasBreak(controller))
+                        {
+                            hasBreak = true;
+                        }
+                        else
+                        {
+                            foreach (ButtonFeature feature in profile.KeyMap.Values)
+                            {
+                                if (breakList.Contains(feature.Value))
+                                {
+                                    hasBreak = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (hasBreak)
+                        {
+                            breakControllerList.Add(controller.GetName());
+                            if (!masterControllerList.Contains(controller.GetName()))
+                            {
+                                isMasterControllerOnly = false;
+                            }
+                        }
+                    }
+                    if (isMasterControllerOnly)
+                    {
+                        if (masterControllerList.Count >= 2)
+                        {
+                            using (s_selectMasterControllerForm = new SelectMasterControllerForm(masterControllerList, "マスコン", controller =>
+                            {
+                                s_powerController = controller;
+                                s_breakController = controller;
+                            }))
+                            {
+                                s_selectMasterControllerForm.ShowDialog();
+                            }
+                        }
+                        else if (masterControllerList.Count == 1)
+                        {
+                            s_powerController = masterControllerList[0];
+                            s_breakController = masterControllerList[0];
+                        }
+                    }
+                    else
+                    {
+                        if (powerControllerList.Count >= 2)
+                        {
+                            using (s_selectMasterControllerForm = new SelectMasterControllerForm(powerControllerList, "力行のみ持つコントローラー", controller =>
+                            {
+                                s_powerController = controller;
+                            }))
+                            {
+                                s_selectMasterControllerForm.ShowDialog();
+                            }
+                        }
+                        else if (powerControllerList.Count == 1)
+                        {
+                            s_powerController = powerControllerList[0];
+                        }
+                        if (breakControllerList.Count >= 2)
+                        {
+                            using (s_selectMasterControllerForm = new SelectMasterControllerForm(breakControllerList, "制動のみ持つコントローラー", controller =>
+                            {
+                                s_breakController = controller;
+                            }))
+                            {
+                                s_selectMasterControllerForm.ShowDialog();
+                            }
+                        }
+                        else if (breakControllerList.Count == 1)
+                        {
+                            s_breakController = breakControllerList[0];
+                        }
+                    }
                 }
             }
             s_preControllerCount = ControllerProfile.controllers.Count;
+            s_preEnabledMasterControllerCount = Controllers.Count;
         }
 
         public void Load(string settingsPath)
@@ -191,10 +344,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             foreach(NCIController controller in Controllers)
             {
                 ControllerProfile profile = SettingsInstance.Profiles[SettingsInstance.ProfileMap[controller.GetName()]];
-                if(profile.IsMasterController && controller.GetName().Equals(s_masterController))
+                if(controller.GetName().Equals(s_powerController))
                 {
                     int powerLevel = profile.GetPower(controller, GetPowerMax());
-                    int breakLevel = profile.GetBreak(controller, GetBreakMax());
                     int prePower;
                     if (!_prePowerLevel.ContainsKey(controller))
                     {
@@ -204,16 +356,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     else
                     {
                         prePower = _prePowerLevel[controller];
-                    }
-                    int preBreak;
-                    if (!_preBreakLevel.ContainsKey(controller))
-                    {
-                        _preBreakLevel.Add(controller, -1);
-                        preBreak = -1;
-                    }
-                    else
-                    {
-                        preBreak = _preBreakLevel[controller];
                     }
                     bool two = IsTwoHandle();
                     if(prePower != powerLevel)
@@ -227,6 +369,22 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             onLeverMoved(3, powerLevel);
                         }
                     }
+                    _prePowerLevel[controller] = powerLevel;
+                }
+                if (controller.GetName().Equals(s_breakController))
+                {
+                    int breakLevel = profile.GetBreak(controller, GetBreakMax());
+                    int preBreak;
+                    if (!_preBreakLevel.ContainsKey(controller))
+                    {
+                        _preBreakLevel.Add(controller, -1);
+                        preBreak = -1;
+                    }
+                    else
+                    {
+                        preBreak = _preBreakLevel[controller];
+                    }
+                    bool two = IsTwoHandle();
                     if (preBreak != breakLevel)
                     {
                         if (two)
@@ -238,7 +396,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             onLeverMoved(3, -breakLevel);
                         }
                     }
-                    _prePowerLevel[controller] = powerLevel;
                     _preBreakLevel[controller] = breakLevel;
                 }
                 List<int> buttons = profile.GetButtons(controller);
