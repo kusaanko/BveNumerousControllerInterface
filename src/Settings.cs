@@ -29,7 +29,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 ControllerProfile profile = new ControllerProfile();
                 profile.IsTwoHandle = true;
-                profile.IsMasterController = true;
                 profile.PowerAxises = new int[] { 21 };
                 profile.PowerAxisStatus = new int[,] {
                     { -1000 },
@@ -73,7 +72,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 ControllerProfile profile = new ControllerProfile();
                 profile.IsTwoHandle = true;
-                profile.IsMasterController = true;
                 profile.CalcDuplicated();
                 //力行
                 profile.KeyMap.Add(128, ButtonFeature.BringPowerDown);
@@ -94,7 +92,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 ControllerProfile profile = new ControllerProfile();
                 profile.IsTwoHandle = true;
-                profile.IsMasterController = true;
                 profile.CalcDuplicated();
                 profile.KeyMap.Add(1, ButtonFeature.ReverserBackward);//C
                 profile.KeyMap.Add(0, ButtonFeature.ReverserForward);//B
@@ -108,7 +105,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 ControllerProfile profile = new ControllerProfile();
                 profile.IsTwoHandle = false;
-                profile.IsMasterController = true;
                 profile.CalcDuplicated();
                 profile.KeyMap.Add(1, ButtonFeature.ReverserBackward);//C
                 profile.KeyMap.Add(0, ButtonFeature.ReverserForward);//B
@@ -122,7 +118,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 ControllerProfile profile = new ControllerProfile();
                 profile.IsTwoHandle = false;
-                profile.IsMasterController = true;
                 profile.CalcDuplicated();
                 profile.KeyMap.Add(4, ButtonFeature.Horn);//B
                 profile.KeyMap.Add(0, ButtonFeature.Ats0);//ATS
@@ -141,7 +136,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 ControllerProfile profile = new ControllerProfile();
                 profile.IsTwoHandle = false;
-                profile.IsMasterController = true;
                 profile.CalcDuplicated();
                 profile.KeyMap.Add(4, ButtonFeature.Horn);//B
                 profile.KeyMap.Add(0, ButtonFeature.Ats0);//ATS
@@ -160,7 +154,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 ControllerProfile profile = new ControllerProfile();
                 profile.IsTwoHandle = false;
-                profile.IsMasterController = true;
                 profile.CalcDuplicated();
                 profile.KeyMap.Add(4, ButtonFeature.Horn);//B
                 profile.KeyMap.Add(0, ButtonFeature.Ats0);//ATS

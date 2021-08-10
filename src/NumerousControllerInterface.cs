@@ -40,6 +40,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private static string s_powerController;
         private static string s_breakController;
 
+        public static bool IsMasterControllerUpdateRequested;
+
         public static Timer TimerController;
         private bool _isUpdateController;
         private bool _isDisposeRequested;
@@ -93,11 +95,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             bool isBreakControllerExists = false;
             foreach (NCIController controller in Controllers)
             {
-                if(s_powerController.Equals(controller.GetName()))
+                ControllerProfile profile = SettingsInstance.GetProfile(controller);
+                if (s_powerController.Equals(controller.GetName()) && profile.HasPower(controller))
                 {
                     isPowerControllerExists = true;
                 }
-                if (s_breakController.Equals(controller.GetName()))
+                if (s_breakController.Equals(controller.GetName()) && profile.HasBreak(controller))
                 {
                     isBreakControllerExists = true;
                 }
@@ -124,7 +127,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             else
             {
-                if (s_preEnabledMasterControllerCount != Controllers.Count)
+                if (s_preEnabledMasterControllerCount != Controllers.Count || IsMasterControllerUpdateRequested)
                 {
                     // マスコン、力行のみのコントローラー、ブレーキのみのコントローラーの重複をチェック
                     bool isMasterControllerOnly = true;
@@ -134,7 +137,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     {
                         ControllerProfile profile = SettingsInstance.GetProfile(controller);
                         bool hasMaster = false;
-                        if (profile.HasPower(controller) && profile.HasBreak(controller) && profile.IsMasterController)
+                        if (profile.HasPower(controller) && profile.HasBreak(controller))
                         {
                             hasMaster = true;
                         }
@@ -164,7 +167,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     {
                         ControllerProfile profile = SettingsInstance.GetProfile(controller);
                         bool hasPower = false;
-                        if (profile.HasPower(controller) && profile.IsMasterController)
+                        if (profile.HasPower(controller))
                         {
                             hasPower = true;
                         }
@@ -194,7 +197,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     {
                         ControllerProfile profile = SettingsInstance.GetProfile(controller);
                         bool hasBreak = false;
-                        if (profile.HasBreak(controller) && profile.IsMasterController)
+                        if (profile.HasBreak(controller))
                         {
                             hasBreak = true;
                         }
@@ -341,7 +344,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             foreach(NCIController controller in Controllers)
             {
                 ControllerProfile profile = SettingsInstance.Profiles[SettingsInstance.ProfileMap[controller.GetName()]];
-                if(profile.IsMasterController && controller.GetName().Equals(s_powerController))
+                if(controller.GetName().Equals(s_powerController))
                 {
                     int powerLevel = profile.GetPower(controller, GetPowerMax());
                     int prePower;
@@ -368,7 +371,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     }
                     _prePowerLevel[controller] = powerLevel;
                 }
-                if (profile.IsMasterController && controller.GetName().Equals(s_breakController))
+                if (controller.GetName().Equals(s_breakController))
                 {
                     int breakLevel = profile.GetBreak(controller, GetBreakMax());
                     int preBreak;

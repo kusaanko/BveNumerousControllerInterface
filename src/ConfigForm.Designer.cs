@@ -49,7 +49,6 @@
             this.buttonFunctionLabel = new System.Windows.Forms.Label();
             this.buttonFunctionComboBox = new System.Windows.Forms.ComboBox();
             this.buttonsAssignmentLabel = new System.Windows.Forms.Label();
-            this.isMasterControllerCheckBox = new System.Windows.Forms.CheckBox();
             this.buttonList = new System.Windows.Forms.ListBox();
             this.isTwoHandleComboBox = new System.Windows.Forms.CheckBox();
             this.settingBreakButton = new System.Windows.Forms.Button();
@@ -66,6 +65,8 @@
             this.settingsOfNumerousControllerInterfaceLabel = new System.Windows.Forms.Label();
             this.alertNoCountrollerFoundCheckBox = new System.Windows.Forms.CheckBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.removeBreakButton = new System.Windows.Forms.Button();
+            this.removePowerButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.settingsGroup.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
@@ -144,13 +145,14 @@
             // 
             // settingsGroup
             // 
+            this.settingsGroup.Controls.Add(this.removeBreakButton);
+            this.settingsGroup.Controls.Add(this.removePowerButton);
             this.settingsGroup.Controls.Add(this.isFlexibleNotchCheckBox);
             this.settingsGroup.Controls.Add(this.removeButtonButton);
             this.settingsGroup.Controls.Add(this.addButtonButton);
             this.settingsGroup.Controls.Add(this.buttonFunctionLabel);
             this.settingsGroup.Controls.Add(this.buttonFunctionComboBox);
             this.settingsGroup.Controls.Add(this.buttonsAssignmentLabel);
-            this.settingsGroup.Controls.Add(this.isMasterControllerCheckBox);
             this.settingsGroup.Controls.Add(this.buttonList);
             this.settingsGroup.Controls.Add(this.isTwoHandleComboBox);
             this.settingsGroup.Controls.Add(this.settingBreakButton);
@@ -198,13 +200,6 @@
             resources.ApplyResources(this.buttonsAssignmentLabel, "buttonsAssignmentLabel");
             this.buttonsAssignmentLabel.ForeColor = System.Drawing.SystemColors.Highlight;
             this.buttonsAssignmentLabel.Name = "buttonsAssignmentLabel";
-            // 
-            // isMasterControllerCheckBox
-            // 
-            resources.ApplyResources(this.isMasterControllerCheckBox, "isMasterControllerCheckBox");
-            this.isMasterControllerCheckBox.Name = "isMasterControllerCheckBox";
-            this.isMasterControllerCheckBox.UseVisualStyleBackColor = true;
-            this.isMasterControllerCheckBox.CheckedChanged += new System.EventHandler(this.isMasterControllerCheckBox_CheckedChanged);
             // 
             // buttonList
             // 
@@ -315,6 +310,20 @@
             this.timer1.Interval = 16;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // removeBreakButton
+            // 
+            resources.ApplyResources(this.removeBreakButton, "removeBreakButton");
+            this.removeBreakButton.Name = "removeBreakButton";
+            this.removeBreakButton.UseVisualStyleBackColor = true;
+            this.removeBreakButton.Click += new System.EventHandler(this.removeBreakButton_Click);
+            // 
+            // removePowerButton
+            // 
+            resources.ApplyResources(this.removePowerButton, "removePowerButton");
+            this.removePowerButton.Name = "removePowerButton";
+            this.removePowerButton.UseVisualStyleBackColor = true;
+            this.removePowerButton.Click += new System.EventHandler(this.removePowerButton_Click);
+            // 
             // ConfigForm
             // 
             this.AcceptButton = this.okButton;
@@ -375,7 +384,6 @@
         private System.Windows.Forms.Label buttonFunctionLabel;
         private System.Windows.Forms.ComboBox buttonFunctionComboBox;
         private System.Windows.Forms.Label buttonsAssignmentLabel;
-        private System.Windows.Forms.CheckBox isMasterControllerCheckBox;
         private System.Windows.Forms.ListBox buttonList;
         private System.Windows.Forms.CheckBox isTwoHandleComboBox;
         private System.Windows.Forms.Button settingBreakButton;
@@ -393,5 +401,7 @@
         private System.Windows.Forms.CheckBox alertNoCountrollerFoundCheckBox;
         private System.Windows.Forms.ContextMenuStrip profileContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem openProfileInExplorer;
+        private System.Windows.Forms.Button removeBreakButton;
+        private System.Windows.Forms.Button removePowerButton;
     }
 }
