@@ -61,6 +61,16 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             InaccuracyModeBreak = false;
         }
 
+        public bool HasPower(NCIController controller)
+        {
+            return GetPowerCount(controller) > 0;
+        }
+
+        public bool HasBreak(NCIController controller)
+        {
+            return GetBreakCount(controller) > 0;
+        }
+
         public int[] GetSliders(NCIController controller)
         {
             return controller.GetSliders();
