@@ -65,17 +65,15 @@ JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)の�
         { false, false, false, false }
     };
     profile.CalcDuplicated();
-    profile.KeyMap = new Dictionary<int, int[]>();
-    profile.KeyMap.Add(1, new int[] { 0, 2});
-    profile.KeyMap.Add(2, new int[] { 0, 0 });
-    profile.KeyMap.Add(3, new int[] { -1, 1 });
-    profile.KeyMap.Add(9, new int[] { -3, 12 });
-    profile.KeyMap.Add(8, new int[] { -3, 11 });
+    profile.KeyMap.Add(1, ButtonFeature.ReverserBackward);
+    profile.KeyMap.Add(2, ButtonFeature.ReverserForward);
+    profile.KeyMap.Add(3, ButtonFeature.Horn);
+    profile.KeyMap.Add(9, ButtonFeature.Pause);
+    profile.KeyMap.Add(8, ButtonFeature.Fastforward);
     Profiles.Add("JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)", profile);
     ProfileMap.Add("JC-PS101U", "JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)");
 }
 ```
-ここで、プロファイル名はファイル名であるため、ファイル名に使えない文字は使わないでください。エラーを起こします。  
 ProfileMapはコントローラー名、プロファイル名です。これでコントローラーとプロファイルを紐付けます。
 また、
 
