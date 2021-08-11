@@ -18,6 +18,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         EBFixed,
         FlexibleWithoutEB,
         Flexible,
+        LastMax,
     }
     public class ControllerProfile
     {
@@ -58,6 +59,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             { (int)FlexibleNotchMode.EBFixed, "非常のみ固定" },
             { (int)FlexibleNotchMode.FlexibleWithoutEB, "非常以外伸縮" },
             { (int)FlexibleNotchMode.Flexible, "すべて伸縮" },
+            { (int)FlexibleNotchMode.LastMax, "最後のノッチを最大にする" },
         };
 
         public ControllerProfile()
@@ -73,7 +75,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             BreakButtons = new int[0];
             BreakButtonStatus = new bool[0, 0];
             BreakDuplicated = new bool[0];
-            FlexiblePower = FlexibleNotchMode.None;
+            FlexiblePower = FlexibleNotchMode.LastMax;
             FlexibleBreak = FlexibleNotchMode.EBFixed;
             InaccuracyModePower = false;
             InaccuracyModeBreak = false;
@@ -239,6 +241,14 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     return maxStep - 1;
                 }
                 return (int)Math.Floor(prePowerNotch * ((float) maxStep / GetPowerCount(controller)));
+            }
+            else if (FlexiblePower == FlexibleNotchMode.LastMax)
+            {
+                if (prePowerNotch == GetPowerCount(controller))
+                {
+                    return maxStep - 1;
+                }
+                return prePowerNotch;
             }
             else
             {
