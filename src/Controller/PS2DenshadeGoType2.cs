@@ -85,7 +85,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                                 _power = 5;
                                 break;
                         }
-                        //ブレーキ
+                        //制動
                         switch (buffer[1])
                         {
                             case 0x79:

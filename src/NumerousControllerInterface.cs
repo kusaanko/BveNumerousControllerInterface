@@ -221,7 +221,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 if (s_preEnabledMasterControllerCount != Controllers.Count || IsMasterControllerUpdateRequested)
                 {
-                    // マスコン、力行のみのコントローラー、ブレーキのみのコントローラーの重複をチェック
+                    // マスコン、力行のみのコントローラー、制動のみのコントローラーの重複をチェック
                     bool isMasterControllerOnly = true;
                     List<string> masterControllerList = new List<string>();
                     int[] masterList = new int[] { ButtonFeature.BringNotchUp.Value, ButtonFeature.BringNotchDown.Value };
@@ -599,13 +599,13 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             _breakNotch = 0;
                             _powerNotch = 0;
                             break;
-                        case 2:// ブレーキ切
+                        case 2:// 制動切
                             _breakNotch = 0;
                             break;
-                        case 3:// ブレーキ上げ
+                        case 3:// 制動上げ
                             _breakNotch++;
                             break;
-                        case 4:// ブレーキ下げ
+                        case 4:// 制動下げ
                             _breakNotch--;
                             break;
                         case 5:// 力行切

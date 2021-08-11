@@ -459,7 +459,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void removeBreakButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("本当にブレーキを削除しますか？", "NumerousControllerInput", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("本当に制動を削除しますか？", "NumerousControllerInput", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 GetProfile().ResetBreak();
             }

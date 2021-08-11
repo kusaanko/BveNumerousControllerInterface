@@ -355,13 +355,13 @@
     <value>267, 115</value>
   </data>
   <data name="breakLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 15</value>
+    <value>36, 15</value>
   </data>
   <data name="breakLabel.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
   <data name="breakLabel.Text" xml:space="preserve">
-    <value>ブレーキ:</value>
+    <value>制動:</value>
   </data>
   <data name="&gt;&gt;breakLabel.Name" xml:space="preserve">
     <value>breakLabel</value>
@@ -465,13 +465,13 @@
     <value>11, 98</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 15</value>
+    <value>100, 15</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>ブレーキの伸縮モード</value>
+    <value>制動の伸縮モード</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -554,7 +554,7 @@
     <value>24</value>
   </data>
   <data name="removeBreakButton.Text" xml:space="preserve">
-    <value>ブレーキを削除</value>
+    <value>制動を削除</value>
   </data>
   <data name="&gt;&gt;removeBreakButton.Name" xml:space="preserve">
     <value>removeBreakButton</value>
@@ -785,7 +785,7 @@
     <value>13</value>
   </data>
   <data name="settingBreakButton.Text" xml:space="preserve">
-    <value>ブレーキを設定</value>
+    <value>制動を設定</value>
   </data>
   <data name="&gt;&gt;settingBreakButton.Name" xml:space="preserve">
     <value>settingBreakButton</value>

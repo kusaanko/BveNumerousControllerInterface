@@ -32,7 +32,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public static ButtonFeature Ats1 = new ButtonFeature("ed8ae4b4", "ATS1(警報維持)(A1)(Insert)", -2, 1);
         public static ButtonFeature Ats2 = new ButtonFeature("a4ed55ad", "ATS2(EBリセット)(A2)(Delete)", -2, 2);
         public static ButtonFeature Ats3 = new ButtonFeature("f8c5f318", "ATS3(復帰)(B1)(Home)", -2, 3);
-        public static ButtonFeature Ats4 = new ButtonFeature("97cde4c1", "ATS4(ATS-Pブレーキ解放)(B2)(End)", -2, 4);
+        public static ButtonFeature Ats4 = new ButtonFeature("97cde4c1", "ATS4(ATS-P制動解放)(B2)(End)", -2, 4);
         public static ButtonFeature Ats5 = new ButtonFeature("beec7e6e", "ATS5(ATSに切り替え)(C1)(PageUp)", -2, 5);
         public static ButtonFeature Ats6 = new ButtonFeature("ca02115d", "ATS6(ATCに切り替え)(C2)(Next/PageDown)", -2, 6);
         public static ButtonFeature Ats7 = new ButtonFeature("2a8ac624", "ATS7(D)(2)", -2, 7);
@@ -59,9 +59,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public static ButtonFeature Pause = new ButtonFeature("98f3cd0b", "一時停止", -3, 12);
         public static ButtonFeature SetNotchEB = new ButtonFeature("75c2d2b2", "非常にする", 99, 0);
         public static ButtonFeature SetNotchOff = new ButtonFeature("6d3ce4ce", "全て切にする", 99, 1);
-        public static ButtonFeature SetBreakOff = new ButtonFeature("b2aeefcd", "ブレーキ切", 99, 2);
-        public static ButtonFeature BringBreakUp = new ButtonFeature("d59267da", "ブレーキ上げ", 99, 3);
-        public static ButtonFeature BringBreakDown = new ButtonFeature("88f99f21", "ブレーキ下げ", 99, 4);
+        public static ButtonFeature SetBreakOff = new ButtonFeature("b2aeefcd", "制動切", 99, 2);
+        public static ButtonFeature BringBreakUp = new ButtonFeature("d59267da", "制動上げ", 99, 3);
+        public static ButtonFeature BringBreakDown = new ButtonFeature("88f99f21", "制動下げ", 99, 4);
         public static ButtonFeature SetPowerOff = new ButtonFeature("f620a3af", "力行切", 99, 5);
         public static ButtonFeature BringPowerUp = new ButtonFeature("28f07705", "力行上げ", 99, 6);
         public static ButtonFeature BringPowerDown = new ButtonFeature("32f8feb0", "力行下げ", 99, 7);

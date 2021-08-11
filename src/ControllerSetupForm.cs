@@ -67,7 +67,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         {
                             _useAxis = i;
                             _step++;
-                            infoLabel.Text = (_setupPower ? "力行" : "ブレーキ") + "を切にして次へを押してください。";
+                            infoLabel.Text = (_setupPower ? "力行" : "制動") + "を切にして次へを押してください。";
                             break;
                         }
                     }
@@ -120,7 +120,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 if(_step == 1)
                 {
                     _step++;
-                    infoLabel.Text = (_setupPower ? "力行" : "ブレーキ") + "を最大にして次へを押してください。";
+                    infoLabel.Text = (_setupPower ? "力行" : "制動") + "を最大にして次へを押してください。";
                 }else if(_step == 2)
                 {
                     _step++;
@@ -166,7 +166,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         _breakAxisStatus = new int[1, _breakAxises.Length];
                     }
                     _step++;
-                    infoLabel.Text = (_setupPower ? "力行" : "ブレーキ") + "を切から順番に入れ、次へをクリックして下さい。\n終了時は2回次へをクリックして下さい。";
+                    infoLabel.Text = (_setupPower ? "力行" : "制動") + "を切から順番に入れ、次へをクリックして下さい。\n終了時は2回次へをクリックして下さい。";
                     countLabel.Text = "登録するノッチ:0";
                 }
                 else if (_step == 1)
@@ -308,7 +308,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             _step = 0;
             useAxisButton.Hide();
             useButtonAxisButton.Hide();
-            infoLabel.Text = "一度すべての" + (_setupPower ? "力行" : "ブレーキ") + "に入れてください。";
+            infoLabel.Text = "一度すべての" + (_setupPower ? "力行" : "制動") + "に入れてください。";
         }
 
         private void InaccuracyModeCheckBox_CheckedChanged(object sender, EventArgs e)

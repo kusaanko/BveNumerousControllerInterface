@@ -77,7 +77,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 //力行
                 profile.KeyMap.Add(128, ButtonFeature.BringPowerDown);
                 profile.KeyMap.Add(130, ButtonFeature.BringPowerUp);
-                //ブレーキ
+                //制動
                 profile.KeyMap.Add(2, ButtonFeature.BringBreakDown);
                 profile.KeyMap.Add(3, ButtonFeature.BringBreakUp);
                 //非常
