@@ -8,9 +8,18 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using LibUsbDotNet;
 using Kusaanko.Bvets.NumerousControllerInterface.Controller;
+using Newtonsoft.Json.Converters;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
+    public enum FlexibleNotchMode
+    {
+        None,
+        EBFixed,
+        FlexibleWithoutEB,
+        Flexible,
+        LastMax,
+    }
     public class ControllerProfile
     {
         public string Name;
@@ -32,7 +41,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         [JsonIgnore]
         public bool[] BreakDuplicated;
         public bool IsTwoHandle;
-        public bool IsFlexibleNotch;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public FlexibleNotchMode FlexiblePower;
+        public FlexibleNotchMode FlexibleBreak;
         public bool InaccuracyModePower;
         public bool InaccuracyModeBreak;
         private int prePowerNotch;
@@ -41,6 +52,15 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private static int s_preUsbCount = -1;
 
         public static List<NCIController> controllers = new List<NCIController>();
+
+        public static Dictionary<int, string> FlexibleNotchModeStrings = new Dictionary<int, string>
+        {
+            { (int)FlexibleNotchMode.None, "無し" },
+            { (int)FlexibleNotchMode.EBFixed, "非常のみ固定" },
+            { (int)FlexibleNotchMode.FlexibleWithoutEB, "非常以外伸縮" },
+            { (int)FlexibleNotchMode.Flexible, "すべて伸縮" },
+            { (int)FlexibleNotchMode.LastMax, "最後のノッチを最大にする" },
+        };
 
         public ControllerProfile()
         {
@@ -55,7 +75,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             BreakButtons = new int[0];
             BreakButtonStatus = new bool[0, 0];
             BreakDuplicated = new bool[0];
-            IsFlexibleNotch = false;
+            FlexiblePower = FlexibleNotchMode.LastMax;
+            FlexibleBreak = FlexibleNotchMode.EBFixed;
             InaccuracyModePower = false;
             InaccuracyModeBreak = false;
         }
@@ -103,9 +124,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (PowerAxises.Length != PowerAxisStatus.GetLength(1))
             {
-                return 6;
+                return 5;
             }
-            return PowerButtonStatus.GetLength(0);
+            return PowerButtonStatus.GetLength(0) - 1;
         }
 
         public int GetBreakCount(NCIController controller)
@@ -116,9 +137,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (BreakAxises.Length != BreakAxisStatus.GetLength(1))
             {
-                return 10;
+                return 9;
             }
-            return BreakButtonStatus.GetLength(0);
+            return BreakButtonStatus.GetLength(0) - 1;
         }
 
         public int GetPower(NCIController controller, int maxStep)
@@ -213,13 +234,21 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
             }
         ret:
-            if (IsFlexibleNotch)
+            if (FlexiblePower == FlexibleNotchMode.Flexible)
             {
-                if (prePowerNotch + 1 == GetPowerCount(controller))
+                if (prePowerNotch == GetPowerCount(controller))
                 {
                     return maxStep - 1;
                 }
                 return (int)Math.Floor(prePowerNotch * ((float) maxStep / GetPowerCount(controller)));
+            }
+            else if (FlexiblePower == FlexibleNotchMode.LastMax)
+            {
+                if (prePowerNotch == GetPowerCount(controller))
+                {
+                    return maxStep - 1;
+                }
+                return prePowerNotch;
             }
             else
             {
@@ -311,13 +340,33 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
             }
         ret:
-            if (IsFlexibleNotch)
+            if (FlexibleBreak == FlexibleNotchMode.Flexible)
             {
-                if(preBreakNotch + 1 == GetBreakCount(controller))
+                if(preBreakNotch == GetBreakCount(controller))
                 {
                     return maxStep - 1;
                 }
                 return (int)Math.Floor(preBreakNotch * ((float) maxStep / GetBreakCount(controller)));
+            }
+            else if(FlexibleBreak == FlexibleNotchMode.EBFixed)
+            {
+                if(preBreakNotch == GetBreakCount(controller))
+                {
+                    return maxStep - 1;
+                }
+                else if(preBreakNotch >= maxStep - 2)
+                {
+                    return maxStep - 2;
+                }
+                return preBreakNotch;
+            }
+            else if (FlexibleBreak == FlexibleNotchMode.FlexibleWithoutEB)
+            {
+                if (preBreakNotch == GetBreakCount(controller))
+                {
+                    return maxStep - 1;
+                }
+                return (int)Math.Floor(preBreakNotch * ((float)(maxStep - 1) / GetBreakCount(controller)));
             }
             else
             {
