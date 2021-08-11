@@ -76,11 +76,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
             }));
             mainThread.Start();
-            // 更新の確認はバックグラウンドで行う
-            new System.Threading.Thread(new System.Threading.ThreadStart(() =>
-            {
-                CheckUpdates();
-            })).Start();
         }
 
         private static void CheckUpdates()
@@ -377,6 +372,14 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             SettingsInstance = Settings.LoadFromXml(settingsPath);
 
             GetAllControllers();
+            // 更新の確認はバックグラウンドで行う
+            if(SettingsInstance.CheckUpdates)
+            {
+                new System.Threading.Thread(new System.Threading.ThreadStart(() =>
+                {
+                    CheckUpdates();
+                })).Start();
+            }
         }
 
         public void SetAxisRanges(int[][] ranges)

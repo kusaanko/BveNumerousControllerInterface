@@ -34,6 +34,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             updateControllers();
             timer1.Start();
             alertNoCountrollerFoundCheckBox.Checked = NumerousControllerInterface.SettingsInstance.AlertNoControllerFound;
+            checkUpdatesCheckBox.Checked = NumerousControllerInterface.SettingsInstance.CheckUpdates;
         }
 
         public void updateControllers()
@@ -459,6 +460,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 GetProfile().ResetBreak();
             }
+        }
+
+        private void checkUpdatesCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            NumerousControllerInterface.SettingsInstance.CheckUpdates = checkUpdatesCheckBox.Checked;
         }
     }
 }

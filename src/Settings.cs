@@ -23,6 +23,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         [JsonIgnore]
         public List<string> removeProfilesList = new List<string>();
         public bool AlertNoControllerFound;
+        public bool CheckUpdates;
 
         public Settings()
         {
@@ -170,6 +171,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 ProfileMap.Add("MultiTrainController P5B5", "MultiTrainController P5B5");
             }
             AlertNoControllerFound = true;
+            CheckUpdates = true;
         }
 
         public void SaveToXml()
