@@ -103,6 +103,12 @@ profile.CalcDuplicated();
 ## GetSliders
 コントローラーの軸の状態です。下限や上限はお好きにどうぞ。DirectInputでは-1000から1000を使用しています。
 
+## GetSliderMinValue
+スライダーの最小値です。デフォルトでは-1000です。
+
+## GetSliderMaxValue
+スライダーの最大値です。デフォルトでは1000です。
+
 ## GetPowerCount
 力行の数です。力行が5段あるなら5です。
 
@@ -117,3 +123,6 @@ profile.CalcDuplicated();
 
 ## Dispose
 コントローラー終了時に呼ばれます。終了処理を書いてください。
+
+## IsDisposed
+コントローラーが終了済みかどうかを返します。
