@@ -7,11 +7,17 @@ using System.Diagnostics;
 using Mackoy.Bvets;
 using Kusaanko.Bvets.NumerousControllerInterface.Controller;
 using System.Linq;
+using System.Net;
+using System.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public class NumerousControllerInterface : IInputDevice
     {
+        public static int IntVersion { get { return 3; } }
+
         public static DirectInput Input;
         public static List<NCIController> Controllers;
 
@@ -70,6 +76,94 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
             }));
             mainThread.Start();
+            // 更新の確認はバックグラウンドで行う
+            new System.Threading.Thread(new System.Threading.ThreadStart(() =>
+            {
+                CheckUpdates();
+            })).Start();
+        }
+
+        private static void CheckUpdates()
+        {
+            string tempDir = Path.GetTempPath();
+            string downloadTmpDir = Path.Combine(tempDir, "NumerousControllerInterface");
+            try
+            {
+                if (Directory.Exists(downloadTmpDir))
+                {
+                    DirectoryInfo info = new DirectoryInfo(downloadTmpDir);
+                    info.Delete(true);
+                }
+            }
+            catch (Exception) { }
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | (SecurityProtocolType)768 | (SecurityProtocolType)3072;
+            string arch = BinaryInfo.arch;
+            string net_ver = BinaryInfo.net_ver;
+            string update_url = "https://raw.githubusercontent.com/kusaanko/BveNumerousControllerInterface/auto_update/update_info.json";
+            using (WebClient client = new WebClient())
+            {
+                try
+                {
+                    client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36");
+                    client.Encoding = System.Text.Encoding.UTF8;
+
+                    string content = client.DownloadString(update_url);
+                    Dictionary<string, object> json = JsonConvert.DeserializeObject<Dictionary<string, object>>(content);
+                    object target = json[arch + "_" + net_ver];
+                    if (target != null && target.GetType() == typeof(JObject))
+                    {
+                        JObject update_info = (JObject)target;
+                        int intVersion = (int)update_info.GetValue("int_version");
+                        if(intVersion > IntVersion)
+                        {
+                            // 更新画面を出す
+                            string history = "";
+                            try
+                            {
+                                string url = (string)json["release_url"];
+                                client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36");
+                                content = client.DownloadString(url);
+                                List<object> assets_json = JsonConvert.DeserializeObject<List<object>>(content);
+                                string latestTag = (string)update_info.GetValue("latest");
+                                bool startLogging = false;
+                                int historyCount = 0;
+                                foreach (object obj in assets_json)
+                                {
+                                    if (obj.GetType() == typeof(JObject))
+                                    {
+                                        JObject asset = (JObject)obj;
+                                        string tag = ((string)asset.GetValue("tag_name"));
+                                        if (tag.Equals(latestTag))
+                                        {
+                                            startLogging = true;
+                                        }
+                                        if (startLogging)
+                                        {
+                                            historyCount++;
+                                            history += asset.GetValue("name") + "\n";
+                                            history += asset.GetValue("body") + "\n\n";
+                                        }
+                                        if (historyCount > 20) break;
+                                    }
+                                }
+                            }
+                            catch (Exception) { }
+                            string downloadFilePath = Path.Combine(downloadTmpDir, (string)update_info.GetValue("asset"));
+                            using (UpdateForm form = new UpdateForm(
+                                (string)update_info.GetValue("version"),
+                                history,
+                                (string)update_info.GetValue("download_page"),
+                                (string)update_info.GetValue("download_url"),
+                                downloadFilePath
+                                ))
+                            {
+                                form.ShowDialog();
+                            }
+                        }
+                    }
+                }
+                catch (Exception) { }
+            }
         }
 
         private static void TimerTick(object sender, EventArgs e)

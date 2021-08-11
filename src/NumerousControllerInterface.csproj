@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinaryInfo.cs" />
     <Compile Include="ButtonFeature.cs" />
     <Compile Include="ConfigForm.cs">
       <SubType>Form</SubType>
@@ -95,6 +96,12 @@
     <Compile Include="Settings.cs" />
     <Compile Include="NumerousControllerInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateForm.Designer.cs">
+      <DependentUpon>UpdateForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ConfigForm.resx">
@@ -108,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelectMasterControllerForm.resx">
       <DependentUpon>SelectMasterControllerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateForm.resx">
+      <DependentUpon>UpdateForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
