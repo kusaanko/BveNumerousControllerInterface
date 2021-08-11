@@ -17,7 +17,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public class NumerousControllerInterface : IInputDevice
     {
-        public static string TagName { get { return "v0.5"; } }
+        public static int IntVersion { get { return 5; } }
 
         public static DirectInput Input;
         public static List<NCIController> Controllers;
@@ -110,7 +110,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     {
                         JObject update_info = (JObject)target;
                         string latestTag = (string)update_info.GetValue("latest");
-                        if(!latestTag.Equals(TagName))
+                        int intVersion = (int)update_info.GetValue("int_version");
+                        if (intVersion > IntVersion)
                         {
                             // 更新画面を出す
                             string history = "";
