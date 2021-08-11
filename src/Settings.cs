@@ -23,6 +23,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         [JsonIgnore]
         public List<string> removeProfilesList = new List<string>();
         public bool AlertNoControllerFound;
+        public bool CheckUpdates;
 
         public Settings()
         {
@@ -170,6 +171,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 ProfileMap.Add("MultiTrainController P5B5", "MultiTrainController P5B5");
             }
             AlertNoControllerFound = true;
+            CheckUpdates = true;
         }
 
         public void SaveToXml()
@@ -213,6 +215,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return Path.Combine(_directory, _profileDirectory + GetSHA256Hash(profile.Name) + ".json");
         }
 
+        public string GetProfileDirectory()
+        {
+            return Path.Combine(_directory, _profileDirectory);
+        }
+
         public static Settings LoadFromXml(string directory)
         {
             Settings settings;
@@ -231,33 +238,36 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             if (!Directory.Exists(Path.Combine(directory, _profileDirectory))) Directory.CreateDirectory(Path.Combine(directory, _profileDirectory));
             foreach (string file in Directory.GetFiles(Path.Combine(directory, _profileDirectory)))
             {
-                try
+                if(file.EndsWith(".json"))
                 {
-                    ControllerProfile profile = JsonConvert.DeserializeObject<ControllerProfile>(File.ReadAllText(file));
-                    key = Path.GetFileNameWithoutExtension(file);
-                    if (settings.Profiles.ContainsKey(key))
+                    try
                     {
-                        settings.Profiles.Remove(key);
+                        ControllerProfile profile = JsonConvert.DeserializeObject<ControllerProfile>(File.ReadAllText(file));
+                        key = Path.GetFileNameWithoutExtension(file);
+                        if (settings.Profiles.ContainsKey(key))
+                        {
+                            settings.Profiles.Remove(key);
+                        }
+                        if (profile.Name == null)
+                        {
+                            profile.Name = key;
+                        }
+                        if (!key.Equals(GetSHA256Hash(key)))
+                        {
+                            File.Delete(Path.Combine(directory, _profileDirectory + key + ".json"));
+                            settings.SaveProfileToXml(profile);
+                        }
+                        if (settings.Profiles.ContainsKey(profile.Name))
+                        {
+                            settings.Profiles.Remove(profile.Name);
+                        }
+                        settings.Profiles.Add(profile.Name, profile);
+                        profile.CalcDuplicated();
                     }
-                    if(profile.Name == null)
+                    catch (Exception e)
                     {
-                        profile.Name = key;
+                        MessageBox.Show("プロファイルの読み込みに失敗しました。\n" + file + "\n" + e.Message, "NumerousControllerInterface");
                     }
-                    if(!key.Equals(GetSHA256Hash(key)))
-                    {
-                        File.Delete(Path.Combine(directory, _profileDirectory + key + ".json"));
-                        settings.SaveProfileToXml(profile);
-                    }
-                    if (settings.Profiles.ContainsKey(profile.Name))
-                    {
-                        settings.Profiles.Remove(profile.Name);
-                    }
-                    settings.Profiles.Add(profile.Name, profile);
-                    profile.CalcDuplicated();
-                }
-                catch(Exception e)
-                {
-                    MessageBox.Show("プロファイルの読み込みに失敗しました。\n" + file + "\n" + e.Message, "NumerousControllerInterface");
                 }
             }
             List<string> changeList = new List<string>();

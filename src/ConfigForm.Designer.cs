@@ -43,6 +43,8 @@
             this.buttonLabel = new System.Windows.Forms.Label();
             this.settingPowerButton = new System.Windows.Forms.Button();
             this.settingsGroup = new System.Windows.Forms.GroupBox();
+            this.removeBreakButton = new System.Windows.Forms.Button();
+            this.removePowerButton = new System.Windows.Forms.Button();
             this.isFlexibleNotchCheckBox = new System.Windows.Forms.CheckBox();
             this.removeButtonButton = new System.Windows.Forms.Button();
             this.addButtonButton = new System.Windows.Forms.Button();
@@ -65,8 +67,7 @@
             this.settingsOfNumerousControllerInterfaceLabel = new System.Windows.Forms.Label();
             this.alertNoCountrollerFoundCheckBox = new System.Windows.Forms.CheckBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.removeBreakButton = new System.Windows.Forms.Button();
-            this.removePowerButton = new System.Windows.Forms.Button();
+            this.checkUpdatesCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.settingsGroup.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
@@ -160,6 +161,20 @@
             resources.ApplyResources(this.settingsGroup, "settingsGroup");
             this.settingsGroup.Name = "settingsGroup";
             this.settingsGroup.TabStop = false;
+            // 
+            // removeBreakButton
+            // 
+            resources.ApplyResources(this.removeBreakButton, "removeBreakButton");
+            this.removeBreakButton.Name = "removeBreakButton";
+            this.removeBreakButton.UseVisualStyleBackColor = true;
+            this.removeBreakButton.Click += new System.EventHandler(this.removeBreakButton_Click);
+            // 
+            // removePowerButton
+            // 
+            resources.ApplyResources(this.removePowerButton, "removePowerButton");
+            this.removePowerButton.Name = "removePowerButton";
+            this.removePowerButton.UseVisualStyleBackColor = true;
+            this.removePowerButton.Click += new System.EventHandler(this.removePowerButton_Click);
             // 
             // isFlexibleNotchCheckBox
             // 
@@ -310,19 +325,14 @@
             this.timer1.Interval = 16;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // removeBreakButton
+            // checkUpdatesCheckBox
             // 
-            resources.ApplyResources(this.removeBreakButton, "removeBreakButton");
-            this.removeBreakButton.Name = "removeBreakButton";
-            this.removeBreakButton.UseVisualStyleBackColor = true;
-            this.removeBreakButton.Click += new System.EventHandler(this.removeBreakButton_Click);
-            // 
-            // removePowerButton
-            // 
-            resources.ApplyResources(this.removePowerButton, "removePowerButton");
-            this.removePowerButton.Name = "removePowerButton";
-            this.removePowerButton.UseVisualStyleBackColor = true;
-            this.removePowerButton.Click += new System.EventHandler(this.removePowerButton_Click);
+            resources.ApplyResources(this.checkUpdatesCheckBox, "checkUpdatesCheckBox");
+            this.checkUpdatesCheckBox.Checked = true;
+            this.checkUpdatesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkUpdatesCheckBox.Name = "checkUpdatesCheckBox";
+            this.checkUpdatesCheckBox.UseVisualStyleBackColor = true;
+            this.checkUpdatesCheckBox.CheckedChanged += new System.EventHandler(this.checkUpdatesCheckBox_CheckedChanged);
             // 
             // ConfigForm
             // 
@@ -331,6 +341,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.CancelButton = this.cancelButton;
+            this.Controls.Add(this.checkUpdatesCheckBox);
             this.Controls.Add(this.alertNoCountrollerFoundCheckBox);
             this.Controls.Add(this.settingsOfNumerousControllerInterfaceLabel);
             this.Controls.Add(this.changeNameButton);
@@ -403,5 +414,6 @@
         private System.Windows.Forms.ToolStripMenuItem openProfileInExplorer;
         private System.Windows.Forms.Button removeBreakButton;
         private System.Windows.Forms.Button removePowerButton;
+        private System.Windows.Forms.CheckBox checkUpdatesCheckBox;
     }
 }

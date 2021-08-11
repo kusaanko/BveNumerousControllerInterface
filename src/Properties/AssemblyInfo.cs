@@ -5,7 +5,11 @@
 // これらの属性値を変更してください。
 [assembly: AssemblyTitle("NumerousControllerInterface")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
+#if DEBUG
+[assembly: AssemblyConfiguration("Debug")]
+#else
+[assembly: AssemblyConfiguration("Release")]
+#endif
 [assembly: AssemblyCompany("kusaanko")]
 [assembly: AssemblyProduct("NumerousControllerInterface")]
 [assembly: AssemblyCopyright("© 2021 kusaanko")]

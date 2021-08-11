@@ -122,6 +122,14 @@
     <Compile Include="..\Settings.cs">
       <Link>Settings.cs</Link>
     </Compile>
+    <Compile Include="..\UpdateForm.cs">
+      <Link>UpdateForm.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\UpdateForm.Designer.cs">
+      <Link>UpdateForm.Designer.cs</Link>
+    </Compile>
+    <Compile Include="BinaryInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\ConfigForm.resx">
@@ -135,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="..\SelectMasterControllerForm.resx">
       <Link>SelectMasterControllerForm.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\UpdateForm.resx">
+      <Link>UpdateForm.resx</Link>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
