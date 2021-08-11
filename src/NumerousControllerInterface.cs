@@ -95,7 +95,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | (SecurityProtocolType)768 | (SecurityProtocolType)3072;
             string arch = BinaryInfo.arch;
             string net_ver = BinaryInfo.net_ver;
-            string update_url = "https://raw.githubusercontent.com/kusaanko/BveNumerousControllerInterface/auto_update/update_info.json";
+            string update_url = "https://raw.githubusercontent.com/kusaanko/BveNumerousControllerInterface/main/update_info.json";
             using (WebClient client = new WebClient())
             {
                 try
