@@ -42,7 +42,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             _stick = controller;
             InitializeComponent();
-            _initButtonState = _stick.GetButtons();
+            _initButtonState = _stick.GetButtonsSafe();
             _initSliders = profile.GetSliders(_stick);
             timer1.Start();
             this._setupPower = setupPower;
@@ -55,7 +55,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            _buttons = _stick.GetButtons();
+            _buttons = _stick.GetButtonsSafe();
             _sliders = _profile.GetSliders(_stick);
             if(_mode == 0)
             {

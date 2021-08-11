@@ -11,6 +11,24 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         public abstract string GetName();
         public abstract string GetControllerType();
 
+        public bool[] GetButtonsSafe()
+        {
+            if(!IsDisposed())
+            {
+                return GetButtons();
+            }
+            return new bool[0];
+        }
+
+        public int[] GetSlidersSafe()
+        {
+            if (!IsDisposed())
+            {
+                return GetSliders();
+            }
+            return new int[0];
+        }
+
         public virtual int GetSliderMinValue()
         {
             return DEFAULT_SLIDER_MIN_VALUE;

@@ -113,7 +113,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public int[] GetSliders(NCIController controller)
         {
-            return controller.GetSliders();
+            return controller.GetSlidersSafe();
         }
 
         public int GetPowerCount(NCIController controller)
@@ -150,7 +150,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 goto ret;
             }
             if (GetPowerCount(controller) == 0) return 0;
-            bool[] buttons = controller.GetButtons();
+            bool[] buttons = controller.GetButtonsSafe();
             int[] sliders = GetSliders(controller);
             if (buttons == null || sliders == null) return 0;
             if (PowerAxises.Length != PowerAxisStatus.GetLength(1))
@@ -264,7 +264,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 goto ret;
             }
             if (GetBreakCount(controller) == 0) return 0;
-            bool[] buttons = controller.GetButtons();
+            bool[] buttons = controller.GetButtonsSafe();
             int[] sliders = GetSliders(controller);
             if (buttons == null || sliders == null) return 0;
             if (BreakAxises.Length != BreakAxisStatus.GetLength(1))
@@ -377,7 +377,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public List<int> GetButtons(NCIController controller)
         {
             List<int> list = new List<int>();
-            bool[] buttons = controller.GetButtons();
+            bool[] buttons = controller.GetButtonsSafe();
             for(int i = 0;i < buttons.Length;i++)
             {
                 if (buttons[i] && Array.IndexOf(PowerButtons, i) == -1 && Array.IndexOf(BreakButtons, i) == -1)
