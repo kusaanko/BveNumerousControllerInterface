@@ -11,12 +11,13 @@ using System.Net;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Reflection;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public class NumerousControllerInterface : IInputDevice
     {
-        public static int IntVersion { get { return 3; } }
+        public static string TagName { get { return "v0.5"; } }
 
         public static DirectInput Input;
         public static List<NCIController> Controllers;
@@ -108,8 +109,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     if (target != null && target.GetType() == typeof(JObject))
                     {
                         JObject update_info = (JObject)target;
-                        int intVersion = (int)update_info.GetValue("int_version");
-                        if(intVersion > IntVersion)
+                        string latestTag = (string)update_info.GetValue("latest");
+                        if(!latestTag.Equals(TagName))
                         {
                             // 更新画面を出す
                             string history = "";
@@ -119,7 +120,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                                 client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36");
                                 content = client.DownloadString(url);
                                 List<object> assets_json = JsonConvert.DeserializeObject<List<object>>(content);
-                                string latestTag = (string)update_info.GetValue("latest");
                                 bool startLogging = false;
                                 int historyCount = 0;
                                 foreach (object obj in assets_json)
@@ -373,7 +373,19 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
             GetAllControllers();
             // 更新の確認はバックグラウンドで行う
-            if(SettingsInstance.CheckUpdates)
+
+            bool checkUpdates = SettingsInstance.CheckUpdates;
+
+            object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyConfigurationAttribute), false);
+            if (attributes.Length == 1)
+            {
+                AssemblyConfigurationAttribute assemblyConfiguration = attributes[0] as AssemblyConfigurationAttribute;
+                if (assemblyConfiguration != null)
+                {
+                    if (assemblyConfiguration.Configuration.Equals("Debug")) checkUpdates = false;
+                }
+            }
+            if (checkUpdates)
             {
                 new System.Threading.Thread(new System.Threading.ThreadStart(() =>
                 {
