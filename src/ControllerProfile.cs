@@ -190,8 +190,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         //不正確モード
                         if (InaccuracyModePower)
                         {
-                            int low = -1000;
-                            int high = 1000;
+                            int low = controller.GetSliderMinValue();
+                            int high = controller.GetSliderMaxValue();
                             int nowPowerAxis = PowerAxisStatus[k, i];
                             int index = PowerAxisUsedNumbers[i].IndexOf(nowPowerAxis);
                             if(index > 0)
@@ -296,8 +296,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         //不正確モード
                         if (InaccuracyModeBreak)
                         {
-                            int low = -1000;
-                            int high = 1000;
+                            int low = controller.GetSliderMinValue();
+                            int high = controller.GetSliderMaxValue();
                             int nowBreakAxis = BreakAxisStatus[k, i];
                             int index = BreakAxisUsedNumbers[i].IndexOf(nowBreakAxis);
                             if (index > 0)

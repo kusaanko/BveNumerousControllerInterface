@@ -45,7 +45,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                 foreach (DeviceObjectInstance deviceObject in stick.GetObjects())
                 {
                     if ((deviceObject.ObjectType & ObjectDeviceType.Axis) != 0)
-                        stick.GetObjectPropertiesById((int)deviceObject.ObjectType).SetRange(-1000, 1000);
+                        stick.GetObjectPropertiesById((int)deviceObject.ObjectType).SetRange(DEFAULT_SLIDER_MIN_VALUE, DEFAULT_SLIDER_MAX_VALUE);
                 }
             }
             catch (DirectInputException)
