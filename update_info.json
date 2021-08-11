@@ -1,21 +1,21 @@
 {
     "release_url": "https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases",
     "32bit_.net3.5": {
-        "latest": "v0.4",
-        "version": "0.4",
-        "int_version": 4,
+        "latest": "v0.5",
+        "version": "0.5",
+        "int_version": 5,
         "asset": "NumerousControllerInterface_Bve5.zip",
-        "download_page": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.4",
-        "release_url": "https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases/47420822",
-        "download_url": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.4/NumerousControllerInterface_Bve5.zip"
+        "download_page": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.5",
+        "release_url": "https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases/47687073",
+        "download_url": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.5/NumerousControllerInterface_Bve5.zip"
     },
     "64bit_.net4": {
-        "latest": "v0.4",
-        "version": "0.4",
-        "int_version": 4,
+        "latest": "v0.5",
+        "version": "0.5",
+        "int_version": 5,
         "asset": "NumerousControllerInterface_Bve6.zip",
-        "download_page": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.4",
-        "release_url": "https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases/47420822",
-        "download_url": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.4/NumerousControllerInterface_Bve6.zip"
+        "download_page": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.5",
+        "release_url": "https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases/47687073",
+        "download_url": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.5/NumerousControllerInterface_Bve6.zip"
     }
 }
