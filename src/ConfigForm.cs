@@ -23,6 +23,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 _buttonFeatureIdIndex.Add(featureId);
                 buttonFunctionComboBox.Items.Add(ButtonFeature.Features[featureId].Name);
             }
+            flexiblePowerModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.None]);
+            flexiblePowerModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.Flexible]);
+            flexibleBreakModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.None]);
+            flexibleBreakModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.EBFixed]);
+            flexibleBreakModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.FlexibleWithoutEB]);
+            flexibleBreakModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.Flexible]);
             this.resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigForm));
         }
 
@@ -94,7 +100,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             ControllerProfile profile = NumerousControllerInterface.SettingsInstance.Profiles[profileComboBox.Text];
             isTwoHandleComboBox.Checked = profile.IsTwoHandle;
-            isFlexibleNotchCheckBox.Checked = profile.IsFlexibleNotch;
+            flexiblePowerModeComboBox.SelectedItem = ControllerProfile.FlexibleNotchModeStrings[(int)profile.FlexiblePower];
+            flexibleBreakModeComboBox.SelectedItem = ControllerProfile.FlexibleNotchModeStrings[(int)profile.FlexibleBreak];
             buttonList.Items.Clear();
             foreach (int i in profile.KeyMap.Keys)
             {
@@ -421,11 +428,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void isFlexibleNotchCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            GetProfile().IsFlexibleNotch = isFlexibleNotchCheckBox.Checked;
-        }
-
         private void alertNoCountrollerFoundCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             NumerousControllerInterface.SettingsInstance.AlertNoControllerFound = alertNoCountrollerFoundCheckBox.Checked;
@@ -465,6 +467,32 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private void checkUpdatesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             NumerousControllerInterface.SettingsInstance.CheckUpdates = checkUpdatesCheckBox.Checked;
+        }
+
+        private void flexiblePowerModeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (int key in ControllerProfile.FlexibleNotchModeStrings.Keys)
+            {
+                string value = ControllerProfile.FlexibleNotchModeStrings[key];
+                if (value.Equals(flexiblePowerModeComboBox.Text))
+                {
+                    GetProfile().FlexiblePower = (FlexibleNotchMode)key;
+                    break;
+                }
+            }
+        }
+
+        private void flexibleBreakModeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach(int key in ControllerProfile.FlexibleNotchModeStrings.Keys)
+            {
+                string value = ControllerProfile.FlexibleNotchModeStrings[key];
+                if(value.Equals(flexibleBreakModeComboBox.Text))
+                {
+                    GetProfile().FlexibleBreak = (FlexibleNotchMode)key;
+                    break;
+                }
+            }
         }
     }
 }

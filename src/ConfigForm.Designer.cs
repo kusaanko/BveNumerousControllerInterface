@@ -45,7 +45,6 @@
             this.settingsGroup = new System.Windows.Forms.GroupBox();
             this.removeBreakButton = new System.Windows.Forms.Button();
             this.removePowerButton = new System.Windows.Forms.Button();
-            this.isFlexibleNotchCheckBox = new System.Windows.Forms.CheckBox();
             this.removeButtonButton = new System.Windows.Forms.Button();
             this.addButtonButton = new System.Windows.Forms.Button();
             this.buttonFunctionLabel = new System.Windows.Forms.Label();
@@ -68,6 +67,10 @@
             this.alertNoCountrollerFoundCheckBox = new System.Windows.Forms.CheckBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.checkUpdatesCheckBox = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.flexiblePowerModeComboBox = new System.Windows.Forms.ComboBox();
+            this.flexibleBreakModeComboBox = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.settingsGroup.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
@@ -146,9 +149,12 @@
             // 
             // settingsGroup
             // 
+            this.settingsGroup.Controls.Add(this.flexibleBreakModeComboBox);
+            this.settingsGroup.Controls.Add(this.label2);
+            this.settingsGroup.Controls.Add(this.flexiblePowerModeComboBox);
+            this.settingsGroup.Controls.Add(this.label1);
             this.settingsGroup.Controls.Add(this.removeBreakButton);
             this.settingsGroup.Controls.Add(this.removePowerButton);
-            this.settingsGroup.Controls.Add(this.isFlexibleNotchCheckBox);
             this.settingsGroup.Controls.Add(this.removeButtonButton);
             this.settingsGroup.Controls.Add(this.addButtonButton);
             this.settingsGroup.Controls.Add(this.buttonFunctionLabel);
@@ -175,13 +181,6 @@
             this.removePowerButton.Name = "removePowerButton";
             this.removePowerButton.UseVisualStyleBackColor = true;
             this.removePowerButton.Click += new System.EventHandler(this.removePowerButton_Click);
-            // 
-            // isFlexibleNotchCheckBox
-            // 
-            resources.ApplyResources(this.isFlexibleNotchCheckBox, "isFlexibleNotchCheckBox");
-            this.isFlexibleNotchCheckBox.Name = "isFlexibleNotchCheckBox";
-            this.isFlexibleNotchCheckBox.UseVisualStyleBackColor = true;
-            this.isFlexibleNotchCheckBox.CheckedChanged += new System.EventHandler(this.isFlexibleNotchCheckBox_CheckedChanged);
             // 
             // removeButtonButton
             // 
@@ -334,6 +333,34 @@
             this.checkUpdatesCheckBox.UseVisualStyleBackColor = true;
             this.checkUpdatesCheckBox.CheckedChanged += new System.EventHandler(this.checkUpdatesCheckBox_CheckedChanged);
             // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // flexiblePowerModeComboBox
+            // 
+            this.flexiblePowerModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.flexiblePowerModeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.flexiblePowerModeComboBox, "flexiblePowerModeComboBox");
+            this.flexiblePowerModeComboBox.Name = "flexiblePowerModeComboBox";
+            this.toolTip1.SetToolTip(this.flexiblePowerModeComboBox, resources.GetString("flexiblePowerModeComboBox.ToolTip"));
+            this.flexiblePowerModeComboBox.SelectedIndexChanged += new System.EventHandler(this.flexiblePowerModeComboBox_SelectedIndexChanged);
+            // 
+            // flexibleBreakModeComboBox
+            // 
+            this.flexibleBreakModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.flexibleBreakModeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.flexibleBreakModeComboBox, "flexibleBreakModeComboBox");
+            this.flexibleBreakModeComboBox.Name = "flexibleBreakModeComboBox";
+            this.toolTip1.SetToolTip(this.flexibleBreakModeComboBox, resources.GetString("flexibleBreakModeComboBox.ToolTip"));
+            this.flexibleBreakModeComboBox.SelectedIndexChanged += new System.EventHandler(this.flexibleBreakModeComboBox_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
             // ConfigForm
             // 
             this.AcceptButton = this.okButton;
@@ -407,7 +434,6 @@
         private System.Windows.Forms.Label controllerTypeLabel;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button changeNameButton;
-        private System.Windows.Forms.CheckBox isFlexibleNotchCheckBox;
         private System.Windows.Forms.Label settingsOfNumerousControllerInterfaceLabel;
         private System.Windows.Forms.CheckBox alertNoCountrollerFoundCheckBox;
         private System.Windows.Forms.ContextMenuStrip profileContextMenuStrip;
@@ -415,5 +441,9 @@
         private System.Windows.Forms.Button removeBreakButton;
         private System.Windows.Forms.Button removePowerButton;
         private System.Windows.Forms.CheckBox checkUpdatesCheckBox;
+        private System.Windows.Forms.ComboBox flexiblePowerModeComboBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox flexibleBreakModeComboBox;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -147,6 +147,42 @@
   <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
+    <value>cancelButton</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 537</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>751, 50</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
   <data name="cancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
@@ -173,30 +209,6 @@
   </data>
   <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 505</value>
-  </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>751, 50</value>
-  </data>
-  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>20</value>
   </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -238,7 +250,7 @@
     <value>12, 105</value>
   </data>
   <data name="controllerList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 394</value>
+    <value>167, 424</value>
   </data>
   <data name="controllerList.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -412,7 +424,122 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;settingPowerButton.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>14</value>
+  </data>
+  <data name="flexibleBreakModeComboBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="flexibleBreakModeComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>147, 95</value>
+  </data>
+  <data name="flexibleBreakModeComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>262, 23</value>
+  </data>
+  <data name="flexibleBreakModeComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="flexibleBreakModeComboBox.ToolTip" xml:space="preserve">
+    <value>列車とコントローラーのノッチ数が違うときにコントローラーのノッチ数と
+列車のノッチ数を合わせます。例えば列車が3段、コントローラーが9段なら
+コントローラー3段を列車1段分として扱います。</value>
+  </data>
+  <data name="&gt;&gt;flexibleBreakModeComboBox.Name" xml:space="preserve">
+    <value>flexibleBreakModeComboBox</value>
+  </data>
+  <data name="&gt;&gt;flexibleBreakModeComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flexibleBreakModeComboBox.Parent" xml:space="preserve">
+    <value>settingsGroup</value>
+  </data>
+  <data name="&gt;&gt;flexibleBreakModeComboBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 98</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 15</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>ブレーキの伸縮モード</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>settingsGroup</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="flexiblePowerModeComboBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="flexiblePowerModeComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>147, 66</value>
+  </data>
+  <data name="flexiblePowerModeComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>262, 23</value>
+  </data>
+  <data name="flexiblePowerModeComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="flexiblePowerModeComboBox.ToolTip" xml:space="preserve">
+    <value>列車とコントローラーのノッチ数が違うときにコントローラーのノッチ数と
+列車のノッチ数を合わせます。例えば列車が3段、コントローラーが9段なら
+コントローラー3段を列車1段分として扱います。</value>
+  </data>
+  <data name="&gt;&gt;flexiblePowerModeComboBox.Name" xml:space="preserve">
+    <value>flexiblePowerModeComboBox</value>
+  </data>
+  <data name="&gt;&gt;flexiblePowerModeComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flexiblePowerModeComboBox.Parent" xml:space="preserve">
+    <value>settingsGroup</value>
+  </data>
+  <data name="&gt;&gt;flexiblePowerModeComboBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 69</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 15</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>力行の伸縮モード</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>settingsGroup</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="removeBreakButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -439,7 +566,7 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;removeBreakButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="removePowerButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -466,37 +593,10 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;removePowerButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="isFlexibleNotchCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="isFlexibleNotchCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 72</value>
-  </data>
-  <data name="isFlexibleNotchCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 19</value>
-  </data>
-  <data name="isFlexibleNotchCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="isFlexibleNotchCheckBox.Text" xml:space="preserve">
-    <value>ノッチ数が列車と一致しない場合は伸縮させる</value>
-  </data>
-  <data name="&gt;&gt;isFlexibleNotchCheckBox.Name" xml:space="preserve">
-    <value>isFlexibleNotchCheckBox</value>
-  </data>
-  <data name="&gt;&gt;isFlexibleNotchCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;isFlexibleNotchCheckBox.Parent" xml:space="preserve">
-    <value>settingsGroup</value>
-  </data>
-  <data name="&gt;&gt;isFlexibleNotchCheckBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="removeButtonButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 234</value>
+    <value>115, 265</value>
   </data>
   <data name="removeButtonButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 23</value>
@@ -517,10 +617,10 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;removeButtonButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="addButtonButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 234</value>
+    <value>16, 265</value>
   </data>
   <data name="addButtonButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 23</value>
@@ -541,13 +641,13 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;addButtonButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="buttonFunctionLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="buttonFunctionLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 122</value>
+    <value>223, 153</value>
   </data>
   <data name="buttonFunctionLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 15</value>
@@ -568,13 +668,13 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;buttonFunctionLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="buttonFunctionComboBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="buttonFunctionComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>323, 119</value>
+    <value>323, 150</value>
   </data>
   <data name="buttonFunctionComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 23</value>
@@ -592,7 +692,7 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;buttonFunctionComboBox.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="buttonsAssignmentLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -601,7 +701,7 @@
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="buttonsAssignmentLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 94</value>
+    <value>13, 125</value>
   </data>
   <data name="buttonsAssignmentLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 15</value>
@@ -622,13 +722,13 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;buttonsAssignmentLabel.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="buttonList.ItemHeight" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
   <data name="buttonList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 119</value>
+    <value>16, 150</value>
   </data>
   <data name="buttonList.Size" type="System.Drawing.Size, System.Drawing">
     <value>196, 109</value>
@@ -646,7 +746,7 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;buttonList.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="isTwoHandleComboBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -673,7 +773,7 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;isTwoHandleComboBox.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="settingBreakButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>115, 18</value>
@@ -697,13 +797,13 @@
     <value>settingsGroup</value>
   </data>
   <data name="&gt;&gt;settingBreakButton.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="settingsGroup.Location" type="System.Drawing.Point, System.Drawing">
     <value>188, 229</value>
   </data>
   <data name="settingsGroup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>547, 270</value>
+    <value>547, 302</value>
   </data>
   <data name="settingsGroup.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -780,12 +880,6 @@
   <metadata name="profileContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>201, 17</value>
   </metadata>
-  <data name="openProfileInExplorer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 22</value>
-  </data>
-  <data name="openProfileInExplorer.Text" xml:space="preserve">
-    <value>ファイルをエクスプローラーで開く</value>
-  </data>
   <data name="profileContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 26</value>
   </data>
@@ -815,6 +909,12 @@
   </data>
   <data name="&gt;&gt;profileComboBox.ZOrder" xml:space="preserve">
     <value>10</value>
+  </data>
+  <data name="openProfileInExplorer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 22</value>
+  </data>
+  <data name="openProfileInExplorer.Text" xml:space="preserve">
+    <value>ファイルをエクスプローラーで開く</value>
   </data>
   <data name="newProfileButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>402, 209</value>
@@ -1027,7 +1127,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;checkUpdatesCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1036,7 +1136,7 @@
     <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>751, 555</value>
+    <value>751, 587</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
