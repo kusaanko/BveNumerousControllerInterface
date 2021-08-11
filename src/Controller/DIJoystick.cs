@@ -64,6 +64,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
             _stick.Dispose();
         }
 
+        public override bool IsDisposed()
+        {
+            return _stick.Disposed;
+        }
+
         public override bool[] GetButtons()
         {
             int pov = _stick.GetCurrentState().GetPointOfViewControllers()[0];

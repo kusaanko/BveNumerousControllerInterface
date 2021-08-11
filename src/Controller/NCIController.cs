@@ -41,5 +41,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         }
 
         public abstract void Dispose();
+
+        public abstract bool IsDisposed();
     }
 }

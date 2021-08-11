@@ -230,6 +230,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
             _loop = false;
         }
 
+        public override bool IsDisposed()
+        {
+            return !_loop;
+        }
+
         public override int GetPowerCount()
         {
             return 5;
