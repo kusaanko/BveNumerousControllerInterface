@@ -52,6 +52,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public static Timer TimerController;
         private bool _isUpdateController;
         private bool _isDisposeRequested;
+        private static bool s_isRunningGetAllControllers;
 
         public NumerousControllerInterface()
         {
@@ -164,7 +165,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private static void TimerTick(object sender, EventArgs e)
         {
-            if (s_selectMasterControllerForm == null || s_selectMasterControllerForm.IsDisposed) 
+            if ((s_selectMasterControllerForm == null || s_selectMasterControllerForm.IsDisposed) && !s_isRunningGetAllControllers) 
             {
                 GetAllControllers();
             }
@@ -172,6 +173,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public static void GetAllControllers()
         {
+            s_isRunningGetAllControllers = true;
             Controllers.Clear();
             ControllerProfile.GetAllControllers();
             foreach(NCIController controller in ControllerProfile.controllers)
@@ -365,6 +367,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             s_preControllerCount = ControllerProfile.controllers.Count;
             s_preEnabledMasterControllerCount = Controllers.Count;
+            s_isRunningGetAllControllers = false;
         }
 
         public void Load(string settingsPath)
