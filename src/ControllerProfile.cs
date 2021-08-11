@@ -122,9 +122,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (PowerAxises.Length != PowerAxisStatus.GetLength(1))
             {
-                return 6;
+                return 5;
             }
-            return PowerButtonStatus.GetLength(0);
+            return PowerButtonStatus.GetLength(0) - 1;
         }
 
         public int GetBreakCount(NCIController controller)
@@ -135,9 +135,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (BreakAxises.Length != BreakAxisStatus.GetLength(1))
             {
-                return 10;
+                return 9;
             }
-            return BreakButtonStatus.GetLength(0);
+            return BreakButtonStatus.GetLength(0) - 1;
         }
 
         public int GetPower(NCIController controller, int maxStep)
@@ -234,7 +234,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         ret:
             if (FlexiblePower == FlexibleNotchMode.Flexible)
             {
-                if (prePowerNotch + 1 == GetPowerCount(controller))
+                if (prePowerNotch == GetPowerCount(controller))
                 {
                     return maxStep - 1;
                 }
@@ -332,7 +332,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         ret:
             if (FlexibleBreak == FlexibleNotchMode.Flexible)
             {
-                if(preBreakNotch + 1 == GetBreakCount(controller))
+                if(preBreakNotch == GetBreakCount(controller))
                 {
                     return maxStep - 1;
                 }
@@ -340,7 +340,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             else if(FlexibleBreak == FlexibleNotchMode.EBFixed)
             {
-                if(preBreakNotch + 1 == GetBreakCount(controller))
+                if(preBreakNotch == GetBreakCount(controller))
                 {
                     return maxStep - 1;
                 }
@@ -352,11 +352,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             else if (FlexibleBreak == FlexibleNotchMode.FlexibleWithoutEB)
             {
-                if (preBreakNotch + 1 == GetBreakCount(controller))
+                if (preBreakNotch == GetBreakCount(controller))
                 {
                     return maxStep - 1;
                 }
-                return (int)Math.Floor(preBreakNotch * ((float)(maxStep - 1) / (GetBreakCount(controller) - 1)));
+                return (int)Math.Floor(preBreakNotch * ((float)(maxStep - 1) / GetBreakCount(controller)));
             }
             else
             {
