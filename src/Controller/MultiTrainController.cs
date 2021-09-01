@@ -93,10 +93,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                         {
                             _power = 0;
                             _break = 8;
-                        }else if(notch == 0xF)
-                        {
-                            _power = 0;
-                            _break = 7;
                         }else if (notch >= 0x2 && notch <= 0x9)
                         {
                             _power = 0;
