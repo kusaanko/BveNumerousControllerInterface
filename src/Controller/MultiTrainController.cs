@@ -99,7 +99,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                             _break = 9 - notch;
                         }else if(notch >= 0xA)
                         {
-                            _power = notch - 0xA;
+                            _power = notch - 0xA + 1;
                             _break = 0;
                         }
                     }else
