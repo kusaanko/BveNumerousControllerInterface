@@ -17,7 +17,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public class NumerousControllerInterface : IInputDevice
     {
-        public static int IntVersion { get { return 5; } }
+        public static int IntVersion { get { return 6; } }
 
         public static DirectInput Input;
         public static List<NCIController> Controllers;
