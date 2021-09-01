@@ -87,18 +87,42 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                     if (code != ErrorCode.None) continue;
                     //ハンドル
                     int notch = buffer[1] & 0x0F;
-                    if(notch <= breakNotchCount + 1)
+                    if(powerNotchCount == 4 && breakNotchCount == 7)
                     {
-                        _power = 0;
-                        _break = breakNotchCount - notch + 2;
-                    }else if(notch == breakNotchCount + 2)
-                    {
-                        _power = 0;
-                        _break = 0;
+                        if(notch == 0x1)
+                        {
+                            _power = 0;
+                            _break = 8;
+                        }else if(notch == 0xF)
+                        {
+                            _power = 0;
+                            _break = 7;
+                        }else if (notch >= 0x2 && notch <= 0x9)
+                        {
+                            _power = 0;
+                            _break = 9 - notch;
+                        }else if(notch >= 0xA)
+                        {
+                            _power = notch - 0xA;
+                            _break = 0;
+                        }
                     }else
                     {
-                        _power = notch - breakNotchCount - 2;
-                        _break = 0;
+                        if (notch <= breakNotchCount + 1)
+                        {
+                            _power = 0;
+                            _break = breakNotchCount - notch + 2;
+                        }
+                        else if (notch == breakNotchCount + 2)
+                        {
+                            _power = 0;
+                            _break = 0;
+                        }
+                        else
+                        {
+                            _power = notch - breakNotchCount - 2;
+                            _break = 0;
+                        }
                     }
                     //ボタン
                     int button = buffer[2];
