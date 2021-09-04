@@ -3,7 +3,7 @@
     "32bit_.net3.5": {
         "latest": "v0.6",
         "version": "0.6",
-        "int_version": 6,
+        "int_version": 7,
         "asset": "NumerousControllerInterface_Bve5.zip",
         "download_page": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.6",
         "release_url": "https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases/48831236",
@@ -12,7 +12,7 @@
     "64bit_.net4": {
         "latest": "v0.6",
         "version": "0.6",
-        "int_version": 6,
+        "int_version": 7,
         "asset": "NumerousControllerInterface_Bve6.zip",
         "download_page": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.6",
         "release_url": "https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases/48831236",
