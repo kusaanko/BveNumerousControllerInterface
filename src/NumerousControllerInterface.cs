@@ -18,6 +18,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
     public class NumerousControllerInterface : IInputDevice
     {
         public static int IntVersion { get { return 8; } }
+        public static string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36";
 
         public static DirectInput Input;
         public static List<NCIController> Controllers;
@@ -101,7 +102,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 try
                 {
-                    client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36");
+                    client.Headers.Add("User-Agent", UserAgent);
                     client.Encoding = System.Text.Encoding.UTF8;
 
                     string content = client.DownloadString(update_url);
@@ -119,7 +120,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             try
                             {
                                 string url = (string)json["release_url"];
-                                client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36");
+                                client.Headers.Add("User-Agent", UserAgent);
                                 content = client.DownloadString(url);
                                 List<object> assets_json = JsonConvert.DeserializeObject<List<object>>(content);
                                 bool startLogging = false;
