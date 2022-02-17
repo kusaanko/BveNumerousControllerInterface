@@ -74,7 +74,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         {
             this._device = device;
             _reader = device.OpenEndpointReader(ReadEndpointID.Ep01);
-            _buttons = new bool[16];
+            _buttons = new bool[12];
             _loop = true;
             this._powerNotchCount = powerNotchCount;
             this._breakNotchCount = breakNotchCount;
