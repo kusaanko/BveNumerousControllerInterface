@@ -12,6 +12,7 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Reflection;
+using static Kusaanko.Bvets.NumerousControllerInterface.Controller.NCIController;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
@@ -34,6 +35,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private Dictionary<NCIController, int> _prePowerLevel;
         private Dictionary<NCIController, int> _preBreakLevel;
         private Dictionary<NCIController, List<int>> _preButtons;
+        private Dictionary<NCIController, Reverser> _preReverser;
 
         private int _onePowerMax;
         private int _oneBreakMax;
@@ -47,6 +49,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private static string s_powerController;
         private static string s_breakController;
+        private static string s_reverserController;
 
         public static bool IsMasterControllerUpdateRequested;
 
@@ -62,8 +65,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             _prePowerLevel = new Dictionary<NCIController, int>();
             _preBreakLevel = new Dictionary<NCIController, int>();
             _preButtons = new Dictionary<NCIController, List<int>>();
+            _preReverser = new Dictionary<NCIController, Reverser>();
             s_powerController = "";
             s_breakController = "";
+            s_reverserController = "";
             s_preControllerCount = -1;
             if (TimerController == null)
             {
@@ -187,6 +192,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             bool isPowerControllerExists = false;
             bool isBreakControllerExists = false;
+            bool isReverserControllerExists = false;
             foreach (NCIController controller in Controllers)
             {
                 ControllerProfile profile = SettingsInstance.GetProfile(controller);
@@ -198,6 +204,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 {
                     isBreakControllerExists = true;
                 }
+                if (s_reverserController.Equals(controller.GetName()) && profile.HasReverser(controller))
+                {
+                    isReverserControllerExists = true;
+                }
             }
             if(!isPowerControllerExists)
             {
@@ -206,6 +216,20 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             if (!isBreakControllerExists)
             {
                 s_breakController = "";
+            }
+            if (!isReverserControllerExists)
+            {
+                s_reverserController = "";
+                isReverserControllerExists = false;
+                foreach (NCIController controller in Controllers)
+                {
+                    ControllerProfile profile = SettingsInstance.GetProfile(controller);
+                    if (profile.HasReverser(controller))
+                    {
+                        s_reverserController = controller.GetName();
+                        isReverserControllerExists = true;
+                    }
+                }
             }
             if (ConfigFormInstance != null && !ConfigFormInstance.IsDisposed && ControllerProfile.controllers.Count != s_preControllerCount)
             {
@@ -512,6 +536,38 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         }
                     }
                     _preBreakLevel[controller] = breakLevel;
+                }
+                if (controller.GetName().Equals(s_reverserController))
+                {
+                    Reverser reverserPos = profile.GetReverser(controller);
+                    Reverser preReverser;
+                    if (!_preReverser.ContainsKey(controller))
+                    {
+                        _preReverser.Add(controller, Reverser.CENTER);
+                        preReverser = Reverser.CENTER;
+                    }
+                    else
+                    {
+                        preReverser = _preReverser[controller];
+                    }
+                    if (preReverser != reverserPos)
+                    {
+                        int rev = 0;
+                        if(reverserPos == Reverser.BACKWARD)
+                        {
+                            rev = -1;
+                        }
+                        if (reverserPos == Reverser.CENTER)
+                        {
+                            rev = 0;
+                        }
+                        if (reverserPos == Reverser.FORWARD)
+                        {
+                            rev = 1;
+                        }
+                        onLeverMoved(0, rev);
+                    }
+                    _preReverser[controller] = reverserPos;
                 }
                 List<int> buttons = profile.GetButtons(controller);
                 if(!_preButtons.ContainsKey(controller))

@@ -35,8 +35,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         private bool _A_DEEP;
         private bool _A_SHALLOW;
         private long _A_milli;
-        private int _revPos;
-        private long _rev_milli;
+        private Reverser _revPos;
         public static List<NCIController> Get()
         {
             if (_cartridges.Count == 0)
@@ -147,30 +146,24 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                     SetButton(button, RIGHT_BUTTON, 11);
                     //レバーサー
                     button = (buffer[1] & 0xF0) >> 4;
-                    if (_powerNotchCount != 5 && _breakNotchCount != 5)
+                    if (_powerNotchCount != 5 && _breakNotchCount != 5)//P5B5だけビット位置が違う
                     {
                         button >>= 2;
                     }
                     //前
-                    _buttons[12] = button == 0x2;
-                    if (_revPos != 0 && _buttons[12])
+                    if (button == 0x2)
                     {
-                        _rev_milli = DateTime.Now.Ticks;
-                        _revPos = 0;
+                        _revPos = Reverser.FORWARD;
                     }
                     //切
-                    _buttons[13] = button == 0x0;
-                    if (_revPos != 1 && _buttons[13])
+                    if (button == 0x0)
                     {
-                        _rev_milli = DateTime.Now.Ticks;
-                        _revPos = 1;
+                        _revPos = Reverser.CENTER;
                     }
                     //後
-                    _buttons[14] = button == 0x1;
-                    if (_revPos != 2 && _buttons[14])
+                    if (button == 0x1)
                     {
-                        _rev_milli = DateTime.Now.Ticks;
-                        _revPos = 2;
+                        _revPos = Reverser.BACKWARD;
                     }
 
                 }
@@ -216,15 +209,21 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
             return _break;
         }
 
+        public override bool HasReverser()
+        {
+            return true;
+        }
+
+        public override Reverser GetReverser()
+        {
+            return _revPos;
+        }
+
         public override bool[] GetButtons()
         {
             if(_A_milli != 0 && DateTime.Now.Ticks - _A_milli > 50 * TimeSpan.TicksPerMillisecond)//50ミリ秒以上Aボタンを浅く押したら浅く押した判定
             {
                 _buttons[2] = true;
-            }
-            if(DateTime.Now.Ticks - _rev_milli > 100 * TimeSpan.TicksPerMillisecond)//100ミリ以上経ったらリバーサーのボタンを離す
-            {
-                _buttons[12] = _buttons[13] = _buttons[14] = false;
             }
             return _buttons;
         }

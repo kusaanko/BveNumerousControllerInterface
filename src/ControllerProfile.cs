@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using LibUsbDotNet;
 using Kusaanko.Bvets.NumerousControllerInterface.Controller;
 using Newtonsoft.Json.Converters;
+using static Kusaanko.Bvets.NumerousControllerInterface.Controller.NCIController;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
@@ -110,6 +111,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public bool HasBreak(NCIController controller)
         {
             return GetBreakCount(controller) > 0;
+        }
+
+        public bool HasReverser(NCIController controller)
+        {
+            return controller.HasReverser();
         }
 
         public int[] GetSliders(NCIController controller)
@@ -497,6 +503,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
                 BreakAxisUsedNumbers[i].Sort();
             }
+        }
+
+        public Reverser GetReverser(NCIController controller)
+        {
+            return controller.GetReverser();
         }
 
         public ControllerProfile Clone()

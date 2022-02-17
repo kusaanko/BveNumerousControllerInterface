@@ -4,6 +4,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
 {
     public abstract class NCIController : IDisposable
     {
+        public enum Reverser
+        {
+            CENTER,
+            FORWARD,
+            BACKWARD,
+        }
         public static int DEFAULT_SLIDER_MIN_VALUE { get => -1000; }
         public static int DEFAULT_SLIDER_MAX_VALUE { get => 1000; }
         public abstract bool[] GetButtons();
@@ -56,6 +62,16 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         public virtual int GetBreak()
         {
             return 0;
+        }
+
+        public virtual bool HasReverser()
+        {
+            return false;
+        }
+
+        public virtual Reverser GetReverser()
+        {
+            return Reverser.CENTER;
         }
 
         public abstract void Dispose();
