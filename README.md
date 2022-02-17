@@ -11,7 +11,9 @@ Bve5、6用のコントローラー入力プラグイン
 |マルチトレインコントローラー P4B6|はい|はい|100%|
 |マルチトレインコントローラー P4B7|はい|はい|100%|
 |マルチトレインコントローラー P5B5|はい|はい|100%|
+|マルチトレインコントローラー P5B7|はい|はい|100%|
 |マルチトレインコントローラー P5B8|いいえ|はい|動作しないデバイスあり|
+|マルチトレインコントローラー P13B7|はい|はい|B1~5あたりで荒ぶる可能性あり|
 |Xbox用のコントローラー|はい|いいえ|100%|
 |その他DirectInputに対応したコントローラー|はい|いいえ|100%|
 
@@ -71,6 +73,7 @@ NumerousControllerInterfaceを選択してプロパティーをクリックし�
 
 # 協力
 サハ209 - [@saha209](https://github.com/saha209)
+そうぽん - [Twitter](https://twitter.com/So8701_10)
 
 # ライセンス
 [SlimDX](https://github.com/SlimDX/slimdx) - Copyright (c) 2007-2012 SlimDX Group [MIT License](https://github.com/SlimDX/slimdx/blob/master/License.txt)
