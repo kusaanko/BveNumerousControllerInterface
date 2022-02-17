@@ -67,7 +67,7 @@ NumerousControllerInterfaceを選択してプロパティーをクリックし�
 コントローラーを使用するには、コントローラーを有効にするにチェックを入れる必要があります。
 
 # コントリビュート、内部APIの利用方法について
-[こちら](https://github.com/kusaanko/BveNumerousControllerInterface/blob/main/how_to_contribute.md)を御覧ください。
+[こちら](https://github.com/kusaanko/BveNumerousControllerInterface/blob/main/CONTRIBUTING.md)を御覧ください。
 
 # 協力
 サハ209 - [@saha209](https://github.com/saha209)
