@@ -174,6 +174,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public static void GetAllControllers()
         {
+            if (SettingsInstance == null) return;
             s_isRunningGetAllControllers = true;
             Controllers.Clear();
             ControllerProfile.GetAllControllers();
