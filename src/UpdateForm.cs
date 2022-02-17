@@ -82,18 +82,5 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
             }
         }
-
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            // 
-            // UpdateForm
-            // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Name = "UpdateForm";
-            this.TopMost = true;
-            this.ResumeLayout(false);
-
-        }
     }
 }
