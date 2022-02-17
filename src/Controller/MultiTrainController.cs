@@ -45,6 +45,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                 _cartridges.Add(new MTCCartridge(0x0AE4, 0x0101, 0300, 4, 7));//P4B7
                 _cartridges.Add(new MTCCartridge(0x1C06, 0x77A7, 0202, 5, 5));//P5B5
                 _cartridges.Add(new MTCCartridge(0x0AE4, 0x0101, 0800, 5, 7));//P5B7
+                _cartridges.Add(new MTCCartridge(0x0AE4, 0x0101, 0000, 13, 7));//P13B7
             }
             List<NCIController> controllers = new List<NCIController>();
             foreach (UsbRegistry registry in UsbDevice.AllDevices)
@@ -88,6 +89,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                     if (code != ErrorCode.None) continue;
                     //ハンドル
                     int notch = buffer[1] & 0x0F;
+                    if (_powerNotchCount + _breakNotchCount > 14) //ノッチ数が4ビットで表せないとき
+                    {
+                        notch += buffer[1] & 0b00110000;
+                    }
                     // 一瞬0が入力される
                     if(notch == 0)
                     {
@@ -142,8 +147,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                     SetButton(button, RIGHT_BUTTON, 11);
                     //レバーサー
                     button = (buffer[1] & 0xF0) >> 4;
+                    if (_powerNotchCount != 5 && _breakNotchCount != 5)
+                    {
+                        button >>= 2;
+                    }
                     //前
-                    _buttons[12] = button == 0x8 || button == 0x2;
+                    _buttons[12] = button == 0x2;
                     if (_revPos != 0 && _buttons[12])
                     {
                         _rev_milli = DateTime.Now.Ticks;
@@ -157,7 +166,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                         _revPos = 1;
                     }
                     //後
-                    _buttons[14] = button == 0x4 || button == 0x1;
+                    _buttons[14] = button == 0x1;
                     if (_revPos != 2 && _buttons[14])
                     {
                         _rev_milli = DateTime.Now.Ticks;
