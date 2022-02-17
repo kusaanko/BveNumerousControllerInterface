@@ -44,6 +44,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                 _cartridges.Add(new MTCCartridge(0x0AE4, 0x0101, 0400, 4, 6));//P4B6
                 _cartridges.Add(new MTCCartridge(0x0AE4, 0x0101, 0300, 4, 7));//P4B7
                 _cartridges.Add(new MTCCartridge(0x1C06, 0x77A7, 0202, 5, 5));//P5B5
+                _cartridges.Add(new MTCCartridge(0x0AE4, 0x0101, 0800, 5, 7));//P5B7
             }
             List<NCIController> controllers = new List<NCIController>();
             foreach (UsbRegistry registry in UsbDevice.AllDevices)

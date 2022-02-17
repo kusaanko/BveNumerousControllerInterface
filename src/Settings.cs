@@ -170,6 +170,24 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 Profiles.Add("MultiTrainController P5B5", profile);
                 ProfileMap.Add("MultiTrainController P5B5", "MultiTrainController P5B5");
             }
+            {
+                ControllerProfile profile = new ControllerProfile("MultiTrainController P5B7");
+                profile.IsTwoHandle = false;
+                profile.CalcDuplicated();
+                profile.KeyMap.Add(4, ButtonFeature.Horn);//B
+                profile.KeyMap.Add(0, ButtonFeature.Ats0);//ATS
+                profile.KeyMap.Add(2, ButtonFeature.Ats1);//A Shallow
+                profile.KeyMap.Add(3, ButtonFeature.Ats2);//A Deep
+                profile.KeyMap.Add(5, ButtonFeature.Ats3);//C
+                profile.KeyMap.Add(1, ButtonFeature.Ats4);//D
+                profile.KeyMap.Add(7, ButtonFeature.Pause);//SELECT
+                profile.KeyMap.Add(6, ButtonFeature.Fastforward);//START
+                profile.KeyMap.Add(12, ButtonFeature.ReverserForward);//Reverser Front
+                profile.KeyMap.Add(13, ButtonFeature.ReverserCenter);//Reverser Center
+                profile.KeyMap.Add(14, ButtonFeature.ReverserBackward);//Reverser Back
+                Profiles.Add("MultiTrainController P5B7", profile);
+                ProfileMap.Add("MultiTrainController P5B7", "MultiTrainController P5B7");
+            }
             AlertNoControllerFound = true;
             CheckUpdates = true;
         }
