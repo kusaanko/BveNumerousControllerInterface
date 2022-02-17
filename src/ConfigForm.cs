@@ -131,7 +131,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 if (!NumerousControllerInterface.SettingsInstance.Profiles.ContainsKey("無名のプロファイル"))
                 {
-                    ControllerProfile profile = new ControllerProfile();
+                    ControllerProfile profile = new ControllerProfile("無名のプロファイル");
                     NumerousControllerInterface.SettingsInstance.Profiles.Add("無名のプロファイル", profile);
                 }
                 NumerousControllerInterface.SettingsInstance.ProfileMap.Add(controller, "無名のプロファイル");
@@ -315,7 +315,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     return false;
                 }else
                 {
-                    ControllerProfile newProfile = new ControllerProfile();
+                    ControllerProfile newProfile = new ControllerProfile(s);
                     newProfile.Name = s;
                     NumerousControllerInterface.SettingsInstance.Profiles.Add(s, newProfile);
                 }

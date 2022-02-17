@@ -28,7 +28,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public Settings()
         {
             {
-                ControllerProfile profile = new ControllerProfile();
+                ControllerProfile profile = new ControllerProfile("JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)");
                 profile.IsTwoHandle = true;
                 profile.PowerAxises = new int[] { 21 };
                 profile.PowerAxisStatus = new int[,] {
@@ -71,7 +71,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 ProfileMap.Add("JC-PS101U", "JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)");
             }
             {
-                ControllerProfile profile = new ControllerProfile();
+                ControllerProfile profile = new ControllerProfile("JC-PS101U DualShock2");
                 profile.IsTwoHandle = true;
                 profile.CalcDuplicated();
                 //力行
@@ -91,7 +91,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 Profiles.Add("JC-PS101U DualShock2", profile);
             }
             {
-                ControllerProfile profile = new ControllerProfile();
+                ControllerProfile profile = new ControllerProfile("TCPP-20009 PS2用電車でGO!コントローラー TYPE2");
                 profile.IsTwoHandle = true;
                 profile.CalcDuplicated();
                 profile.KeyMap.Add(1, ButtonFeature.ReverserBackward);//C
@@ -104,7 +104,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 ProfileMap.Add("PS2用電車でGO!コントローラー TYPE2", "TCPP-20009 PS2用電車でGO!コントローラー TYPE2");
             }
             {
-                ControllerProfile profile = new ControllerProfile();
+                ControllerProfile profile = new ControllerProfile("MultiTrainController P5B8");
                 profile.IsTwoHandle = false;
                 profile.CalcDuplicated();
                 profile.KeyMap.Add(1, ButtonFeature.ReverserBackward);//C
@@ -117,7 +117,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 ProfileMap.Add("MultiTrainController P5B8", "MultiTrainController P5B8");
             }
             {
-                ControllerProfile profile = new ControllerProfile();
+                ControllerProfile profile = new ControllerProfile("MultiTrainController P4B6");
                 profile.IsTwoHandle = false;
                 profile.CalcDuplicated();
                 profile.KeyMap.Add(4, ButtonFeature.Horn);//B
@@ -135,7 +135,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 ProfileMap.Add("MultiTrainController P4B6", "MultiTrainController P4B6");
             }
             {
-                ControllerProfile profile = new ControllerProfile();
+                ControllerProfile profile = new ControllerProfile("MultiTrainController P4B7");
                 profile.IsTwoHandle = false;
                 profile.CalcDuplicated();
                 profile.KeyMap.Add(4, ButtonFeature.Horn);//B
@@ -153,7 +153,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 ProfileMap.Add("MultiTrainController P4B7", "MultiTrainController P4B7");
             }
             {
-                ControllerProfile profile = new ControllerProfile();
+                ControllerProfile profile = new ControllerProfile("MultiTrainController P5B5");
                 profile.IsTwoHandle = false;
                 profile.CalcDuplicated();
                 profile.KeyMap.Add(4, ButtonFeature.Horn);//B

@@ -62,8 +62,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             { (int)FlexibleNotchMode.LastMax, "最後のノッチを最大にする" },
         };
 
-        public ControllerProfile()
+        public ControllerProfile(string name)
         {
+            Name = name;
             KeyMap = new Dictionary<int, ButtonFeature>();
             PowerAxises = new int[0];
             PowerAxisStatus = new int[0, 0];
