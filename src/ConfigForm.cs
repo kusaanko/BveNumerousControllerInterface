@@ -260,8 +260,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             NCIController controller = GetController();
             ControllerProfile profile = GetProfile();
             if (controller == null || profile == null) return;
-            breakLabel.Text = this.resources.GetString("breakLabel.Text") + profile.GetBreak(controller, 10);
-            powerLabel.Text = this.resources.GetString("powerLabel.Text") + profile.GetPower(controller, 6);
+            breakLabel.Text = this.resources.GetString("breakLabel.Text") + profile.GetBreak(controller, profile.GetPowerCount(controller) + 1);
+            powerLabel.Text = this.resources.GetString("powerLabel.Text") + profile.GetPower(controller, profile.GetBreakCount(controller) + 1);
             buttonLabel.Text = this.resources.GetString("buttonLabel.Text");
             foreach (int i in profile.GetButtons(controller))
             {
