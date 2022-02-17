@@ -128,9 +128,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 profile.KeyMap.Add(1, ButtonFeature.Ats4);//D
                 profile.KeyMap.Add(7, ButtonFeature.Pause);//SELECT
                 profile.KeyMap.Add(6, ButtonFeature.Fastforward);//START
-                profile.KeyMap.Add(12, ButtonFeature.ReverserForward);//Reverser Front
-                profile.KeyMap.Add(13, ButtonFeature.ReverserCenter);//Reverser Center
-                profile.KeyMap.Add(14, ButtonFeature.ReverserBackward);//Reverser Back
                 Profiles.Add("MultiTrainController P4B6", profile);
                 ProfileMap.Add("MultiTrainController P4B6", "MultiTrainController P4B6");
             }
@@ -146,9 +143,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 profile.KeyMap.Add(1, ButtonFeature.Ats4);//D
                 profile.KeyMap.Add(7, ButtonFeature.Pause);//SELECT
                 profile.KeyMap.Add(6, ButtonFeature.Fastforward);//START
-                profile.KeyMap.Add(12, ButtonFeature.ReverserForward);//Reverser Front
-                profile.KeyMap.Add(13, ButtonFeature.ReverserCenter);//Reverser Center
-                profile.KeyMap.Add(14, ButtonFeature.ReverserBackward);//Reverser Back
                 Profiles.Add("MultiTrainController P4B7", profile);
                 ProfileMap.Add("MultiTrainController P4B7", "MultiTrainController P4B7");
             }
@@ -164,9 +158,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 profile.KeyMap.Add(1, ButtonFeature.Ats4);//D
                 profile.KeyMap.Add(7, ButtonFeature.Pause);//SELECT
                 profile.KeyMap.Add(6, ButtonFeature.Fastforward);//START
-                profile.KeyMap.Add(12, ButtonFeature.ReverserForward);//Reverser Front
-                profile.KeyMap.Add(13, ButtonFeature.ReverserCenter);//Reverser Center
-                profile.KeyMap.Add(14, ButtonFeature.ReverserBackward);//Reverser Back
                 Profiles.Add("MultiTrainController P5B5", profile);
                 ProfileMap.Add("MultiTrainController P5B5", "MultiTrainController P5B5");
             }
@@ -182,9 +173,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 profile.KeyMap.Add(1, ButtonFeature.Ats4);//D
                 profile.KeyMap.Add(7, ButtonFeature.Pause);//SELECT
                 profile.KeyMap.Add(6, ButtonFeature.Fastforward);//START
-                profile.KeyMap.Add(12, ButtonFeature.ReverserForward);//Reverser Front
-                profile.KeyMap.Add(13, ButtonFeature.ReverserCenter);//Reverser Center
-                profile.KeyMap.Add(14, ButtonFeature.ReverserBackward);//Reverser Back
                 Profiles.Add("MultiTrainController P5B7", profile);
                 ProfileMap.Add("MultiTrainController P5B7", "MultiTrainController P5B7");
             }
