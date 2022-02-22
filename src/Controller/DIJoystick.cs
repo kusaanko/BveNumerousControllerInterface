@@ -81,16 +81,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
             return buttons;
         }
 
-        public override int GetPowerCount()
-        {
-            return 5;
-        }
-
-        public override int GetBreakCount()
-        {
-            return 9;
-        }
-
         public override int[] GetSliders()
         {
             JoystickState state = _stick.GetCurrentState();
