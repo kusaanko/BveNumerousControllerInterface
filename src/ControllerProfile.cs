@@ -556,7 +556,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public static void GetAllControllers()
         {
             bool update = false;
-            if (NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly).Count != s_preDirectInputCount || 
+            int directInputCount = NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly).Count;
+            if (directInputCount != s_preDirectInputCount || 
                 UsbDevice.AllDevices.Count != s_preUsbCount) update = true;
             if (update)
             {
@@ -569,7 +570,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 controllers.AddRange(PS2DenshadeGoType2.Get());
                 controllers.AddRange(MultiTrainController.Get());
             }
-            s_preDirectInputCount = NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly).Count;
+            s_preDirectInputCount = directInputCount;
             s_preUsbCount = UsbDevice.AllDevices.Count;
         }
 

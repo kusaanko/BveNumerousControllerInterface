@@ -73,7 +73,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             if (TimerController == null)
             {
                 TimerController = new Timer();
-                TimerController.Interval = 1000;
+                TimerController.Interval = 2000;
                 TimerController.Tick += new System.EventHandler(TimerTick);
             }
             TimerController.Start();
