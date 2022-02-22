@@ -30,7 +30,7 @@ JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)の�
 ```c#
 
 {
-    ControllerProfile profile = new ControllerProfile();
+    ControllerProfile profile = new ControllerProfile("JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)");
     profile.IsTwoHandle = true;
     profile.IsMasterController = true;
     profile.PowerAxises = new int[] { 21 };
