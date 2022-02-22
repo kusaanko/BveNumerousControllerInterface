@@ -248,6 +248,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 if (s_preEnabledMasterControllerCount != Controllers.Count || IsMasterControllerUpdateRequested)
                 {
                     // マスコン、力行のみのコントローラー、制動のみのコントローラーの重複をチェック
+                    IsMasterControllerUpdateRequested = false;
                     bool isMasterControllerOnly = true;
                     List<string> masterControllerList = new List<string>();
                     int[] masterList = new int[] { ButtonFeature.BringNotchUp.Value, ButtonFeature.BringNotchDown.Value };
