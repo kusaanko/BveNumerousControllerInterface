@@ -23,8 +23,6 @@ Bve5、6用のコントローラー入力プラグイン
 
 対応コントローラーの追加要望にも対応します。[Issues](https://github.com/kusaanko/BveNumerousControllerInterface/issues)ページで報告していただけるとありがたいです。[Twitter](https://twitter.com/kusaanko)での報告でも可能です。
 
-また、制作者はPS用の電車でGO!マスコンしか所有していないためマルチトレインコントローラーの検証が不十分です。
-
 ※「電車で GO！」は、日本およびその他の国における株式会社 タイトーの商標または登録商標です。
 
 ※その他記載されている商品名は各社の商標または登録商標です。
