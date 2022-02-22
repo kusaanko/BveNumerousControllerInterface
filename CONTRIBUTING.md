@@ -121,6 +121,12 @@ profile.CalcDuplicated();
 ## GetBreak
 現在のブレーキの位置です。0が切です。8段あるなら9が非常です。
 
+## HasReverser
+リバーサーを持っているかどうかです。
+
+## GetReverser
+NCIController内のReverseを返します。
+
 ## Dispose
 コントローラー終了時に呼ばれます。終了処理を書いてください。
 
