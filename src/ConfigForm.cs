@@ -110,6 +110,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             settingPowerButton.Enabled = GetController().GetPowerCount() == 0;
             settingBreakButton.Enabled = GetController().GetBreakCount() == 0;
+            removePowerButton.Enabled = GetController().GetPowerCount() == 0;
+            removeBreakButton.Enabled = GetController().GetBreakCount() == 0;
         }
 
         private void loadControllerEnabled()
