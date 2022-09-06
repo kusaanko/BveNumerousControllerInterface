@@ -462,7 +462,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     }
                     for (int i = 0; i < BreakAxises.Length; i++)
                     {
-                        if (BreakAxisStatus[k, i] == sliders[BreakAxises[i]])
+                        if (BreakAxisStatus[k, i] == sliders[i])
                         {
                             match++;
                         }
