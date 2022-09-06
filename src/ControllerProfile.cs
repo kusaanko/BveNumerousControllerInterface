@@ -395,6 +395,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return list;
         }
 
+        // コントローラーのボタンの重複を計算。重複時は前後のノッチから推測する
         public void CalcDuplicated()
         {
             PowerDuplicated = new bool[PowerButtonStatus.GetLength(0)];

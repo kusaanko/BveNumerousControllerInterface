@@ -21,6 +21,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public static Dictionary<string, ButtonFeature> Features = new Dictionary<string, ButtonFeature>();
 
+        // ButtonFeatureには識別IDとしてランダムな文字列を持たせている。テキストや数字のIDではテキストの変更に対応できなかったり順番の入れ替え時に見栄えが悪くなるため
         public static ButtonFeature ReverserBackward = new ButtonFeature("3638c08f", "リバーサー後退", 0, -1);
         public static ButtonFeature ReverserCenter = new ButtonFeature("e979379c", "リバーサー切", 0, 0);
         public static ButtonFeature ReverserForward = new ButtonFeature("35b63bba", "リバーサー前進", 0, 1);

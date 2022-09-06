@@ -169,6 +169,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
+        // コントローラー更新用のタイマー
         private static void TimerTick(object sender, EventArgs e)
         {
             if ((s_selectMasterControllerForm == null || s_selectMasterControllerForm.IsDisposed) && !s_isRunningGetAllControllers) 
@@ -433,6 +434,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             _twoBreakMax = -ranges[2][0] + 1;
         }
 
+        // 力行の最大を取得
         public int GetPowerMax()
         {
             if(_onePowerMax > 1)
@@ -442,6 +444,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return _twoPowerMax;
         }
 
+        // 制動の最大を取得
         public int GetBreakMax()
         {
             if (_oneBreakMax > 1)
@@ -451,6 +454,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return _twoBreakMax;
         }
 
+        // 運転中の車両がツーハンドルかどうか
         public bool IsTwoHandle()
         {
             if (_oneBreakMax > 1)
@@ -484,6 +488,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             foreach(NCIController controller in Controllers)
             {
                 ControllerProfile profile = SettingsInstance.Profiles[SettingsInstance.ProfileMap[controller.GetName()]];
+                // 力行
                 if(controller.GetName().Equals(s_powerController))
                 {
                     int powerLevel = profile.GetPower(controller, GetPowerMax());
@@ -511,6 +516,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     }
                     _prePowerLevel[controller] = powerLevel;
                 }
+                // 制動
                 if (controller.GetName().Equals(s_breakController))
                 {
                     int breakLevel = profile.GetBreak(controller, GetBreakMax());
@@ -538,6 +544,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     }
                     _preBreakLevel[controller] = breakLevel;
                 }
+                // リバーサー
                 if (controller.GetName().Equals(s_reverserController))
                 {
                     Reverser reverserPos = profile.GetReverser(controller);
@@ -570,6 +577,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     }
                     _preReverser[controller] = reverserPos;
                 }
+                // ボタン 一瞬だけ押すために前Tickでボタンを押していたかどうかを判定
                 List<int> buttons = profile.GetButtons(controller);
                 if(!_preButtons.ContainsKey(controller))
                 {
