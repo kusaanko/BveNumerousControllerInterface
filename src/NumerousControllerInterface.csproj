@@ -87,6 +87,7 @@
       <DependentUpon>NewNameDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Controller\PS2DenshadeGoType2.cs" />
+    <Compile Include="NumerousControllerPlugin.cs" />
     <Compile Include="SelectMasterControllerForm.cs">
       <SubType>Form</SubType>
     </Compile>

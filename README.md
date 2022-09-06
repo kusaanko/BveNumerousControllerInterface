@@ -32,6 +32,7 @@ Bve5、6用のコントローラー入力プラグイン
 * 各ボタンに機能が割り当てられます
 * 複数のコントローラーが接続中でも動作します(ただし、同じ名前のコントローラーが複数接続中だとうまくコントローラーを選択できません)
 * ATC操作専用コントローラーが使えます
+* プラグインで独自の通信規格のコントローラーを追加可能
 
 # インストール
 [Releases](https://github.com/kusaanko/BveNumerousControllerInterface/releases)ページから最新版をダウンロードします。
@@ -68,6 +69,11 @@ NumerousControllerInterfaceを選択してプロパティーをクリックし�
 コントローラーから使いたいコントローラーを選択して、出てきた画面の指示に従って下さい 。
 
 コントローラーを使用するには、コントローラーを有効にするにチェックを入れる必要があります。
+
+# プラグインについて(試験的機能)
+プラグイン機能を用意していますが、これはNumerousControllerInterfaceに統合するほどの機能でないコントローラー、完全プライベート用のコントローラーにのみ使用してください。よって、プラグインに対しては高機能な機能を提供していません。（プライベート用に対しては十分な機能ですが）このプラグインはこのプラグインのみを導入することでたくさんのコントローラーに対応できることを目的にしています。可能な限りプルリクエストお願いします！！
+
+作成法に関しては[こちら](https://github.com/kusaanko/BveNumerousControllerInterface/blob/main/CONTRIBUTING.md)を御覧ください。
 
 # コントリビュート、内部APIの利用方法について
 [こちら](https://github.com/kusaanko/BveNumerousControllerInterface/blob/main/CONTRIBUTING.md)を御覧ください。

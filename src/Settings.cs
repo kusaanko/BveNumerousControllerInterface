@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Kusaanko.Bvets.NumerousControllerInterface.Controller;
 using System.Text;
 using System.Security.Cryptography;
+using System.Reflection;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
@@ -14,6 +15,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
     {
         private const string _filename = "Kusaanko.NumerousControllerInterface.json";
         private const string _profileDirectory = "Kusaanko.NumerousControllerInterface.Profiles\\";
+        private const string _pluginDirectry = "Kusaanko.NumerousControllerInterface.Plugins\\";
         private string _directory = string.Empty;
 
         [JsonIgnore]
@@ -238,7 +240,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 settings = new Settings();
             }
-
             settings._directory = directory;
             string key = "";
             if (!Directory.Exists(Path.Combine(directory, _profileDirectory))) Directory.CreateDirectory(Path.Combine(directory, _profileDirectory));
@@ -293,6 +294,32 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 MessageBox.Show(name + " のプロファイル " + settings.ProfileMap[name] + " が見つからなかったため " + key + "に変更しました。", "NumerousControllerInterface");
                 settings.ProfileMap[name] = key;
+            }
+            // プラグイン
+            if (NumerousControllerInterface.Plugins.Count == 0)
+            {
+                if (!Directory.Exists(Path.Combine(directory, _pluginDirectry))) Directory.CreateDirectory(Path.Combine(directory, _pluginDirectry));
+                foreach (string file in Directory.GetFiles(Path.Combine(directory, _pluginDirectry), "*.dll"))
+                {
+                    Debug.WriteLine(file);
+                    try
+                    {
+                        Assembly asm = Assembly.LoadFrom(file);
+                        foreach (Type type in asm.GetTypes())
+                        {
+                            string pluginName = typeof(NumerousControllerPlugin).FullName;
+                            if (type.IsClass && type.IsPublic && !type.IsAbstract && type.GetInterface(pluginName) != null)
+                            {
+                                NumerousControllerPlugin plugin = (NumerousControllerPlugin)asm.CreateInstance(type.FullName);
+                                NumerousControllerInterface.Plugins.Add(plugin);
+                                plugin.LoadConfig(directory);
+                            }
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
             }
 
             return settings;

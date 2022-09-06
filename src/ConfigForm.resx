@@ -147,6 +147,21 @@
   <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="cancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>664, 12</value>
+  </data>
+  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 26</value>
+  </data>
+  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
   <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
     <value>cancelButton</value>
   </data>
@@ -181,250 +196,39 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="cancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>664, 12</value>
-  </data>
-  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 26</value>
-  </data>
-  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="cancelButton.Text" xml:space="preserve">
-    <value>キャンセル</value>
-  </data>
-  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
-    <value>cancelButton</value>
-  </data>
-  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>23</value>
   </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="controllerAssignmentLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="flexiblePowerModeComboBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="controllerAssignmentLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
+  <data name="flexiblePowerModeComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>147, 66</value>
   </data>
-  <data name="controllerAssignmentLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 61</value>
+  <data name="flexiblePowerModeComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>262, 23</value>
   </data>
-  <data name="controllerAssignmentLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 15</value>
+  <data name="flexiblePowerModeComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
   </data>
-  <data name="controllerAssignmentLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="flexiblePowerModeComboBox.ToolTip" xml:space="preserve">
+    <value>列車とコントローラーのノッチ数が違うときにコントローラーのノッチ数と
+列車のノッチ数を合わせます。例えば列車が3段、コントローラーが9段なら
+コントローラー3段を列車1段分として扱います。</value>
   </data>
-  <data name="controllerAssignmentLabel.Text" xml:space="preserve">
-    <value>コントローラー割当</value>
+  <data name="&gt;&gt;flexiblePowerModeComboBox.Name" xml:space="preserve">
+    <value>flexiblePowerModeComboBox</value>
   </data>
-  <data name="&gt;&gt;controllerAssignmentLabel.Name" xml:space="preserve">
-    <value>controllerAssignmentLabel</value>
+  <data name="&gt;&gt;flexiblePowerModeComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;controllerAssignmentLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;controllerAssignmentLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;controllerAssignmentLabel.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="controllerList.ItemHeight" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="controllerList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 105</value>
-  </data>
-  <data name="controllerList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 424</value>
-  </data>
-  <data name="controllerList.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;controllerList.Name" xml:space="preserve">
-    <value>controllerList</value>
-  </data>
-  <data name="&gt;&gt;controllerList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;controllerList.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;controllerList.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="selectControllerLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="selectControllerLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 87</value>
-  </data>
-  <data name="selectControllerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 15</value>
-  </data>
-  <data name="selectControllerLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="selectControllerLabel.Text" xml:space="preserve">
-    <value>コントローラーを選択</value>
-  </data>
-  <data name="&gt;&gt;selectControllerLabel.Name" xml:space="preserve">
-    <value>selectControllerLabel</value>
-  </data>
-  <data name="&gt;&gt;selectControllerLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;selectControllerLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;selectControllerLabel.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="statusLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="statusLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 61</value>
-  </data>
-  <data name="statusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 15</value>
-  </data>
-  <data name="statusLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="statusLabel.Text" xml:space="preserve">
-    <value>ステータス</value>
-  </data>
-  <data name="&gt;&gt;statusLabel.Name" xml:space="preserve">
-    <value>statusLabel</value>
-  </data>
-  <data name="&gt;&gt;statusLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;statusLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;statusLabel.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="powerLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="powerLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 115</value>
-  </data>
-  <data name="powerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 15</value>
-  </data>
-  <data name="powerLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="powerLabel.Text" xml:space="preserve">
-    <value>力行:</value>
-  </data>
-  <data name="&gt;&gt;powerLabel.Name" xml:space="preserve">
-    <value>powerLabel</value>
-  </data>
-  <data name="&gt;&gt;powerLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;powerLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;powerLabel.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="breakLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="breakLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>267, 115</value>
-  </data>
-  <data name="breakLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 15</value>
-  </data>
-  <data name="breakLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="breakLabel.Text" xml:space="preserve">
-    <value>制動:</value>
-  </data>
-  <data name="&gt;&gt;breakLabel.Name" xml:space="preserve">
-    <value>breakLabel</value>
-  </data>
-  <data name="&gt;&gt;breakLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;breakLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;breakLabel.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="buttonLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="buttonLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>358, 115</value>
-  </data>
-  <data name="buttonLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 15</value>
-  </data>
-  <data name="buttonLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="buttonLabel.Text" xml:space="preserve">
-    <value>ボタン:</value>
-  </data>
-  <data name="&gt;&gt;buttonLabel.Name" xml:space="preserve">
-    <value>buttonLabel</value>
-  </data>
-  <data name="&gt;&gt;buttonLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;buttonLabel.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="settingPowerButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 18</value>
-  </data>
-  <data name="settingPowerButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 23</value>
-  </data>
-  <data name="settingPowerButton.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="settingPowerButton.Text" xml:space="preserve">
-    <value>力行を設定</value>
-  </data>
-  <data name="&gt;&gt;settingPowerButton.Name" xml:space="preserve">
-    <value>settingPowerButton</value>
-  </data>
-  <data name="&gt;&gt;settingPowerButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;settingPowerButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;flexiblePowerModeComboBox.Parent" xml:space="preserve">
     <value>settingsGroup</value>
   </data>
-  <data name="&gt;&gt;settingPowerButton.ZOrder" xml:space="preserve">
-    <value>14</value>
+  <data name="&gt;&gt;flexiblePowerModeComboBox.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="flexibleBreakModeComboBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -455,6 +259,219 @@
   <data name="&gt;&gt;flexibleBreakModeComboBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="controllerAssignmentLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="controllerAssignmentLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="controllerAssignmentLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 61</value>
+  </data>
+  <data name="controllerAssignmentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 15</value>
+  </data>
+  <data name="controllerAssignmentLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="controllerAssignmentLabel.Text" xml:space="preserve">
+    <value>コントローラー割当</value>
+  </data>
+  <data name="&gt;&gt;controllerAssignmentLabel.Name" xml:space="preserve">
+    <value>controllerAssignmentLabel</value>
+  </data>
+  <data name="&gt;&gt;controllerAssignmentLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;controllerAssignmentLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;controllerAssignmentLabel.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="controllerList.ItemHeight" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="controllerList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 105</value>
+  </data>
+  <data name="controllerList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 424</value>
+  </data>
+  <data name="controllerList.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;controllerList.Name" xml:space="preserve">
+    <value>controllerList</value>
+  </data>
+  <data name="&gt;&gt;controllerList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;controllerList.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;controllerList.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="selectControllerLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="selectControllerLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 87</value>
+  </data>
+  <data name="selectControllerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 15</value>
+  </data>
+  <data name="selectControllerLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="selectControllerLabel.Text" xml:space="preserve">
+    <value>コントローラーを選択</value>
+  </data>
+  <data name="&gt;&gt;selectControllerLabel.Name" xml:space="preserve">
+    <value>selectControllerLabel</value>
+  </data>
+  <data name="&gt;&gt;selectControllerLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectControllerLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;selectControllerLabel.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="statusLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="statusLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>185, 61</value>
+  </data>
+  <data name="statusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 15</value>
+  </data>
+  <data name="statusLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="statusLabel.Text" xml:space="preserve">
+    <value>ステータス</value>
+  </data>
+  <data name="&gt;&gt;statusLabel.Name" xml:space="preserve">
+    <value>statusLabel</value>
+  </data>
+  <data name="&gt;&gt;statusLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;statusLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;statusLabel.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="powerLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="powerLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>185, 115</value>
+  </data>
+  <data name="powerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 15</value>
+  </data>
+  <data name="powerLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="powerLabel.Text" xml:space="preserve">
+    <value>力行:</value>
+  </data>
+  <data name="&gt;&gt;powerLabel.Name" xml:space="preserve">
+    <value>powerLabel</value>
+  </data>
+  <data name="&gt;&gt;powerLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;powerLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;powerLabel.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="breakLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="breakLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>267, 115</value>
+  </data>
+  <data name="breakLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 15</value>
+  </data>
+  <data name="breakLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="breakLabel.Text" xml:space="preserve">
+    <value>制動:</value>
+  </data>
+  <data name="&gt;&gt;breakLabel.Name" xml:space="preserve">
+    <value>breakLabel</value>
+  </data>
+  <data name="&gt;&gt;breakLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;breakLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;breakLabel.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="buttonLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="buttonLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>358, 115</value>
+  </data>
+  <data name="buttonLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 15</value>
+  </data>
+  <data name="buttonLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="buttonLabel.Text" xml:space="preserve">
+    <value>ボタン:</value>
+  </data>
+  <data name="&gt;&gt;buttonLabel.Name" xml:space="preserve">
+    <value>buttonLabel</value>
+  </data>
+  <data name="&gt;&gt;buttonLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;buttonLabel.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="settingPowerButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 18</value>
+  </data>
+  <data name="settingPowerButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 23</value>
+  </data>
+  <data name="settingPowerButton.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="settingPowerButton.Text" xml:space="preserve">
+    <value>力行を設定</value>
+  </data>
+  <data name="&gt;&gt;settingPowerButton.Name" xml:space="preserve">
+    <value>settingPowerButton</value>
+  </data>
+  <data name="&gt;&gt;settingPowerButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;settingPowerButton.Parent" xml:space="preserve">
+    <value>settingsGroup</value>
+  </data>
+  <data name="&gt;&gt;settingPowerButton.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -484,35 +501,6 @@
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="flexiblePowerModeComboBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="flexiblePowerModeComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 66</value>
-  </data>
-  <data name="flexiblePowerModeComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 23</value>
-  </data>
-  <data name="flexiblePowerModeComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="flexiblePowerModeComboBox.ToolTip" xml:space="preserve">
-    <value>列車とコントローラーのノッチ数が違うときにコントローラーのノッチ数と
-列車のノッチ数を合わせます。例えば列車が3段、コントローラーが9段なら
-コントローラー3段を列車1段分として扱います。</value>
-  </data>
-  <data name="&gt;&gt;flexiblePowerModeComboBox.Name" xml:space="preserve">
-    <value>flexiblePowerModeComboBox</value>
-  </data>
-  <data name="&gt;&gt;flexiblePowerModeComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;flexiblePowerModeComboBox.Parent" xml:space="preserve">
-    <value>settingsGroup</value>
-  </data>
-  <data name="&gt;&gt;flexiblePowerModeComboBox.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -821,7 +809,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;settingsGroup.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>15</value>
   </data>
   <data name="isEnabledCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -848,7 +836,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;isEnabledCheckBox.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="profileToUseLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -875,11 +863,17 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;profileToUseLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>14</value>
   </data>
   <metadata name="profileContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>201, 17</value>
   </metadata>
+  <data name="openProfileInExplorer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 22</value>
+  </data>
+  <data name="openProfileInExplorer.Text" xml:space="preserve">
+    <value>ファイルをエクスプローラーで開く</value>
+  </data>
   <data name="profileContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 26</value>
   </data>
@@ -908,13 +902,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;profileComboBox.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="openProfileInExplorer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 22</value>
-  </data>
-  <data name="openProfileInExplorer.Text" xml:space="preserve">
-    <value>ファイルをエクスプローラーで開く</value>
+    <value>13</value>
   </data>
   <data name="newProfileButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>402, 209</value>
@@ -938,7 +926,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;newProfileButton.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="removeProfileButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>661, 209</value>
@@ -962,7 +950,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;removeProfileButton.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="duplicateProfileButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>572, 209</value>
@@ -986,7 +974,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;duplicateProfileButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="controllerTypeLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1013,7 +1001,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;controllerTypeLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="changeNameButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>485, 209</value>
@@ -1037,7 +1025,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;changeNameButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="settingsOfNumerousControllerInterfaceLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1067,7 +1055,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;settingsOfNumerousControllerInterfaceLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="alertNoCountrollerFoundCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1094,7 +1082,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;alertNoCountrollerFoundCheckBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>114, 17</value>
@@ -1127,7 +1115,76 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;checkUpdatesCheckBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="showLoadedPlugins.Location" type="System.Drawing.Point, System.Drawing">
+    <value>401, 27</value>
+  </data>
+  <data name="showLoadedPlugins.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 23</value>
+  </data>
+  <data name="showLoadedPlugins.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="showLoadedPlugins.Text" xml:space="preserve">
+    <value>読み込んだプラグインを表示</value>
+  </data>
+  <data name="&gt;&gt;showLoadedPlugins.Name" xml:space="preserve">
+    <value>showLoadedPlugins</value>
+  </data>
+  <data name="&gt;&gt;showLoadedPlugins.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;showLoadedPlugins.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;showLoadedPlugins.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="pluginConfigComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>401, 53</value>
+  </data>
+  <data name="pluginConfigComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>334, 23</value>
+  </data>
+  <data name="pluginConfigComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="&gt;&gt;pluginConfigComboBox.Name" xml:space="preserve">
+    <value>pluginConfigComboBox</value>
+  </data>
+  <data name="&gt;&gt;pluginConfigComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pluginConfigComboBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pluginConfigComboBox.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="pluginSettingButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>651, 83</value>
+  </data>
+  <data name="pluginSettingButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 23</value>
+  </data>
+  <data name="pluginSettingButton.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="pluginSettingButton.Text" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="&gt;&gt;pluginSettingButton.Name" xml:space="preserve">
+    <value>pluginSettingButton</value>
+  </data>
+  <data name="&gt;&gt;pluginSettingButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pluginSettingButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pluginSettingButton.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

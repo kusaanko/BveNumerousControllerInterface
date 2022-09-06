@@ -37,6 +37,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private Dictionary<NCIController, List<int>> _preButtons;
         private Dictionary<NCIController, Reverser> _preReverser;
 
+        public static List<NumerousControllerPlugin> Plugins;
+
         private int _onePowerMax;
         private int _oneBreakMax;
         private int _twoPowerMax;
@@ -66,6 +68,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             _preBreakLevel = new Dictionary<NCIController, int>();
             _preButtons = new Dictionary<NCIController, List<int>>();
             _preReverser = new Dictionary<NCIController, Reverser>();
+            Plugins = new List<NumerousControllerPlugin>();
             s_powerController = "";
             s_breakController = "";
             s_reverserController = "";
@@ -403,6 +406,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             Input = new DirectInput();
             SettingsInstance = Settings.LoadFromXml(settingsPath);
 
+            foreach (NumerousControllerPlugin plugin in Plugins)
+            {
+                plugin.Load();
+            }
+
             GetAllControllers();
             // 更新の確認はバックグラウンドで行う
 
@@ -625,6 +633,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 SettingsInstance.SaveToXml();
                 SettingsInstance = null;
+            }
+            foreach (NumerousControllerPlugin plugin in Plugins)
+            {
+                plugin.Dispose();
             }
             TimerController.Stop();
             _isDisposeRequested = true;

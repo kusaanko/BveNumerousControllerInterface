@@ -132,3 +132,16 @@ NCIController内のReverseを返します。
 
 ## IsDisposed
 コントローラーが終了済みかどうかを返します。
+
+# プラグインを作成する
+プラグインを作成するには、.NET Framework用のdllを作成します。
+
+Kusaanko.NumerousControllerInterface.dllを参照に追加してください。
+
+次に、NumerousControllerPluginをインターフェースに設定したpublicなクラスを用意してください。
+
+GetAllControllers内でNCIControllerを継承したクラスのインスタンスを追加したリストを返してください。ここでは、毎回新しいインスタンスを作成する必要があります。
+
+完成したdllは`BveTs\Settings\Kusaanko.NumerousControllerInterface.Plugins`フォルダ内に入れてください。
+
+詳しいことは[サンプル](https://github.com/kusaanko/BveNumerousControllerInterface/tree/main/plugin_example)を御覧ください。

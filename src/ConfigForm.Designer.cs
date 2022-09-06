@@ -34,6 +34,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.cancelButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.flexiblePowerModeComboBox = new System.Windows.Forms.ComboBox();
+            this.flexibleBreakModeComboBox = new System.Windows.Forms.ComboBox();
             this.controllerAssignmentLabel = new System.Windows.Forms.Label();
             this.controllerList = new System.Windows.Forms.ListBox();
             this.selectControllerLabel = new System.Windows.Forms.Label();
@@ -43,6 +45,8 @@
             this.buttonLabel = new System.Windows.Forms.Label();
             this.settingPowerButton = new System.Windows.Forms.Button();
             this.settingsGroup = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.removeBreakButton = new System.Windows.Forms.Button();
             this.removePowerButton = new System.Windows.Forms.Button();
             this.removeButtonButton = new System.Windows.Forms.Button();
@@ -67,10 +71,9 @@
             this.alertNoCountrollerFoundCheckBox = new System.Windows.Forms.CheckBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.checkUpdatesCheckBox = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.flexiblePowerModeComboBox = new System.Windows.Forms.ComboBox();
-            this.flexibleBreakModeComboBox = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.showLoadedPlugins = new System.Windows.Forms.Button();
+            this.pluginConfigComboBox = new System.Windows.Forms.ComboBox();
+            this.pluginSettingButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.settingsGroup.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
@@ -101,6 +104,24 @@
             // toolTip1
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // flexiblePowerModeComboBox
+            // 
+            this.flexiblePowerModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.flexiblePowerModeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.flexiblePowerModeComboBox, "flexiblePowerModeComboBox");
+            this.flexiblePowerModeComboBox.Name = "flexiblePowerModeComboBox";
+            this.toolTip1.SetToolTip(this.flexiblePowerModeComboBox, resources.GetString("flexiblePowerModeComboBox.ToolTip"));
+            this.flexiblePowerModeComboBox.SelectedIndexChanged += new System.EventHandler(this.flexiblePowerModeComboBox_SelectedIndexChanged);
+            // 
+            // flexibleBreakModeComboBox
+            // 
+            this.flexibleBreakModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.flexibleBreakModeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.flexibleBreakModeComboBox, "flexibleBreakModeComboBox");
+            this.flexibleBreakModeComboBox.Name = "flexibleBreakModeComboBox";
+            this.toolTip1.SetToolTip(this.flexibleBreakModeComboBox, resources.GetString("flexibleBreakModeComboBox.ToolTip"));
+            this.flexibleBreakModeComboBox.SelectedIndexChanged += new System.EventHandler(this.flexibleBreakModeComboBox_SelectedIndexChanged);
             // 
             // controllerAssignmentLabel
             // 
@@ -167,6 +188,16 @@
             resources.ApplyResources(this.settingsGroup, "settingsGroup");
             this.settingsGroup.Name = "settingsGroup";
             this.settingsGroup.TabStop = false;
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
             // 
             // removeBreakButton
             // 
@@ -333,33 +364,26 @@
             this.checkUpdatesCheckBox.UseVisualStyleBackColor = true;
             this.checkUpdatesCheckBox.CheckedChanged += new System.EventHandler(this.checkUpdatesCheckBox_CheckedChanged);
             // 
-            // label1
+            // showLoadedPlugins
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            resources.ApplyResources(this.showLoadedPlugins, "showLoadedPlugins");
+            this.showLoadedPlugins.Name = "showLoadedPlugins";
+            this.showLoadedPlugins.UseVisualStyleBackColor = true;
+            this.showLoadedPlugins.Click += new System.EventHandler(this.showLoadedPlugins_Click);
             // 
-            // flexiblePowerModeComboBox
+            // pluginConfigComboBox
             // 
-            this.flexiblePowerModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.flexiblePowerModeComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.flexiblePowerModeComboBox, "flexiblePowerModeComboBox");
-            this.flexiblePowerModeComboBox.Name = "flexiblePowerModeComboBox";
-            this.toolTip1.SetToolTip(this.flexiblePowerModeComboBox, resources.GetString("flexiblePowerModeComboBox.ToolTip"));
-            this.flexiblePowerModeComboBox.SelectedIndexChanged += new System.EventHandler(this.flexiblePowerModeComboBox_SelectedIndexChanged);
+            this.pluginConfigComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.pluginConfigComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.pluginConfigComboBox, "pluginConfigComboBox");
+            this.pluginConfigComboBox.Name = "pluginConfigComboBox";
             // 
-            // flexibleBreakModeComboBox
+            // pluginSettingButton
             // 
-            this.flexibleBreakModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.flexibleBreakModeComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.flexibleBreakModeComboBox, "flexibleBreakModeComboBox");
-            this.flexibleBreakModeComboBox.Name = "flexibleBreakModeComboBox";
-            this.toolTip1.SetToolTip(this.flexibleBreakModeComboBox, resources.GetString("flexibleBreakModeComboBox.ToolTip"));
-            this.flexibleBreakModeComboBox.SelectedIndexChanged += new System.EventHandler(this.flexibleBreakModeComboBox_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
+            resources.ApplyResources(this.pluginSettingButton, "pluginSettingButton");
+            this.pluginSettingButton.Name = "pluginSettingButton";
+            this.pluginSettingButton.UseVisualStyleBackColor = true;
+            this.pluginSettingButton.Click += new System.EventHandler(this.pluginSettingButton_Click);
             // 
             // ConfigForm
             // 
@@ -368,6 +392,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.CancelButton = this.cancelButton;
+            this.Controls.Add(this.pluginSettingButton);
+            this.Controls.Add(this.pluginConfigComboBox);
+            this.Controls.Add(this.showLoadedPlugins);
             this.Controls.Add(this.checkUpdatesCheckBox);
             this.Controls.Add(this.alertNoCountrollerFoundCheckBox);
             this.Controls.Add(this.settingsOfNumerousControllerInterfaceLabel);
@@ -445,5 +472,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox flexibleBreakModeComboBox;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button showLoadedPlugins;
+        private System.Windows.Forms.ComboBox pluginConfigComboBox;
+        private System.Windows.Forms.Button pluginSettingButton;
     }
 }

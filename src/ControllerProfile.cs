@@ -570,6 +570,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 controllers.AddRange(DIJoystick.Get());
                 controllers.AddRange(PS2DenshadeGoType2.Get());
                 controllers.AddRange(MultiTrainController.Get());
+                foreach (NumerousControllerPlugin plugin in NumerousControllerInterface.Plugins)
+                {
+                    controllers.AddRange(plugin.GetAllControllers());
+                }
             }
             s_preDirectInputCount = directInputCount;
             s_preUsbCount = UsbDevice.AllDevices.Count;

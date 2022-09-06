@@ -30,6 +30,14 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             flexibleBreakModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.EBFixed]);
             flexibleBreakModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.FlexibleWithoutEB]);
             flexibleBreakModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.Flexible]);
+            foreach (NumerousControllerPlugin plugin in NumerousControllerInterface.Plugins)
+            {
+                pluginConfigComboBox.Items.Add(plugin.GetName());
+            }
+            if (pluginConfigComboBox.Items.Count > 0)
+            {
+                pluginConfigComboBox.SelectedIndex = 0;
+            }
             this.resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigForm));
         }
 
@@ -496,6 +504,22 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     break;
                 }
             }
+        }
+
+        private void showLoadedPlugins_Click(object sender, EventArgs e)
+        {
+            string str = "";
+            foreach (NumerousControllerPlugin plugin in NumerousControllerInterface.Plugins)
+            {
+                str += plugin.GetName() + " " + plugin.GetVersion() + "\n";
+            }
+            MessageBox.Show(str, "NumerousControllerInterface");
+        }
+
+        private void pluginSettingButton_Click(object sender, EventArgs e)
+        {
+            if (pluginConfigComboBox.SelectedIndex < 0) return;
+            NumerousControllerInterface.Plugins[pluginConfigComboBox.SelectedIndex].ShowConfigForm();
         }
     }
 }

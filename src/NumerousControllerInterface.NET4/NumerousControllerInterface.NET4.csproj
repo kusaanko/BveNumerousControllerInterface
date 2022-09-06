@@ -130,6 +130,7 @@
       <Link>UpdateForm.Designer.cs</Link>
     </Compile>
     <Compile Include="BinaryInfo.cs" />
+    <Compile Include="NumerousControllerPlugin.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\ConfigForm.resx">
