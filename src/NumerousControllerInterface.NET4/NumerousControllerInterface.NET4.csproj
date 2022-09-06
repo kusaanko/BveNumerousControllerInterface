@@ -109,6 +109,9 @@
     <Compile Include="..\NumerousControllerInterface.cs">
       <Link>NumerousControllerInterface.cs</Link>
     </Compile>
+    <Compile Include="..\NumerousControllerPlugin.cs">
+      <Link>NumerousControllerPlugin.cs</Link>
+    </Compile>
     <Compile Include="..\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
@@ -130,7 +133,6 @@
       <Link>UpdateForm.Designer.cs</Link>
     </Compile>
     <Compile Include="BinaryInfo.cs" />
-    <Compile Include="NumerousControllerPlugin.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\ConfigForm.resx">
