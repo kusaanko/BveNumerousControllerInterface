@@ -62,7 +62,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     statusLabel.Text = "";
                     Update();
 
-                    MessageBox.Show("ダウンロードしたファイルとインストールディレクトリが開かれるので、ファイルを開いて中のファイルをインストールディレクトリにコピーしてBveを再起動してください。");
+                    MessageBox.Show("ダウンロードしたファイルとインストールディレクトリが開かれるので、ファイルを開いて中のファイルをインストールディレクトリにコピー、もしくはファイルを展開してinstall.batを実行してBveを再起動してください。");
                     Close();
 
                     Assembly assembly = Assembly.GetEntryAssembly();
