@@ -41,6 +41,12 @@ Bve5、6用のコントローラー入力プラグイン
 
 Bve5.8以前なら`NumerousControllerInterface_Bve5.zip`、Bve6.0以降なら`NumerousControllerInterface_Bve6.zip`をダウンロードして下さい。
 
+## インストールスクリプトを使用したインストール
+install.batをダブルクリックします。セキュリティについて聞かれるので詳細情報を押して、実行してください。
+![詳細情報](pic/2.jpg)  
+![実行](pic/3.jpg)  
+
+## 手動でインストール
 Bve5.8以前なら`C:\Program Files (x86)\mackoy\BveTs5`、Bve6.0以降なら`C:\Program Files\mackoy\BveTs6`を開き(もしくはBveをインストールしたディレクトリ)、ダウンロードしたzipファイルを展開し、中身を配置します。
 
 配置したdllファイルを右クリックしてプロパティを開きます。(Newtonsoft.Json.dll、LibUsbDotNet.dll、Input Devices\Kusaanko.NumerousControllerInterface.dll)  
@@ -70,7 +76,7 @@ NumerousControllerInterfaceを選択してプロパティーをクリックし�
 
 コントローラーから使いたいコントローラーを選択して、出てきた画面の指示に従って下さい 。
 
-コントローラーを使用するには、コントローラーを有効にするにチェックを入れる必要があります。
+コントローラーを使用するには、コントローラーvを有効にするにチェックを入れる必要があります。
 
 # プラグインについて(試験的機能)
 プラグイン機能を用意していますが、これはNumerousControllerInterfaceに統合するほどの機能でないコントローラー、完全プライベート用のコントローラーにのみ使用してください。よって、プラグインに対しては高機能な機能を提供していません。（プライベート用に対しては十分な機能ですが）このプラグインはこのプラグインのみを導入することでたくさんのコントローラーに対応できることを目的にしています。可能な限りプルリクエストお願いします！！
