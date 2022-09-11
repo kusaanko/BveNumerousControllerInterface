@@ -19,7 +19,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
     public class NumerousControllerInterface : IInputDevice
     {
         private static bool DebugUpdater = true;
-        public static int IntVersion { get { return 11; } }
+        public static int IntVersion { get { return 12; } }
         public static string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36";
 
         public static DirectInput Input;
