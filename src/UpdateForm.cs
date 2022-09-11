@@ -72,22 +72,36 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     if (_installer.Length > 0)
                     {
                         // unzip
+                        statusLabel.Text = "ファイルを展開中...";
+                        Update();
                         Process cmd = new Process();
                         cmd.StartInfo.FileName = "PowerShell.exe";
                         cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                         cmd.StartInfo.Arguments = "-Command \"Expand-Archive -Path '" + _filePath + "'\"";
                         cmd.StartInfo.WorkingDirectory = Directory.GetParent(_filePath).FullName;
-                        Debug.WriteLine(cmd.StartInfo.Arguments);
-                        Debug.WriteLine(cmd.StartInfo.WorkingDirectory);
                         cmd.Start();
                         cmd.WaitForExit();
+                        statusLabel.Text = "";
+                        Update();
                         cmd = new Process();
                         cmd.StartInfo.WorkingDirectory = _filePath.Substring(0, _filePath.Length - 4);
-                        cmd.StartInfo.FileName = "install.bat";
+                        cmd.StartInfo.FileName = _installer.Substring(0, _installer.IndexOf(" "));
                         cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                        cmd.StartInfo.Arguments = "\"" + Application.StartupPath + "\" \"" + Application.ExecutablePath + "\"";
-                        Debug.WriteLine(cmd.StartInfo.Arguments);
-                        Debug.WriteLine(cmd.StartInfo.WorkingDirectory);
+                        string arg = "";
+                        foreach(string a in _installer.Substring(_installer.IndexOf(" ") + 1).Split(' '))
+                        {
+                            if(a == "<installDir>")
+                            {
+                                arg += "\"" + Application.StartupPath + "\" ";
+                            }else if (a == "<exeFile>")
+                            {
+                                arg += "\"" + Application.ExecutablePath + "\" ";
+                            }else
+                            {
+                                break;
+                            }
+                        }
+                        cmd.StartInfo.Arguments = arg;
                         cmd.Start();
                         Application.Exit();
                     }
