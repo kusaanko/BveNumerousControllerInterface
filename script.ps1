@@ -5,7 +5,9 @@ if($Args.Length -ge 1) {
 }
 if($Args.Length -ge 2) {
     $targetDir = $Args[1].trim("'")
-    $detected = $true
+    if($targetDir.Length -ne 0) {
+        $detected = $true
+    }
 }
 if($Args.Length -ge 3) {
     $exeFile = $Args[2].trim("'")
@@ -121,7 +123,7 @@ try {
     [System.Windows.Forms.MessageBox]::Show("必要なファイルが無かったかインストール先が存在しないため、インストールに失敗しました", "NumerousControllerInterface")
 }
 
-if($Args.Length -ge 3) {
+if($exeFile.Length -ne 0) {
     Start-Process -FilePath "$exeFile" -WindowStyle Normal
     Exit
 }
