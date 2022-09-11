@@ -424,17 +424,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
             bool checkUpdates = SettingsInstance.CheckUpdates;
 
-            object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyConfigurationAttribute), false);
-            if (attributes.Length == 1)
+            if(IsDebug())
             {
-                AssemblyConfigurationAttribute assemblyConfiguration = attributes[0] as AssemblyConfigurationAttribute;
-                if (assemblyConfiguration != null)
-                {
-                    if (assemblyConfiguration.Configuration.Equals("Debug"))
-                    {
-                        checkUpdates = false | DebugUpdater;
-                    }
-                }
+                checkUpdates = false | DebugUpdater;
             }
             if (checkUpdates)
             {
@@ -443,6 +435,23 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     CheckUpdates();
                 })).Start();
             }
+        }
+
+        public static bool IsDebug()
+        {
+            object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyConfigurationAttribute), false);
+            if (attributes.Length == 1)
+            {
+                AssemblyConfigurationAttribute assemblyConfiguration = attributes[0] as AssemblyConfigurationAttribute;
+                if (assemblyConfiguration != null)
+                {
+                    if (assemblyConfiguration.Configuration.Equals("Debug"))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public void SetAxisRanges(int[][] ranges)
