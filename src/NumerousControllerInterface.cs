@@ -18,6 +18,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public class NumerousControllerInterface : IInputDevice
     {
+        private static bool DebugUpdater = true;
         public static int IntVersion { get { return 11; } }
         public static string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36";
 
@@ -155,12 +156,19 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             }
                             catch (Exception) { }
                             string downloadFilePath = Path.Combine(downloadTmpDir, (string)update_info.GetValue("asset"));
+                            string installer = "";
+
+                            if (update_info.ContainsKey("installer"))
+                            {
+                                installer = (string)update_info.GetValue("installer");
+                            }
                             using (UpdateForm form = new UpdateForm(
                                 (string)update_info.GetValue("version"),
                                 history,
                                 (string)update_info.GetValue("download_page"),
                                 (string)update_info.GetValue("download_url"),
-                                downloadFilePath
+                                downloadFilePath,
+                                installer
                                 ))
                             {
                                 form.ShowDialog();
@@ -422,7 +430,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 AssemblyConfigurationAttribute assemblyConfiguration = attributes[0] as AssemblyConfigurationAttribute;
                 if (assemblyConfiguration != null)
                 {
-                    if (assemblyConfiguration.Configuration.Equals("Debug")) checkUpdates = false;
+                    if (assemblyConfiguration.Configuration.Equals("Debug"))
+                    {
+                        checkUpdates = false | DebugUpdater;
+                    }
                 }
             }
             if (checkUpdates)

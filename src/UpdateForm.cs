@@ -18,7 +18,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private string _downloadPageURL;
         private string _downloadURL;
         private string _filePath;
-        public UpdateForm(string version, string history, string downloadPageURL, string downloadURL, string filePath)
+        private string _installer;
+        public UpdateForm(string version, string history, string downloadPageURL, string downloadURL, string filePath, string installer)
         {
             InitializeComponent();
             newVersionLabel.Text = "新しいバージョン:" + version;
@@ -28,6 +29,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             _downloadPageURL = downloadPageURL;
             _downloadURL = downloadURL;
             _filePath = filePath;
+            _installer = installer;
+
+            if(_installer.Length > 0)
+            {
+                autoDownloadButton.Text = "自動更新";
+            }
         }
 
         private void ignoreButton_Click(object sender, EventArgs e)
@@ -62,17 +69,42 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     statusLabel.Text = "";
                     Update();
 
-                    MessageBox.Show("ダウンロードしたファイルとインストールディレクトリが開かれるので、ファイルを開いて中のファイルをインストールディレクトリにコピー、もしくはファイルを展開してinstall.batを実行してBveを再起動してください。");
-                    Close();
-
-                    Assembly assembly = Assembly.GetEntryAssembly();
-                    string path = Directory.GetParent(assembly.Location).FullName;
-                    try
+                    if (_installer.Length > 0)
                     {
-                        Process.Start("explorer.exe", "/select," + _filePath);
-                        Process.Start("explorer.exe", path);
+                        // unzip
+                        Process cmd = new Process();
+                        cmd.StartInfo.FileName = "PowerShell.exe";
+                        cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                        cmd.StartInfo.Arguments = "-Command \"Expand-Archive -Path '" + _filePath + "'\"";
+                        cmd.StartInfo.WorkingDirectory = Directory.GetParent(_filePath).FullName;
+                        Debug.WriteLine(cmd.StartInfo.Arguments);
+                        Debug.WriteLine(cmd.StartInfo.WorkingDirectory);
+                        cmd.Start();
+                        cmd.WaitForExit();
+                        cmd = new Process();
+                        cmd.StartInfo.WorkingDirectory = _filePath.Substring(0, _filePath.Length - 4);
+                        cmd.StartInfo.FileName = "install.bat";
+                        cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                        cmd.StartInfo.Arguments = "\"" + Application.StartupPath + "\" \"" + Application.ExecutablePath + "\"";
+                        Debug.WriteLine(cmd.StartInfo.Arguments);
+                        Debug.WriteLine(cmd.StartInfo.WorkingDirectory);
+                        cmd.Start();
+                        Application.Exit();
                     }
-                    catch (Exception) { }
+                    else
+                    {
+                        MessageBox.Show("ダウンロードしたファイルとインストールディレクトリが開かれるので、ファイルを開いて中のファイルをインストールディレクトリにコピー、もしくはファイルを展開してinstall.batを実行してBveを再起動してください。");
+                        Close();
+
+                        Assembly assembly = Assembly.GetEntryAssembly();
+                        string path = Directory.GetParent(assembly.Location).FullName;
+                        try
+                        {
+                            Process.Start("explorer.exe", "/select," + _filePath);
+                            Process.Start("explorer.exe", path);
+                        }
+                        catch (Exception) { }
+                    }
                 }
                 catch(Exception)
                 {
