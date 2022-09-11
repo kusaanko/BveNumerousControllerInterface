@@ -22,9 +22,9 @@ If (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 
 [void][System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
 
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
 if($detected -eq $false) {
-    Add-Type -AssemblyName System.Windows.Forms
-    Add-Type -AssemblyName System.Drawing
 
     $form = New-Object System.Windows.Forms.Form
     $form.Text = 'インストール先を選択'
@@ -103,6 +103,17 @@ if($detected -eq $false) {
     }
 }
 
+$form = New-Object System.Windows.Forms.Form
+$form.Text = 'NumerousControllerInterface'
+$form.Size = New-Object System.Drawing.Size(300,100)
+$form.StartPosition = 'CenterScreen'
+$label = New-Object System.Windows.Forms.Label
+$label.Location = New-Object System.Drawing.Point(10,20)
+$label.Size = New-Object System.Drawing.Size(280,20)
+$label.Text = 'NumerousControllerInterfaceをインストール中'
+$form.Controls.Add($label)
+$form.Show()
+
 try {
     $plugin = $false
     try {
@@ -118,8 +129,10 @@ try {
     }
     Copy-Item -Path "$currentDir\LibUsbDotNet.dll" -Destination $targetDir -Force -ErrorAction Stop
     Copy-Item -Path "$currentDir\Newtonsoft.Json.dll" -Destination $targetDir -Force -ErrorAction Stop
+    $form.Close()
     [System.Windows.Forms.MessageBox]::Show("インストールが完了しました", "NumerousControllerInterface")
 }catch {
+    $form.Close()
     [System.Windows.Forms.MessageBox]::Show("必要なファイルが無かったかインストール先が存在しないため、インストールに失敗しました", "NumerousControllerInterface")
 }
 
