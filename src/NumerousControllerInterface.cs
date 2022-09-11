@@ -426,7 +426,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
             if(IsDebug())
             {
-                checkUpdates = false | DebugUpdater;
+                checkUpdates = false || DebugUpdater;
             }
             if (checkUpdates)
             {
