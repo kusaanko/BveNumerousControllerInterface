@@ -7,7 +7,8 @@
         "asset": "NumerousControllerInterface_Bve5.zip",
         "download_page": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.10",
         "release_url": "https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases/76364783",
-        "download_url": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.10/NumerousControllerInterface_Bve5.zip"
+        "download_url": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.10/NumerousControllerInterface_Bve5.zip",
+        "installer": "install.bat <installDir> <exeFile>"
     },
     "64bit_.net4": {
         "latest": "v0.10",
@@ -16,6 +17,7 @@
         "asset": "NumerousControllerInterface_Bve6.zip",
         "download_page": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.10",
         "release_url": "https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases/76364783",
-        "download_url": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.10/NumerousControllerInterface_Bve6.zip"
+        "download_url": "https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.10/NumerousControllerInterface_Bve6.zip",
+        "installer": "install.bat <installDir> <exeFile>"
     }
 }
