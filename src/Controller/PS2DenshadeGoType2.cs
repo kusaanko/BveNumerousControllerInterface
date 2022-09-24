@@ -75,7 +75,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                             case 0x54:
                                 _power = 2;
                                 break;
-                            case 0x3D:
+                            case 0x3F:
                                 _power = 3;
                                 break;
                             case 0x21:
@@ -119,6 +119,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                                 _break = 9;
                                 break;
                         }
+
                         //ボタン
                         int button = buffer[5];
                         if ((button & B_BUTTON) == B_BUTTON)
