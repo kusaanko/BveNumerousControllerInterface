@@ -80,6 +80,7 @@
             this.isTwoHandleComboBox = new System.Windows.Forms.CheckBox();
             this.settingBreakButton = new System.Windows.Forms.Button();
             this.settingPowerButton = new System.Windows.Forms.Button();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.panel1.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -298,6 +299,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             // 
@@ -451,6 +453,12 @@
             this.settingPowerButton.Name = "settingPowerButton";
             this.settingPowerButton.UseVisualStyleBackColor = true;
             // 
+            // tabPage6
+            // 
+            resources.ApplyResources(this.tabPage6, "tabPage6");
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
             // ConfigForm
             // 
             this.AcceptButton = this.okButton;
@@ -534,5 +542,6 @@
         private System.Windows.Forms.Button settingBreakButton;
         private System.Windows.Forms.Button settingPowerButton;
         private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPage6;
     }
 }
