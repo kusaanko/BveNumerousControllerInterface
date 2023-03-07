@@ -226,6 +226,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
             }).Start();
         }
 
+        public override string[] GetButtonNames()
+        {
+            return new string[] { "B", "A", "C", "D", "SELECT", "START", "Horn", "Up", "Right", "Down", "Left" };
+        }
+
         public override void Dispose()
         {
             _loop = false;

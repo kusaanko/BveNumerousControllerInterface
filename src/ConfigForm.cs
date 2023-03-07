@@ -114,7 +114,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             buttonList.Items.Clear();
             foreach (int i in profile.KeyMap.Keys)
             {
-                buttonList.Items.Add(i);
+                buttonList.Items.Add(GetButtonName(i));
             }
             settingPowerButton.Enabled = GetController().GetPowerCount() == 0;
             settingBreakButton.Enabled = GetController().GetBreakCount() == 0;
@@ -165,6 +165,32 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return _controllers[controllerList.Text];
         }
 
+        private string GetButtonName(int index)
+        {
+            string[] names = GetController().GetButtonNames();
+            if (names.Length > index)
+            {
+                return names[index];
+            }
+            return index + "";
+        }
+
+        private int GetButtonIndex(string name)
+        {
+            string[] names = GetController().GetButtonNames();
+            if (names.Length > 0)
+            {
+                for (int i = 0;i < names.Length; i++)
+                {
+                    if(names[i] == name)
+                    {
+                        return i;
+                    }
+                }
+            }
+            return Convert.ToInt32(name);
+        }
+
         private void isTwoHandleComboBox_CheckedChanged(object sender, EventArgs e)
         {
             GetProfile().IsTwoHandle = isTwoHandleComboBox.Checked;
@@ -197,13 +223,13 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 {
                     if (buttonIndex != -1)
                     {
-                        if (buttonList.Items.Contains(buttonIndex))
+                        if (buttonList.Items.Contains(GetButtonName(buttonIndex)))
                         {
-                            buttonList.SelectedItem = buttonIndex;
+                            buttonList.SelectedItem = GetButtonName(buttonIndex);
                         }
                         else
                         {
-                            buttonList.Items.Add(buttonIndex);
+                            buttonList.Items.Add(GetButtonName(buttonIndex));
                             GetProfile().KeyMap.Add(buttonIndex, ButtonFeature.Ats0);
                         }
                     }
@@ -222,14 +248,14 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 return;
             }
             buttonFunctionComboBox.Enabled = true;
-            selectDropDownList(buttonFunctionComboBox, GetProfile().KeyMap[(int)buttonList.SelectedItem]);
+            selectDropDownList(buttonFunctionComboBox, GetProfile().KeyMap[GetButtonIndex((string)buttonList.SelectedItem)]);
         }
 
         private void removeButtonButton_Click(object sender, EventArgs e)
         {
             if (buttonList.SelectedIndex >= 0)
             {
-                GetProfile().KeyMap.Remove((int)buttonList.SelectedItem);
+                GetProfile().KeyMap.Remove(GetButtonIndex((string)buttonList.SelectedItem));
                 loadFromProfile();
             }
         }
@@ -237,9 +263,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private void buttonFunctionComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (buttonList.SelectedItem == null) return;
-            if (GetProfile().KeyMap.ContainsKey((int)buttonList.SelectedItem))
+            if (GetProfile().KeyMap.ContainsKey(GetButtonIndex((string)buttonList.SelectedItem)))
             {
-                GetProfile().KeyMap[(int)buttonList.SelectedItem] = ButtonFeature.Features[_buttonFeatureIdIndex[buttonFunctionComboBox.SelectedIndex]];
+                GetProfile().KeyMap[GetButtonIndex((string)buttonList.SelectedItem)] = ButtonFeature.Features[_buttonFeatureIdIndex[buttonFunctionComboBox.SelectedIndex]];
             }
         }
 
@@ -275,10 +301,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             buttonLabel.Text = this.resources.GetString("buttonLabel.Text");
             foreach (int i in profile.GetButtons(controller))
             {
-                buttonLabel.Text += i + " ";
-                if (buttonList.Items.Contains(i))
+                buttonLabel.Text += GetButtonName(i) + " ";
+                if (buttonList.Items.Contains(GetButtonName(i)))
                 {
-                    buttonList.SelectedItem = i;
+                    buttonList.SelectedItem = GetButtonName(i);
                     break;
                 }
             }

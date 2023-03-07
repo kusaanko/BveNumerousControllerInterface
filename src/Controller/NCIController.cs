@@ -74,6 +74,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
             return Reverser.CENTER;
         }
 
+        public virtual string[] GetButtonNames()
+        {
+            return new string[0];
+        }
+
         public abstract void Dispose();
 
         public abstract bool IsDisposed();

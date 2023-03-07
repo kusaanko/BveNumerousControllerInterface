@@ -174,6 +174,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
             }).Start();
         }
 
+        public override string[] GetButtonNames()
+        {
+            return new string[] { "ATS", "D", "A Shallow", "A Deep", "B", "C", "START", "SELECT", "Up", "Down", "Left", "Right" };
+        }
+
         private void SetButton(int button, int bit, int index)
         {
             _buttons[index] = (button & bit) == bit;
