@@ -71,12 +71,20 @@
             this.alertNoCountrollerFoundCheckBox = new System.Windows.Forms.CheckBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.checkUpdatesCheckBox = new System.Windows.Forms.CheckBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.pluginSettingButton = new System.Windows.Forms.Button();
             this.showLoadedPlugins = new System.Windows.Forms.Button();
             this.pluginConfigComboBox = new System.Windows.Forms.ComboBox();
-            this.pluginSettingButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.settingsGroup.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // okButton
@@ -364,12 +372,66 @@
             this.checkUpdatesCheckBox.UseVisualStyleBackColor = true;
             this.checkUpdatesCheckBox.CheckedChanged += new System.EventHandler(this.checkUpdatesCheckBox_CheckedChanged);
             // 
+            // tabControl1
+            // 
+            resources.ApplyResources(this.tabControl1, "tabControl1");
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.controllerAssignmentLabel);
+            this.tabPage2.Controls.Add(this.controllerList);
+            this.tabPage2.Controls.Add(this.removeProfileButton);
+            this.tabPage2.Controls.Add(this.selectControllerLabel);
+            this.tabPage2.Controls.Add(this.changeNameButton);
+            this.tabPage2.Controls.Add(this.statusLabel);
+            this.tabPage2.Controls.Add(this.controllerTypeLabel);
+            this.tabPage2.Controls.Add(this.powerLabel);
+            this.tabPage2.Controls.Add(this.isEnabledCheckBox);
+            this.tabPage2.Controls.Add(this.breakLabel);
+            this.tabPage2.Controls.Add(this.duplicateProfileButton);
+            this.tabPage2.Controls.Add(this.buttonLabel);
+            this.tabPage2.Controls.Add(this.settingsGroup);
+            this.tabPage2.Controls.Add(this.newProfileButton);
+            this.tabPage2.Controls.Add(this.profileToUseLabel);
+            this.tabPage2.Controls.Add(this.profileComboBox);
+            resources.ApplyResources(this.tabPage2, "tabPage2");
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.alertNoCountrollerFoundCheckBox);
+            this.tabPage1.Controls.Add(this.checkUpdatesCheckBox);
+            this.tabPage1.Controls.Add(this.settingsOfNumerousControllerInterfaceLabel);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.pluginSettingButton);
+            this.tabPage4.Controls.Add(this.showLoadedPlugins);
+            this.tabPage4.Controls.Add(this.pluginConfigComboBox);
+            resources.ApplyResources(this.tabPage4, "tabPage4");
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // pluginSettingButton
+            // 
+            resources.ApplyResources(this.pluginSettingButton, "pluginSettingButton");
+            this.pluginSettingButton.Name = "pluginSettingButton";
+            this.pluginSettingButton.UseVisualStyleBackColor = true;
+            // 
             // showLoadedPlugins
             // 
             resources.ApplyResources(this.showLoadedPlugins, "showLoadedPlugins");
             this.showLoadedPlugins.Name = "showLoadedPlugins";
             this.showLoadedPlugins.UseVisualStyleBackColor = true;
-            this.showLoadedPlugins.Click += new System.EventHandler(this.showLoadedPlugins_Click);
             // 
             // pluginConfigComboBox
             // 
@@ -378,13 +440,6 @@
             resources.ApplyResources(this.pluginConfigComboBox, "pluginConfigComboBox");
             this.pluginConfigComboBox.Name = "pluginConfigComboBox";
             // 
-            // pluginSettingButton
-            // 
-            resources.ApplyResources(this.pluginSettingButton, "pluginSettingButton");
-            this.pluginSettingButton.Name = "pluginSettingButton";
-            this.pluginSettingButton.UseVisualStyleBackColor = true;
-            this.pluginSettingButton.Click += new System.EventHandler(this.pluginSettingButton_Click);
-            // 
             // ConfigForm
             // 
             this.AcceptButton = this.okButton;
@@ -392,28 +447,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.CancelButton = this.cancelButton;
-            this.Controls.Add(this.pluginSettingButton);
-            this.Controls.Add(this.pluginConfigComboBox);
-            this.Controls.Add(this.showLoadedPlugins);
-            this.Controls.Add(this.checkUpdatesCheckBox);
-            this.Controls.Add(this.alertNoCountrollerFoundCheckBox);
-            this.Controls.Add(this.settingsOfNumerousControllerInterfaceLabel);
-            this.Controls.Add(this.changeNameButton);
-            this.Controls.Add(this.controllerTypeLabel);
-            this.Controls.Add(this.isEnabledCheckBox);
-            this.Controls.Add(this.duplicateProfileButton);
-            this.Controls.Add(this.removeProfileButton);
-            this.Controls.Add(this.newProfileButton);
-            this.Controls.Add(this.profileComboBox);
-            this.Controls.Add(this.profileToUseLabel);
-            this.Controls.Add(this.settingsGroup);
-            this.Controls.Add(this.buttonLabel);
-            this.Controls.Add(this.breakLabel);
-            this.Controls.Add(this.powerLabel);
-            this.Controls.Add(this.statusLabel);
-            this.Controls.Add(this.selectControllerLabel);
-            this.Controls.Add(this.controllerList);
-            this.Controls.Add(this.controllerAssignmentLabel);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -425,8 +459,13 @@
             this.settingsGroup.ResumeLayout(false);
             this.settingsGroup.PerformLayout();
             this.profileContextMenuStrip.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -472,8 +511,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox flexibleBreakModeComboBox;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button pluginSettingButton;
         private System.Windows.Forms.Button showLoadedPlugins;
         private System.Windows.Forms.ComboBox pluginConfigComboBox;
-        private System.Windows.Forms.Button pluginSettingButton;
     }
 }
