@@ -34,8 +34,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.cancelButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.flexiblePowerModeComboBox = new System.Windows.Forms.ComboBox();
-            this.flexibleBreakModeComboBox = new System.Windows.Forms.ComboBox();
             this.controllerAssignmentLabel = new System.Windows.Forms.Label();
             this.controllerList = new System.Windows.Forms.ListBox();
             this.selectControllerLabel = new System.Windows.Forms.Label();
@@ -43,20 +41,12 @@
             this.powerLabel = new System.Windows.Forms.Label();
             this.breakLabel = new System.Windows.Forms.Label();
             this.buttonLabel = new System.Windows.Forms.Label();
-            this.settingPowerButton = new System.Windows.Forms.Button();
-            this.settingsGroup = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.removeBreakButton = new System.Windows.Forms.Button();
-            this.removePowerButton = new System.Windows.Forms.Button();
             this.removeButtonButton = new System.Windows.Forms.Button();
             this.addButtonButton = new System.Windows.Forms.Button();
             this.buttonFunctionLabel = new System.Windows.Forms.Label();
             this.buttonFunctionComboBox = new System.Windows.Forms.ComboBox();
             this.buttonsAssignmentLabel = new System.Windows.Forms.Label();
             this.buttonList = new System.Windows.Forms.ListBox();
-            this.isTwoHandleComboBox = new System.Windows.Forms.CheckBox();
-            this.settingBreakButton = new System.Windows.Forms.Button();
             this.isEnabledCheckBox = new System.Windows.Forms.CheckBox();
             this.profileToUseLabel = new System.Windows.Forms.Label();
             this.profileComboBox = new System.Windows.Forms.ComboBox();
@@ -78,13 +68,27 @@
             this.pluginSettingButton = new System.Windows.Forms.Button();
             this.showLoadedPlugins = new System.Windows.Forms.Button();
             this.pluginConfigComboBox = new System.Windows.Forms.ComboBox();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.flexibleBreakModeComboBox = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.flexiblePowerModeComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.removeBreakButton = new System.Windows.Forms.Button();
+            this.removePowerButton = new System.Windows.Forms.Button();
+            this.isTwoHandleComboBox = new System.Windows.Forms.CheckBox();
+            this.settingBreakButton = new System.Windows.Forms.Button();
+            this.settingPowerButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            this.settingsGroup.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // okButton
@@ -112,24 +116,6 @@
             // toolTip1
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            // 
-            // flexiblePowerModeComboBox
-            // 
-            this.flexiblePowerModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.flexiblePowerModeComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.flexiblePowerModeComboBox, "flexiblePowerModeComboBox");
-            this.flexiblePowerModeComboBox.Name = "flexiblePowerModeComboBox";
-            this.toolTip1.SetToolTip(this.flexiblePowerModeComboBox, resources.GetString("flexiblePowerModeComboBox.ToolTip"));
-            this.flexiblePowerModeComboBox.SelectedIndexChanged += new System.EventHandler(this.flexiblePowerModeComboBox_SelectedIndexChanged);
-            // 
-            // flexibleBreakModeComboBox
-            // 
-            this.flexibleBreakModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.flexibleBreakModeComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.flexibleBreakModeComboBox, "flexibleBreakModeComboBox");
-            this.flexibleBreakModeComboBox.Name = "flexibleBreakModeComboBox";
-            this.toolTip1.SetToolTip(this.flexibleBreakModeComboBox, resources.GetString("flexibleBreakModeComboBox.ToolTip"));
-            this.flexibleBreakModeComboBox.SelectedIndexChanged += new System.EventHandler(this.flexibleBreakModeComboBox_SelectedIndexChanged);
             // 
             // controllerAssignmentLabel
             // 
@@ -168,58 +154,6 @@
             // 
             resources.ApplyResources(this.buttonLabel, "buttonLabel");
             this.buttonLabel.Name = "buttonLabel";
-            // 
-            // settingPowerButton
-            // 
-            resources.ApplyResources(this.settingPowerButton, "settingPowerButton");
-            this.settingPowerButton.Name = "settingPowerButton";
-            this.settingPowerButton.UseVisualStyleBackColor = true;
-            this.settingPowerButton.Click += new System.EventHandler(this.settingPowerButton_Click);
-            // 
-            // settingsGroup
-            // 
-            this.settingsGroup.Controls.Add(this.flexibleBreakModeComboBox);
-            this.settingsGroup.Controls.Add(this.label2);
-            this.settingsGroup.Controls.Add(this.flexiblePowerModeComboBox);
-            this.settingsGroup.Controls.Add(this.label1);
-            this.settingsGroup.Controls.Add(this.removeBreakButton);
-            this.settingsGroup.Controls.Add(this.removePowerButton);
-            this.settingsGroup.Controls.Add(this.removeButtonButton);
-            this.settingsGroup.Controls.Add(this.addButtonButton);
-            this.settingsGroup.Controls.Add(this.buttonFunctionLabel);
-            this.settingsGroup.Controls.Add(this.buttonFunctionComboBox);
-            this.settingsGroup.Controls.Add(this.buttonsAssignmentLabel);
-            this.settingsGroup.Controls.Add(this.buttonList);
-            this.settingsGroup.Controls.Add(this.isTwoHandleComboBox);
-            this.settingsGroup.Controls.Add(this.settingBreakButton);
-            this.settingsGroup.Controls.Add(this.settingPowerButton);
-            resources.ApplyResources(this.settingsGroup, "settingsGroup");
-            this.settingsGroup.Name = "settingsGroup";
-            this.settingsGroup.TabStop = false;
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // removeBreakButton
-            // 
-            resources.ApplyResources(this.removeBreakButton, "removeBreakButton");
-            this.removeBreakButton.Name = "removeBreakButton";
-            this.removeBreakButton.UseVisualStyleBackColor = true;
-            this.removeBreakButton.Click += new System.EventHandler(this.removeBreakButton_Click);
-            // 
-            // removePowerButton
-            // 
-            resources.ApplyResources(this.removePowerButton, "removePowerButton");
-            this.removePowerButton.Name = "removePowerButton";
-            this.removePowerButton.UseVisualStyleBackColor = true;
-            this.removePowerButton.Click += new System.EventHandler(this.removePowerButton_Click);
             // 
             // removeButtonButton
             // 
@@ -261,20 +195,6 @@
             this.buttonList.Name = "buttonList";
             this.buttonList.Sorted = true;
             this.buttonList.SelectedIndexChanged += new System.EventHandler(this.buttonList_SelectedIndexChanged);
-            // 
-            // isTwoHandleComboBox
-            // 
-            resources.ApplyResources(this.isTwoHandleComboBox, "isTwoHandleComboBox");
-            this.isTwoHandleComboBox.Name = "isTwoHandleComboBox";
-            this.isTwoHandleComboBox.UseVisualStyleBackColor = true;
-            this.isTwoHandleComboBox.CheckedChanged += new System.EventHandler(this.isTwoHandleComboBox_CheckedChanged);
-            // 
-            // settingBreakButton
-            // 
-            resources.ApplyResources(this.settingBreakButton, "settingBreakButton");
-            this.settingBreakButton.Name = "settingBreakButton";
-            this.settingBreakButton.UseVisualStyleBackColor = true;
-            this.settingBreakButton.Click += new System.EventHandler(this.settingBreakButton_Click);
             // 
             // isEnabledCheckBox
             // 
@@ -383,6 +303,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.tabControl2);
             this.tabPage2.Controls.Add(this.controllerAssignmentLabel);
             this.tabPage2.Controls.Add(this.controllerList);
             this.tabPage2.Controls.Add(this.removeProfileButton);
@@ -395,7 +316,6 @@
             this.tabPage2.Controls.Add(this.breakLabel);
             this.tabPage2.Controls.Add(this.duplicateProfileButton);
             this.tabPage2.Controls.Add(this.buttonLabel);
-            this.tabPage2.Controls.Add(this.settingsGroup);
             this.tabPage2.Controls.Add(this.newProfileButton);
             this.tabPage2.Controls.Add(this.profileToUseLabel);
             this.tabPage2.Controls.Add(this.profileComboBox);
@@ -440,6 +360,97 @@
             resources.ApplyResources(this.pluginConfigComboBox, "pluginConfigComboBox");
             this.pluginConfigComboBox.Name = "pluginConfigComboBox";
             // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabPage3);
+            this.tabControl2.Controls.Add(this.tabPage5);
+            resources.ApplyResources(this.tabControl2, "tabControl2");
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.flexibleBreakModeComboBox);
+            this.tabPage3.Controls.Add(this.label2);
+            this.tabPage3.Controls.Add(this.flexiblePowerModeComboBox);
+            this.tabPage3.Controls.Add(this.label1);
+            this.tabPage3.Controls.Add(this.removeBreakButton);
+            this.tabPage3.Controls.Add(this.removePowerButton);
+            this.tabPage3.Controls.Add(this.isTwoHandleComboBox);
+            this.tabPage3.Controls.Add(this.settingBreakButton);
+            this.tabPage3.Controls.Add(this.settingPowerButton);
+            resources.ApplyResources(this.tabPage3, "tabPage3");
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.removeButtonButton);
+            this.tabPage5.Controls.Add(this.buttonsAssignmentLabel);
+            this.tabPage5.Controls.Add(this.addButtonButton);
+            this.tabPage5.Controls.Add(this.buttonList);
+            this.tabPage5.Controls.Add(this.buttonFunctionLabel);
+            this.tabPage5.Controls.Add(this.buttonFunctionComboBox);
+            resources.ApplyResources(this.tabPage5, "tabPage5");
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // flexibleBreakModeComboBox
+            // 
+            this.flexibleBreakModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.flexibleBreakModeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.flexibleBreakModeComboBox, "flexibleBreakModeComboBox");
+            this.flexibleBreakModeComboBox.Name = "flexibleBreakModeComboBox";
+            this.toolTip1.SetToolTip(this.flexibleBreakModeComboBox, resources.GetString("flexibleBreakModeComboBox.ToolTip"));
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // flexiblePowerModeComboBox
+            // 
+            this.flexiblePowerModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.flexiblePowerModeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.flexiblePowerModeComboBox, "flexiblePowerModeComboBox");
+            this.flexiblePowerModeComboBox.Name = "flexiblePowerModeComboBox";
+            this.toolTip1.SetToolTip(this.flexiblePowerModeComboBox, resources.GetString("flexiblePowerModeComboBox.ToolTip"));
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // removeBreakButton
+            // 
+            resources.ApplyResources(this.removeBreakButton, "removeBreakButton");
+            this.removeBreakButton.Name = "removeBreakButton";
+            this.removeBreakButton.UseVisualStyleBackColor = true;
+            // 
+            // removePowerButton
+            // 
+            resources.ApplyResources(this.removePowerButton, "removePowerButton");
+            this.removePowerButton.Name = "removePowerButton";
+            this.removePowerButton.UseVisualStyleBackColor = true;
+            // 
+            // isTwoHandleComboBox
+            // 
+            resources.ApplyResources(this.isTwoHandleComboBox, "isTwoHandleComboBox");
+            this.isTwoHandleComboBox.Name = "isTwoHandleComboBox";
+            this.isTwoHandleComboBox.UseVisualStyleBackColor = true;
+            // 
+            // settingBreakButton
+            // 
+            resources.ApplyResources(this.settingBreakButton, "settingBreakButton");
+            this.settingBreakButton.Name = "settingBreakButton";
+            this.settingBreakButton.UseVisualStyleBackColor = true;
+            // 
+            // settingPowerButton
+            // 
+            resources.ApplyResources(this.settingPowerButton, "settingPowerButton");
+            this.settingPowerButton.Name = "settingPowerButton";
+            this.settingPowerButton.UseVisualStyleBackColor = true;
+            // 
             // ConfigForm
             // 
             this.AcceptButton = this.okButton;
@@ -456,8 +467,6 @@
             this.ShowInTaskbar = false;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConfigForm_FormClosing);
             this.panel1.ResumeLayout(false);
-            this.settingsGroup.ResumeLayout(false);
-            this.settingsGroup.PerformLayout();
             this.profileContextMenuStrip.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -465,6 +474,11 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -481,16 +495,12 @@
         private System.Windows.Forms.Label powerLabel;
         private System.Windows.Forms.Label breakLabel;
         private System.Windows.Forms.Label buttonLabel;
-        private System.Windows.Forms.Button settingPowerButton;
-        private System.Windows.Forms.GroupBox settingsGroup;
         private System.Windows.Forms.Button removeButtonButton;
         private System.Windows.Forms.Button addButtonButton;
         private System.Windows.Forms.Label buttonFunctionLabel;
         private System.Windows.Forms.ComboBox buttonFunctionComboBox;
         private System.Windows.Forms.Label buttonsAssignmentLabel;
         private System.Windows.Forms.ListBox buttonList;
-        private System.Windows.Forms.CheckBox isTwoHandleComboBox;
-        private System.Windows.Forms.Button settingBreakButton;
         private System.Windows.Forms.CheckBox isEnabledCheckBox;
         private System.Windows.Forms.Label profileToUseLabel;
         private System.Windows.Forms.ComboBox profileComboBox;
@@ -504,13 +514,7 @@
         private System.Windows.Forms.CheckBox alertNoCountrollerFoundCheckBox;
         private System.Windows.Forms.ContextMenuStrip profileContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem openProfileInExplorer;
-        private System.Windows.Forms.Button removeBreakButton;
-        private System.Windows.Forms.Button removePowerButton;
         private System.Windows.Forms.CheckBox checkUpdatesCheckBox;
-        private System.Windows.Forms.ComboBox flexiblePowerModeComboBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox flexibleBreakModeComboBox;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -518,5 +522,17 @@
         private System.Windows.Forms.Button pluginSettingButton;
         private System.Windows.Forms.Button showLoadedPlugins;
         private System.Windows.Forms.ComboBox pluginConfigComboBox;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.ComboBox flexibleBreakModeComboBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox flexiblePowerModeComboBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button removeBreakButton;
+        private System.Windows.Forms.Button removePowerButton;
+        private System.Windows.Forms.CheckBox isTwoHandleComboBox;
+        private System.Windows.Forms.Button settingBreakButton;
+        private System.Windows.Forms.Button settingPowerButton;
+        private System.Windows.Forms.TabPage tabPage5;
     }
 }
