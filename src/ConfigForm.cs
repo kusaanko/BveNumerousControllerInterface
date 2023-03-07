@@ -75,7 +75,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             changeNameButton.Enabled = enabled;
             duplicateProfileButton.Enabled = enabled;
             removeProfileButton.Enabled = enabled;
-            settingsGroup.Enabled = enabled;
+            settingsTabControl.Enabled = enabled;
         }
 
         private void selectDropDownList(ComboBox list, ButtonFeature assign)

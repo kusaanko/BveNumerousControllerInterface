@@ -68,7 +68,7 @@
             this.pluginSettingButton = new System.Windows.Forms.Button();
             this.showLoadedPlugins = new System.Windows.Forms.Button();
             this.pluginConfigComboBox = new System.Windows.Forms.ComboBox();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.settingsTabControl = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.flexibleBreakModeComboBox = new System.Windows.Forms.ComboBox();
@@ -86,7 +86,7 @@
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.tabControl2.SuspendLayout();
+            this.settingsTabControl.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.SuspendLayout();
@@ -303,7 +303,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.tabControl2);
+            this.tabPage2.Controls.Add(this.settingsTabControl);
             this.tabPage2.Controls.Add(this.controllerAssignmentLabel);
             this.tabPage2.Controls.Add(this.controllerList);
             this.tabPage2.Controls.Add(this.removeProfileButton);
@@ -360,13 +360,13 @@
             resources.ApplyResources(this.pluginConfigComboBox, "pluginConfigComboBox");
             this.pluginConfigComboBox.Name = "pluginConfigComboBox";
             // 
-            // tabControl2
+            // settingsTabControl
             // 
-            this.tabControl2.Controls.Add(this.tabPage3);
-            this.tabControl2.Controls.Add(this.tabPage5);
-            resources.ApplyResources(this.tabControl2, "tabControl2");
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
+            this.settingsTabControl.Controls.Add(this.tabPage3);
+            this.settingsTabControl.Controls.Add(this.tabPage5);
+            resources.ApplyResources(this.settingsTabControl, "settingsTabControl");
+            this.settingsTabControl.Name = "settingsTabControl";
+            this.settingsTabControl.SelectedIndex = 0;
             // 
             // tabPage3
             // 
@@ -474,7 +474,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage4.ResumeLayout(false);
-            this.tabControl2.ResumeLayout(false);
+            this.settingsTabControl.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage5.ResumeLayout(false);
@@ -522,7 +522,7 @@
         private System.Windows.Forms.Button pluginSettingButton;
         private System.Windows.Forms.Button showLoadedPlugins;
         private System.Windows.Forms.ComboBox pluginConfigComboBox;
-        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabControl settingsTabControl;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ComboBox flexibleBreakModeComboBox;
         private System.Windows.Forms.Label label2;
