@@ -547,5 +547,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             if (pluginConfigComboBox.SelectedIndex < 0) return;
             NumerousControllerInterface.Plugins[pluginConfigComboBox.SelectedIndex].ShowConfigForm();
         }
+
+        private void comPortNotSupportedCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            bool enabled = comPortNotSupportedCheckBox.Checked;
+            comPortDataGridView1.Enabled = enabled;
+            comPortTabControl.Enabled = enabled;
+        }
     }
 }

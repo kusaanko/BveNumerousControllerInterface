@@ -8,11 +8,12 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Kusaanko.Bvets.NumerousControllerInterface</RootNamespace>
     <AssemblyName>Kusaanko.NumerousControllerInterface.NET4</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>false</Deterministic>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -23,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -87,6 +89,9 @@
     <Compile Include="..\ControllerSetupForm.Designer.cs">
       <Link>ControllerSetupForm.Designer.cs</Link>
     </Compile>
+    <Compile Include="..\Controller\COMController.cs">
+      <Link>COMController.cs</Link>
+    </Compile>
     <Compile Include="..\Controller\DIJoystick.cs">
       <Link>DIJoystick.cs</Link>
     </Compile>
@@ -98,6 +103,9 @@
     </Compile>
     <Compile Include="..\Controller\PS2DenshadeGoType2.cs">
       <Link>PS2DenshadeGoType2.cs</Link>
+    </Compile>
+    <Compile Include="..\Controller\StringController.cs">
+      <Link>StringController.cs</Link>
     </Compile>
     <Compile Include="..\NewNameDialog.cs">
       <Link>NewNameDialog.cs</Link>

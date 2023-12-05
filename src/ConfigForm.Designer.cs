@@ -34,6 +34,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.cancelButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.flexibleBreakModeComboBox = new System.Windows.Forms.ComboBox();
+            this.flexiblePowerModeComboBox = new System.Windows.Forms.ComboBox();
             this.controllerAssignmentLabel = new System.Windows.Forms.Label();
             this.controllerList = new System.Windows.Forms.ListBox();
             this.selectControllerLabel = new System.Windows.Forms.Label();
@@ -63,33 +65,55 @@
             this.checkUpdatesCheckBox = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.pluginSettingButton = new System.Windows.Forms.Button();
-            this.showLoadedPlugins = new System.Windows.Forms.Button();
-            this.pluginConfigComboBox = new System.Windows.Forms.ComboBox();
             this.settingsTabControl = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.flexibleBreakModeComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.flexiblePowerModeComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.removeBreakButton = new System.Windows.Forms.Button();
             this.removePowerButton = new System.Windows.Forms.Button();
             this.isTwoHandleComboBox = new System.Windows.Forms.CheckBox();
             this.settingBreakButton = new System.Windows.Forms.Button();
             this.settingPowerButton = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.pluginSettingButton = new System.Windows.Forms.Button();
+            this.showLoadedPlugins = new System.Windows.Forms.Button();
+            this.pluginConfigComboBox = new System.Windows.Forms.ComboBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comPortSettingGroupBox = new System.Windows.Forms.GroupBox();
+            this.comPortTabControl = new System.Windows.Forms.TabControl();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.comPortInputReplaceTextBox = new System.Windows.Forms.TextBox();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.comPortOutputReplaceTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comPortDataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comPropertyKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comPropertyValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comPortNotSupportedCheckBox = new System.Windows.Forms.CheckBox();
+            this.comPortDeleteButton = new System.Windows.Forms.Button();
+            this.comportUseButton = new System.Windows.Forms.Button();
+            this.usingComPortList = new System.Windows.Forms.ListBox();
+            this.availableComPortList = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage4.SuspendLayout();
             this.settingsTabControl.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.comPortSettingGroupBox.SuspendLayout();
+            this.comPortTabControl.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comPortDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // okButton
@@ -117,6 +141,22 @@
             // toolTip1
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // flexibleBreakModeComboBox
+            // 
+            this.flexibleBreakModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.flexibleBreakModeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.flexibleBreakModeComboBox, "flexibleBreakModeComboBox");
+            this.flexibleBreakModeComboBox.Name = "flexibleBreakModeComboBox";
+            this.toolTip1.SetToolTip(this.flexibleBreakModeComboBox, resources.GetString("flexibleBreakModeComboBox.ToolTip"));
+            // 
+            // flexiblePowerModeComboBox
+            // 
+            this.flexiblePowerModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.flexiblePowerModeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.flexiblePowerModeComboBox, "flexiblePowerModeComboBox");
+            this.flexiblePowerModeComboBox.Name = "flexiblePowerModeComboBox";
+            this.toolTip1.SetToolTip(this.flexiblePowerModeComboBox, resources.GetString("flexiblePowerModeComboBox.ToolTip"));
             // 
             // controllerAssignmentLabel
             // 
@@ -220,6 +260,7 @@
             // 
             // profileContextMenuStrip
             // 
+            this.profileContextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.profileContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openProfileInExplorer});
             this.profileContextMenuStrip.Name = "profileContextMenuStrip";
@@ -325,6 +366,81 @@
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // settingsTabControl
+            // 
+            this.settingsTabControl.Controls.Add(this.tabPage3);
+            this.settingsTabControl.Controls.Add(this.tabPage5);
+            resources.ApplyResources(this.settingsTabControl, "settingsTabControl");
+            this.settingsTabControl.Name = "settingsTabControl";
+            this.settingsTabControl.SelectedIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.flexibleBreakModeComboBox);
+            this.tabPage3.Controls.Add(this.label2);
+            this.tabPage3.Controls.Add(this.flexiblePowerModeComboBox);
+            this.tabPage3.Controls.Add(this.label1);
+            this.tabPage3.Controls.Add(this.removeBreakButton);
+            this.tabPage3.Controls.Add(this.removePowerButton);
+            this.tabPage3.Controls.Add(this.isTwoHandleComboBox);
+            this.tabPage3.Controls.Add(this.settingBreakButton);
+            this.tabPage3.Controls.Add(this.settingPowerButton);
+            resources.ApplyResources(this.tabPage3, "tabPage3");
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // removeBreakButton
+            // 
+            resources.ApplyResources(this.removeBreakButton, "removeBreakButton");
+            this.removeBreakButton.Name = "removeBreakButton";
+            this.removeBreakButton.UseVisualStyleBackColor = true;
+            // 
+            // removePowerButton
+            // 
+            resources.ApplyResources(this.removePowerButton, "removePowerButton");
+            this.removePowerButton.Name = "removePowerButton";
+            this.removePowerButton.UseVisualStyleBackColor = true;
+            // 
+            // isTwoHandleComboBox
+            // 
+            resources.ApplyResources(this.isTwoHandleComboBox, "isTwoHandleComboBox");
+            this.isTwoHandleComboBox.Name = "isTwoHandleComboBox";
+            this.isTwoHandleComboBox.UseVisualStyleBackColor = true;
+            // 
+            // settingBreakButton
+            // 
+            resources.ApplyResources(this.settingBreakButton, "settingBreakButton");
+            this.settingBreakButton.Name = "settingBreakButton";
+            this.settingBreakButton.UseVisualStyleBackColor = true;
+            // 
+            // settingPowerButton
+            // 
+            resources.ApplyResources(this.settingPowerButton, "settingPowerButton");
+            this.settingPowerButton.Name = "settingPowerButton";
+            this.settingPowerButton.UseVisualStyleBackColor = true;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.removeButtonButton);
+            this.tabPage5.Controls.Add(this.buttonsAssignmentLabel);
+            this.tabPage5.Controls.Add(this.addButtonButton);
+            this.tabPage5.Controls.Add(this.buttonList);
+            this.tabPage5.Controls.Add(this.buttonFunctionLabel);
+            this.tabPage5.Controls.Add(this.buttonFunctionComboBox);
+            resources.ApplyResources(this.tabPage5, "tabPage5");
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.alertNoCountrollerFoundCheckBox);
@@ -362,102 +478,136 @@
             resources.ApplyResources(this.pluginConfigComboBox, "pluginConfigComboBox");
             this.pluginConfigComboBox.Name = "pluginConfigComboBox";
             // 
-            // settingsTabControl
-            // 
-            this.settingsTabControl.Controls.Add(this.tabPage3);
-            this.settingsTabControl.Controls.Add(this.tabPage5);
-            resources.ApplyResources(this.settingsTabControl, "settingsTabControl");
-            this.settingsTabControl.Name = "settingsTabControl";
-            this.settingsTabControl.SelectedIndex = 0;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.flexibleBreakModeComboBox);
-            this.tabPage3.Controls.Add(this.label2);
-            this.tabPage3.Controls.Add(this.flexiblePowerModeComboBox);
-            this.tabPage3.Controls.Add(this.label1);
-            this.tabPage3.Controls.Add(this.removeBreakButton);
-            this.tabPage3.Controls.Add(this.removePowerButton);
-            this.tabPage3.Controls.Add(this.isTwoHandleComboBox);
-            this.tabPage3.Controls.Add(this.settingBreakButton);
-            this.tabPage3.Controls.Add(this.settingPowerButton);
-            resources.ApplyResources(this.tabPage3, "tabPage3");
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.removeButtonButton);
-            this.tabPage5.Controls.Add(this.buttonsAssignmentLabel);
-            this.tabPage5.Controls.Add(this.addButtonButton);
-            this.tabPage5.Controls.Add(this.buttonList);
-            this.tabPage5.Controls.Add(this.buttonFunctionLabel);
-            this.tabPage5.Controls.Add(this.buttonFunctionComboBox);
-            resources.ApplyResources(this.tabPage5, "tabPage5");
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // flexibleBreakModeComboBox
-            // 
-            this.flexibleBreakModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.flexibleBreakModeComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.flexibleBreakModeComboBox, "flexibleBreakModeComboBox");
-            this.flexibleBreakModeComboBox.Name = "flexibleBreakModeComboBox";
-            this.toolTip1.SetToolTip(this.flexibleBreakModeComboBox, resources.GetString("flexibleBreakModeComboBox.ToolTip"));
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            // 
-            // flexiblePowerModeComboBox
-            // 
-            this.flexiblePowerModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.flexiblePowerModeComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.flexiblePowerModeComboBox, "flexiblePowerModeComboBox");
-            this.flexiblePowerModeComboBox.Name = "flexiblePowerModeComboBox";
-            this.toolTip1.SetToolTip(this.flexiblePowerModeComboBox, resources.GetString("flexiblePowerModeComboBox.ToolTip"));
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // removeBreakButton
-            // 
-            resources.ApplyResources(this.removeBreakButton, "removeBreakButton");
-            this.removeBreakButton.Name = "removeBreakButton";
-            this.removeBreakButton.UseVisualStyleBackColor = true;
-            // 
-            // removePowerButton
-            // 
-            resources.ApplyResources(this.removePowerButton, "removePowerButton");
-            this.removePowerButton.Name = "removePowerButton";
-            this.removePowerButton.UseVisualStyleBackColor = true;
-            // 
-            // isTwoHandleComboBox
-            // 
-            resources.ApplyResources(this.isTwoHandleComboBox, "isTwoHandleComboBox");
-            this.isTwoHandleComboBox.Name = "isTwoHandleComboBox";
-            this.isTwoHandleComboBox.UseVisualStyleBackColor = true;
-            // 
-            // settingBreakButton
-            // 
-            resources.ApplyResources(this.settingBreakButton, "settingBreakButton");
-            this.settingBreakButton.Name = "settingBreakButton";
-            this.settingBreakButton.UseVisualStyleBackColor = true;
-            // 
-            // settingPowerButton
-            // 
-            resources.ApplyResources(this.settingPowerButton, "settingPowerButton");
-            this.settingPowerButton.Name = "settingPowerButton";
-            this.settingPowerButton.UseVisualStyleBackColor = true;
-            // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.label5);
+            this.tabPage6.Controls.Add(this.comPortSettingGroupBox);
+            this.tabPage6.Controls.Add(this.comPortDeleteButton);
+            this.tabPage6.Controls.Add(this.comportUseButton);
+            this.tabPage6.Controls.Add(this.usingComPortList);
+            this.tabPage6.Controls.Add(this.availableComPortList);
+            this.tabPage6.Controls.Add(this.label4);
+            this.tabPage6.Controls.Add(this.label3);
             resources.ApplyResources(this.tabPage6, "tabPage6");
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // comPortSettingGroupBox
+            // 
+            this.comPortSettingGroupBox.Controls.Add(this.comPortTabControl);
+            this.comPortSettingGroupBox.Controls.Add(this.label6);
+            this.comPortSettingGroupBox.Controls.Add(this.comPortDataGridView1);
+            this.comPortSettingGroupBox.Controls.Add(this.comPortNotSupportedCheckBox);
+            resources.ApplyResources(this.comPortSettingGroupBox, "comPortSettingGroupBox");
+            this.comPortSettingGroupBox.Name = "comPortSettingGroupBox";
+            this.comPortSettingGroupBox.TabStop = false;
+            // 
+            // comPortTabControl
+            // 
+            this.comPortTabControl.Controls.Add(this.tabPage7);
+            this.comPortTabControl.Controls.Add(this.tabPage8);
+            resources.ApplyResources(this.comPortTabControl, "comPortTabControl");
+            this.comPortTabControl.Name = "comPortTabControl";
+            this.comPortTabControl.SelectedIndex = 0;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.comPortInputReplaceTextBox);
+            resources.ApplyResources(this.tabPage7, "tabPage7");
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // comPortInputReplaceTextBox
+            // 
+            this.comPortInputReplaceTextBox.AcceptsReturn = true;
+            resources.ApplyResources(this.comPortInputReplaceTextBox, "comPortInputReplaceTextBox");
+            this.comPortInputReplaceTextBox.Name = "comPortInputReplaceTextBox";
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.comPortOutputReplaceTextBox);
+            resources.ApplyResources(this.tabPage8, "tabPage8");
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // comPortOutputReplaceTextBox
+            // 
+            this.comPortOutputReplaceTextBox.AcceptsReturn = true;
+            resources.ApplyResources(this.comPortOutputReplaceTextBox, "comPortOutputReplaceTextBox");
+            this.comPortOutputReplaceTextBox.Name = "comPortOutputReplaceTextBox";
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // comPortDataGridView1
+            // 
+            this.comPortDataGridView1.AllowUserToAddRows = false;
+            this.comPortDataGridView1.AllowUserToDeleteRows = false;
+            this.comPortDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.comPortDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.comPropertyKey,
+            this.comPropertyValue});
+            resources.ApplyResources(this.comPortDataGridView1, "comPortDataGridView1");
+            this.comPortDataGridView1.Name = "comPortDataGridView1";
+            this.comPortDataGridView1.RowTemplate.Height = 21;
+            // 
+            // comPropertyKey
+            // 
+            resources.ApplyResources(this.comPropertyKey, "comPropertyKey");
+            this.comPropertyKey.Name = "comPropertyKey";
+            // 
+            // comPropertyValue
+            // 
+            resources.ApplyResources(this.comPropertyValue, "comPropertyValue");
+            this.comPropertyValue.Name = "comPropertyValue";
+            // 
+            // comPortNotSupportedCheckBox
+            // 
+            resources.ApplyResources(this.comPortNotSupportedCheckBox, "comPortNotSupportedCheckBox");
+            this.comPortNotSupportedCheckBox.Name = "comPortNotSupportedCheckBox";
+            this.comPortNotSupportedCheckBox.UseVisualStyleBackColor = true;
+            this.comPortNotSupportedCheckBox.CheckedChanged += new System.EventHandler(this.comPortNotSupportedCheckBox_CheckedChanged);
+            // 
+            // comPortDeleteButton
+            // 
+            resources.ApplyResources(this.comPortDeleteButton, "comPortDeleteButton");
+            this.comPortDeleteButton.Name = "comPortDeleteButton";
+            this.comPortDeleteButton.UseVisualStyleBackColor = true;
+            // 
+            // comportUseButton
+            // 
+            resources.ApplyResources(this.comportUseButton, "comportUseButton");
+            this.comportUseButton.Name = "comportUseButton";
+            this.comportUseButton.UseVisualStyleBackColor = true;
+            // 
+            // usingComPortList
+            // 
+            this.usingComPortList.FormattingEnabled = true;
+            resources.ApplyResources(this.usingComPortList, "usingComPortList");
+            this.usingComPortList.Name = "usingComPortList";
+            // 
+            // availableComPortList
+            // 
+            this.availableComPortList.FormattingEnabled = true;
+            resources.ApplyResources(this.availableComPortList, "availableComPortList");
+            this.availableComPortList.Name = "availableComPortList";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
             // 
             // ConfigForm
             // 
@@ -479,14 +629,24 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
             this.settingsTabControl.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
+            this.comPortSettingGroupBox.ResumeLayout(false);
+            this.comPortSettingGroupBox.PerformLayout();
+            this.comPortTabControl.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comPortDataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -543,5 +703,23 @@
         private System.Windows.Forms.Button settingPowerButton;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.Button comPortDeleteButton;
+        private System.Windows.Forms.Button comportUseButton;
+        private System.Windows.Forms.ListBox usingComPortList;
+        private System.Windows.Forms.ListBox availableComPortList;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox comPortSettingGroupBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox comPortNotSupportedCheckBox;
+        private System.Windows.Forms.TabControl comPortTabControl;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.TextBox comPortInputReplaceTextBox;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView comPortDataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn comPropertyKey;
+        private System.Windows.Forms.DataGridViewTextBoxColumn comPropertyValue;
+        private System.Windows.Forms.TextBox comPortOutputReplaceTextBox;
     }
 }

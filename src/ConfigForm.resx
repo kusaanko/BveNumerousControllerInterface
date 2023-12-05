@@ -123,10 +123,13 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>593, 12</value>
+    <value>847, 20</value>
+  </data>
+  <data name="okButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 26</value>
+    <value>107, 43</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="okButton.TabIndex" type="System.Int32, mscorlib">
@@ -147,50 +150,17 @@
   <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
-    <value>cancelButton</value>
-  </data>
-  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 520</value>
-  </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>761, 50</value>
-  </data>
-  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="cancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>674, 12</value>
+    <value>963, 20</value>
+  </data>
+  <data name="cancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 26</value>
+    <value>107, 43</value>
   </data>
   <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -210,9 +180,100 @@
   <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 867</value>
+  </data>
+  <data name="panel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1087, 83</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="flexibleBreakModeComboBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="flexibleBreakModeComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>199, 145</value>
+  </data>
+  <data name="flexibleBreakModeComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="flexibleBreakModeComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>373, 33</value>
+  </data>
+  <data name="flexibleBreakModeComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="flexibleBreakModeComboBox.ToolTip" xml:space="preserve">
+    <value>列車とコントローラーのノッチ数が違うときにコントローラーのノッチ数と
+列車のノッチ数を合わせます。例えば列車が3段、コントローラーが9段なら
+コントローラー3段を列車1段分として扱います。</value>
+  </data>
+  <data name="&gt;&gt;flexibleBreakModeComboBox.Name" xml:space="preserve">
+    <value>flexibleBreakModeComboBox</value>
+  </data>
+  <data name="&gt;&gt;flexibleBreakModeComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flexibleBreakModeComboBox.Parent" xml:space="preserve">
+    <value>tabPage3</value>
+  </data>
+  <data name="&gt;&gt;flexibleBreakModeComboBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="flexiblePowerModeComboBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="flexiblePowerModeComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>199, 97</value>
+  </data>
+  <data name="flexiblePowerModeComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="flexiblePowerModeComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>373, 33</value>
+  </data>
+  <data name="flexiblePowerModeComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="flexiblePowerModeComboBox.ToolTip" xml:space="preserve">
+    <value>列車とコントローラーのノッチ数が違うときにコントローラーのノッチ数と
+列車のノッチ数を合わせます。例えば列車が3段、コントローラーが9段なら
+コントローラー3段を列車1段分として扱います。</value>
+  </data>
+  <data name="&gt;&gt;flexiblePowerModeComboBox.Name" xml:space="preserve">
+    <value>flexiblePowerModeComboBox</value>
+  </data>
+  <data name="&gt;&gt;flexiblePowerModeComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flexiblePowerModeComboBox.Parent" xml:space="preserve">
+    <value>tabPage3</value>
+  </data>
+  <data name="&gt;&gt;flexiblePowerModeComboBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="controllerAssignmentLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -220,10 +281,13 @@
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="controllerAssignmentLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 14</value>
+    <value>13, 23</value>
+  </data>
+  <data name="controllerAssignmentLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="controllerAssignmentLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 15</value>
+    <value>149, 25</value>
   </data>
   <data name="controllerAssignmentLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -244,13 +308,16 @@
     <value>1</value>
   </data>
   <data name="controllerList.ItemHeight" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>25</value>
   </data>
   <data name="controllerList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 58</value>
+    <value>17, 97</value>
+  </data>
+  <data name="controllerList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="controllerList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 424</value>
+    <value>237, 704</value>
   </data>
   <data name="controllerList.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -271,10 +338,13 @@
     <value>True</value>
   </data>
   <data name="selectControllerLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 40</value>
+    <value>13, 67</value>
+  </data>
+  <data name="selectControllerLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="selectControllerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 15</value>
+    <value>163, 25</value>
   </data>
   <data name="selectControllerLabel.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -298,10 +368,13 @@
     <value>True</value>
   </data>
   <data name="statusLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 14</value>
+    <value>264, 23</value>
+  </data>
+  <data name="statusLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="statusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 15</value>
+    <value>86, 25</value>
   </data>
   <data name="statusLabel.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -325,10 +398,13 @@
     <value>True</value>
   </data>
   <data name="powerLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 68</value>
+    <value>264, 113</value>
+  </data>
+  <data name="powerLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="powerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 15</value>
+    <value>54, 25</value>
   </data>
   <data name="powerLabel.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -352,10 +428,13 @@
     <value>True</value>
   </data>
   <data name="breakLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>267, 68</value>
+    <value>381, 113</value>
+  </data>
+  <data name="breakLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="breakLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 15</value>
+    <value>54, 25</value>
   </data>
   <data name="breakLabel.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -379,10 +458,13 @@
     <value>True</value>
   </data>
   <data name="buttonLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>358, 68</value>
+    <value>511, 113</value>
+  </data>
+  <data name="buttonLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="buttonLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 15</value>
+    <value>59, 25</value>
   </data>
   <data name="buttonLabel.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -403,10 +485,13 @@
     <value>12</value>
   </data>
   <data name="removeButtonButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>108, 150</value>
+    <value>154, 250</value>
+  </data>
+  <data name="removeButtonButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="removeButtonButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 23</value>
+    <value>139, 38</value>
   </data>
   <data name="removeButtonButton.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -427,10 +512,13 @@
     <value>0</value>
   </data>
   <data name="addButtonButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 150</value>
+    <value>13, 250</value>
+  </data>
+  <data name="addButtonButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="addButtonButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 23</value>
+    <value>133, 38</value>
   </data>
   <data name="addButtonButton.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -454,10 +542,13 @@
     <value>True</value>
   </data>
   <data name="buttonFunctionLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 189</value>
+    <value>9, 315</value>
+  </data>
+  <data name="buttonFunctionLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="buttonFunctionLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 15</value>
+    <value>113, 25</value>
   </data>
   <data name="buttonFunctionLabel.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -481,10 +572,13 @@
     <value>False</value>
   </data>
   <data name="buttonFunctionComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>106, 186</value>
+    <value>151, 310</value>
+  </data>
+  <data name="buttonFunctionComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="buttonFunctionComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 23</value>
+    <value>295, 33</value>
   </data>
   <data name="buttonFunctionComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -508,10 +602,13 @@
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="buttonsAssignmentLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 10</value>
+    <value>9, 17</value>
+  </data>
+  <data name="buttonsAssignmentLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="buttonsAssignmentLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 15</value>
+    <value>93, 25</value>
   </data>
   <data name="buttonsAssignmentLabel.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -532,13 +629,16 @@
     <value>1</value>
   </data>
   <data name="buttonList.ItemHeight" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>25</value>
   </data>
   <data name="buttonList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 35</value>
+    <value>13, 58</value>
+  </data>
+  <data name="buttonList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="buttonList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>529, 109</value>
+    <value>754, 179</value>
   </data>
   <data name="buttonList.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -559,10 +659,13 @@
     <value>True</value>
   </data>
   <data name="isEnabledCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>188, 93</value>
+    <value>269, 155</value>
+  </data>
+  <data name="isEnabledCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="isEnabledCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 19</value>
+    <value>263, 29</value>
   </data>
   <data name="isEnabledCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -586,10 +689,13 @@
     <value>True</value>
   </data>
   <data name="profileToUseLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 126</value>
+    <value>264, 210</value>
+  </data>
+  <data name="profileToUseLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="profileToUseLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 15</value>
+    <value>162, 25</value>
   </data>
   <data name="profileToUseLabel.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -612,8 +718,14 @@
   <metadata name="profileContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>201, 17</value>
   </metadata>
+  <data name="openProfileInExplorer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 32</value>
+  </data>
+  <data name="openProfileInExplorer.Text" xml:space="preserve">
+    <value>ファイルをエクスプローラーで開く</value>
+  </data>
   <data name="profileContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 26</value>
+    <value>297, 36</value>
   </data>
   <data name="&gt;&gt;profileContextMenuStrip.Name" xml:space="preserve">
     <value>profileContextMenuStrip</value>
@@ -622,10 +734,13 @@
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="profileComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 123</value>
+    <value>430, 205</value>
+  </data>
+  <data name="profileComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="profileComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>434, 23</value>
+    <value>618, 33</value>
   </data>
   <data name="profileComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -642,17 +757,14 @@
   <data name="&gt;&gt;profileComboBox.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="openProfileInExplorer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 22</value>
-  </data>
-  <data name="openProfileInExplorer.Text" xml:space="preserve">
-    <value>ファイルをエクスプローラーで開く</value>
-  </data>
   <data name="newProfileButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>402, 155</value>
+    <value>574, 258</value>
+  </data>
+  <data name="newProfileButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="newProfileButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 23</value>
+    <value>110, 38</value>
   </data>
   <data name="newProfileButton.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -673,10 +785,13 @@
     <value>13</value>
   </data>
   <data name="removeProfileButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>661, 155</value>
+    <value>944, 258</value>
+  </data>
+  <data name="removeProfileButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="removeProfileButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 23</value>
+    <value>106, 38</value>
   </data>
   <data name="removeProfileButton.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -697,10 +812,13 @@
     <value>3</value>
   </data>
   <data name="duplicateProfileButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>572, 155</value>
+    <value>817, 258</value>
+  </data>
+  <data name="duplicateProfileButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="duplicateProfileButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 23</value>
+    <value>119, 38</value>
   </data>
   <data name="duplicateProfileButton.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -724,10 +842,13 @@
     <value>True</value>
   </data>
   <data name="controllerTypeLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 40</value>
+    <value>264, 67</value>
+  </data>
+  <data name="controllerTypeLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="controllerTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 15</value>
+    <value>169, 25</value>
   </data>
   <data name="controllerTypeLabel.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -748,10 +869,13 @@
     <value>7</value>
   </data>
   <data name="changeNameButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>485, 155</value>
+    <value>693, 258</value>
+  </data>
+  <data name="changeNameButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="changeNameButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 23</value>
+    <value>116, 38</value>
   </data>
   <data name="changeNameButton.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -778,10 +902,13 @@
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="settingsOfNumerousControllerInterfaceLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 15</value>
+    <value>13, 25</value>
+  </data>
+  <data name="settingsOfNumerousControllerInterfaceLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="settingsOfNumerousControllerInterfaceLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 15</value>
+    <value>295, 25</value>
   </data>
   <data name="settingsOfNumerousControllerInterfaceLabel.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -805,10 +932,13 @@
     <value>True</value>
   </data>
   <data name="alertNoCountrollerFoundCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 43</value>
+    <value>17, 72</value>
+  </data>
+  <data name="alertNoCountrollerFoundCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="alertNoCountrollerFoundCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 19</value>
+    <value>315, 29</value>
   </data>
   <data name="alertNoCountrollerFoundCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -838,10 +968,13 @@
     <value>NoControl</value>
   </data>
   <data name="checkUpdatesCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>249, 43</value>
+    <value>356, 72</value>
+  </data>
+  <data name="checkUpdatesCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="checkUpdatesCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 19</value>
+    <value>212, 29</value>
   </data>
   <data name="checkUpdatesCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -864,35 +997,6 @@
   <data name="tabControl1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="flexibleBreakModeComboBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="flexibleBreakModeComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>139, 87</value>
-  </data>
-  <data name="flexibleBreakModeComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 23</value>
-  </data>
-  <data name="flexibleBreakModeComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
-  </data>
-  <data name="flexibleBreakModeComboBox.ToolTip" xml:space="preserve">
-    <value>列車とコントローラーのノッチ数が違うときにコントローラーのノッチ数と
-列車のノッチ数を合わせます。例えば列車が3段、コントローラーが9段なら
-コントローラー3段を列車1段分として扱います。</value>
-  </data>
-  <data name="&gt;&gt;flexibleBreakModeComboBox.Name" xml:space="preserve">
-    <value>flexibleBreakModeComboBox</value>
-  </data>
-  <data name="&gt;&gt;flexibleBreakModeComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;flexibleBreakModeComboBox.Parent" xml:space="preserve">
-    <value>tabPage3</value>
-  </data>
-  <data name="&gt;&gt;flexibleBreakModeComboBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -900,10 +1004,13 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 90</value>
+    <value>4, 150</value>
+  </data>
+  <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 15</value>
+    <value>147, 25</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
@@ -923,35 +1030,6 @@
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="flexiblePowerModeComboBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="flexiblePowerModeComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>139, 58</value>
-  </data>
-  <data name="flexiblePowerModeComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 23</value>
-  </data>
-  <data name="flexiblePowerModeComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
-  </data>
-  <data name="flexiblePowerModeComboBox.ToolTip" xml:space="preserve">
-    <value>列車とコントローラーのノッチ数が違うときにコントローラーのノッチ数と
-列車のノッチ数を合わせます。例えば列車が3段、コントローラーが9段なら
-コントローラー3段を列車1段分として扱います。</value>
-  </data>
-  <data name="&gt;&gt;flexiblePowerModeComboBox.Name" xml:space="preserve">
-    <value>flexiblePowerModeComboBox</value>
-  </data>
-  <data name="&gt;&gt;flexiblePowerModeComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;flexiblePowerModeComboBox.Parent" xml:space="preserve">
-    <value>tabPage3</value>
-  </data>
-  <data name="&gt;&gt;flexiblePowerModeComboBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -959,10 +1037,13 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 61</value>
+    <value>4, 102</value>
+  </data>
+  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 15</value>
+    <value>147, 25</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>34</value>
@@ -986,10 +1067,13 @@
     <value>NoControl</value>
   </data>
   <data name="removeBreakButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>323, 10</value>
+    <value>461, 17</value>
+  </data>
+  <data name="removeBreakButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="removeBreakButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 23</value>
+    <value>156, 38</value>
   </data>
   <data name="removeBreakButton.TabIndex" type="System.Int32, mscorlib">
     <value>33</value>
@@ -1013,10 +1097,13 @@
     <value>NoControl</value>
   </data>
   <data name="removePowerButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 10</value>
+    <value>317, 17</value>
+  </data>
+  <data name="removePowerButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="removePowerButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 23</value>
+    <value>136, 38</value>
   </data>
   <data name="removePowerButton.TabIndex" type="System.Int32, mscorlib">
     <value>32</value>
@@ -1043,16 +1130,19 @@
     <value>NoControl</value>
   </data>
   <data name="isTwoHandleComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 39</value>
+    <value>11, 65</value>
+  </data>
+  <data name="isTwoHandleComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="isTwoHandleComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 19</value>
+    <value>126, 29</value>
   </data>
   <data name="isTwoHandleComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
   </data>
   <data name="isTwoHandleComboBox.Text" xml:space="preserve">
-    <value>このコントローラーはツーハンドルである</value>
+    <value>ツーハンドル</value>
   </data>
   <data name="&gt;&gt;isTwoHandleComboBox.Name" xml:space="preserve">
     <value>isTwoHandleComboBox</value>
@@ -1070,10 +1160,13 @@
     <value>NoControl</value>
   </data>
   <data name="settingBreakButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>107, 10</value>
+    <value>153, 17</value>
+  </data>
+  <data name="settingBreakButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="settingBreakButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 23</value>
+    <value>156, 38</value>
   </data>
   <data name="settingBreakButton.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
@@ -1097,10 +1190,13 @@
     <value>NoControl</value>
   </data>
   <data name="settingPowerButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 10</value>
+    <value>9, 17</value>
+  </data>
+  <data name="settingPowerButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="settingPowerButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 23</value>
+    <value>136, 38</value>
   </data>
   <data name="settingPowerButton.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
@@ -1121,13 +1217,16 @@
     <value>8</value>
   </data>
   <data name="tabPage3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 24</value>
+    <value>4, 34</value>
+  </data>
+  <data name="tabPage3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="tabPage3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="tabPage3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>544, 270</value>
+    <value>781, 459</value>
   </data>
   <data name="tabPage3.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1148,13 +1247,16 @@
     <value>0</value>
   </data>
   <data name="tabPage5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 24</value>
+    <value>4, 34</value>
+  </data>
+  <data name="tabPage5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="tabPage5.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="tabPage5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>544, 270</value>
+    <value>781, 459</value>
   </data>
   <data name="tabPage5.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1175,10 +1277,13 @@
     <value>1</value>
   </data>
   <data name="settingsTabControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 184</value>
+    <value>274, 307</value>
+  </data>
+  <data name="settingsTabControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="settingsTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>552, 298</value>
+    <value>789, 497</value>
   </data>
   <data name="settingsTabControl.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -1196,13 +1301,16 @@
     <value>0</value>
   </data>
   <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 24</value>
+    <value>4, 34</value>
+  </data>
+  <data name="tabPage2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="tabPage2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>750, 492</value>
+    <value>1075, 829</value>
   </data>
   <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1223,13 +1331,16 @@
     <value>0</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 24</value>
+    <value>4, 34</value>
+  </data>
+  <data name="tabPage1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="tabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>750, 492</value>
+    <value>1075, 829</value>
   </data>
   <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1253,10 +1364,13 @@
     <value>NoControl</value>
   </data>
   <data name="pluginSettingButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>257, 16</value>
+    <value>367, 27</value>
+  </data>
+  <data name="pluginSettingButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="pluginSettingButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 23</value>
+    <value>121, 38</value>
   </data>
   <data name="pluginSettingButton.TabIndex" type="System.Int32, mscorlib">
     <value>33</value>
@@ -1280,10 +1394,13 @@
     <value>NoControl</value>
   </data>
   <data name="showLoadedPlugins.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 19</value>
+    <value>11, 32</value>
+  </data>
+  <data name="showLoadedPlugins.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="showLoadedPlugins.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 23</value>
+    <value>257, 38</value>
   </data>
   <data name="showLoadedPlugins.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
@@ -1304,10 +1421,13 @@
     <value>1</value>
   </data>
   <data name="pluginConfigComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 45</value>
+    <value>11, 75</value>
+  </data>
+  <data name="pluginConfigComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="pluginConfigComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>334, 23</value>
+    <value>475, 33</value>
   </data>
   <data name="pluginConfigComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>32</value>
@@ -1325,10 +1445,13 @@
     <value>2</value>
   </data>
   <data name="tabPage4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 24</value>
+    <value>4, 34</value>
+  </data>
+  <data name="tabPage4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="tabPage4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>750, 492</value>
+    <value>1075, 829</value>
   </data>
   <data name="tabPage4.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1348,11 +1471,494 @@
   <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>484, 33</value>
+  </data>
+  <data name="label5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>566, 53</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>ここはCOMポートの入出力に関する設定画面です。BVEへのキー割り当て等はコントローラー割当で設定してください。</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="comPortInputReplaceTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 10</value>
+  </data>
+  <data name="comPortInputReplaceTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="comPortInputReplaceTextBox.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="comPortInputReplaceTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>520, 211</value>
+  </data>
+  <data name="comPortInputReplaceTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;comPortInputReplaceTextBox.Name" xml:space="preserve">
+    <value>comPortInputReplaceTextBox</value>
+  </data>
+  <data name="&gt;&gt;comPortInputReplaceTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comPortInputReplaceTextBox.Parent" xml:space="preserve">
+    <value>tabPage7</value>
+  </data>
+  <data name="&gt;&gt;comPortInputReplaceTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPage7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 34</value>
+  </data>
+  <data name="tabPage7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="tabPage7.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="tabPage7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>538, 242</value>
+  </data>
+  <data name="tabPage7.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>入力の置換</value>
+  </data>
+  <data name="&gt;&gt;tabPage7.Name" xml:space="preserve">
+    <value>tabPage7</value>
+  </data>
+  <data name="&gt;&gt;tabPage7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage7.Parent" xml:space="preserve">
+    <value>comPortTabControl</value>
+  </data>
+  <data name="&gt;&gt;tabPage7.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="comPortOutputReplaceTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 10</value>
+  </data>
+  <data name="comPortOutputReplaceTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="comPortOutputReplaceTextBox.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="comPortOutputReplaceTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>520, 211</value>
+  </data>
+  <data name="comPortOutputReplaceTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;comPortOutputReplaceTextBox.Name" xml:space="preserve">
+    <value>comPortOutputReplaceTextBox</value>
+  </data>
+  <data name="&gt;&gt;comPortOutputReplaceTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comPortOutputReplaceTextBox.Parent" xml:space="preserve">
+    <value>tabPage8</value>
+  </data>
+  <data name="&gt;&gt;comPortOutputReplaceTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPage8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 34</value>
+  </data>
+  <data name="tabPage8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="tabPage8.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="tabPage8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>538, 242</value>
+  </data>
+  <data name="tabPage8.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabPage8.Text" xml:space="preserve">
+    <value>出力の置換</value>
+  </data>
+  <data name="&gt;&gt;tabPage8.Name" xml:space="preserve">
+    <value>tabPage8</value>
+  </data>
+  <data name="&gt;&gt;tabPage8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage8.Parent" xml:space="preserve">
+    <value>comPortTabControl</value>
+  </data>
+  <data name="&gt;&gt;tabPage8.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="comPortTabControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 365</value>
+  </data>
+  <data name="comPortTabControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="comPortTabControl.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="comPortTabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>546, 280</value>
+  </data>
+  <data name="comPortTabControl.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;comPortTabControl.Name" xml:space="preserve">
+    <value>comPortTabControl</value>
+  </data>
+  <data name="&gt;&gt;comPortTabControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comPortTabControl.Parent" xml:space="preserve">
+    <value>comPortSettingGroupBox</value>
+  </data>
+  <data name="&gt;&gt;comPortTabControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 73</value>
+  </data>
+  <data name="label6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 25</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>コンフィグ</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>comPortSettingGroupBox</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="comPropertyKey.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="comPropertyKey.HeaderText" xml:space="preserve">
+    <value>キー</value>
+  </data>
+  <data name="comPropertyKey.MinimumWidth" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="comPropertyKey.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <metadata name="comPropertyValue.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="comPropertyValue.HeaderText" xml:space="preserve">
+    <value>値</value>
+  </data>
+  <data name="comPropertyValue.MinimumWidth" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="comPropertyValue.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="comPortDataGridView1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 108</value>
+  </data>
+  <data name="comPortDataGridView1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="comPortDataGridView1.RowHeadersWidth" type="System.Int32, mscorlib">
+    <value>62</value>
+  </data>
+  <data name="comPortDataGridView1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>541, 247</value>
+  </data>
+  <data name="comPortDataGridView1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;comPortDataGridView1.Name" xml:space="preserve">
+    <value>comPortDataGridView1</value>
+  </data>
+  <data name="&gt;&gt;comPortDataGridView1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comPortDataGridView1.Parent" xml:space="preserve">
+    <value>comPortSettingGroupBox</value>
+  </data>
+  <data name="&gt;&gt;comPortDataGridView1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="comPortNotSupportedCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="comPortNotSupportedCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 37</value>
+  </data>
+  <data name="comPortNotSupportedCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="comPortNotSupportedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>335, 29</value>
+  </data>
+  <data name="comPortNotSupportedCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="comPortNotSupportedCheckBox.Text" xml:space="preserve">
+    <value>このプラグインに対応しないコントローラー</value>
+  </data>
+  <data name="&gt;&gt;comPortNotSupportedCheckBox.Name" xml:space="preserve">
+    <value>comPortNotSupportedCheckBox</value>
+  </data>
+  <data name="&gt;&gt;comPortNotSupportedCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comPortNotSupportedCheckBox.Parent" xml:space="preserve">
+    <value>comPortSettingGroupBox</value>
+  </data>
+  <data name="&gt;&gt;comPortNotSupportedCheckBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="comPortSettingGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>491, 92</value>
+  </data>
+  <data name="comPortSettingGroupBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="comPortSettingGroupBox.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="comPortSettingGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>559, 655</value>
+  </data>
+  <data name="comPortSettingGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="comPortSettingGroupBox.Text" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="&gt;&gt;comPortSettingGroupBox.Name" xml:space="preserve">
+    <value>comPortSettingGroupBox</value>
+  </data>
+  <data name="&gt;&gt;comPortSettingGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comPortSettingGroupBox.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;comPortSettingGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="comPortDeleteButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="comPortDeleteButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 713</value>
+  </data>
+  <data name="comPortDeleteButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="comPortDeleteButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 35</value>
+  </data>
+  <data name="comPortDeleteButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="comPortDeleteButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="&gt;&gt;comPortDeleteButton.Name" xml:space="preserve">
+    <value>comPortDeleteButton</value>
+  </data>
+  <data name="&gt;&gt;comPortDeleteButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comPortDeleteButton.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;comPortDeleteButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="comportUseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 713</value>
+  </data>
+  <data name="comportUseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="comportUseButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 35</value>
+  </data>
+  <data name="comportUseButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="comportUseButton.Text" xml:space="preserve">
+    <value>使用</value>
+  </data>
+  <data name="&gt;&gt;comportUseButton.Name" xml:space="preserve">
+    <value>comportUseButton</value>
+  </data>
+  <data name="&gt;&gt;comportUseButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comportUseButton.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;comportUseButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="usingComPortList.ItemHeight" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="usingComPortList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 72</value>
+  </data>
+  <data name="usingComPortList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="usingComPortList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 629</value>
+  </data>
+  <data name="usingComPortList.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;usingComPortList.Name" xml:space="preserve">
+    <value>usingComPortList</value>
+  </data>
+  <data name="&gt;&gt;usingComPortList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;usingComPortList.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;usingComPortList.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="availableComPortList.ItemHeight" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="availableComPortList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 72</value>
+  </data>
+  <data name="availableComPortList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="availableComPortList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 629</value>
+  </data>
+  <data name="availableComPortList.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;availableComPortList.Name" xml:space="preserve">
+    <value>availableComPortList</value>
+  </data>
+  <data name="&gt;&gt;availableComPortList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;availableComPortList.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;availableComPortList.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>244, 37</value>
+  </data>
+  <data name="label4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 25</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>利用中のCOMポート</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 35</value>
+  </data>
+  <data name="label3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 25</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>利用可能なCOMポート</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
   <data name="tabPage6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 24</value>
+    <value>4, 34</value>
+  </data>
+  <data name="tabPage6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="tabPage6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>750, 492</value>
+    <value>1075, 829</value>
   </data>
   <data name="tabPage6.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1373,10 +1979,13 @@
     <value>3</value>
   </data>
   <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 2</value>
+    <value>0, 3</value>
+  </data>
+  <data name="tabControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>758, 520</value>
+    <value>1083, 867</value>
   </data>
   <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
@@ -1397,16 +2006,16 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 15</value>
+    <value>10, 25</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>761, 570</value>
+    <value>1087, 950</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>4, 7, 4, 7</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
@@ -1431,6 +2040,18 @@
   </data>
   <data name="&gt;&gt;timer1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comPropertyKey.Name" xml:space="preserve">
+    <value>comPropertyKey</value>
+  </data>
+  <data name="&gt;&gt;comPropertyKey.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comPropertyValue.Name" xml:space="preserve">
+    <value>comPropertyValue</value>
+  </data>
+  <data name="&gt;&gt;comPropertyValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ConfigForm</value>
