@@ -149,6 +149,7 @@
             resources.ApplyResources(this.flexibleBreakModeComboBox, "flexibleBreakModeComboBox");
             this.flexibleBreakModeComboBox.Name = "flexibleBreakModeComboBox";
             this.toolTip1.SetToolTip(this.flexibleBreakModeComboBox, resources.GetString("flexibleBreakModeComboBox.ToolTip"));
+            this.flexibleBreakModeComboBox.SelectedIndexChanged += new System.EventHandler(this.flexibleBreakModeComboBox_SelectedIndexChanged);
             // 
             // flexiblePowerModeComboBox
             // 
@@ -157,6 +158,7 @@
             resources.ApplyResources(this.flexiblePowerModeComboBox, "flexiblePowerModeComboBox");
             this.flexiblePowerModeComboBox.Name = "flexiblePowerModeComboBox";
             this.toolTip1.SetToolTip(this.flexiblePowerModeComboBox, resources.GetString("flexiblePowerModeComboBox.ToolTip"));
+            this.flexiblePowerModeComboBox.SelectedIndexChanged += new System.EventHandler(this.flexiblePowerModeComboBox_SelectedIndexChanged);
             // 
             // controllerAssignmentLabel
             // 
@@ -404,30 +406,35 @@
             resources.ApplyResources(this.removeBreakButton, "removeBreakButton");
             this.removeBreakButton.Name = "removeBreakButton";
             this.removeBreakButton.UseVisualStyleBackColor = true;
+            this.removeBreakButton.Click += new System.EventHandler(this.removeBreakButton_Click);
             // 
             // removePowerButton
             // 
             resources.ApplyResources(this.removePowerButton, "removePowerButton");
             this.removePowerButton.Name = "removePowerButton";
             this.removePowerButton.UseVisualStyleBackColor = true;
+            this.removePowerButton.Click += new System.EventHandler(this.removePowerButton_Click);
             // 
             // isTwoHandleComboBox
             // 
             resources.ApplyResources(this.isTwoHandleComboBox, "isTwoHandleComboBox");
             this.isTwoHandleComboBox.Name = "isTwoHandleComboBox";
             this.isTwoHandleComboBox.UseVisualStyleBackColor = true;
+            this.isTwoHandleComboBox.CheckedChanged += new System.EventHandler(this.isTwoHandleComboBox_CheckedChanged);
             // 
             // settingBreakButton
             // 
             resources.ApplyResources(this.settingBreakButton, "settingBreakButton");
             this.settingBreakButton.Name = "settingBreakButton";
             this.settingBreakButton.UseVisualStyleBackColor = true;
+            this.settingBreakButton.Click += new System.EventHandler(this.settingBreakButton_Click);
             // 
             // settingPowerButton
             // 
             resources.ApplyResources(this.settingPowerButton, "settingPowerButton");
             this.settingPowerButton.Name = "settingPowerButton";
             this.settingPowerButton.UseVisualStyleBackColor = true;
+            this.settingPowerButton.Click += new System.EventHandler(this.settingPowerButton_Click);
             // 
             // tabPage5
             // 
@@ -464,12 +471,14 @@
             resources.ApplyResources(this.pluginSettingButton, "pluginSettingButton");
             this.pluginSettingButton.Name = "pluginSettingButton";
             this.pluginSettingButton.UseVisualStyleBackColor = true;
+            this.pluginSettingButton.Click += new System.EventHandler(this.pluginSettingButton_Click);
             // 
             // showLoadedPlugins
             // 
             resources.ApplyResources(this.showLoadedPlugins, "showLoadedPlugins");
             this.showLoadedPlugins.Name = "showLoadedPlugins";
             this.showLoadedPlugins.UseVisualStyleBackColor = true;
+            this.showLoadedPlugins.Click += new System.EventHandler(this.showLoadedPlugins_Click);
             // 
             // pluginConfigComboBox
             // 
