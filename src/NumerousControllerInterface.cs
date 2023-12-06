@@ -9,9 +9,8 @@ using Kusaanko.Bvets.NumerousControllerInterface.Controller;
 using System.Linq;
 using System.Net;
 using System.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Reflection;
+using System.Xml.Linq;
 using static Kusaanko.Bvets.NumerousControllerInterface.Controller.NCIController;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
@@ -20,7 +19,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
     {
         private static bool DebugUpdater = false;
         public static int IntVersion { get { return 13; } }
-        public static string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36";
+        public static string UserAgent = "NumerousContollerInterfaceUpdater v" + IntVersion;
 
         public static DirectInput Input;
         public static List<NCIController> Controllers;
@@ -104,9 +103,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             catch (Exception) { }
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | (SecurityProtocolType)768 | (SecurityProtocolType)3072;
-            string arch = BinaryInfo.arch;
+            string targetArch = BinaryInfo.arch;
             string net_ver = BinaryInfo.net_ver;
-            string update_url = "https://raw.githubusercontent.com/kusaanko/BveNumerousControllerInterface/main/update_info.json";
+            string update_url = "https://raw.githubusercontent.com/kusaanko/BveNumerousControllerInterface/main/update_info.xml";
             using (WebClient client = new WebClient())
             {
                 try
@@ -115,63 +114,41 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     client.Encoding = System.Text.Encoding.UTF8;
 
                     string content = client.DownloadString(update_url);
-                    Dictionary<string, object> json = JsonConvert.DeserializeObject<Dictionary<string, object>>(content);
-                    object target = json[arch + "_" + net_ver];
-                    if (target != null && target.GetType() == typeof(JObject))
+                    XElement xml = XDocument.Parse(content).Root;
+                    string history = "";
+                    foreach (XElement release in xml.Elements("ReleaseNotes").Elements("Release"))
                     {
-                        JObject update_info = (JObject)target;
-                        string latestTag = (string)update_info.GetValue("latest");
-                        int intVersion = (int)update_info.GetValue("int_version");
-                        if (intVersion > IntVersion)
+                        history += release.Element("Title").Value.Replace("\\n", "\n") + "\n";
+                        history += release.Element("Context").Value.Replace("\\n", "\n") + "\n\n";
+                    }
+                    foreach (XElement target in xml.Element("Targets").Elements("Target"))
+                    {
+                        string arch = target.Attribute("arch").Value;
+                        string dotnet = target.Attribute("dotnet").Value;
+                        if (arch == targetArch && dotnet == net_ver)
                         {
-                            // 更新画面を出す
-                            string history = "";
-                            try
+                            string latestTag = target.Element("Latest").Value;
+                            int intVersion = int.Parse(target.Element("IntVersion").Value);
+                            if (intVersion > IntVersion)
                             {
-                                string url = (string)json["release_url"];
-                                client.Headers.Add("User-Agent", UserAgent);
-                                content = client.DownloadString(url);
-                                List<object> assets_json = JsonConvert.DeserializeObject<List<object>>(content);
-                                bool startLogging = false;
-                                int historyCount = 0;
-                                foreach (object obj in assets_json)
-                                {
-                                    if (obj.GetType() == typeof(JObject))
-                                    {
-                                        JObject asset = (JObject)obj;
-                                        string tag = ((string)asset.GetValue("tag_name"));
-                                        if (tag.Equals(latestTag))
-                                        {
-                                            startLogging = true;
-                                        }
-                                        if (startLogging)
-                                        {
-                                            historyCount++;
-                                            history += asset.GetValue("name") + "\n";
-                                            history += asset.GetValue("body") + "\n\n";
-                                        }
-                                        if (historyCount > 20) break;
-                                    }
-                                }
-                            }
-                            catch (Exception) { }
-                            string downloadFilePath = Path.Combine(downloadTmpDir, (string)update_info.GetValue("asset"));
-                            string installer = "";
+                                string downloadFilePath = Path.Combine(downloadTmpDir, target.Element("Asset").Value);
+                                string installer = "";
 
-                            if (update_info.ContainsKey("installer"))
-                            {
-                                installer = (string)update_info.GetValue("installer");
-                            }
-                            using (UpdateForm form = new UpdateForm(
-                                (string)update_info.GetValue("version"),
-                                history,
-                                (string)update_info.GetValue("download_page"),
-                                (string)update_info.GetValue("download_url"),
-                                downloadFilePath,
-                                installer
-                                ))
-                            {
-                                form.ShowDialog();
+                                if (target.Element("Installer") != null)
+                                {
+                                    installer = target.Element("Installer").Value;
+                                }
+                                using (UpdateForm form = new UpdateForm(
+                                    target.Element("Version").Value,
+                                    history,
+                                    target.Element("DownloadPage").Value,
+                                    target.Element("DownloadUrl").Value,
+                                    downloadFilePath,
+                                    installer
+                                    ))
+                                {
+                                    form.ShowDialog();
+                                }
                             }
                         }
                     }

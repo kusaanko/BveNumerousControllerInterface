@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using SlimDX.DirectInput;
 using System.Diagnostics;
-using Newtonsoft.Json;
+using System.Runtime.Serialization;
 using LibUsbDotNet;
 using Kusaanko.Bvets.NumerousControllerInterface.Controller;
-using Newtonsoft.Json.Converters;
 using static Kusaanko.Bvets.NumerousControllerInterface.Controller.NCIController;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
@@ -21,31 +20,52 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         Flexible,
         LastMax,
     }
+    [DataContract]
     public class ControllerProfile
     {
+        [DataMember]
         public string Name;
+        [DataMember]
         public Dictionary<int, ButtonFeature> KeyMap;
+        // それぞれノッチでどのボタンを組み合わせとして使うか
+        [DataMember]
         public int[] PowerButtons;
-        public bool[,] PowerButtonStatus;
+        // それぞれのノッチでボタンの組み合わせを保存している
+        [DataMember]
+        public List<List<bool>> PowerButtonStatus;
+        [DataMember]
         public int[] PowerAxises;
-        public int[,] PowerAxisStatus;
-        [JsonIgnore]
+        // それぞれのノッチで軸の値の組み合わせを保存している
+        [DataMember]
+        public List<List<int>> PowerAxisStatus;
+        [IgnoreDataMember]
         public ArrayList[] PowerAxisUsedNumbers;
-        [JsonIgnore]
+        [IgnoreDataMember]
         public bool[] PowerDuplicated;
+        [DataMember]
+        // それぞれノッチでどのボタンを組み合わせとして使うか
         public int[] BreakButtons;
-        public bool[,] BreakButtonStatus;
+        // それぞれのノッチでボタンの組み合わせを保存している
+        [DataMember]
+        public List<List<bool>> BreakButtonStatus;
+        [DataMember]
         public int[] BreakAxises;
-        public int[,] BreakAxisStatus;
-        [JsonIgnore]
+        // それぞれのノッチで軸の値の組み合わせを保存している
+        [DataMember]
+        public List<List<int>> BreakAxisStatus;
+        [IgnoreDataMember]
         public ArrayList[] BreakAxisUsedNumbers;
-        [JsonIgnore]
+        [IgnoreDataMember]
         public bool[] BreakDuplicated;
+        [DataMember]
         public bool IsTwoHandle;
-        [JsonConverter(typeof(StringEnumConverter))]
+        [DataMember]
         public FlexibleNotchMode FlexiblePower;
+        [DataMember]
         public FlexibleNotchMode FlexibleBreak;
+        [DataMember]
         public bool InaccuracyModePower;
+        [DataMember]
         public bool InaccuracyModeBreak;
         private int prePowerNotch;
         private int preBreakNotch;
@@ -63,19 +83,24 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             { (int)FlexibleNotchMode.LastMax, "最後のノッチを最大にする" },
         };
 
+        public ControllerProfile() : this("")
+        {
+            
+        }
+
         public ControllerProfile(string name)
         {
             Name = name;
             KeyMap = new Dictionary<int, ButtonFeature>();
             PowerAxises = new int[0];
-            PowerAxisStatus = new int[0, 0];
+            PowerAxisStatus = new List<List<int>>();
             PowerButtons = new int[0];
-            PowerButtonStatus = new bool[0, 0];
+            PowerButtonStatus = new List<List<bool>>();
             PowerDuplicated = new bool[0];
             BreakAxises = new int[0];
-            BreakAxisStatus = new int[0, 0];
+            BreakAxisStatus = new List<List<int>>();
             BreakButtons = new int[0];
-            BreakButtonStatus = new bool[0, 0];
+            BreakButtonStatus = new List<List<bool>>();
             BreakDuplicated = new bool[0];
             FlexiblePower = FlexibleNotchMode.LastMax;
             FlexibleBreak = FlexibleNotchMode.EBFixed;
@@ -86,9 +111,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public void ResetPower()
         {
             PowerAxises = new int[0];
-            PowerAxisStatus = new int[0, 0];
+            PowerAxisStatus = new List<List<int>>();
             PowerButtons = new int[0];
-            PowerButtonStatus = new bool[0, 0];
+            PowerButtonStatus = new List<List<bool>>();
             PowerDuplicated = new bool[0];
             InaccuracyModePower = false;
         }
@@ -96,11 +121,67 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public void ResetBreak()
         {
             BreakAxises = new int[0];
-            BreakAxisStatus = new int[0, 0];
+            BreakAxisStatus = new List<List<int>>();
             BreakButtons = new int[0];
-            BreakButtonStatus = new bool[0, 0];
+            BreakButtonStatus = new List<List<bool>>();
             BreakDuplicated = new bool[0];
             InaccuracyModeBreak = false;
+        }
+
+        public void SetPowerAxisStatus(int[,] value)
+        {
+            PowerAxisStatus = new List<List<int>>();
+            for (int x = 0;x < value.GetLength(0);x++)
+            {
+                List<int> valueSet = new List<int>();
+                for (int y = 0;y < value.GetLength(1);y++)
+                {
+                    valueSet.Add(value[x, y]);
+                }
+                PowerAxisStatus.Add(valueSet);
+            }
+        }
+
+        public void SetPowerButtonStatus(bool[,] value)
+        {
+            PowerButtonStatus = new List<List<bool>>();
+            for (int x = 0; x < value.GetLength(0); x++)
+            {
+                List<bool> valueSet = new List<bool>();
+                for (int y = 0; y < value.GetLength(1); y++)
+                {
+                    valueSet.Add(value[x, y]);
+                }
+                PowerButtonStatus.Add(valueSet);
+            }
+        }
+
+        public void SetBreakAxisStatus(int[,] value)
+        {
+            BreakAxisStatus = new List<List<int>>();
+            for (int x = 0; x < value.GetLength(0); x++)
+            {
+                List<int> valueSet = new List<int>();
+                for (int y = 0; y < value.GetLength(1); y++)
+                {
+                    valueSet.Add(value[x, y]);
+                }
+                BreakAxisStatus.Add(valueSet);
+            }
+        }
+
+        public void SetBreakButtonStatus(bool[,] value)
+        {
+            BreakButtonStatus = new List<List<bool>>();
+            for (int x = 0; x < value.GetLength(0); x++)
+            {
+                List<bool> valueSet = new List<bool>();
+                for (int y = 0; y < value.GetLength(1); y++)
+                {
+                    valueSet.Add(value[x, y]);
+                }
+                BreakButtonStatus.Add(valueSet);
+            }
         }
 
         public bool HasPower(NCIController controller)
@@ -129,11 +210,15 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 return controller.GetPowerCount();
             }
-            if (PowerAxises.Length != PowerAxisStatus.GetLength(1))
+            // 軸の値をそのまま使うモード
+            foreach (List<int> status in PowerAxisStatus)
             {
-                return 5;
+                if (PowerAxises.Length != status.Count)
+                {
+                    return 5;
+                }
             }
-            return PowerButtonStatus.GetLength(0) - 1;
+            return PowerButtonStatus.Count - 1;
         }
 
         public int GetBreakCount(NCIController controller)
@@ -142,11 +227,15 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 return controller.GetBreakCount();
             }
-            if (BreakAxises.Length != BreakAxisStatus.GetLength(1))
+            // 軸の値をそのまま使うモード
+            foreach (List<int> status in BreakAxisStatus)
             {
-                return 9;
+                if (BreakAxises.Length != status.Count)
+                {
+                    return 9;
+                }
             }
-            return BreakButtonStatus.GetLength(0) - 1;
+            return BreakButtonStatus.Count - 1;
         }
 
         public int GetPower(NCIController controller, int maxStep)
@@ -160,13 +249,14 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             bool[] buttons = controller.GetButtonsSafe();
             int[] sliders = GetSliders(controller);
             if (buttons == null || sliders == null) return 0;
-            if (PowerAxises.Length != PowerAxisStatus.GetLength(1))
+            // 軸の値をそのまま使うモード
+            if (IsPowerUseRawAxisValueMode())
             {
-                int pos = -sliders[PowerAxises[0]] + PowerAxisStatus[0, 0];
-                int range = Math.Abs(PowerAxisStatus[0, 1] - PowerAxisStatus[0, 0]);
-                if (PowerAxisStatus[0, 0] < PowerAxisStatus[0, 1])
+                int pos = -sliders[PowerAxises[0]] + PowerAxisStatus[0][0];
+                int range = Math.Abs(PowerAxisStatus[0][1] - PowerAxisStatus[0][0]);
+                if (PowerAxisStatus[0][0] < PowerAxisStatus[0][1])
                 {
-                    pos = sliders[PowerAxises[0]] - PowerAxisStatus[0, 0];
+                    pos = sliders[PowerAxises[0]] - PowerAxisStatus[0][0];
                 }
                 prePowerNotch = (int)(((float)pos / range) * (maxStep - 1));
                 if (prePowerNotch < 0) prePowerNotch = 0;
@@ -174,7 +264,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             else
             {
-                for (int k = 0; k < PowerButtonStatus.GetLength(0); k++)
+                for (int k = 0; k < PowerButtonStatus.Count; k++)
                 {
                     int match = 0;
                     for (int i = 0; i < PowerButtons.Length; i++)
@@ -183,7 +273,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         {
                             return 0;
                         }
-                        if (buttons[PowerButtons[i]] == PowerButtonStatus[k, i])
+                        if (buttons[PowerButtons[i]] == PowerButtonStatus[k][i])
                         {
                             match++;
                         }
@@ -199,7 +289,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         {
                             int low = controller.GetSliderMinValue();
                             int high = controller.GetSliderMaxValue();
-                            int nowPowerAxis = PowerAxisStatus[k, i];
+                            int nowPowerAxis = PowerAxisStatus[k][i];
                             int index = PowerAxisUsedNumbers[i].IndexOf(nowPowerAxis);
                             if(index > 0)
                             {
@@ -216,7 +306,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         }
                         else
                         {
-                            if (sliders[PowerAxises[i]] == PowerAxisStatus[k, i])
+                            if (sliders[PowerAxises[i]] == PowerAxisStatus[k][i])
                             {
                                 match++;
                             }
@@ -274,13 +364,14 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             bool[] buttons = controller.GetButtonsSafe();
             int[] sliders = GetSliders(controller);
             if (buttons == null || sliders == null) return 0;
-            if (BreakAxises.Length != BreakAxisStatus.GetLength(1))
+            // 軸の値をそのまま使うモード
+            if (IsBreakUseRawAxisValueMode())
             {
-                int pos = -sliders[BreakAxises[0]] + BreakAxisStatus[0, 0];
-                int range = Math.Abs(BreakAxisStatus[0, 1] - BreakAxisStatus[0, 0]);
-                if (BreakAxisStatus[0, 0] < BreakAxisStatus[0, 1])
+                int pos = -sliders[BreakAxises[0]] + BreakAxisStatus[0][0];
+                int range = Math.Abs(BreakAxisStatus[0][1] - BreakAxisStatus[0][0]);
+                if (BreakAxisStatus[0][0] < BreakAxisStatus[0][1])
                 {
-                    pos = sliders[BreakAxises[0]] - BreakAxisStatus[0, 0];
+                    pos = sliders[BreakAxises[0]] - BreakAxisStatus[0][0];
                 }
                 preBreakNotch = (int)(((float)pos / range) * (maxStep - 1));
                 if (preBreakNotch < 0) preBreakNotch = 0;
@@ -288,12 +379,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             else
             {
-                for (int k = 0; k < BreakButtonStatus.GetLength(0); k++)
+                for (int k = 0; k < BreakButtonStatus.Count; k++)
                 {
                     int match = 0;
                     for (int i = 0; i < BreakButtons.Length; i++)
                     {
-                        if (buttons[BreakButtons[i]] == BreakButtonStatus[k, i])
+                        if (buttons[BreakButtons[i]] == BreakButtonStatus[k][i])
                         {
                             match++;
                         }
@@ -305,7 +396,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         {
                             int low = controller.GetSliderMinValue();
                             int high = controller.GetSliderMaxValue();
-                            int nowBreakAxis = BreakAxisStatus[k, i];
+                            int nowBreakAxis = BreakAxisStatus[k][i];
                             int index = BreakAxisUsedNumbers[i].IndexOf(nowBreakAxis);
                             if (index > 0)
                             {
@@ -322,7 +413,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         }
                         else
                         {
-                            if (sliders[BreakAxises[i]] == BreakAxisStatus[k, i])
+                            if (sliders[BreakAxises[i]] == BreakAxisStatus[k][i])
                             {
                                 match++;
                             }
@@ -398,33 +489,33 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         // コントローラーのボタンの重複を計算。重複時は前後のノッチから推測する
         public void CalcDuplicated()
         {
-            PowerDuplicated = new bool[PowerButtonStatus.GetLength(0)];
-            for (int l = 0; l < PowerButtonStatus.GetLength(0); l++)
+            PowerDuplicated = new bool[PowerButtonStatus.Count];
+            for (int l = 0; l < PowerButtonStatus.Count; l++)
             {
-                bool[] buttons = new bool[PowerButtonStatus.GetLength(1)];
+                bool[] buttons = new bool[PowerButtons.Length];
                 for (int k = 0; k < buttons.Length; k++)
                 {
-                    buttons[k] = PowerButtonStatus[l, k];
+                    buttons[k] = PowerButtonStatus[l][k];
                 }
                 int[] sliders = new int[PowerAxises.Length];
                 for (int k = 0; k < sliders.Length; k++)
                 {
-                    sliders[k] = PowerAxisStatus[l, k];
+                    sliders[k] = PowerAxisStatus[l][k];
                 }
-                for (int k = 0; k < PowerButtonStatus.GetLength(0); k++)
+                for (int k = 0; k < PowerButtonStatus.Count; k++)
                 {
                     if (k == l) continue;
                     int match = 0;
                     for (int i = 0; i < PowerButtons.Length; i++)
                     {
-                        if (PowerButtonStatus[k, i] == buttons[i])
+                        if (PowerButtonStatus[k][i] == buttons[i])
                         {
                             match++;
                         }
                     }
                     for (int i = 0; i < PowerAxises.Length; i++)
                     {
-                        if (PowerAxisStatus[k, i] == sliders[i])
+                        if (PowerAxisStatus[k][i] == sliders[i])
                         {
                             match++;
                         }
@@ -436,34 +527,34 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     }
                 }
             }
-            BreakDuplicated = new bool[BreakButtonStatus.GetLength(0)];
-            for (int l = 0; l < BreakButtonStatus.GetLength(0); l++)
+            BreakDuplicated = new bool[BreakButtonStatus.Count];
+            for (int l = 0; l < BreakButtonStatus.Count; l++)
             {
-                bool[] buttons = new bool[BreakButtonStatus.GetLength(1)];
+                bool[] buttons = new bool[BreakButtons.Length];
                 for (int k = 0;k < buttons.Length;k++)
                 {
-                    buttons[k] = BreakButtonStatus[l, k];
+                    buttons[k] = BreakButtonStatus[l][k];
                 }
-                int[] sliders = new int[BreakAxisStatus.GetLength(1)];
+                int[] sliders = new int[BreakAxises.Length];
                 for (int k = 0; k < sliders.Length; k++)
                 {
-                    sliders[k] = BreakAxisStatus[l, k];
+                    sliders[k] = BreakAxisStatus[l][k];
                 }
                 bool duplicated = false;
-                for (int k = 0; k < BreakButtonStatus.GetLength(0); k++)
+                for (int k = 0; k < BreakButtonStatus[l].Count; k++)
                 {
                     if (k == l) continue;
                     int match = 0;
                     for (int i = 0; i < BreakButtons.Length; i++)
                     {
-                        if (BreakButtonStatus[k, i] == buttons[i])
+                        if (BreakButtonStatus[k][i] == buttons[i])
                         {
                             match++;
                         }
                     }
                     for (int i = 0; i < BreakAxises.Length; i++)
                     {
-                        if (BreakAxisStatus[k, i] == sliders[i])
+                        if (BreakAxisStatus[k][i] == sliders[i])
                         {
                             match++;
                         }
@@ -478,28 +569,28 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             //使用済みの軸の値を取得
             //不正確モードで使用します
-            PowerAxisUsedNumbers = new ArrayList[PowerAxisStatus.GetLength(1)];
-            for(int i = 0;i < PowerAxisStatus.GetLength(1); i++)
+            PowerAxisUsedNumbers = new ArrayList[PowerAxises.Length];
+            for(int i = 0;i < PowerAxisUsedNumbers.Length; i++)
             {
                 PowerAxisUsedNumbers[i] = new ArrayList();
-                for(int k = 0;k < PowerAxisStatus.GetLength(0);k++)
+                for(int k = 0;k < PowerAxisStatus.Count;k++)
                 {
-                    if (!PowerAxisUsedNumbers[i].Contains(PowerAxisStatus[k, i]))
+                    if (!PowerAxisUsedNumbers[i].Contains(PowerAxisStatus[k][i]))
                     {
-                        PowerAxisUsedNumbers[i].Add(PowerAxisStatus[k, i]);
+                        PowerAxisUsedNumbers[i].Add(PowerAxisStatus[k][i]);
                     }
                 }
                 PowerAxisUsedNumbers[i].Sort();
             }
-            BreakAxisUsedNumbers = new ArrayList[BreakAxisStatus.GetLength(1)];
-            for (int i = 0; i < BreakAxisStatus.GetLength(1); i++)
+            BreakAxisUsedNumbers = new ArrayList[BreakAxises.Length];
+            for (int i = 0; i < BreakAxisUsedNumbers.Length; i++)
             {
                 BreakAxisUsedNumbers[i] = new ArrayList();
-                for (int k = 0; k < BreakAxisStatus.GetLength(0); k++)
+                for (int k = 0; k < BreakAxisStatus.Count; k++)
                 {
-                    if (!BreakAxisUsedNumbers[i].Contains(BreakAxisStatus[k, i]))
+                    if (!BreakAxisUsedNumbers[i].Contains(BreakAxisStatus[k][i]))
                     {
-                        BreakAxisUsedNumbers[i].Add(BreakAxisStatus[k, i]);
+                        BreakAxisUsedNumbers[i].Add(BreakAxisStatus[k][i]);
                     }
                 }
                 BreakAxisUsedNumbers[i].Sort();
@@ -511,6 +602,16 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return controller.GetReverser();
         }
 
+        private bool IsPowerUseRawAxisValueMode()
+        {
+            return PowerAxisStatus.Count > 0 && (PowerAxises.Length  != PowerAxisStatus[0].Count);
+        }
+
+        private bool IsBreakUseRawAxisValueMode()
+        {
+            return BreakAxisStatus.Count > 0 && (BreakAxises.Length != BreakAxisStatus[0].Count);
+        }
+
         public ControllerProfile Clone()
         {
             ControllerProfile profile = (ControllerProfile)MemberwiseClone();
@@ -520,7 +621,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (profile.PowerButtonStatus != null)
             {
-                profile.PowerButtonStatus = (bool[,])PowerButtonStatus.Clone();
+                profile.PowerButtonStatus = cloneList(PowerButtonStatus);
             }
             if (profile.PowerAxises != null)
             {
@@ -528,7 +629,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (profile.PowerAxisStatus != null)
             {
-                profile.PowerAxisStatus = (int[,])PowerAxisStatus.Clone();
+                profile.PowerAxisStatus = cloneList(PowerAxisStatus);
             }
             if (profile.BreakButtons != null)
             {
@@ -536,7 +637,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (profile.BreakButtonStatus != null)
             {
-                profile.BreakButtonStatus = (bool[,])BreakButtonStatus.Clone();
+                profile.BreakButtonStatus = cloneList(BreakButtonStatus);
             }
             if (profile.BreakAxises != null)
             {
@@ -544,7 +645,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (profile.BreakAxisStatus != null)
             {
-                profile.BreakAxisStatus = (int[,])BreakAxisStatus.Clone();
+                profile.BreakAxisStatus = cloneList(BreakAxisStatus);
             }
             if (profile.KeyMap != null)
             {
@@ -552,6 +653,21 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             profile.CalcDuplicated();
             return profile;
+        }
+        
+        private static List<List<T>> cloneList<T>(List<List<T>> list)
+        {
+            List<List<T>> result = new List<List<T>>(list.Count);
+            foreach (var item in list)
+            {
+                List<T> values = new List<T>(item.Count);
+                foreach (T value in item)
+                {
+                    values.Add(value);
+                }
+                result.Add(values);
+            }
+            return result;
         }
 
         public static void GetAllControllers()

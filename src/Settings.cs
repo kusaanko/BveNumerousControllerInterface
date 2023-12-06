@@ -2,29 +2,35 @@
 using System.Collections.Generic;
 using System;
 using System.Diagnostics;
-using Newtonsoft.Json;
 using System.Windows.Forms;
 using Kusaanko.Bvets.NumerousControllerInterface.Controller;
 using System.Text;
 using System.Security.Cryptography;
 using System.Reflection;
+using System.Xml.Serialization;
+using System.Runtime.Serialization;
+using System.Xml;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public class Settings
     {
-        private const string _filename = "Kusaanko.NumerousControllerInterface.json";
+        private const string _filename = "Kusaanko.NumerousControllerInterface.xml";
         private const string _profileDirectory = "Kusaanko.NumerousControllerInterface.Profiles\\";
         private const string _pluginDirectry = "Kusaanko.NumerousControllerInterface.Plugins\\";
         private string _directory = string.Empty;
 
-        [JsonIgnore]
+        [IgnoreDataMember]
         public Dictionary<string, ControllerProfile> Profiles = new Dictionary<string, ControllerProfile>();
+        [DataMember]
         public Dictionary<string, bool> IsEnabled = new Dictionary<string, bool>();
+        [DataMember]
         public Dictionary<string, string> ProfileMap = new Dictionary<string, string>();
-        [JsonIgnore]
+        [IgnoreDataMember]
         public List<string> removeProfilesList = new List<string>();
+        [DataMember]
         public bool AlertNoControllerFound;
+        [DataMember]
         public bool CheckUpdates;
 
         public Settings()
@@ -33,25 +39,25 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 ControllerProfile profile = new ControllerProfile("JC-PS101U PS用電車でGO!コントローラー(ワン,ツーハンドル)");
                 profile.IsTwoHandle = true;
                 profile.PowerAxises = new int[] { 21 };
-                profile.PowerAxisStatus = new int[,] {
+                profile.SetPowerAxisStatus(new int[,] {
                     { -1000 },
                     { 1000 },
                     { 1000 },
                     { -1000 },
                     { -1000 },
                     { -8 }
-                };
+                });
                 profile.PowerButtons = new int[] { 0 };
-                profile.PowerButtonStatus = new bool[,] {
+                profile.SetPowerButtonStatus(new bool[,] {
                     { false },
                     { true },
                     { false },
                     { true },
                     { false },
                     { true }
-                };
+                });
                 profile.BreakButtons = new int[] { 4, 5, 6, 7};
-                profile.BreakButtonStatus = new bool[,] { 
+                profile.SetBreakButtonStatus(new bool[,] { 
                     { true, true, false, true },
                     { false, true, true, true },
                     { false, true, false, true },
@@ -62,7 +68,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     { true, false, true, true },
                     { true, false, false, true },
                     { false, false, false, false }
-                };
+                });
                 profile.CalcDuplicated();
                 profile.KeyMap.Add(1, ButtonFeature.ReverserBackward);
                 profile.KeyMap.Add(2, ButtonFeature.ReverserForward);
@@ -186,18 +192,23 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             if (!Directory.Exists(_directory)) Directory.CreateDirectory(_directory);
 
-            string json = JsonConvert.SerializeObject(this);
-            using (FileStream fs = new FileStream(Path.Combine(_directory, _filename), FileMode.Create)) // ファイルを開く
+            // XMLに設定を保存
+            var settings = new XmlWriterSettings
             {
-                StreamWriter writer = new StreamWriter(fs);
-                writer.Write(json);
-                writer.Close();
+                Indent = true,
+                Encoding = new UTF8Encoding(false)
+            };
+
+            DataContractSerializer serializer = new DataContractSerializer(typeof(Settings));
+            using (XmlWriter writer = XmlWriter.Create(Path.Combine(_directory, _filename), settings))
+            {
+                serializer.WriteObject(writer, this);
             }
             if (!Directory.Exists(Path.Combine(_directory, _profileDirectory))) Directory.CreateDirectory(Path.Combine(_directory, _profileDirectory));
             foreach (string name in removeProfilesList)
             {
-                File.Delete(Path.Combine(_directory, _profileDirectory + name + ".json"));
-                File.Delete(Path.Combine(_directory, _profileDirectory + GetSHA256Hash(name) + ".json"));
+                File.Delete(Path.Combine(_directory, _profileDirectory + name + ".xml"));
+                File.Delete(Path.Combine(_directory, _profileDirectory + GetSHA256Hash(name) + ".xml"));
             }
             foreach (string name in Profiles.Keys)
             {
@@ -208,19 +219,23 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public void SaveProfileToXml(ControllerProfile profile)
         {
-            string json = JsonConvert.SerializeObject(profile);
 
-            using (FileStream fs = new FileStream(Path.Combine(_directory, _profileDirectory + GetSHA256Hash(profile.Name) + ".json"), FileMode.Create)) // ファイルを開く
+            var settings = new XmlWriterSettings
             {
-                StreamWriter writer = new StreamWriter(fs);
-                writer.Write(json);
-                writer.Close();
+                Indent = true,
+                Encoding = new UTF8Encoding(false)
+            };
+
+            DataContractSerializer serializer = new DataContractSerializer(typeof(ControllerProfile));
+            using (XmlWriter writer = XmlWriter.Create(Path.Combine(_directory, _profileDirectory + GetSHA256Hash(profile.Name) + ".xml"), settings))
+            {
+                serializer.WriteObject(writer, profile);
             }
         }
 
         public string GetProfileSavePath(ControllerProfile profile)
         {
-            return Path.Combine(_directory, _profileDirectory + GetSHA256Hash(profile.Name) + ".json");
+            return Path.Combine(_directory, _profileDirectory + GetSHA256Hash(profile.Name) + ".xml");
         }
 
         public string GetProfileDirectory()
@@ -230,11 +245,16 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public static Settings LoadFromXml(string directory)
         {
+            var xmlReaderSettings = new XmlReaderSettings();
+            
             Settings settings;
             try
             {
-                settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Path.Combine(directory, _filename)), new JsonSerializerSettings());
-
+                DataContractSerializer settingsSerializer = new DataContractSerializer(typeof(Settings));
+                using (XmlReader reader = XmlReader.Create(Path.Combine(directory, _filename), xmlReaderSettings))
+                {
+                    settings = (Settings) settingsSerializer.ReadObject(reader);
+                }
             }
             catch
             {
@@ -243,33 +263,43 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             settings._directory = directory;
             string key = "";
             if (!Directory.Exists(Path.Combine(directory, _profileDirectory))) Directory.CreateDirectory(Path.Combine(directory, _profileDirectory));
+
+            DataContractSerializer controllerProfileSerializer = new DataContractSerializer(typeof(ControllerProfile));
+
             foreach (string file in Directory.GetFiles(Path.Combine(directory, _profileDirectory)))
             {
-                if(file.EndsWith(".json"))
+                if(file.EndsWith(".xml"))
                 {
                     try
                     {
-                        ControllerProfile profile = JsonConvert.DeserializeObject<ControllerProfile>(File.ReadAllText(file));
-                        key = Path.GetFileNameWithoutExtension(file);
-                        if (settings.Profiles.ContainsKey(key))
+                        ControllerProfile profile;
+                        using (XmlReader writer = XmlReader.Create(file, xmlReaderSettings))
                         {
-                            settings.Profiles.Remove(key);
+                            profile = (ControllerProfile) controllerProfileSerializer.ReadObject(writer);
                         }
-                        if (profile.Name == null)
+                        if (profile != null)
                         {
-                            profile.Name = key;
+                            key = Path.GetFileNameWithoutExtension(file);
+                            if (settings.Profiles.ContainsKey(key))
+                            {
+                                settings.Profiles.Remove(key);
+                            }
+                            if (profile.Name == null)
+                            {
+                                profile.Name = key;
+                            }
+                            if (!key.Equals(GetSHA256Hash(key)))
+                            {
+                                File.Delete(Path.Combine(directory, _profileDirectory + key + ".xml"));
+                                settings.SaveProfileToXml(profile);
+                            }
+                            if (settings.Profiles.ContainsKey(profile.Name))
+                            {
+                                settings.Profiles.Remove(profile.Name);
+                            }
+                            settings.Profiles.Add(profile.Name, profile);
+                            profile.CalcDuplicated();
                         }
-                        if (!key.Equals(GetSHA256Hash(key)))
-                        {
-                            File.Delete(Path.Combine(directory, _profileDirectory + key + ".json"));
-                            settings.SaveProfileToXml(profile);
-                        }
-                        if (settings.Profiles.ContainsKey(profile.Name))
-                        {
-                            settings.Profiles.Remove(profile.Name);
-                        }
-                        settings.Profiles.Add(profile.Name, profile);
-                        profile.CalcDuplicated();
                     }
                     catch (Exception e)
                     {

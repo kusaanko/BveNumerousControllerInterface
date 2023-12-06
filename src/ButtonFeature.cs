@@ -1,22 +1,20 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
-    [JsonConverter(typeof(ButtonFeatureConverter))]
+    [DataContract]
     public class ButtonFeature
     {
-        public string Id { get; }
-        [JsonIgnore]
+        [DataMember]
+        public string Id;
         public int Axis { get; }
-        [JsonIgnore]
         public int Value { get; }
-        [JsonIgnore]
         public string Name { get; }
 
         public static Dictionary<string, ButtonFeature> Features = new Dictionary<string, ButtonFeature>();
@@ -99,46 +97,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             Axis = axis;
             Value = value;
             Name = name;
-        }
-    }
-
-    class ButtonFeatureConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return typeof(ButtonFeature).IsAssignableFrom(objectType);
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            object obj = serializer.Deserialize(reader);
-            if(obj.GetType() == typeof(Newtonsoft.Json.Linq.JArray))
-            {
-                Newtonsoft.Json.Linq.JArray array = (Newtonsoft.Json.Linq.JArray)obj;
-                int[] values = new int[]{ (int) array[0], (int) array[1] };
-                // リバーサーの値が間違っていたので修正する
-                if (values[0] == 0) values[1]--;
-                foreach(ButtonFeature feature in ButtonFeature.Features.Values)
-                {
-                    if(feature.Axis == values[0] && feature.Value == values[1])
-                    {
-                        return feature;
-                    }
-                }
-            }
-            if(obj.GetType() == typeof(string))
-            {
-                return ButtonFeature.Features[(string)obj];
-            }
-            return ButtonFeature.Ats0;
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            if (value.GetType() == typeof(ButtonFeature))
-            {
-                serializer.Serialize(writer, ((ButtonFeature)value).Id);
-            }
         }
     }
 }
