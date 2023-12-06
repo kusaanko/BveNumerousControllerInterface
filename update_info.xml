@@ -1,23 +1,35 @@
 <Root>
     <ReleaseUrl>https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases</ReleaseUrl>
-    <Target arch="32bit" dotnet=".net3.5">
-        <Latest>v0.11</Latest>
-        <Version>0.11</Version>
-        <IntVersion>12</IntVersion>
-        <Asset>NumerousControllerInterface_Bve5.zip</Asset>
-        <DownloadPage>https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.11</DownloadPage>
-        <ReleaseUrl>https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases/76816756</ReleaseUrl>
-        <DownloadUrl>https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.11/NumerousControllerInterface_Bve5.zip</DownloadUrl>
-        <Installer>install.bat &lt;installDir&gt; &lt;exeFile&gt;</Installer>
-    </Target>
-    <Target arch="64bit" dotnet=".net4">
-        <Latest>v0.11</Latest>
-        <Version>0.11</Version>
-        <IntVersion>12</IntVersion>
-        <Asset>NumerousControllerInterface_Bve6.zip</Asset>
-        <DownloadPage>https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.11</DownloadPage>
-        <ReleaseUrl>https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases/76816756</ReleaseUrl>
-        <DownloadUrl>https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.11/NumerousControllerInterface_Bve6.zip</DownloadUrl>
-        <Installer>install.bat &lt;installDir&gt; &lt;exeFile&gt;</Installer>
-    </Target>
+    <Targets>
+        <Target arch="32bit" dotnet=".net3.5">
+            <Latest>v0.11</Latest>
+            <Version>0.11</Version>
+            <IntVersion>12</IntVersion>
+            <Asset>NumerousControllerInterface_Bve5.zip</Asset>
+            <DownloadPage>https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.11</DownloadPage>
+            <ReleaseUrl>https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases/76816756</ReleaseUrl>
+            <DownloadUrl>https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.11/NumerousControllerInterface_Bve5.zip</DownloadUrl>
+            <Installer>install.bat &lt;installDir&gt; &lt;exeFile&gt;</Installer>
+        </Target>
+        <Target arch="64bit" dotnet=".net4">
+            <Latest>v0.11</Latest>
+            <Version>0.11</Version>
+            <IntVersion>12</IntVersion>
+            <Asset>NumerousControllerInterface_Bve6.zip</Asset>
+            <DownloadPage>https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.11</DownloadPage>
+            <ReleaseUrl>https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases/76816756</ReleaseUrl>
+            <DownloadUrl>https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.11/NumerousControllerInterface_Bve6.zip</DownloadUrl>
+            <Installer>install.bat &lt;installDir&gt; &lt;exeFile&gt;</Installer>
+        </Target>
+    </Targets>
+    <ReleaseNotes>
+        <Release>
+            <Title>0.11</Title>
+            <Context># 新機能\n* インストールスクリプトを使用した自動更新を追加</Context>
+        </Release>
+        <Release>
+            <Title>0.10</Title>
+            <Context># 新機能\n* プラグインに対応(試験的、開発者向け)\n* インストールスクリプトを追加# 修正\n* ブレーキがボタンと軸の組み合わせでボタンを持たないときにエラーになる問題を修正</Context>
+        </Release>
+    </ReleaseNotes>
 </Root>
