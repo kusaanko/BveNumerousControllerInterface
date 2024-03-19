@@ -17,6 +17,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
     {
         private const string _filename = "Kusaanko.NumerousControllerInterface.xml";
         private const string _profileDirectory = "Kusaanko.NumerousControllerInterface.Profiles\\";
+        private const string _COMSettingDirectory = "Kusaanko.NumerousControllerInterface.Profiles\\COMPort\\";
         private const string _pluginDirectry = "Kusaanko.NumerousControllerInterface.Plugins\\";
         private string _directory = string.Empty;
 
@@ -28,10 +29,20 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public Dictionary<string, string> ProfileMap = new Dictionary<string, string>();
         [IgnoreDataMember]
         public List<string> removeProfilesList = new List<string>();
+        [IgnoreDataMember]
+        public HashSet<string> removeCOMControllerProfilesList = new HashSet<string>();
         [DataMember]
         public bool AlertNoControllerFound;
         [DataMember]
         public bool CheckUpdates;
+        [IgnoreDataMember]
+        public Dictionary<string, COMControllerSettings> COMControllerSettings = new Dictionary<string, COMControllerSettings>();
+        [IgnoreDataMember]
+        public List<string> removeCOMSettingsList = new List<string>();
+        [DataMember]
+        public HashSet<string> EnabledComPorts = new HashSet<string>();
+        [DataMember]
+        public Dictionary<string, string> COMControllerSettingMap = new Dictionary<string, string>();
 
         public Settings()
         {
@@ -215,6 +226,17 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 ControllerProfile profile = Profiles[name];
                 SaveProfileToXml(profile);
             }
+            if (!Directory.Exists(Path.Combine(_directory, _COMSettingDirectory))) Directory.CreateDirectory(Path.Combine(_directory, _COMSettingDirectory));
+            foreach (string name in removeCOMSettingsList)
+            {
+                File.Delete(Path.Combine(_directory, _COMSettingDirectory + name + ".xml"));
+                File.Delete(Path.Combine(_directory, _COMSettingDirectory + GetSHA256Hash(name) + ".xml"));
+            }
+            foreach (string name in COMControllerSettings.Keys)
+            {
+                COMControllerSettings setting = COMControllerSettings[name];
+                SaveCOMSettingToXml(setting);
+            }
         }
 
         public void SaveProfileToXml(ControllerProfile profile)
@@ -243,6 +265,32 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return Path.Combine(_directory, _profileDirectory);
         }
 
+        public void SaveCOMSettingToXml(COMControllerSettings setting)
+        {
+
+            var settings = new XmlWriterSettings
+            {
+                Indent = true,
+                Encoding = new UTF8Encoding(false)
+            };
+
+            DataContractSerializer serializer = new DataContractSerializer(typeof(COMControllerSettings));
+            using (XmlWriter writer = XmlWriter.Create(Path.Combine(_directory, _COMSettingDirectory + GetSHA256Hash(setting.Name) + ".xml"), settings))
+            {
+                serializer.WriteObject(writer, setting);
+            }
+        }
+
+        public string GetCOMSettingSavePath(ControllerProfile profile)
+        {
+            return Path.Combine(_directory, _COMSettingDirectory + GetSHA256Hash(profile.Name) + ".xml");
+        }
+
+        public string GetCOMSettingDirectory()
+        {
+            return Path.Combine(_directory, _COMSettingDirectory);
+        }
+
         public static Settings LoadFromXml(string directory)
         {
             var xmlReaderSettings = new XmlReaderSettings();
@@ -263,7 +311,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             settings._directory = directory;
             string key = "";
             if (!Directory.Exists(Path.Combine(directory, _profileDirectory))) Directory.CreateDirectory(Path.Combine(directory, _profileDirectory));
+            if (!Directory.Exists(Path.Combine(directory, _COMSettingDirectory))) Directory.CreateDirectory(Path.Combine(directory, _COMSettingDirectory));
 
+            // プロファイル
             DataContractSerializer controllerProfileSerializer = new DataContractSerializer(typeof(ControllerProfile));
 
             foreach (string file in Directory.GetFiles(Path.Combine(directory, _profileDirectory)))
@@ -324,6 +374,62 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 MessageBox.Show(name + " のプロファイル " + settings.ProfileMap[name] + " が見つからなかったため " + key + "に変更しました。", "NumerousControllerInterface");
                 settings.ProfileMap[name] = key;
+            }
+            // COMポート
+            DataContractSerializer COMSettingSerializer = new DataContractSerializer(typeof(COMControllerSettings));
+
+            foreach (string file in Directory.GetFiles(Path.Combine(directory, _COMSettingDirectory)))
+            {
+                if (file.EndsWith(".xml"))
+                {
+                    try
+                    {
+                        COMControllerSettings setting;
+                        using (XmlReader writer = XmlReader.Create(file, xmlReaderSettings))
+                        {
+                            setting = (COMControllerSettings)COMSettingSerializer.ReadObject(writer);
+                        }
+                        if (setting != null)
+                        {
+                            key = Path.GetFileNameWithoutExtension(file);
+                            if (settings.COMControllerSettings.ContainsKey(key))
+                            {
+                                settings.COMControllerSettings.Remove(key);
+                            }
+                            if (setting.Name == null)
+                            {
+                                setting.Name = key;
+                            }
+                            if (!key.Equals(GetSHA256Hash(key)))
+                            {
+                                File.Delete(Path.Combine(directory, _COMSettingDirectory + key + ".xml"));
+                                settings.SaveCOMSettingToXml(setting);
+                            }
+                            if (settings.COMControllerSettings.ContainsKey(setting.Name))
+                            {
+                                settings.COMControllerSettings.Remove(setting.Name);
+                            }
+                            settings.COMControllerSettings.Add(setting.Name, setting);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("プロファイルの読み込みに失敗しました。\n" + file + "\n" + e.Message, "NumerousControllerInterface");
+                    }
+                }
+            }
+            changeList = new List<string>();
+            foreach (string name in settings.COMControllerSettingMap.Keys)
+            {
+                if (!settings.COMControllerSettings.ContainsKey(settings.COMControllerSettingMap[name]))
+                {
+                    changeList.Add(name);
+                }
+            }
+            foreach (string name in changeList)
+            {
+                MessageBox.Show(name + " のプロファイル " + settings.COMControllerSettingMap[name] + " が見つからなかったためプロファイルを無効化しました。", "NumerousControllerInterface");
+                settings.COMControllerSettingMap.Remove(name);
             }
             // プラグイン
             if (NumerousControllerInterface.Plugins.Count == 0)

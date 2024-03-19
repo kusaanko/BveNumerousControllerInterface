@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Kusaanko.Bvets.NumerousControllerInterface.Controller;
+using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Threading;
 using System.Diagnostics;
-using Kusaanko.Bvets.NumerousControllerInterface.Controller;
 using System.IO;
+using System.IO.Ports;
+using System.Runtime;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
@@ -50,6 +52,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             timer1.Start();
             alertNoCountrollerFoundCheckBox.Checked = NumerousControllerInterface.SettingsInstance.AlertNoControllerFound;
             checkUpdatesCheckBox.Checked = NumerousControllerInterface.SettingsInstance.CheckUpdates;
+            setComPortEnabled(false);
         }
 
         public void updateControllers()
@@ -64,6 +67,20 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             updateProfile();
             setEnabled(false);
+            // COMポートを更新
+            availableComPortList.Items.Clear();
+            usingComPortList.Items.Clear();
+            foreach (string port in SerialPort.GetPortNames())
+            {
+                if (NumerousControllerInterface.SettingsInstance.EnabledComPorts.Contains(port))
+                {
+                    usingComPortList.Items.Add(port);
+                } else
+                {
+                    availableComPortList.Items.Add(port);
+                }
+            }
+            updateCOMControllerSettings();
             timer1.Start();
         }
 
@@ -76,6 +93,16 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             duplicateProfileButton.Enabled = enabled;
             removeProfileButton.Enabled = enabled;
             settingsTabControl.Enabled = enabled;
+        }
+
+        private void setComPortEnabled(bool enabled)
+        {
+            comPortProfileComboBox.Enabled = enabled;
+            comPortNewProfileButton.Enabled = enabled;
+            comPortChangeProfileNameButton.Enabled = enabled;
+            comPortDuplicateProfileButton.Enabled = enabled;
+            comPortDeleteProfileButton.Enabled = enabled;
+            comPortNotSupportedCheckBox.Enabled = enabled;
         }
 
         private void selectDropDownList(ComboBox list, ButtonFeature assign)
@@ -151,6 +178,74 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             loadFromProfile();
             loadControllerEnabled();
             controllerTypeLabel.Text = this.resources.GetString("controllerTypeLabel.Text") + GetController().GetControllerType();
+        }
+        private void updateCOMControllerSettings()
+        {
+            comPortProfileComboBox.Items.Clear();
+            foreach (string name in NumerousControllerInterface.SettingsInstance.COMControllerSettings.Keys)
+            {
+                comPortProfileComboBox.Items.Add(name);
+            }
+        }
+
+        private void selectCOMControllerSettings(string settings)
+        {
+            if (settings == null)
+            {
+                comPortProfileComboBox.SelectedIndex = -1;
+            } else
+            {
+                for (int i = 0; i < comPortProfileComboBox.Items.Count; i++)
+                {
+                    if (settings.Equals(comPortProfileComboBox.Items[i]))
+                    {
+                        comPortProfileComboBox.SelectedIndex = i;
+                    }
+                }
+            }
+            loadFromCOMControllerSettings();
+            setComPortEnabled(true);
+        }
+
+        private void loadFromCOMControllerSettings()
+        {
+            if (comPortProfileComboBox.SelectedIndex != -1)
+            {
+                COMControllerSettings settings = NumerousControllerInterface.SettingsInstance.COMControllerSettings[comPortProfileComboBox.SelectedItem.ToString()];
+                comPortDtrCheckBox.Checked = settings.DtrEnable;
+                comPortRtsCheckBox.Checked = settings.RtsEnable;
+                comPortNotSupportedCheckBox.Checked = settings.IsNotSupported;
+                selectCOMPortBaudRate(settings.BaudRate);
+
+                comPortDtrCheckBox.Enabled = true;
+                comPortRtsCheckBox.Enabled = true;
+                comPortBaudRateComboBox.Enabled = true;
+                comPortNotSupportedCheckBox.Enabled = true;
+            } else
+            {
+                comPortDtrCheckBox.Enabled = false;
+                comPortRtsCheckBox.Enabled = false;
+                comPortBaudRateComboBox.Enabled = false;
+                comPortNotSupportedCheckBox.Enabled = false;
+            }
+        }
+
+        private void selectCOMPortBaudRate(int baudRate)
+        {
+            foreach (string rate in comPortBaudRateComboBox.Items)
+            {
+                if (rate == baudRate + "")
+                {
+                    comPortBaudRateComboBox.SelectedItem = baudRate + "";
+                }
+            }
+        }
+
+        private COMControllerSettings GetCOMControllerSettings()
+        {
+            Debug.WriteLine(comPortProfileComboBox.SelectedItem.ToString());
+            if (!NumerousControllerInterface.SettingsInstance.COMControllerSettings.ContainsKey(comPortProfileComboBox.SelectedItem.ToString())) return null;
+            return NumerousControllerInterface.SettingsInstance.COMControllerSettings[comPortProfileComboBox.SelectedItem.ToString()];
         }
 
         private ControllerProfile GetProfile()
@@ -551,8 +646,301 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private void comPortNotSupportedCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             bool enabled = comPortNotSupportedCheckBox.Checked;
-            comPortDataGridView1.Enabled = enabled;
             comPortTabControl.Enabled = enabled;
+        }
+
+        private void comportUseButton_Click(object sender, EventArgs e)
+        {
+            if (availableComPortList.SelectedIndex < 0) return;
+            NumerousControllerInterface.SettingsInstance.EnabledComPorts.Add(availableComPortList.SelectedItem.ToString());
+            if (!NumerousControllerInterface.SettingsInstance.COMControllerSettingMap.ContainsKey(availableComPortList.SelectedItem.ToString()))
+            {
+                string name = availableComPortList.SelectedItem.ToString();
+                if (NumerousControllerInterface.SettingsInstance.COMControllerSettings.ContainsKey(name))
+                {
+                    int i = 1;
+                    while (true)
+                    {
+                        if (NumerousControllerInterface.SettingsInstance.COMControllerSettings.ContainsKey(name + i))
+                        {
+                            i++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    name = name + i;
+                    COMControllerSettings settings = new COMControllerSettings();
+                    settings.Name = name;
+                    NumerousControllerInterface.SettingsInstance.COMControllerSettings.Add(name, settings);
+                    NumerousControllerInterface.SettingsInstance.COMControllerSettingMap.Add(availableComPortList.SelectedItem.ToString(), name);
+                }
+
+            }
+            updateControllers();
+        }
+
+        private void comPortDeleteButton_Click(object sender, EventArgs e)
+        {
+            if (usingComPortList.SelectedIndex < 0) return;
+            NumerousControllerInterface.SettingsInstance.EnabledComPorts.Remove(usingComPortList.SelectedItem.ToString());
+            NumerousControllerInterface.SettingsInstance.COMControllerSettingMap.Remove(usingComPortList.SelectedItem.ToString());
+            updateControllers();
+        }
+
+        private void comPortNewProfileButton_Click(object sender, EventArgs e)
+        {
+            string name = "無名のプロファイル";
+            int i = 1;
+            while (true)
+            {
+                if (NumerousControllerInterface.SettingsInstance.COMControllerSettings.ContainsKey(name + i))
+                {
+                    i++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            name = name + i;
+            using (NewNameDialog dialog = new NewNameDialog(name, (s) =>
+            {
+                if (NumerousControllerInterface.SettingsInstance.COMControllerSettings.ContainsKey(s))
+                {
+                    MessageBox.Show(s + "はすでに存在します。別の名前にして下さい。");
+                    return false;
+                }
+                else
+                {
+                    COMControllerSettings settings = new COMControllerSettings();
+                    settings.Name = s;
+                    NumerousControllerInterface.SettingsInstance.COMControllerSettings.Add(s, settings);
+                    NumerousControllerInterface.SettingsInstance.COMControllerSettingMap.Add(usingComPortList.Text, s);
+                }
+                updateCOMControllerSettings();
+                selectCOMControllerSettings(s);
+                COMController.IsUpdateNeeded = true;
+                return true;
+            }))
+            {
+                dialog.ShowDialog(this);
+            }
+        }
+
+        private void comPortChangeProfileNameButton_Click(object sender, EventArgs e)
+        {
+            string oldName = comPortProfileComboBox.Text;
+            using (NewNameDialog dialog = new NewNameDialog(comPortProfileComboBox.Text, (s) =>
+            {
+                if (NumerousControllerInterface.SettingsInstance.COMControllerSettings.ContainsKey(s))
+                {
+                    MessageBox.Show(s + "はすでに存在します。別の名前にして下さい。");
+                    return false;
+                }
+                else
+                {
+                    COMControllerSettings settings = GetCOMControllerSettings();
+                    settings.Name = s;
+                    if (!NumerousControllerInterface.SettingsInstance.removeCOMControllerProfilesList.Contains(oldName)) NumerousControllerInterface.SettingsInstance.removeCOMControllerProfilesList.Add(oldName);
+                    NumerousControllerInterface.SettingsInstance.COMControllerSettings.Remove(oldName);
+                    NumerousControllerInterface.SettingsInstance.COMControllerSettings.Add(s, settings);
+                    List<string> changeNames = new List<string>();
+                    foreach (string key in NumerousControllerInterface.SettingsInstance.COMControllerSettingMap.Keys)
+                    {
+                        if (NumerousControllerInterface.SettingsInstance.COMControllerSettingMap[key].Equals(oldName))
+                        {
+                            changeNames.Add(key);
+                        }
+                    }
+                    foreach (string key in changeNames)
+                    {
+                        NumerousControllerInterface.SettingsInstance.COMControllerSettingMap[key] = s;
+                    }
+                    NumerousControllerInterface.SettingsInstance.removeCOMControllerProfilesList.Remove(s);
+                    updateCOMControllerSettings();
+                    selectCOMControllerSettings(s);
+                    COMController.IsUpdateNeeded = true;
+                }
+                return true;
+            }))
+            {
+                dialog.ShowDialog(this);
+            }
+        }
+
+        private void usingComPortList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (usingComPortList.SelectedIndex != -1)
+            {
+                setComPortEnabled(true);
+                if (NumerousControllerInterface.SettingsInstance.COMControllerSettingMap.ContainsKey(usingComPortList.SelectedItem.ToString()))
+                {
+                    selectCOMControllerSettings(NumerousControllerInterface.SettingsInstance.COMControllerSettingMap[usingComPortList.SelectedItem.ToString()]);
+                } else
+                {
+                    selectCOMControllerSettings(null);
+                }
+            }
+        }
+
+        private void comPortApplyButton_Click(object sender, EventArgs e)
+        {
+            if (usingComPortList.SelectedIndex != -1)
+            {
+                COMController.StopCOMPort(usingComPortList.SelectedItem.ToString());
+            }
+        }
+
+        private void comPortBaudRateComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            COMControllerSettings settings = GetCOMControllerSettings();
+            if (settings != null && comPortBaudRateComboBox.SelectedItem != null)
+            {
+                try
+                {
+                    settings.BaudRate = Convert.ToInt32(comPortBaudRateComboBox.SelectedItem.ToString());
+                }
+                catch { }
+            }
+        }
+
+        private void comPortDtrCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            COMControllerSettings settings = GetCOMControllerSettings();
+            if (settings != null)
+            {
+                settings.DtrEnable = comPortDtrCheckBox.Checked;
+            }
+        }
+
+        private void comPortRtsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            COMControllerSettings settings = GetCOMControllerSettings();
+            if (settings != null)
+            {
+                settings.RtsEnable = comPortRtsCheckBox.Checked;
+            }
+        }
+
+        private void comPortOnInitTextBox_TextChanged(object sender, EventArgs e)
+        {
+            COMControllerSettings settings = GetCOMControllerSettings();
+            if (settings != null)
+            {
+                settings.OnInit = comPortOnInitTextBox.Text;
+            }
+        }
+
+        private void comPortInputReplaceTextBox_TextChanged(object sender, EventArgs e)
+        {
+            COMControllerSettings settings = GetCOMControllerSettings();
+            if (settings != null)
+            {
+                if (settings.InputCommandReplaceDictionary == null)
+                {
+                    settings.InputCommandReplaceDictionary = new Dictionary<string, string>();
+                }
+                settings.InputCommandReplaceDictionary.Clear();
+                // 置換をパース
+                foreach (string line in comPortInputReplaceTextBox.Lines)
+                {
+                    if (line.Length > 0 && line.Contains("="))
+                    {
+                        string target = line.Substring(0, line.IndexOf("="));
+                        string value = line.Substring(line.IndexOf("=") + 1);
+                        settings.InputCommandReplaceDictionary.Add(target, value);
+                    }
+                }
+            }
+        }
+
+        private void comPortOutputReplaceTextBox_TextChanged(object sender, EventArgs e)
+        {
+            COMControllerSettings settings = GetCOMControllerSettings();
+            if (settings != null)
+            {
+                if (settings.OutputCommandReplaceDictionary == null)
+                {
+                    settings.OutputCommandReplaceDictionary = new Dictionary<string, string>();
+                }
+                settings.OutputCommandReplaceDictionary.Clear();
+                // 置換をパース
+                foreach (string line in comPortOutputReplaceTextBox.Lines)
+                {
+                    if (line.Length > 0 && line.Contains("="))
+                    {
+                        string target = line.Substring(0, line.IndexOf("="));
+                        string value = line.Substring(line.IndexOf("=") + 1);
+                        settings.OutputCommandReplaceDictionary.Add(target, value);
+                    }
+                }
+            }
+        }
+
+        private void comPortProfileComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (availableComPortList.SelectedItem != null)
+            {
+                NumerousControllerInterface.SettingsInstance.COMControllerSettingMap.Add(availableComPortList.SelectedItem.ToString(), comPortProfileComboBox.SelectedItem.ToString());
+                loadFromCOMControllerSettings();
+                setComPortEnabled(true);
+            }
+        }
+
+        private void comPortDuplicateProfileButton_Click(object sender, EventArgs e)
+        {
+            if (comPortProfileComboBox.SelectedItem != null)
+            {
+                using (NewNameDialog dialog = new NewNameDialog(comPortProfileComboBox.SelectedItem.ToString(), (s) =>
+                {
+                    if (NumerousControllerInterface.SettingsInstance.COMControllerSettings.ContainsKey(s))
+                    {
+                        MessageBox.Show(s + "はすでに存在します。別の名前にして下さい。");
+                        return false;
+                    }
+                    else
+                    {
+                        COMControllerSettings newProfile = GetCOMControllerSettings().Clone();
+                        newProfile.Name = s;
+                        NumerousControllerInterface.SettingsInstance.COMControllerSettings.Add(s, newProfile);
+                        updateCOMControllerSettings();
+                        selectCOMControllerSettings(s);
+                    }
+                    return true;
+                }))
+                {
+                    dialog.ShowDialog(this);
+                }
+            }
+        }
+
+        private void comPortDeleteProfileButton_Click(object sender, EventArgs e)
+        {
+            if (comPortProfileComboBox.SelectedItem != null)
+            {
+                string name = comPortProfileComboBox.SelectedItem.ToString();
+                if (MessageBox.Show("本当に " + name + " を削除しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    NumerousControllerInterface.SettingsInstance.COMControllerSettings.Remove(name);
+                    List<string> removeNames = new List<string>();
+                    foreach (string key in NumerousControllerInterface.SettingsInstance.COMControllerSettingMap.Keys)
+                    {
+                        if (NumerousControllerInterface.SettingsInstance.COMControllerSettingMap[key].Equals(name))
+                        {
+                            removeNames.Add(key);
+                        }
+                    }
+                    foreach (string key in removeNames)
+                    {
+                        NumerousControllerInterface.SettingsInstance.COMControllerSettingMap.Remove(key);
+                    }
+                    if (!NumerousControllerInterface.SettingsInstance.removeCOMSettingsList.Contains(name)) NumerousControllerInterface.SettingsInstance.removeCOMSettingsList.Add(name);
+                    updateCOMControllerSettings();
+                    profileComboBox.SelectedIndex = -1;
+                }
+            }
         }
     }
 }

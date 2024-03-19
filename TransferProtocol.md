@@ -1,5 +1,5 @@
 # NumerousControllerInterface通信規格
-NumerousControllerInterfaceでは、NumerousControllerInterface独自のフォーマットを用いてBveを操作できます。
+NumerousControllerInterfaceでは、NumerousControllerInterface独自のフォーマットを用いてBVEを操作できます。
 
 また、コントローラーごとに設定を用意していただくことでNumerousControllerInterfaceと違ったフォーマットのコントローラーも使用していただけます。
 
@@ -7,10 +7,10 @@ NumerousControllerInterfaceでは、NumerousControllerInterface独自のフォ�
 
 頑張れば運転台すべてをUSB一本で接続できるという感じです。
 
-今後Bveからの情報取得にも対応予定。
+今後BVEからの情報取得にも対応予定。
 
 # COMポートについて
-COMポートでは通信速度は`9600kbps`です。
+COMポートではデフォルトの通信速度は`9600kbps`です。
 
 # NumerousControllerInterface通信規格
 すべてのコマンドの最後には`\n`を使用して区切ります。様々なコントローラーに対応するため、`\r`や`\r\n`にも対応していますが、基本`\n`でお願いします。
@@ -39,6 +39,7 @@ NCIHasReverser [True/False]
 NCIButtons ボタン数
 NCIButtonNames ボタン0の名前,ボタン1の名前,ボタン2の名前...
 NCIButtonName ボタンのインデックス,ボタンの名前
+NCINeedEmptyRequest [True/False]
 NCIInitEnd
 ```
 これらのコマンドを送信してください。
@@ -65,6 +66,9 @@ NCIInitEnd
 
 ### NCIButtonName
 ボタン名です。必須ではありません。ボタンのインデックスを使用して名前を指定できます。
+
+### NCINeedEmptyRequest
+毎回フレーム要求を何か読み取る必要があるコントローラーの場合にNCINoneという意味のない文字列を毎フレーム送信します。Trueでこの機能を有効化します。
 
 ### NCIInitEnd
 このコマンドでNumerousControllerInterfaceはコントローラーを認識します。このコマンドが一定時間送られないとコントローラーの認識プロセスを中断します。
@@ -96,7 +100,13 @@ NCIReverser [F/C/B]
 ```
 NCIButton ボタンのインデックス/名前,[True/False]
 ```
-ボタンのインデックスまたは名前を指定します。Trueでオン、Falseでオフです。
+```
+NCIButton ボタンのインデックス/名前,[true/false]
+```
+```
+NCIButton ボタンのインデックス/名前,[1/0]
+```
+ボタンのインデックスまたは名前を指定します。True/true/1でオン、False/false/0でオフです。C言語のbool値判定のように、0以外はすべてTrueとみなされます。
 
 例
 ```
@@ -117,10 +127,4 @@ NCIButton A,False
 レスポンス
 ```
 NCIExit
-```
-
-## 終了
-リクエスト
-```
-NCIClose
 ```

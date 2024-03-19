@@ -9,6 +9,7 @@ using System.Runtime.Serialization;
 using LibUsbDotNet;
 using Kusaanko.Bvets.NumerousControllerInterface.Controller;
 using static Kusaanko.Bvets.NumerousControllerInterface.Controller.NCIController;
+using System.IO.Ports;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
@@ -71,6 +72,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private int preBreakNotch;
         private static int s_preDirectInputCount = -1;
         private static int s_preUsbCount = -1;
+        private static int s_preComPortCount = -1;
 
         public static List<NCIController> controllers = new List<NCIController>();
 
@@ -675,7 +677,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             bool update = false;
             int directInputCount = NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly).Count;
             if (directInputCount != s_preDirectInputCount || 
-                UsbDevice.AllDevices.Count != s_preUsbCount) update = true;
+                UsbDevice.AllDevices.Count != s_preUsbCount ||
+                COMController.GetCounterForUpdateControllerList() != s_preComPortCount) update = true;
             if (update)
             {
                 foreach (NCIController controller in controllers)
@@ -686,6 +689,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 controllers.AddRange(DIJoystick.Get());
                 controllers.AddRange(PS2DenshadeGoType2.Get());
                 controllers.AddRange(MultiTrainController.Get());
+                controllers.AddRange(COMController.Get());
                 foreach (NumerousControllerPlugin plugin in NumerousControllerInterface.Plugins)
                 {
                     controllers.AddRange(plugin.GetAllControllers());
@@ -693,10 +697,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             s_preDirectInputCount = directInputCount;
             s_preUsbCount = UsbDevice.AllDevices.Count;
+            s_preComPortCount = COMController.GetCounterForUpdateControllerList();
         }
 
         public static void DisposeAllControllers()
         {
+            COMController.DisposeAll();
             foreach (NCIController controller in controllers)
             {
                 controller.Dispose();

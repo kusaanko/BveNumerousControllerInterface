@@ -81,17 +81,26 @@
             this.showLoadedPlugins = new System.Windows.Forms.Button();
             this.pluginConfigComboBox = new System.Windows.Forms.ComboBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.comPortApplyButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.comPortSettingGroupBox = new System.Windows.Forms.GroupBox();
+            this.comPortBaudRateComboBox = new System.Windows.Forms.ComboBox();
+            this.comPortDuplicateProfileButton = new System.Windows.Forms.Button();
+            this.comPortChangeProfileNameButton = new System.Windows.Forms.Button();
+            this.comPortDeleteProfileButton = new System.Windows.Forms.Button();
+            this.comPortNewProfileButton = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comPortProfileComboBox = new System.Windows.Forms.ComboBox();
+            this.comPortRtsCheckBox = new System.Windows.Forms.CheckBox();
+            this.comPortDtrCheckBox = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.comPortTabControl = new System.Windows.Forms.TabControl();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.comPortOnInitTextBox = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.comPortInputReplaceTextBox = new System.Windows.Forms.TextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.comPortOutputReplaceTextBox = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comPortDataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comPropertyKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comPropertyValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comPortNotSupportedCheckBox = new System.Windows.Forms.CheckBox();
             this.comPortDeleteButton = new System.Windows.Forms.Button();
             this.comportUseButton = new System.Windows.Forms.Button();
@@ -111,9 +120,9 @@
             this.tabPage6.SuspendLayout();
             this.comPortSettingGroupBox.SuspendLayout();
             this.comPortTabControl.SuspendLayout();
+            this.tabPage9.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comPortDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // okButton
@@ -489,6 +498,7 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.comPortApplyButton);
             this.tabPage6.Controls.Add(this.label5);
             this.tabPage6.Controls.Add(this.comPortSettingGroupBox);
             this.tabPage6.Controls.Add(this.comPortDeleteButton);
@@ -501,6 +511,13 @@
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // comPortApplyButton
+            // 
+            resources.ApplyResources(this.comPortApplyButton, "comPortApplyButton");
+            this.comPortApplyButton.Name = "comPortApplyButton";
+            this.comPortApplyButton.UseVisualStyleBackColor = true;
+            this.comPortApplyButton.Click += new System.EventHandler(this.comPortApplyButton_Click);
+            // 
             // label5
             // 
             resources.ApplyResources(this.label5, "label5");
@@ -508,21 +525,130 @@
             // 
             // comPortSettingGroupBox
             // 
+            this.comPortSettingGroupBox.Controls.Add(this.comPortBaudRateComboBox);
+            this.comPortSettingGroupBox.Controls.Add(this.comPortDuplicateProfileButton);
+            this.comPortSettingGroupBox.Controls.Add(this.comPortChangeProfileNameButton);
+            this.comPortSettingGroupBox.Controls.Add(this.comPortDeleteProfileButton);
+            this.comPortSettingGroupBox.Controls.Add(this.comPortNewProfileButton);
+            this.comPortSettingGroupBox.Controls.Add(this.label8);
+            this.comPortSettingGroupBox.Controls.Add(this.comPortProfileComboBox);
+            this.comPortSettingGroupBox.Controls.Add(this.comPortRtsCheckBox);
+            this.comPortSettingGroupBox.Controls.Add(this.comPortDtrCheckBox);
+            this.comPortSettingGroupBox.Controls.Add(this.label7);
             this.comPortSettingGroupBox.Controls.Add(this.comPortTabControl);
-            this.comPortSettingGroupBox.Controls.Add(this.label6);
-            this.comPortSettingGroupBox.Controls.Add(this.comPortDataGridView1);
             this.comPortSettingGroupBox.Controls.Add(this.comPortNotSupportedCheckBox);
             resources.ApplyResources(this.comPortSettingGroupBox, "comPortSettingGroupBox");
             this.comPortSettingGroupBox.Name = "comPortSettingGroupBox";
             this.comPortSettingGroupBox.TabStop = false;
             // 
+            // comPortBaudRateComboBox
+            // 
+            this.comPortBaudRateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comPortBaudRateComboBox.FormattingEnabled = true;
+            this.comPortBaudRateComboBox.Items.AddRange(new object[] {
+            resources.GetString("comPortBaudRateComboBox.Items"),
+            resources.GetString("comPortBaudRateComboBox.Items1"),
+            resources.GetString("comPortBaudRateComboBox.Items2"),
+            resources.GetString("comPortBaudRateComboBox.Items3"),
+            resources.GetString("comPortBaudRateComboBox.Items4"),
+            resources.GetString("comPortBaudRateComboBox.Items5"),
+            resources.GetString("comPortBaudRateComboBox.Items6"),
+            resources.GetString("comPortBaudRateComboBox.Items7"),
+            resources.GetString("comPortBaudRateComboBox.Items8"),
+            resources.GetString("comPortBaudRateComboBox.Items9"),
+            resources.GetString("comPortBaudRateComboBox.Items10"),
+            resources.GetString("comPortBaudRateComboBox.Items11"),
+            resources.GetString("comPortBaudRateComboBox.Items12"),
+            resources.GetString("comPortBaudRateComboBox.Items13"),
+            resources.GetString("comPortBaudRateComboBox.Items14")});
+            resources.ApplyResources(this.comPortBaudRateComboBox, "comPortBaudRateComboBox");
+            this.comPortBaudRateComboBox.Name = "comPortBaudRateComboBox";
+            this.comPortBaudRateComboBox.SelectedIndexChanged += new System.EventHandler(this.comPortBaudRateComboBox_SelectedIndexChanged);
+            // 
+            // comPortDuplicateProfileButton
+            // 
+            resources.ApplyResources(this.comPortDuplicateProfileButton, "comPortDuplicateProfileButton");
+            this.comPortDuplicateProfileButton.Name = "comPortDuplicateProfileButton";
+            this.comPortDuplicateProfileButton.UseVisualStyleBackColor = true;
+            this.comPortDuplicateProfileButton.Click += new System.EventHandler(this.comPortDuplicateProfileButton_Click);
+            // 
+            // comPortChangeProfileNameButton
+            // 
+            resources.ApplyResources(this.comPortChangeProfileNameButton, "comPortChangeProfileNameButton");
+            this.comPortChangeProfileNameButton.Name = "comPortChangeProfileNameButton";
+            this.comPortChangeProfileNameButton.UseVisualStyleBackColor = true;
+            this.comPortChangeProfileNameButton.Click += new System.EventHandler(this.comPortChangeProfileNameButton_Click);
+            // 
+            // comPortDeleteProfileButton
+            // 
+            resources.ApplyResources(this.comPortDeleteProfileButton, "comPortDeleteProfileButton");
+            this.comPortDeleteProfileButton.Name = "comPortDeleteProfileButton";
+            this.comPortDeleteProfileButton.UseVisualStyleBackColor = true;
+            this.comPortDeleteProfileButton.Click += new System.EventHandler(this.comPortDeleteProfileButton_Click);
+            // 
+            // comPortNewProfileButton
+            // 
+            resources.ApplyResources(this.comPortNewProfileButton, "comPortNewProfileButton");
+            this.comPortNewProfileButton.Name = "comPortNewProfileButton";
+            this.comPortNewProfileButton.UseVisualStyleBackColor = true;
+            this.comPortNewProfileButton.Click += new System.EventHandler(this.comPortNewProfileButton_Click);
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // comPortProfileComboBox
+            // 
+            this.comPortProfileComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comPortProfileComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.comPortProfileComboBox, "comPortProfileComboBox");
+            this.comPortProfileComboBox.Name = "comPortProfileComboBox";
+            this.comPortProfileComboBox.SelectedIndexChanged += new System.EventHandler(this.comPortProfileComboBox_SelectedIndexChanged);
+            // 
+            // comPortRtsCheckBox
+            // 
+            resources.ApplyResources(this.comPortRtsCheckBox, "comPortRtsCheckBox");
+            this.comPortRtsCheckBox.Name = "comPortRtsCheckBox";
+            this.comPortRtsCheckBox.UseVisualStyleBackColor = true;
+            this.comPortRtsCheckBox.CheckedChanged += new System.EventHandler(this.comPortRtsCheckBox_CheckedChanged);
+            // 
+            // comPortDtrCheckBox
+            // 
+            resources.ApplyResources(this.comPortDtrCheckBox, "comPortDtrCheckBox");
+            this.comPortDtrCheckBox.Checked = true;
+            this.comPortDtrCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.comPortDtrCheckBox.Name = "comPortDtrCheckBox";
+            this.comPortDtrCheckBox.UseVisualStyleBackColor = true;
+            this.comPortDtrCheckBox.CheckedChanged += new System.EventHandler(this.comPortDtrCheckBox_CheckedChanged);
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
             // comPortTabControl
             // 
+            this.comPortTabControl.Controls.Add(this.tabPage9);
             this.comPortTabControl.Controls.Add(this.tabPage7);
             this.comPortTabControl.Controls.Add(this.tabPage8);
             resources.ApplyResources(this.comPortTabControl, "comPortTabControl");
             this.comPortTabControl.Name = "comPortTabControl";
             this.comPortTabControl.SelectedIndex = 0;
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Controls.Add(this.comPortOnInitTextBox);
+            resources.ApplyResources(this.tabPage9, "tabPage9");
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // comPortOnInitTextBox
+            // 
+            this.comPortOnInitTextBox.AcceptsReturn = true;
+            resources.ApplyResources(this.comPortOnInitTextBox, "comPortOnInitTextBox");
+            this.comPortOnInitTextBox.Name = "comPortOnInitTextBox";
+            this.comPortOnInitTextBox.TextChanged += new System.EventHandler(this.comPortOnInitTextBox_TextChanged);
             // 
             // tabPage7
             // 
@@ -536,6 +662,7 @@
             this.comPortInputReplaceTextBox.AcceptsReturn = true;
             resources.ApplyResources(this.comPortInputReplaceTextBox, "comPortInputReplaceTextBox");
             this.comPortInputReplaceTextBox.Name = "comPortInputReplaceTextBox";
+            this.comPortInputReplaceTextBox.TextChanged += new System.EventHandler(this.comPortInputReplaceTextBox_TextChanged);
             // 
             // tabPage8
             // 
@@ -549,33 +676,7 @@
             this.comPortOutputReplaceTextBox.AcceptsReturn = true;
             resources.ApplyResources(this.comPortOutputReplaceTextBox, "comPortOutputReplaceTextBox");
             this.comPortOutputReplaceTextBox.Name = "comPortOutputReplaceTextBox";
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            // 
-            // comPortDataGridView1
-            // 
-            this.comPortDataGridView1.AllowUserToAddRows = false;
-            this.comPortDataGridView1.AllowUserToDeleteRows = false;
-            this.comPortDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.comPortDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.comPropertyKey,
-            this.comPropertyValue});
-            resources.ApplyResources(this.comPortDataGridView1, "comPortDataGridView1");
-            this.comPortDataGridView1.Name = "comPortDataGridView1";
-            this.comPortDataGridView1.RowTemplate.Height = 21;
-            // 
-            // comPropertyKey
-            // 
-            resources.ApplyResources(this.comPropertyKey, "comPropertyKey");
-            this.comPropertyKey.Name = "comPropertyKey";
-            // 
-            // comPropertyValue
-            // 
-            resources.ApplyResources(this.comPropertyValue, "comPropertyValue");
-            this.comPropertyValue.Name = "comPropertyValue";
+            this.comPortOutputReplaceTextBox.TextChanged += new System.EventHandler(this.comPortOutputReplaceTextBox_TextChanged);
             // 
             // comPortNotSupportedCheckBox
             // 
@@ -589,18 +690,21 @@
             resources.ApplyResources(this.comPortDeleteButton, "comPortDeleteButton");
             this.comPortDeleteButton.Name = "comPortDeleteButton";
             this.comPortDeleteButton.UseVisualStyleBackColor = true;
+            this.comPortDeleteButton.Click += new System.EventHandler(this.comPortDeleteButton_Click);
             // 
             // comportUseButton
             // 
             resources.ApplyResources(this.comportUseButton, "comportUseButton");
             this.comportUseButton.Name = "comportUseButton";
             this.comportUseButton.UseVisualStyleBackColor = true;
+            this.comportUseButton.Click += new System.EventHandler(this.comportUseButton_Click);
             // 
             // usingComPortList
             // 
             this.usingComPortList.FormattingEnabled = true;
             resources.ApplyResources(this.usingComPortList, "usingComPortList");
             this.usingComPortList.Name = "usingComPortList";
+            this.usingComPortList.SelectedIndexChanged += new System.EventHandler(this.usingComPortList_SelectedIndexChanged);
             // 
             // availableComPortList
             // 
@@ -651,11 +755,12 @@
             this.comPortSettingGroupBox.ResumeLayout(false);
             this.comPortSettingGroupBox.PerformLayout();
             this.comPortTabControl.ResumeLayout(false);
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comPortDataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -725,10 +830,19 @@
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.TextBox comPortInputReplaceTextBox;
         private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView comPortDataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn comPropertyKey;
-        private System.Windows.Forms.DataGridViewTextBoxColumn comPropertyValue;
         private System.Windows.Forms.TextBox comPortOutputReplaceTextBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox comPortRtsCheckBox;
+        private System.Windows.Forms.CheckBox comPortDtrCheckBox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox comPortProfileComboBox;
+        private System.Windows.Forms.Button comPortChangeProfileNameButton;
+        private System.Windows.Forms.Button comPortDeleteProfileButton;
+        private System.Windows.Forms.Button comPortNewProfileButton;
+        private System.Windows.Forms.Button comPortDuplicateProfileButton;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.TextBox comPortOnInitTextBox;
+        private System.Windows.Forms.Button comPortApplyButton;
+        private System.Windows.Forms.ComboBox comPortBaudRateComboBox;
     }
 }
