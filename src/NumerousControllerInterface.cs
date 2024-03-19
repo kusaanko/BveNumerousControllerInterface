@@ -664,7 +664,42 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             if (LeverMoved != null)
             {
-                if (axis == 99)
+                if (axis == 100)
+                {
+                    // キーボードイベント
+                    if ((keyCode >= 'A' && keyCode <= 'Z') || (keyCode >= '0' && keyCode <= '9'))
+                    {
+                        SendKeys.SendWait(Char.ToString((char)keyCode));
+                    }
+                    else if (keyCode >= 101 && keyCode <= 112)
+                    {
+                        // Function key
+                        SendKeys.SendWait("{F" + (keyCode - 100) + "}");
+                    }
+                    else if (keyCode >= 150)
+                    {
+                        if (keyCode == 150) SendKeys.SendWait("{PGUP}");
+                        if (keyCode == 151) SendKeys.SendWait("{PGDN}");
+                        if (keyCode == 152) SendKeys.SendWait("{HOME}");
+                        if (keyCode == 153) SendKeys.SendWait("{END}");
+                        if (keyCode == 154) SendKeys.SendWait("{INSERT}");
+                        if (keyCode == 155) SendKeys.SendWait("{DELETE}");
+                        if (keyCode == 156) SendKeys.SendWait("{ESC}");
+                        if (keyCode == 157) SendKeys.SendWait("{TAB}");
+                        if (keyCode == 158) SendKeys.SendWait("{BACKSPACE}");
+                        if (keyCode == 159) SendKeys.SendWait("{ENTER}");
+                        if (keyCode == 160) SendKeys.SendWait(" ");
+                        if (keyCode == 161) SendKeys.SendWait("{UP}");
+                        if (keyCode == 162) SendKeys.SendWait("{DOWN}");
+                        if (keyCode == 163) SendKeys.SendWait("{LEFT}");
+                        if (keyCode == 164) SendKeys.SendWait("{RIGHT}");
+                        if (keyCode == 165) SendKeys.SendWait("{ADD}");
+                        if (keyCode == 166) SendKeys.SendWait("{SUBTRACT}");
+                        if (keyCode == 167) SendKeys.SendWait("{MULTIPLY}");
+                        if (keyCode == 168) SendKeys.SendWait("{DIVIDE}");
+                    }
+                }
+                else if (axis == 99)
                 {
                     switch(keyCode)
                     {
