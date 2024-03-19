@@ -67,6 +67,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.settingsTabControl = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.powerCenterPositionNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.removeBreakButton = new System.Windows.Forms.Button();
@@ -108,14 +110,13 @@
             this.availableComPortList = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.powerCenterPositionNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.settingsTabControl.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.powerCenterPositionNumericUpDown)).BeginInit();
             this.tabPage5.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -125,7 +126,6 @@
             this.tabPage9.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.powerCenterPositionNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // okButton
@@ -404,6 +404,17 @@
             resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // powerCenterPositionNumericUpDown
+            // 
+            resources.ApplyResources(this.powerCenterPositionNumericUpDown, "powerCenterPositionNumericUpDown");
+            this.powerCenterPositionNumericUpDown.Name = "powerCenterPositionNumericUpDown";
+            this.powerCenterPositionNumericUpDown.ValueChanged += new System.EventHandler(this.powerCenterPositionNumericUpDown_ValueChanged);
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
             // 
             // label2
             // 
@@ -727,17 +738,6 @@
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
             // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
-            // 
-            // powerCenterPositionNumericUpDown
-            // 
-            resources.ApplyResources(this.powerCenterPositionNumericUpDown, "powerCenterPositionNumericUpDown");
-            this.powerCenterPositionNumericUpDown.Name = "powerCenterPositionNumericUpDown";
-            this.powerCenterPositionNumericUpDown.ValueChanged += new System.EventHandler(this.powerCenterPositionNumericUpDown_ValueChanged);
-            // 
             // ConfigForm
             // 
             this.AcceptButton = this.okButton;
@@ -762,6 +762,7 @@
             this.settingsTabControl.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.powerCenterPositionNumericUpDown)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -778,7 +779,6 @@
             this.tabPage7.PerformLayout();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.powerCenterPositionNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -365,15 +365,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     changeList.Add(name);
                 }
             }
-            foreach (string k in settings.Profiles.Keys)
-            {
-                key = k;
-                break;
-            }
             foreach (string name in changeList)
             {
-                MessageBox.Show(name + " のプロファイル " + settings.ProfileMap[name] + " が見つからなかったため " + key + "に変更しました。", "NumerousControllerInterface");
-                settings.ProfileMap[name] = key;
+                MessageBox.Show(name + " のプロファイルが見つからなかったため無効化しました。", "NumerousControllerInterface");
+                settings.ProfileMap.Remove(name);
             }
             // COMポート
             DataContractSerializer COMSettingSerializer = new DataContractSerializer(typeof(COMControllerSettings));
@@ -478,6 +473,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public ControllerProfile GetProfile(NCIController controller)
         {
+            if (!Profiles.ContainsKey(controller.GetName())) return null;
             return Profiles[ProfileMap[controller.GetName()]];
         }
 

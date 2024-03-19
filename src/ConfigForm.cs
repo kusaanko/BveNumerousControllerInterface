@@ -107,7 +107,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             changeNameButton.Enabled = enabled;
             duplicateProfileButton.Enabled = enabled;
             removeProfileButton.Enabled = enabled;
-            settingsTabControl.Enabled = enabled;
         }
 
         private void setComPortEnabled(bool enabled)
@@ -136,11 +135,18 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void selectProfile(string profile)
         {
-            for (int i = 0;i < profileComboBox.Items.Count;i++)
+            if (profile == null)
             {
-                if (profile.Equals(profileComboBox.Items[i]))
+                profileComboBox.SelectedIndex = -1;
+            }
+            else
+            {
+                for (int i = 0; i < profileComboBox.Items.Count; i++)
                 {
-                    profileComboBox.SelectedIndex = i;
+                    if (profile.Equals(profileComboBox.Items[i]))
+                    {
+                        profileComboBox.SelectedIndex = i;
+                    }
                 }
             }
             loadFromProfile();
@@ -149,22 +155,30 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void loadFromProfile()
         {
-            ControllerProfile profile = NumerousControllerInterface.SettingsInstance.Profiles[profileComboBox.Text];
-            isTwoHandleComboBox.Checked = profile.IsTwoHandle;
-            powerCenterPositionNumericUpDown.Enabled = profile.IsTwoHandle;
-            powerCenterPositionNumericUpDown.Value = profile.PowerCenterPosition;
-            flexiblePowerModeComboBox.SelectedItem = ControllerProfile.FlexibleNotchModeStrings[(int)profile.FlexiblePower];
-            flexibleBreakModeComboBox.SelectedItem = ControllerProfile.FlexibleNotchModeStrings[(int)profile.FlexibleBreak];
-            powerCenterPositionNumericUpDown.Value = profile.PowerCenterPosition;
-            buttonList.Items.Clear();
-            foreach (int i in profile.KeyMap.Keys)
+            if (profileComboBox.SelectedIndex != -1)
             {
-                buttonList.Items.Add(GetButtonName(i));
+                ControllerProfile profile = NumerousControllerInterface.SettingsInstance.Profiles[profileComboBox.Text];
+                isTwoHandleComboBox.Checked = profile.IsTwoHandle;
+                powerCenterPositionNumericUpDown.Enabled = profile.IsTwoHandle;
+                powerCenterPositionNumericUpDown.Value = profile.PowerCenterPosition;
+                flexiblePowerModeComboBox.SelectedItem = ControllerProfile.FlexibleNotchModeStrings[(int)profile.FlexiblePower];
+                flexibleBreakModeComboBox.SelectedItem = ControllerProfile.FlexibleNotchModeStrings[(int)profile.FlexibleBreak];
+                powerCenterPositionNumericUpDown.Value = profile.PowerCenterPosition;
+                buttonList.Items.Clear();
+                foreach (int i in profile.KeyMap.Keys)
+                {
+                    buttonList.Items.Add(GetButtonName(i));
+                }
+                settingPowerButton.Enabled = GetController().GetPowerCount() == 0;
+                settingBreakButton.Enabled = GetController().GetBreakCount() == 0;
+                removePowerButton.Enabled = GetController().GetPowerCount() == 0;
+                removeBreakButton.Enabled = GetController().GetBreakCount() == 0;
+
+                settingsTabControl.Enabled = true;
+            } else
+            {
+                settingsTabControl.Enabled = false;
             }
-            settingPowerButton.Enabled = GetController().GetPowerCount() == 0;
-            settingBreakButton.Enabled = GetController().GetBreakCount() == 0;
-            removePowerButton.Enabled = GetController().GetPowerCount() == 0;
-            removeBreakButton.Enabled = GetController().GetBreakCount() == 0;
         }
 
         private void loadControllerEnabled()
@@ -182,17 +196,13 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             string controller = controllerList.Text;
             if (controller == null || controller.Equals("")) return;
-            if (!NumerousControllerInterface.SettingsInstance.ProfileMap.ContainsKey(controller))
+            if (NumerousControllerInterface.SettingsInstance.ProfileMap.ContainsKey(controller))
             {
-                if (!NumerousControllerInterface.SettingsInstance.Profiles.ContainsKey("無名のプロファイル"))
-                {
-                    ControllerProfile profile = new ControllerProfile("無名のプロファイル");
-                    NumerousControllerInterface.SettingsInstance.Profiles.Add("無名のプロファイル", profile);
-                }
-                NumerousControllerInterface.SettingsInstance.ProfileMap.Add(controller, "無名のプロファイル");
-                updateProfile();
+                selectProfile(NumerousControllerInterface.SettingsInstance.ProfileMap[controller]);
+            } else
+            {
+                selectProfile(null);
             }
-            selectProfile(NumerousControllerInterface.SettingsInstance.ProfileMap[controller]);
             loadFromProfile();
             loadControllerEnabled();
             controllerTypeLabel.Text = this.resources.GetString("controllerTypeLabel.Text") + GetController().GetControllerType();
@@ -261,7 +271,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private COMControllerSettings GetCOMControllerSettings()
         {
-            Debug.WriteLine(comPortProfileComboBox.SelectedItem.ToString());
             if (!NumerousControllerInterface.SettingsInstance.COMControllerSettings.ContainsKey(comPortProfileComboBox.SelectedItem.ToString())) return null;
             return NumerousControllerInterface.SettingsInstance.COMControllerSettings[comPortProfileComboBox.SelectedItem.ToString()];
         }
@@ -444,7 +453,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void newProfileButton_Click(object sender, EventArgs e)
         {
-            string name = "無名のプロファイル";
+            string name = controllerList.Text;
             int i = 1;
             while(true)
             {
@@ -563,7 +572,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
                 if (!NumerousControllerInterface.SettingsInstance.removeProfilesList.Contains(name)) NumerousControllerInterface.SettingsInstance.removeProfilesList.Add(name);
                 updateProfile();
-                profileComboBox.SelectedIndex = 0;
+                selectProfile(null);
             }
         }
 

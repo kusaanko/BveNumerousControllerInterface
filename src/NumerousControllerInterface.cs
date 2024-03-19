@@ -185,6 +185,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             foreach (NCIController controller in Controllers)
             {
                 ControllerProfile profile = SettingsInstance.GetProfile(controller);
+                if (profile == null) continue;
                 if (s_powerController.Equals(controller.GetName()) && profile.HasPower(controller))
                 {
                     isPowerControllerExists = true;
@@ -213,6 +214,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 foreach (NCIController controller in Controllers)
                 {
                     ControllerProfile profile = SettingsInstance.GetProfile(controller);
+                    if (profile == null) continue;
                     if (profile.HasReverser(controller))
                     {
                         s_reverserController = controller.GetName();
@@ -244,6 +246,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     foreach (NCIController controller in Controllers)
                     {
                         ControllerProfile profile = SettingsInstance.GetProfile(controller);
+                        if (profile == null) continue;
                         bool hasMaster = false;
                         if (profile.HasPower(controller) && profile.HasBreak(controller))
                         {
@@ -274,6 +277,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     foreach (NCIController controller in Controllers)
                     {
                         ControllerProfile profile = SettingsInstance.GetProfile(controller);
+                        if (profile == null) continue;
                         bool hasPower = false;
                         if (profile.HasPower(controller))
                         {
@@ -304,6 +308,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     foreach (NCIController controller in Controllers)
                     {
                         ControllerProfile profile = SettingsInstance.GetProfile(controller);
+                        if (profile == null) continue;
                         bool hasBreak = false;
                         if (profile.HasBreak(controller))
                         {
@@ -492,7 +497,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             foreach(NCIController controller in Controllers)
             {
-                ControllerProfile profile = SettingsInstance.Profiles[SettingsInstance.ProfileMap[controller.GetName()]];
+                ControllerProfile profile = SettingsInstance.GetProfile(controller);
+                if (profile == null) continue;
                 // 力行
                 if(controller.GetName().Equals(s_powerController))
                 {
