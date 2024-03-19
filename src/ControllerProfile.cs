@@ -68,6 +68,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public bool InaccuracyModePower;
         [DataMember]
         public bool InaccuracyModeBreak;
+        [DataMember]
+        public int PowerCenterPosition;
         private int prePowerNotch;
         private int preBreakNotch;
         private static int s_preDirectInputCount = -1;

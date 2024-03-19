@@ -55,6 +55,21 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             setComPortEnabled(false);
         }
 
+        private void ConfigForm_Load(object sender, EventArgs e)
+        {
+            // HiDPIサポート
+            float DpiScale = this.CreateGraphics().DpiX / 96f;
+            controllerList.Height = (int)(controllerList.Height / DpiScale);
+            availableComPortList.Height = (int)(availableComPortList.Height / DpiScale);
+            usingComPortList.Height = (int)(usingComPortList.Height / DpiScale);
+            comPortInformationLabel.Width = (int)(comPortInformationLabel.Width / DpiScale);
+            comPortInformationLabel.Height = (int)(comPortInformationLabel.Height / DpiScale);
+            comPortOnInitTextBox.Height = (int)(comPortOnInitTextBox.Height / DpiScale);
+            comPortInputReplaceTextBox.Height = (int)(comPortInputReplaceTextBox.Height / DpiScale);
+            comPortOutputReplaceTextBox.Height = (int)(comPortOutputReplaceTextBox.Height / DpiScale);
+            buttonList.Height = (int)(buttonList.Height / DpiScale);
+        }
+
         public void updateControllers()
         {
             timer1.Stop();
@@ -136,8 +151,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             ControllerProfile profile = NumerousControllerInterface.SettingsInstance.Profiles[profileComboBox.Text];
             isTwoHandleComboBox.Checked = profile.IsTwoHandle;
+            powerCenterPositionNumericUpDown.Enabled = profile.IsTwoHandle;
+            powerCenterPositionNumericUpDown.Value = profile.PowerCenterPosition;
             flexiblePowerModeComboBox.SelectedItem = ControllerProfile.FlexibleNotchModeStrings[(int)profile.FlexiblePower];
             flexibleBreakModeComboBox.SelectedItem = ControllerProfile.FlexibleNotchModeStrings[(int)profile.FlexibleBreak];
+            powerCenterPositionNumericUpDown.Value = profile.PowerCenterPosition;
             buttonList.Items.Clear();
             foreach (int i in profile.KeyMap.Keys)
             {
@@ -289,6 +307,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private void isTwoHandleComboBox_CheckedChanged(object sender, EventArgs e)
         {
             GetProfile().IsTwoHandle = isTwoHandleComboBox.Checked;
+            powerCenterPositionNumericUpDown.Enabled = isTwoHandleComboBox.Checked;
         }
 
         private void addButtonButton_Click(object sender, EventArgs e)
@@ -943,19 +962,13 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void ConfigForm_Load(object sender, EventArgs e)
+        private void powerCenterPositionNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            // HiDPIサポート
-            float DpiScale = this.CreateGraphics().DpiX / 96f;
-            controllerList.Height = (int)(controllerList.Height / DpiScale);
-            availableComPortList.Height = (int)(availableComPortList.Height / DpiScale);
-            usingComPortList.Height = (int)(usingComPortList.Height / DpiScale);
-            comPortInformationLabel.Width = (int)(comPortInformationLabel.Width / DpiScale);
-            comPortInformationLabel.Height = (int)(comPortInformationLabel.Height / DpiScale);
-            comPortOnInitTextBox.Height = (int)(comPortOnInitTextBox.Height / DpiScale);
-            comPortInputReplaceTextBox.Height = (int)(comPortInputReplaceTextBox.Height / DpiScale);
-            comPortOutputReplaceTextBox.Height = (int)(comPortOutputReplaceTextBox.Height / DpiScale);
-            buttonList.Height = (int)(buttonList.Height / DpiScale);
+            ControllerProfile profile = GetProfile();
+            if (profile != null)
+            {
+                profile.PowerCenterPosition = (int)powerCenterPositionNumericUpDown.Value;
+            }
         }
     }
 }

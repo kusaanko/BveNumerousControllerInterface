@@ -108,6 +108,8 @@
             this.availableComPortList = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.powerCenterPositionNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -123,6 +125,7 @@
             this.tabPage9.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.powerCenterPositionNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // okButton
@@ -387,6 +390,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.powerCenterPositionNumericUpDown);
+            this.tabPage3.Controls.Add(this.label5);
             this.tabPage3.Controls.Add(this.flexibleBreakModeComboBox);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.flexiblePowerModeComboBox);
@@ -722,6 +727,17 @@
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
             // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // powerCenterPositionNumericUpDown
+            // 
+            resources.ApplyResources(this.powerCenterPositionNumericUpDown, "powerCenterPositionNumericUpDown");
+            this.powerCenterPositionNumericUpDown.Name = "powerCenterPositionNumericUpDown";
+            this.powerCenterPositionNumericUpDown.ValueChanged += new System.EventHandler(this.powerCenterPositionNumericUpDown_ValueChanged);
+            // 
             // ConfigForm
             // 
             this.AcceptButton = this.okButton;
@@ -762,6 +778,7 @@
             this.tabPage7.PerformLayout();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.powerCenterPositionNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -845,5 +862,7 @@
         private System.Windows.Forms.TextBox comPortOnInitTextBox;
         private System.Windows.Forms.Button comPortApplyButton;
         private System.Windows.Forms.ComboBox comPortBaudRateComboBox;
+        private System.Windows.Forms.NumericUpDown powerCenterPositionNumericUpDown;
+        private System.Windows.Forms.Label label5;
     }
 }
