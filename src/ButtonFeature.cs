@@ -124,15 +124,15 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public static ButtonFeature KeyboardTab = new ButtonFeature("7eaa10f6", "Tab", 100, 157);
         public static ButtonFeature KeyboardBackspace = new ButtonFeature("c4f942ad", "Backspace", 100, 158);
         public static ButtonFeature KeyboardEnter = new ButtonFeature("71e60b39", "Enter", 100, 159);
-        public static ButtonFeature KeyboardUpArrow = new ButtonFeature("dd9794b9", "Up Arrow", 100, 160);
-        public static ButtonFeature KeyboardDownArrow = new ButtonFeature("bb85b161", "Down Arrow", 100, 161);
-        public static ButtonFeature KeyboardLeftArrow = new ButtonFeature("b68f82e0", "Left Arrow", 100, 162);
-        public static ButtonFeature KeyboardRightArrow = new ButtonFeature("e38c5400", "Right Arrow", 100, 163);
-        public static ButtonFeature KeyboardRightKeypadAdd = new ButtonFeature("5eb8a11d", "テンキー +", 100, 164);
-        public static ButtonFeature KeyboardRightKeypadSub = new ButtonFeature("985519a4", "テンキー -", 100, 165);
-        public static ButtonFeature KeyboardRightKeypadMul = new ButtonFeature("8a39daf3", "テンキー *", 100, 166);
-        public static ButtonFeature KeyboardRightKeypadDiv = new ButtonFeature("6d0ec535", "テンキー /", 100, 167);
-        public static ButtonFeature KeyboardSpace = new ButtonFeature("0bf899e1", "Space", 100, 168);
+        public static ButtonFeature KeyboardSpace = new ButtonFeature("0bf899e1", "Space", 100, 160);
+        public static ButtonFeature KeyboardUpArrow = new ButtonFeature("dd9794b9", "Up Arrow", 100, 161);
+        public static ButtonFeature KeyboardDownArrow = new ButtonFeature("bb85b161", "Down Arrow", 100, 162);
+        public static ButtonFeature KeyboardLeftArrow = new ButtonFeature("b68f82e0", "Left Arrow", 100, 163);
+        public static ButtonFeature KeyboardRightArrow = new ButtonFeature("e38c5400", "Right Arrow", 100, 164);
+        public static ButtonFeature KeyboardRightKeypadAdd = new ButtonFeature("5eb8a11d", "テンキー +", 100, 165);
+        public static ButtonFeature KeyboardRightKeypadSub = new ButtonFeature("985519a4", "テンキー -", 100, 166);
+        public static ButtonFeature KeyboardRightKeypadMul = new ButtonFeature("8a39daf3", "テンキー *", 100, 167);
+        public static ButtonFeature KeyboardRightKeypadDiv = new ButtonFeature("6d0ec535", "テンキー /", 100, 168);
 
         public static void Initialize()
         {
