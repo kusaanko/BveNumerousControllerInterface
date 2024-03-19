@@ -688,10 +688,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     controller.Dispose();
                 }
                 controllers = new List<NCIController>();
-                controllers.AddRange(DIJoystick.Get());
-                controllers.AddRange(PS2DenshadeGoType2.Get());
-                controllers.AddRange(MultiTrainController.Get());
                 controllers.AddRange(COMController.Get());
+                controllers.AddRange(DenshadeGoShinkansen.Get());
+                controllers.AddRange(DIJoystick.Get());
+                controllers.AddRange(MultiTrainController.Get());
+                controllers.AddRange(PS2DenshadeGoType2.Get());
                 foreach (NumerousControllerPlugin plugin in NumerousControllerInterface.Plugins)
                 {
                     controllers.AddRange(plugin.GetAllControllers());

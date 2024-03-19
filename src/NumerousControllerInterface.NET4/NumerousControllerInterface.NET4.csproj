@@ -91,6 +91,9 @@
     <Compile Include="..\Controller\COMController.cs">
       <Link>COMController.cs</Link>
     </Compile>
+    <Compile Include="..\Controller\DenshadeGoShinkansen.cs">
+      <Link>DenshadeGoShinkansen.cs</Link>
+    </Compile>
     <Compile Include="..\Controller\DIJoystick.cs">
       <Link>DIJoystick.cs</Link>
     </Compile>

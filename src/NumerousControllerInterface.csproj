@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="Controller\COMController.cs" />
     <Compile Include="Controller\DIJoystick.cs" />
+    <Compile Include="Controller\DenshadeGoShinkansen.cs" />
     <Compile Include="Controller\NCIController.cs" />
     <Compile Include="Controller\MultiTrainController.cs" />
     <Compile Include="Controller\StringController.cs" />
