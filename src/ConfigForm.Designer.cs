@@ -82,7 +82,7 @@
             this.pluginConfigComboBox = new System.Windows.Forms.ComboBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.comPortApplyButton = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.comPortInformationLabel = new System.Windows.Forms.Label();
             this.comPortSettingGroupBox = new System.Windows.Forms.GroupBox();
             this.comPortBaudRateComboBox = new System.Windows.Forms.ComboBox();
             this.comPortDuplicateProfileButton = new System.Windows.Forms.Button();
@@ -499,7 +499,7 @@
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.comPortApplyButton);
-            this.tabPage6.Controls.Add(this.label5);
+            this.tabPage6.Controls.Add(this.comPortInformationLabel);
             this.tabPage6.Controls.Add(this.comPortSettingGroupBox);
             this.tabPage6.Controls.Add(this.comPortDeleteButton);
             this.tabPage6.Controls.Add(this.comportUseButton);
@@ -518,10 +518,10 @@
             this.comPortApplyButton.UseVisualStyleBackColor = true;
             this.comPortApplyButton.Click += new System.EventHandler(this.comPortApplyButton_Click);
             // 
-            // label5
+            // comPortInformationLabel
             // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
+            resources.ApplyResources(this.comPortInformationLabel, "comPortInformationLabel");
+            this.comPortInformationLabel.Name = "comPortInformationLabel";
             // 
             // comPortSettingGroupBox
             // 
@@ -726,7 +726,7 @@
             // 
             this.AcceptButton = this.okButton;
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.CancelButton = this.cancelButton;
             this.Controls.Add(this.tabControl1);
@@ -737,6 +737,7 @@
             this.Name = "ConfigForm";
             this.ShowInTaskbar = false;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConfigForm_FormClosing);
+            this.Load += new System.EventHandler(this.ConfigForm_Load);
             this.panel1.ResumeLayout(false);
             this.profileContextMenuStrip.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
@@ -824,7 +825,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox comPortSettingGroupBox;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label comPortInformationLabel;
         private System.Windows.Forms.CheckBox comPortNotSupportedCheckBox;
         private System.Windows.Forms.TabControl comPortTabControl;
         private System.Windows.Forms.TabPage tabPage7;

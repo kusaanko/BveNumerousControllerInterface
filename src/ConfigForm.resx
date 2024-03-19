@@ -1072,28 +1072,28 @@
   <data name="&gt;&gt;comPortApplyButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="comPortInformationLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>339, 20</value>
   </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="comPortInformationLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>396, 32</value>
   </data>
-  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+  <data name="comPortInformationLabel.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
+  <data name="comPortInformationLabel.Text" xml:space="preserve">
     <value>ここはCOMポートの入出力に関する設定画面です。BVEへのキー割り当て等はコントローラー割当で設定してください。</value>
   </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
+  <data name="&gt;&gt;comPortInformationLabel.Name" xml:space="preserve">
+    <value>comPortInformationLabel</value>
   </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+  <data name="&gt;&gt;comPortInformationLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+  <data name="&gt;&gt;comPortInformationLabel.Parent" xml:space="preserve">
     <value>tabPage6</value>
   </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;comPortInformationLabel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="comPortBaudRateComboBox.Items" xml:space="preserve">
@@ -1399,6 +1399,45 @@
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="comPortOnInitTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 6</value>
+  </data>
+  <data name="comPortOnInitTextBox.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="comPortOnInitTextBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="comPortOnInitTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>365, 128</value>
+  </data>
+  <data name="comPortOnInitTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;comPortOnInitTextBox.Name" xml:space="preserve">
+    <value>comPortOnInitTextBox</value>
+  </data>
+  <data name="&gt;&gt;comPortOnInitTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comPortOnInitTextBox.Parent" xml:space="preserve">
+    <value>tabPage9</value>
+  </data>
+  <data name="&gt;&gt;comPortOnInitTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPage9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 24</value>
+  </data>
+  <data name="tabPage9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>374, 140</value>
+  </data>
+  <data name="tabPage9.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tabPage9.Text" xml:space="preserve">
+    <value>初期化時</value>
+  </data>
   <data name="&gt;&gt;tabPage9.Name" xml:space="preserve">
     <value>tabPage9</value>
   </data>
@@ -1411,6 +1450,48 @@
   <data name="&gt;&gt;tabPage9.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="comPortInputReplaceTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 6</value>
+  </data>
+  <data name="comPortInputReplaceTextBox.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="comPortInputReplaceTextBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="comPortInputReplaceTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>365, 128</value>
+  </data>
+  <data name="comPortInputReplaceTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;comPortInputReplaceTextBox.Name" xml:space="preserve">
+    <value>comPortInputReplaceTextBox</value>
+  </data>
+  <data name="&gt;&gt;comPortInputReplaceTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comPortInputReplaceTextBox.Parent" xml:space="preserve">
+    <value>tabPage7</value>
+  </data>
+  <data name="&gt;&gt;comPortInputReplaceTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPage7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 24</value>
+  </data>
+  <data name="tabPage7.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>374, 140</value>
+  </data>
+  <data name="tabPage7.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>入力の置換</value>
+  </data>
   <data name="&gt;&gt;tabPage7.Name" xml:space="preserve">
     <value>tabPage7</value>
   </data>
@@ -1422,6 +1503,48 @@
   </data>
   <data name="&gt;&gt;tabPage7.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="comPortOutputReplaceTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 6</value>
+  </data>
+  <data name="comPortOutputReplaceTextBox.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="comPortOutputReplaceTextBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="comPortOutputReplaceTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>365, 128</value>
+  </data>
+  <data name="comPortOutputReplaceTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;comPortOutputReplaceTextBox.Name" xml:space="preserve">
+    <value>comPortOutputReplaceTextBox</value>
+  </data>
+  <data name="&gt;&gt;comPortOutputReplaceTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comPortOutputReplaceTextBox.Parent" xml:space="preserve">
+    <value>tabPage8</value>
+  </data>
+  <data name="&gt;&gt;comPortOutputReplaceTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPage8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 24</value>
+  </data>
+  <data name="tabPage8.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>374, 140</value>
+  </data>
+  <data name="tabPage8.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabPage8.Text" xml:space="preserve">
+    <value>出力の置換</value>
   </data>
   <data name="&gt;&gt;tabPage8.Name" xml:space="preserve">
     <value>tabPage8</value>
@@ -2170,197 +2293,11 @@
   <data name="&gt;&gt;pluginConfigComboBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;comPortOnInitTextBox.Name" xml:space="preserve">
-    <value>comPortOnInitTextBox</value>
-  </data>
-  <data name="&gt;&gt;comPortOnInitTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comPortOnInitTextBox.Parent" xml:space="preserve">
-    <value>tabPage9</value>
-  </data>
-  <data name="&gt;&gt;comPortOnInitTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tabPage9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 24</value>
-  </data>
-  <data name="tabPage9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>374, 140</value>
-  </data>
-  <data name="tabPage9.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tabPage9.Text" xml:space="preserve">
-    <value>初期化時</value>
-  </data>
-  <data name="&gt;&gt;tabPage9.Name" xml:space="preserve">
-    <value>tabPage9</value>
-  </data>
-  <data name="&gt;&gt;tabPage9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage9.Parent" xml:space="preserve">
-    <value>comPortTabControl</value>
-  </data>
-  <data name="&gt;&gt;tabPage9.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="comPortOnInitTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 6</value>
-  </data>
-  <data name="comPortOnInitTextBox.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="comPortOnInitTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>365, 128</value>
-  </data>
-  <data name="comPortOnInitTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;comPortOnInitTextBox.Name" xml:space="preserve">
-    <value>comPortOnInitTextBox</value>
-  </data>
-  <data name="&gt;&gt;comPortOnInitTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comPortOnInitTextBox.Parent" xml:space="preserve">
-    <value>tabPage9</value>
-  </data>
-  <data name="&gt;&gt;comPortOnInitTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;comPortInputReplaceTextBox.Name" xml:space="preserve">
-    <value>comPortInputReplaceTextBox</value>
-  </data>
-  <data name="&gt;&gt;comPortInputReplaceTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comPortInputReplaceTextBox.Parent" xml:space="preserve">
-    <value>tabPage7</value>
-  </data>
-  <data name="&gt;&gt;comPortInputReplaceTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tabPage7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 24</value>
-  </data>
-  <data name="tabPage7.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabPage7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>374, 140</value>
-  </data>
-  <data name="tabPage7.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tabPage7.Text" xml:space="preserve">
-    <value>入力の置換</value>
-  </data>
-  <data name="&gt;&gt;tabPage7.Name" xml:space="preserve">
-    <value>tabPage7</value>
-  </data>
-  <data name="&gt;&gt;tabPage7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage7.Parent" xml:space="preserve">
-    <value>comPortTabControl</value>
-  </data>
-  <data name="&gt;&gt;tabPage7.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="comPortInputReplaceTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 6</value>
-  </data>
-  <data name="comPortInputReplaceTextBox.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="comPortInputReplaceTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>365, 128</value>
-  </data>
-  <data name="comPortInputReplaceTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;comPortInputReplaceTextBox.Name" xml:space="preserve">
-    <value>comPortInputReplaceTextBox</value>
-  </data>
-  <data name="&gt;&gt;comPortInputReplaceTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comPortInputReplaceTextBox.Parent" xml:space="preserve">
-    <value>tabPage7</value>
-  </data>
-  <data name="&gt;&gt;comPortInputReplaceTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;comPortOutputReplaceTextBox.Name" xml:space="preserve">
-    <value>comPortOutputReplaceTextBox</value>
-  </data>
-  <data name="&gt;&gt;comPortOutputReplaceTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comPortOutputReplaceTextBox.Parent" xml:space="preserve">
-    <value>tabPage8</value>
-  </data>
-  <data name="&gt;&gt;comPortOutputReplaceTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tabPage8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 24</value>
-  </data>
-  <data name="tabPage8.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabPage8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>374, 140</value>
-  </data>
-  <data name="tabPage8.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tabPage8.Text" xml:space="preserve">
-    <value>出力の置換</value>
-  </data>
-  <data name="&gt;&gt;tabPage8.Name" xml:space="preserve">
-    <value>tabPage8</value>
-  </data>
-  <data name="&gt;&gt;tabPage8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage8.Parent" xml:space="preserve">
-    <value>comPortTabControl</value>
-  </data>
-  <data name="&gt;&gt;tabPage8.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="comPortOutputReplaceTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 6</value>
-  </data>
-  <data name="comPortOutputReplaceTextBox.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="comPortOutputReplaceTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>365, 128</value>
-  </data>
-  <data name="comPortOutputReplaceTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;comPortOutputReplaceTextBox.Name" xml:space="preserve">
-    <value>comPortOutputReplaceTextBox</value>
-  </data>
-  <data name="&gt;&gt;comPortOutputReplaceTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comPortOutputReplaceTextBox.Parent" xml:space="preserve">
-    <value>tabPage8</value>
-  </data>
-  <data name="&gt;&gt;comPortOutputReplaceTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 15</value>
+    <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>761, 570</value>
