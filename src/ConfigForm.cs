@@ -53,6 +53,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             alertNoCountrollerFoundCheckBox.Checked = NumerousControllerInterface.SettingsInstance.AlertNoControllerFound;
             checkUpdatesCheckBox.Checked = NumerousControllerInterface.SettingsInstance.CheckUpdates;
             setComPortEnabled(false);
+            atsExStatusLabel.Text = NumerousControllerInterface.AtsExPluginVersion != null ? "AtsEXプラグイン読み込み済み(" + NumerousControllerInterface.AtsExPluginVersion.ToString() + ")" : "AtsEXプラグイン未検出";
         }
 
         private void ConfigForm_Load(object sender, EventArgs e)

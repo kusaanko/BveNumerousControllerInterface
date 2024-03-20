@@ -110,6 +110,14 @@
             this.availableComPortList = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.atsExStatusLabel = new System.Windows.Forms.Label();
+            this.dataTypeComboBox = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dataOutputListBox = new System.Windows.Forms.ListBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -126,6 +134,8 @@
             this.tabPage9.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
+            this.tabPage10.SuspendLayout();
+            this.dataTypeComboBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // okButton
@@ -353,8 +363,9 @@
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage10);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             // 
@@ -384,6 +395,7 @@
             // 
             this.settingsTabControl.Controls.Add(this.tabPage3);
             this.settingsTabControl.Controls.Add(this.tabPage5);
+            this.settingsTabControl.Controls.Add(this.dataTypeComboBox);
             resources.ApplyResources(this.settingsTabControl, "settingsTabControl");
             this.settingsTabControl.Name = "settingsTabControl";
             this.settingsTabControl.SelectedIndex = 0;
@@ -738,6 +750,58 @@
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
             // 
+            // tabPage10
+            // 
+            this.tabPage10.Controls.Add(this.atsExStatusLabel);
+            this.tabPage10.Controls.Add(this.label6);
+            resources.ApplyResources(this.tabPage10, "tabPage10");
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // atsExStatusLabel
+            // 
+            resources.ApplyResources(this.atsExStatusLabel, "atsExStatusLabel");
+            this.atsExStatusLabel.Name = "atsExStatusLabel";
+            // 
+            // dataTypeComboBox
+            // 
+            this.dataTypeComboBox.Controls.Add(this.label10);
+            this.dataTypeComboBox.Controls.Add(this.comboBox1);
+            this.dataTypeComboBox.Controls.Add(this.dataOutputListBox);
+            this.dataTypeComboBox.Controls.Add(this.label9);
+            resources.ApplyResources(this.dataTypeComboBox, "dataTypeComboBox");
+            this.dataTypeComboBox.Name = "dataTypeComboBox";
+            this.dataTypeComboBox.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label9.Name = "label9";
+            // 
+            // dataOutputListBox
+            // 
+            this.dataOutputListBox.FormattingEnabled = true;
+            resources.ApplyResources(this.dataOutputListBox, "dataOutputListBox");
+            this.dataOutputListBox.Name = "dataOutputListBox";
+            this.dataOutputListBox.Sorted = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox1, "comboBox1");
+            this.comboBox1.Name = "comboBox1";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
             // ConfigForm
             // 
             this.AcceptButton = this.okButton;
@@ -779,6 +843,10 @@
             this.tabPage7.PerformLayout();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
+            this.tabPage10.ResumeLayout(false);
+            this.tabPage10.PerformLayout();
+            this.dataTypeComboBox.ResumeLayout(false);
+            this.dataTypeComboBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -864,5 +932,13 @@
         private System.Windows.Forms.ComboBox comPortBaudRateComboBox;
         private System.Windows.Forms.NumericUpDown powerCenterPositionNumericUpDown;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TabPage dataTypeComboBox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ListBox dataOutputListBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TabPage tabPage10;
+        private System.Windows.Forms.Label atsExStatusLabel;
+        private System.Windows.Forms.Label label6;
     }
 }
