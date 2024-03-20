@@ -89,11 +89,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\src\NumerousControllerInterface.NET4\bin\Release\Kusaanko.NumerousControllerInterface.NET4.dll">
-      <Link>Kusaanko.NumerousControllerInterface.NET4.dll</Link>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="..\src\LibUsbDotNet.dll">
       <Link>LibUsbDotNet.dll</Link>
     </EmbeddedResource>

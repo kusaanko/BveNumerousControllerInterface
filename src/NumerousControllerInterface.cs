@@ -867,7 +867,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         }
 
         // 利用可能な機能の一覧を設定
-        public static void AtsExPluginReportAvailableFeatures()
+        public static void AtsExPluginReportAvailableFeatures(List<Tuple<string, Type>> features)
         {
 
         }
@@ -879,15 +879,15 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         }
 
         // イベントの発生を通知
-        public static void AtsExPluginReportEventFired()
+        public static void AtsExPluginReportEventFired(string key)
         {
 
         }
 
         // NumerousControllerInterfaceが使用する機能の一覧を取得
-        public static void AtsExPluginGetUseFeatureList()
+        public static List<string> AtsExPluginGetUseFeatureList()
         {
-
+            return new List<string>();
         }
     }
 }
