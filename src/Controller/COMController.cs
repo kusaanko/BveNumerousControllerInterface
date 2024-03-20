@@ -12,7 +12,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
 {
     public class COMController : StringController
     {
-        private static Dictionary<string, COMController> _controllers;
+        private static Dictionary<string, COMController> _controllers = new Dictionary<string, COMController>();
         private SerialPort _serialPort;
         private COMControllerSettings _settings;
         private bool _loop;
@@ -22,10 +22,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         public static List<NCIController> Get()
         {
             IsUpdateNeeded = false;
-            if (_controllers == null)
-            {
-                _controllers = new Dictionary<string, COMController>();
-            }
             List<NCIController> controllers = new List<NCIController>();
             List<string> enabled = new List<string>();
             foreach (string port in NumerousControllerInterface.SettingsInstance.EnabledComPorts)
