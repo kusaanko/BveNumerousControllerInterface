@@ -9,18 +9,28 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
 {
     public class DIJoystick : NCIController
     {
+        private static DirectInput Input;
         private Joystick _stick;
         private string _name;
 
+        public static void Load()
+        {
+
+        }
+
         public static List<NCIController> Get()
         {
+            if (Input == null)
+            {
+                Input = new DirectInput();
+            }
             List<NCIController> controllers = new List<NCIController>();
             List<string> addedControllerName = new List<string>();
-            foreach (DeviceInstance device in NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
+            foreach (DeviceInstance device in Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
             {
                 try
                 {
-                    Joystick stick = new Joystick(NumerousControllerInterface.Input, device.InstanceGuid);
+                    Joystick stick = new Joystick(Input, device.InstanceGuid);
                     if (!addedControllerName.Contains(device.ProductName))
                     {
                         NCIController controller = new DIJoystick(stick, device.ProductName);
@@ -33,6 +43,24 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
                 }
             }
             return controllers;
+        }
+
+        public static int GetControllerCount()
+        {
+            if (Input == null)
+            {
+                Input = new DirectInput();
+            }
+            return Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly).Count;
+        }
+
+        public static void DisposeDirectXInstance()
+        {
+            if (Input != null )
+            {
+                Input.Dispose();
+                Input = null;
+            }
         }
 
         public DIJoystick(Joystick stick, string name)

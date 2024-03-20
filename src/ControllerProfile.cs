@@ -677,7 +677,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public static void GetAllControllers()
         {
             bool update = false;
-            int directInputCount = NumerousControllerInterface.Input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly).Count;
+            int directInputCount = DIJoystick.GetControllerCount();
             if (directInputCount != s_preDirectInputCount || 
                 UsbDevice.AllDevices.Count != s_preUsbCount ||
                 COMController.GetCounterForUpdateControllerList() != s_preComPortCount) update = true;
@@ -705,6 +705,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public static void DisposeAllControllers()
         {
+            DIJoystick.DisposeDirectXInstance();
             COMController.DisposeAll();
             foreach (NCIController controller in controllers)
             {

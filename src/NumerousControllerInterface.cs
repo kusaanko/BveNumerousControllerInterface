@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Windows.Forms;
-using SlimDX.DirectInput;
 using System.Diagnostics;
 using Mackoy.Bvets;
 using Kusaanko.Bvets.NumerousControllerInterface.Controller;
@@ -21,7 +20,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public static int IntVersion { get { return 13; } }
         public static string UserAgent = "NumerousContollerInterfaceUpdater v" + IntVersion;
 
-        public static DirectInput Input;
         public static List<NCIController> Controllers;
 
         public static Settings SettingsInstance = null;
@@ -59,9 +57,13 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private bool _isUpdateController;
         private bool _isDisposeRequested;
         private static bool s_isRunningGetAllControllers;
+        public static Version AtsExPluginVersion;
 
         public NumerousControllerInterface()
         {
+            // SlimDXのバージョンを無視する
+            AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
+
             ButtonFeature.Initialize();
             Controllers = new List<NCIController>();
             _prePowerLevel = new Dictionary<NCIController, int>();
@@ -87,6 +89,20 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
             }));
             mainThread.Start();
+        }
+
+        private static Assembly AssemblyResolve(object sender, ResolveEventArgs e) {
+            if (e.Name.StartsWith("SlimDX"))
+            {
+                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    if (assembly.GetName().Name.StartsWith("SlimDX"))
+                    {
+                        return assembly;
+                    }
+                }
+            }
+            return null;
         }
 
         private static void CheckUpdates()
@@ -393,7 +409,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public void Load(string settingsPath)
         {
-            Input = new DirectInput();
             SettingsInstance = Settings.LoadFromXml(settingsPath);
 
             foreach (NumerousControllerPlugin plugin in Plugins)
@@ -838,6 +853,41 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     KeyUp(this, new InputEventArgs(axis, keyCode));
                 }
             }
+        }
+
+        // AtsEx連携機能
+        public static void AtsExPluginSetVersion(Version version)
+        {
+            AtsExPluginVersion = version;
+        }
+
+        public static void AtsExPluginDisposed()
+        {
+
+        }
+
+        // 利用可能な機能の一覧を設定
+        public static void AtsExPluginReportAvailableFeatures()
+        {
+
+        }
+
+        // 値の変更を通知
+        public static void AtsExPluginReportValueChanged(string key, object value)
+        {
+
+        }
+
+        // イベントの発生を通知
+        public static void AtsExPluginReportEventFired()
+        {
+
+        }
+
+        // NumerousControllerInterfaceが使用する機能の一覧を取得
+        public static void AtsExPluginGetUseFeatureList()
+        {
+
         }
     }
 }

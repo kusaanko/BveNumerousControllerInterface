@@ -77,7 +77,7 @@ namespace Installer
                     else if (majorVersion == 6)
                     {
                         string[] installFiles = new string[] {
-                            "Installer.Kusaanko.NumerousControllerInterface.NET4.dll", Path.Combine(installDir, "Kusaanko.NumerousControllerInterface.NET4.dll"),
+                            "Installer.Kusaanko.NumerousControllerInterface.dll", Path.Combine(installDir, "Kusaanko.NumerousControllerInterface.dll"),
                             "Installer.LibUsbDotNet.dll", Path.Combine(bveInstallDir, "LibUsbDotNet.dll"),
                         };
                         ExtractFiles(installFiles);
