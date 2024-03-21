@@ -21,6 +21,15 @@
             <DownloadUrl>https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.11/NumerousControllerInterface_Bve6.zip</DownloadUrl>
             <Installer>install.bat &lt;installDir&gt; &lt;exeFile&gt;</Installer>
         </Target>
+        <Target arch="anycpu" dotnet=".net3.5">
+            <Latest>v0.12</Latest>
+            <Version>0.12</Version>
+            <IntVersion>13</IntVersion>
+            <Asset>Installer.zip</Asset>
+            <DownloadPage>https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.12</DownloadPage>
+            <DownloadUrl>https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.12/Installer.zip</DownloadUrl>
+            <Installer>NumerousControllerInterfaceInstaller.exe --installDir &lt;installDir&gt; --exeFile &lt;exeFile&gt;</Installer>
+        </Target>
     </Targets>
     <ReleaseNotes>
         <Release>
