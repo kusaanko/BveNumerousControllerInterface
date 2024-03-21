@@ -347,6 +347,19 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             {
                                 settings.Profiles.Remove(profile.Name);
                             }
+                            // ButtonFeature
+                            List<int> buttons = new List<int>(profile.KeyMap.Keys);
+                            foreach (int button in buttons)
+                            {
+                                string featureId = profile.KeyMap[button].Id;
+                                if (ButtonFeature.Features.ContainsKey(featureId))
+                                {
+                                    profile.KeyMap[button] = ButtonFeature.Features[featureId];
+                                } else
+                                {
+                                    profile.KeyMap.Remove(button);
+                                }
+                            }
                             settings.Profiles.Add(profile.Name, profile);
                             profile.CalcDuplicated();
                         }
