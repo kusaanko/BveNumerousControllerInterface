@@ -1006,12 +1006,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 OutputType outputType = GetController().GetOutputs()[dataOutputListBox.SelectedItem.ToString()];
                 foreach (var value in NumerousControllerInterface.AtsExPluginAvailableValues)
                 {
-                    if ((outputType == OutputType.Int && (value.Item2 == typeof(int) || value.Item2 == typeof(double) || value.Item2 == typeof(float))) ||
-                        (outputType == OutputType.Double && (value.Item2 == typeof(int) || value.Item2 == typeof(double) || value.Item2 == typeof(float))) ||
-                        (outputType == OutputType.Bool && (value.Item2 == typeof(bool))))
+                    if ((outputType == OutputType.Int && (value[1] == typeof(int) || value[1] == typeof(double) || value[1] == typeof(float))) ||
+                        (outputType == OutputType.Double && (value[1] == typeof(int) || value[1] == typeof(double) || value[1] == typeof(float))) ||
+                        (outputType == OutputType.Bool && (value[1] == typeof(bool))))
                     {
-                        dataAtsExValueComboBox.Items.Add(value.Item3);
-                        _AtsExValueKey.Add(value.Item1);
+                        dataAtsExValueComboBox.Items.Add(value[2]);
+                        _AtsExValueKey.Add((string)value[0]);
                     }
                 }
                 if (GetProfile().AtsExValue == null)

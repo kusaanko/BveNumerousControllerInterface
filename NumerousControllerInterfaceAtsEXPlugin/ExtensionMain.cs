@@ -64,18 +64,19 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.AtsEXPlugin
                 GetterMethods = new Dictionary<string, FastMethod>();
                 GetAllRetrievableProperties(typeof(IBveHacker), null);
                 // 取得可能な値の一覧を通知
-                List<Tuple<string, Type, string>> values = new List<Tuple<string, Type, string>>
+                // string, Type, string
+                List<object[]> values = new List<object[]>
                 {
-                    { Tuple.Create("Standard.SpeedKmPerHour", typeof(double), "時速") },
-                    { Tuple.Create("Standard.DoorClosed", typeof(bool), "戸閉灯") },
-                    { Tuple.Create("Standard.BcPressure", typeof(double), "ブレーキシリンダ圧力[kPa]") },
-                    { Tuple.Create("Standard.BpPressure", typeof(double), "ブレーキ管圧力[kPa]") },
-                    { Tuple.Create("Standard.Current", typeof(double), "電流[A]") },
+                    { new object[] {"Standard.SpeedKmPerHour", typeof(double), "時速" } },
+                    { new object[] {"Standard.DoorClosed", typeof(bool), "戸閉灯" } },
+                    { new object[] {"Standard.BcPressure", typeof(double), "ブレーキシリンダ圧力[kPa]" } },
+                    { new object[] { "Standard.BpPressure", typeof(double), "ブレーキ管圧力[kPa]" } },
+                    { new object[] { "Standard.Current", typeof(double), "電流[A]" } },
                 };
                 foreach (var item in RetrievableValuesFromKey.OrderBy(pair => pair.Key))
                 {
                     var info = item.Key;
-                    values.Add(Tuple.Create(info, item.Value.PropertyType, item.Value.DeclaringType.Name + "." + item.Value.Name));
+                    values.Add(new object[] { info, item.Value.PropertyType, item.Value.DeclaringType.Name + "." + item.Value.Name });
                 }
                 Invoke("ReportAvailableValues", values);
             }

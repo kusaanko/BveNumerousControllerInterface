@@ -60,10 +60,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private bool _isDisposeRequested;
         private static bool s_isRunningGetAllControllers;
         public static Version AtsExPluginVersion;
-        public static List<Tuple<string, Type, string>> AtsExPluginAvailableValues;
+        // string, Type, string
+        public static List<object[]> AtsExPluginAvailableValues;
         private static Thread _ControllerOutputThread;
         private static bool _ControllerOutputThreadAlive;
-        private static Queue<Tuple<string, object>> _OutputValueChanged = new Queue<Tuple<string, object>>();
 
         public NumerousControllerInterface()
         {
@@ -899,7 +899,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         // 利用可能な機能の一覧を設定
         // キー、値の型、表示名
-        public static void AtsExPluginReportAvailableValues(List<Tuple<string, Type, string>> values)
+        public static void AtsExPluginReportAvailableValues(List<object[]> values)
         {
             AtsExPluginAvailableValues = values;
         }
