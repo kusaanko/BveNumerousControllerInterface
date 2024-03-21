@@ -658,6 +658,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 profile.KeyMap = new Dictionary<int, ButtonFeature>(KeyMap);
             }
+            if (profile.AtsExValue != null)
+            {
+                profile.AtsExValue = new Dictionary<string, string>(AtsExValue);
+            }
             profile.CalcDuplicated();
             return profile;
         }
