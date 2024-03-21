@@ -911,7 +911,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             foreach (NCIController controller in Controllers)
             {
                 ControllerProfile profile = SettingsInstance.GetProfile(controller);
-                if (SettingsInstance.GetIsEnabled(controller.GetName()) && profile != null)
+                if (SettingsInstance.GetIsEnabled(controller.GetName()) && profile != null && controller.HasOutputs())
                 {
                     foreach (var atsValue in profile.AtsExValue)
                     {

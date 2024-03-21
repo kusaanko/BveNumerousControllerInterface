@@ -207,6 +207,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         {
             return null;
         }
+        public override bool HasOutputs()
+        {
+            return true;
+        }
 
         public override Dictionary<string, OutputType> GetOutputs()
         {

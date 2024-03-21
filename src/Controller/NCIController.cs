@@ -79,6 +79,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         {
             return new string[0];
         }
+        public virtual bool HasOutputs()
+        {
+            return false;
+        }
 
         public virtual Dictionary<string, OutputType> GetOutputs()
         {

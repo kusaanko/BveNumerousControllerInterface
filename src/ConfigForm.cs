@@ -179,7 +179,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
                 settingsTabControl.Enabled = true;
 
-                if (NumerousControllerInterface.AtsExPluginVersion != null && GetController().GetOutputs() != null)
+                if (NumerousControllerInterface.AtsExPluginVersion != null && GetController().HasOutputs())
                 {
                     dataOutputListBox.Items.Clear();
                     foreach (var pair in GetController().GetOutputs())
