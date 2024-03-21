@@ -7,7 +7,7 @@
     <ProjectGuid>{68CC5C53-21A8-4154-AB6F-904EF502E584}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Installer</RootNamespace>
-    <AssemblyName>Installer</AssemblyName>
+    <AssemblyName>NumerousControllerInterfaceInstaller</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

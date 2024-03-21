@@ -97,6 +97,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NumerousControllerInterface Installer";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

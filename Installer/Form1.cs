@@ -40,7 +40,7 @@ namespace Installer
             {
                 installTargetExe = null;
                 OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "BVE 実行ファイル(BveTs.exe)|BveTs.exe";
+                dialog.Filter = "BVE 実行ファイル|BveTs.exe";
                 dialog.InitialDirectory = "C:\\";
                 dialog.Title = "BVEの実行ファイルを選択してください";
                 if (dialog.ShowDialog() == DialogResult.OK)
