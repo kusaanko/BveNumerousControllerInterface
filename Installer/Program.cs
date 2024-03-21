@@ -65,16 +65,7 @@ namespace Installer
                     {
                         unsupportedVersion = true;
                     }
-                    else if (majorVersion == 5)
-                    {
-                        string[] installFiles = new string[] { 
-                            "Installer.Kusaanko.NumerousControllerInterface.dll", Path.Combine(installDir, "Kusaanko.NumerousControllerInterface.dll"),
-                            "Installer.LibUsbDotNet.dll", Path.Combine(bveInstallDir, "LibUsbDotNet.dll"),
-                        };
-                        ExtractFiles(installFiles);
-                        installSucceeded = true;
-                    }
-                    else if (majorVersion == 6)
+                    else if (majorVersion == 5 || majorVersion == 6)
                     {
                         string[] installFiles = new string[] {
                             "Installer.Kusaanko.NumerousControllerInterface.dll", Path.Combine(installDir, "Kusaanko.NumerousControllerInterface.dll"),
