@@ -11,6 +11,8 @@ using System.IO;
 using System.Reflection;
 using System.Xml.Linq;
 using static Kusaanko.Bvets.NumerousControllerInterface.Controller.NCIController;
+using System.Threading;
+using SlimDX.DirectInput;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface
 {
@@ -53,11 +55,15 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public static bool IsMasterControllerUpdateRequested;
 
-        public static Timer TimerController;
+        public static System.Windows.Forms.Timer TimerController;
         private bool _isUpdateController;
         private bool _isDisposeRequested;
         private static bool s_isRunningGetAllControllers;
         public static Version AtsExPluginVersion;
+        public static List<Tuple<string, Type, string>> AtsExPluginAvailableValues;
+        private static Thread _ControllerOutputThread;
+        private static bool _ControllerOutputThreadAlive;
+        private static Queue<Tuple<string, object>> _OutputValueChanged = new Queue<Tuple<string, object>>();
 
         public NumerousControllerInterface()
         {
@@ -77,7 +83,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             s_preControllerCount = -1;
             if (TimerController == null)
             {
-                TimerController = new Timer();
+                TimerController = new System.Windows.Forms.Timer();
                 TimerController.Interval = 2000;
                 TimerController.Tick += new System.EventHandler(TimerTick);
             }
@@ -856,38 +862,153 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         }
 
         // AtsEx連携機能
+        private static void AtsExPluginSendOutputThreadFrame()
+        {
+            while (_ControllerOutputThreadAlive)
+            {
+                if (ConfigFormInstance != null && !ConfigFormInstance.IsDisposed)
+                {
+                    continue;
+                }
+                List<NCIController> controllers = new List<NCIController>();
+                controllers.AddRange(Controllers);
+                // リストの改変を防ぐため一度コピーする
+                foreach (NCIController controller in controllers)
+                {
+                    if (SettingsInstance.GetIsEnabled(controller.GetName()))
+                    {
+                        controller.SendOutput();
+                    }
+                }
+                Thread.Sleep(10);
+            }
+        }
+
         public static void AtsExPluginSetVersion(Version version)
         {
             AtsExPluginVersion = version;
+            _ControllerOutputThread = new Thread(AtsExPluginSendOutputThreadFrame);
+            _ControllerOutputThread.Start();
+            _ControllerOutputThreadAlive = true;
         }
 
         public static void AtsExPluginDisposed()
         {
-
+            _ControllerOutputThreadAlive = false;
         }
 
         // 利用可能な機能の一覧を設定
-        public static void AtsExPluginReportAvailableFeatures(List<Tuple<string, Type>> features)
+        // キー、値の型、表示名
+        public static void AtsExPluginReportAvailableValues(List<Tuple<string, Type, string>> values)
         {
-
+            AtsExPluginAvailableValues = values;
         }
 
         // 値の変更を通知
+        // キー、値
         public static void AtsExPluginReportValueChanged(string key, object value)
         {
-
+            foreach (NCIController controller in Controllers)
+            {
+                ControllerProfile profile = SettingsInstance.GetProfile(controller);
+                if (SettingsInstance.GetIsEnabled(controller.GetName()) && profile != null)
+                {
+                    foreach (var atsValue in profile.AtsExValue)
+                    {
+                        if (key == atsValue.Value)
+                        {
+                            OutputType outputType = controller.GetOutputs()[atsValue.Key];
+                            if (value.GetType() == typeof(int))
+                            {
+                                switch (outputType)
+                                {
+                                    case OutputType.Int:
+                                        controller.SetOutput(atsValue.Key, (int)value);
+                                        break;
+                                    case OutputType.Double:
+                                        controller.SetOutput(atsValue.Key, (double)(int)value);
+                                        break;
+                                }
+                            }
+                            if (value.GetType() == typeof(float))
+                            {
+                                switch (outputType)
+                                {
+                                    case OutputType.Int:
+                                        controller.SetOutput(atsValue.Key, (int)(float)value);
+                                        break;
+                                    case OutputType.Double:
+                                        controller.SetOutput(atsValue.Key, (double)(float)value);
+                                        break;
+                                }
+                            }
+                            if (value.GetType() == typeof(double))
+                            {
+                                switch (outputType)
+                                {
+                                    case OutputType.Int:
+                                        controller.SetOutput(atsValue.Key, (int)(double)value);
+                                        break;
+                                    case OutputType.Double:
+                                        controller.SetOutput(atsValue.Key, (double)value);
+                                        break;
+                                }
+                            }
+                            if (value.GetType() == typeof(bool))
+                            {
+                                switch (outputType)
+                                {
+                                    case OutputType.Bool:
+                                        controller.SetOutput(atsValue.Key, (bool)value);
+                                        break;
+                                }
+                            }
+                            if (value.GetType() == typeof(string))
+                            {
+                                switch (outputType)
+                                {
+                                    case OutputType.String:
+                                        controller.SetOutput(atsValue.Key, (string)value);
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         // イベントの発生を通知
+        // キー
         public static void AtsExPluginReportEventFired(string key)
         {
 
         }
 
         // NumerousControllerInterfaceが使用する機能の一覧を取得
-        public static List<string> AtsExPluginGetUseFeatureList()
+        public static List<string> AtsExPluginGetUseValueList()
         {
-            return new List<string>();
+            List<string> values = new List<string>();
+            foreach (NCIController controller in Controllers)
+            {
+                if (SettingsInstance.GetIsEnabled(controller.GetName()))
+                {
+                    ControllerProfile profile = SettingsInstance.GetProfile(controller);
+                    if (profile != null)
+                    {
+                        if (profile.AtsExValue != null) {
+                            foreach (string key in profile.AtsExValue.Values)
+                            {
+                                if (!values.Contains(key))
+                                {
+                                    values.AddRange(profile.AtsExValue.Values);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return values;
         }
     }
 }

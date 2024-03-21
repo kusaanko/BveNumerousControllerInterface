@@ -77,11 +77,12 @@
             this.settingBreakButton = new System.Windows.Forms.Button();
             this.settingPowerButton = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.atsExConfigurationTabItem = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dataAtsExValueComboBox = new System.Windows.Forms.ComboBox();
+            this.dataOutputListBox = new System.Windows.Forms.ListBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.pluginSettingButton = new System.Windows.Forms.Button();
-            this.showLoadedPlugins = new System.Windows.Forms.Button();
-            this.pluginConfigComboBox = new System.Windows.Forms.ComboBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.comPortApplyButton = new System.Windows.Forms.Button();
             this.comPortInformationLabel = new System.Windows.Forms.Label();
@@ -111,13 +112,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
             this.atsExStatusLabel = new System.Windows.Forms.Label();
-            this.dataTypeComboBox = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
-            this.dataOutputListBox = new System.Windows.Forms.ListBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.pluginSettingButton = new System.Windows.Forms.Button();
+            this.showLoadedPlugins = new System.Windows.Forms.Button();
+            this.pluginConfigComboBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -126,8 +126,8 @@
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.powerCenterPositionNumericUpDown)).BeginInit();
             this.tabPage5.SuspendLayout();
+            this.atsExConfigurationTabItem.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage4.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.comPortSettingGroupBox.SuspendLayout();
             this.comPortTabControl.SuspendLayout();
@@ -135,7 +135,7 @@
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.tabPage10.SuspendLayout();
-            this.dataTypeComboBox.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // okButton
@@ -395,7 +395,7 @@
             // 
             this.settingsTabControl.Controls.Add(this.tabPage3);
             this.settingsTabControl.Controls.Add(this.tabPage5);
-            this.settingsTabControl.Controls.Add(this.dataTypeComboBox);
+            this.settingsTabControl.Controls.Add(this.atsExConfigurationTabItem);
             resources.ApplyResources(this.settingsTabControl, "settingsTabControl");
             this.settingsTabControl.Name = "settingsTabControl";
             this.settingsTabControl.SelectedIndex = 0;
@@ -485,6 +485,44 @@
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // atsExConfigurationTabItem
+            // 
+            this.atsExConfigurationTabItem.Controls.Add(this.label10);
+            this.atsExConfigurationTabItem.Controls.Add(this.dataAtsExValueComboBox);
+            this.atsExConfigurationTabItem.Controls.Add(this.dataOutputListBox);
+            this.atsExConfigurationTabItem.Controls.Add(this.label9);
+            resources.ApplyResources(this.atsExConfigurationTabItem, "atsExConfigurationTabItem");
+            this.atsExConfigurationTabItem.Name = "atsExConfigurationTabItem";
+            this.atsExConfigurationTabItem.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // dataAtsExValueComboBox
+            // 
+            this.dataAtsExValueComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dataAtsExValueComboBox.DropDownWidth = 350;
+            this.dataAtsExValueComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.dataAtsExValueComboBox, "dataAtsExValueComboBox");
+            this.dataAtsExValueComboBox.Name = "dataAtsExValueComboBox";
+            this.dataAtsExValueComboBox.SelectedIndexChanged += new System.EventHandler(this.dataAtsExValueComboBox_SelectedIndexChanged);
+            // 
+            // dataOutputListBox
+            // 
+            this.dataOutputListBox.FormattingEnabled = true;
+            resources.ApplyResources(this.dataOutputListBox, "dataOutputListBox");
+            this.dataOutputListBox.Name = "dataOutputListBox";
+            this.dataOutputListBox.Sorted = true;
+            this.dataOutputListBox.SelectedIndexChanged += new System.EventHandler(this.dataOutputListBox_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label9.Name = "label9";
+            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.alertNoCountrollerFoundCheckBox);
@@ -493,36 +531,6 @@
             resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.pluginSettingButton);
-            this.tabPage4.Controls.Add(this.showLoadedPlugins);
-            this.tabPage4.Controls.Add(this.pluginConfigComboBox);
-            resources.ApplyResources(this.tabPage4, "tabPage4");
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // pluginSettingButton
-            // 
-            resources.ApplyResources(this.pluginSettingButton, "pluginSettingButton");
-            this.pluginSettingButton.Name = "pluginSettingButton";
-            this.pluginSettingButton.UseVisualStyleBackColor = true;
-            this.pluginSettingButton.Click += new System.EventHandler(this.pluginSettingButton_Click);
-            // 
-            // showLoadedPlugins
-            // 
-            resources.ApplyResources(this.showLoadedPlugins, "showLoadedPlugins");
-            this.showLoadedPlugins.Name = "showLoadedPlugins";
-            this.showLoadedPlugins.UseVisualStyleBackColor = true;
-            this.showLoadedPlugins.Click += new System.EventHandler(this.showLoadedPlugins_Click);
-            // 
-            // pluginConfigComboBox
-            // 
-            this.pluginConfigComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.pluginConfigComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.pluginConfigComboBox, "pluginConfigComboBox");
-            this.pluginConfigComboBox.Name = "pluginConfigComboBox";
             // 
             // tabPage6
             // 
@@ -758,49 +766,45 @@
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            // 
             // atsExStatusLabel
             // 
             resources.ApplyResources(this.atsExStatusLabel, "atsExStatusLabel");
             this.atsExStatusLabel.Name = "atsExStatusLabel";
             // 
-            // dataTypeComboBox
+            // label6
             // 
-            this.dataTypeComboBox.Controls.Add(this.label10);
-            this.dataTypeComboBox.Controls.Add(this.comboBox1);
-            this.dataTypeComboBox.Controls.Add(this.dataOutputListBox);
-            this.dataTypeComboBox.Controls.Add(this.label9);
-            resources.ApplyResources(this.dataTypeComboBox, "dataTypeComboBox");
-            this.dataTypeComboBox.Name = "dataTypeComboBox";
-            this.dataTypeComboBox.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
             // 
-            // label9
+            // tabPage4
             // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label9.Name = "label9";
+            this.tabPage4.Controls.Add(this.pluginSettingButton);
+            this.tabPage4.Controls.Add(this.showLoadedPlugins);
+            this.tabPage4.Controls.Add(this.pluginConfigComboBox);
+            resources.ApplyResources(this.tabPage4, "tabPage4");
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // dataOutputListBox
+            // pluginSettingButton
             // 
-            this.dataOutputListBox.FormattingEnabled = true;
-            resources.ApplyResources(this.dataOutputListBox, "dataOutputListBox");
-            this.dataOutputListBox.Name = "dataOutputListBox";
-            this.dataOutputListBox.Sorted = true;
+            resources.ApplyResources(this.pluginSettingButton, "pluginSettingButton");
+            this.pluginSettingButton.Name = "pluginSettingButton";
+            this.pluginSettingButton.UseVisualStyleBackColor = true;
+            this.pluginSettingButton.Click += new System.EventHandler(this.pluginSettingButton_Click);
             // 
-            // comboBox1
+            // showLoadedPlugins
             // 
-            this.comboBox1.FormattingEnabled = true;
-            resources.ApplyResources(this.comboBox1, "comboBox1");
-            this.comboBox1.Name = "comboBox1";
+            resources.ApplyResources(this.showLoadedPlugins, "showLoadedPlugins");
+            this.showLoadedPlugins.Name = "showLoadedPlugins";
+            this.showLoadedPlugins.UseVisualStyleBackColor = true;
+            this.showLoadedPlugins.Click += new System.EventHandler(this.showLoadedPlugins_Click);
             // 
-            // label10
+            // pluginConfigComboBox
             // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
+            this.pluginConfigComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.pluginConfigComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.pluginConfigComboBox, "pluginConfigComboBox");
+            this.pluginConfigComboBox.Name = "pluginConfigComboBox";
             // 
             // ConfigForm
             // 
@@ -829,9 +833,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.powerCenterPositionNumericUpDown)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.atsExConfigurationTabItem.ResumeLayout(false);
+            this.atsExConfigurationTabItem.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.comPortSettingGroupBox.ResumeLayout(false);
@@ -845,8 +850,7 @@
             this.tabPage8.PerformLayout();
             this.tabPage10.ResumeLayout(false);
             this.tabPage10.PerformLayout();
-            this.dataTypeComboBox.ResumeLayout(false);
-            this.dataTypeComboBox.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -932,9 +936,9 @@
         private System.Windows.Forms.ComboBox comPortBaudRateComboBox;
         private System.Windows.Forms.NumericUpDown powerCenterPositionNumericUpDown;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TabPage dataTypeComboBox;
+        private System.Windows.Forms.TabPage atsExConfigurationTabItem;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox dataAtsExValueComboBox;
         private System.Windows.Forms.ListBox dataOutputListBox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TabPage tabPage10;

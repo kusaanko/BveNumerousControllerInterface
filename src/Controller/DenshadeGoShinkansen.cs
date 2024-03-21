@@ -6,6 +6,7 @@ using LibUsbDotNet;
 using LibUsbDotNet.Main;
 using System.Threading;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
 {
@@ -18,6 +19,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         private bool[] _buttons;
         private bool _loop;
         private Reverser _revPos;
+        private byte[] _SendData;
         public static List<NCIController> Get()
         {
             List<NCIController> controllers = new List<NCIController>();
@@ -44,6 +46,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         public DenshadeGoShinkansen(UsbDevice device)
         {
             this._device = device;
+            _SendData = new byte[8];
             _reader = device.OpenEndpointReader(ReadEndpointID.Ep01);
             _buttons = new bool[11];
             _loop = true;
@@ -145,6 +148,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         public override void Dispose()
         {
             _loop = false;
+            int transferLength;
+            var packet = new UsbSetupPacket(0x40, 0x09, 0x301, 0x0, 0x8);
+            _device.ControlTransfer(ref packet, new byte[_SendData.Length], _SendData.Length, out transferLength);
         }
 
         public override bool IsDisposed()
@@ -200,6 +206,75 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
         public override int[] GetSliders()
         {
             return null;
+        }
+
+        public override Dictionary<string, OutputType> GetOutputs()
+        {
+            Dictionary<string, OutputType> outputs = new Dictionary<string, OutputType>
+            {
+                { "戸閉灯", OutputType.Bool },
+                { "速度計", OutputType.Int },
+                { "ATC", OutputType.Int },
+                { "速度ゲージ", OutputType.Int },
+                { "ATCゲージ", OutputType.Int }
+            };
+            return outputs;
+        }
+
+        public override Dictionary<string, OutputHint> GetOutputHints()
+        {
+            Dictionary<string, OutputHint> outputs = new Dictionary<string, OutputHint>
+            {
+                { "戸閉灯", OutputHint.DoorLamp },
+                { "速度計", OutputHint.SpeedMeter },
+                { "ATC", OutputHint.ATC },
+            };
+            return outputs;
+        }
+
+        public override void SetOutput(string key, object value)
+        {
+            switch (key)
+            {
+                case "戸閉灯":
+                    _SendData[2] = (byte)((((bool)value) ? 0x80 : 0x00) | _SendData[2] & 0xF);
+                    break;
+                case "速度計":
+                    int speed = (int)value;
+                    int speed1 = (speed % 1000) / 100;
+                    int speed2 = (speed % 100) / 10;
+                    int speed3 = speed % 10;
+                    _SendData[4] = (byte)(((speed2 << 4) | speed3) & 0xFF);
+                    _SendData[5] = (byte)(speed1 & 0xFF);
+                    break;
+                case "ATC":
+                    int atc = (int)value;
+                    int atc1 = (atc % 1000) / 100;
+                    int atc2 = (atc % 100) / 10;
+                    int atc3 = atc % 10;
+                    _SendData[6] = (byte)(((atc2 << 4) | atc3) & 0xFF);
+                    _SendData[7] = (byte)(atc1 & 0xFF);
+                    break;
+                case "速度ゲージ":
+                    int gauge = (int)Math.Ceiling((int)value / 15d);
+                    if (gauge > 0x16) gauge = 0x16;
+                    if (gauge < 0) gauge = 0;
+                    _SendData[3] = (byte)gauge;
+                    break;
+                case "ATCゲージ":
+                    int val = (int)value;
+                    if (val > 10) val = 10;
+                    if (val < 0) val = 0;
+                    _SendData[2] = (byte)((_SendData[2] & 0xF0) | val);
+                    break;
+            }
+        }
+
+        public override void SendOutput()
+        {
+            int transferLength = 0;
+            var packet = new UsbSetupPacket(0x40, 0x09, 0x301, 0x0, 0x8);
+            _device.ControlTransfer(ref packet, _SendData, _SendData.Length, out transferLength);
         }
     }
 }

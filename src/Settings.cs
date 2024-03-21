@@ -473,7 +473,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public ControllerProfile GetProfile(NCIController controller)
         {
-            if (!Profiles.ContainsKey(controller.GetName())) return null;
+            if (!ProfileMap.ContainsKey(controller.GetName())) return null;
+            if (!Profiles.ContainsKey(ProfileMap[controller.GetName()])) return null;
             return Profiles[ProfileMap[controller.GetName()]];
         }
 

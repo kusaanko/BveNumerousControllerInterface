@@ -70,6 +70,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public bool InaccuracyModeBreak;
         [DataMember]
         public int PowerCenterPosition;
+        [DataMember]
+        public Dictionary<string, string> AtsExValue;
         private int prePowerNotch;
         private int preBreakNotch;
         private static int s_preDirectInputCount = -1;
@@ -110,6 +112,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             FlexibleBreak = FlexibleNotchMode.EBFixed;
             InaccuracyModePower = false;
             InaccuracyModeBreak = false;
+            AtsExValue = new Dictionary<string, string>();
         }
 
         public void ResetPower()

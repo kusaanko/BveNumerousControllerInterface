@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
 {
@@ -79,8 +80,45 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
             return new string[0];
         }
 
+        public virtual Dictionary<string, OutputType> GetOutputs()
+        {
+            return null;
+        }
+
+        public virtual Dictionary<string, OutputHint> GetOutputHints()
+        {
+            return null;
+        }
+
+        public virtual void SetOutput(string key, object value)
+        {
+
+        }
+
+        public virtual void SendOutput()
+        {
+
+        }
+
         public abstract void Dispose();
 
         public abstract bool IsDisposed();
+    }
+
+    public enum OutputHint
+    {
+        SpeedMeter,
+        PowerNotch,
+        BreakNotch,
+        ATC,
+        DoorLamp,
+    }
+
+    public enum OutputType
+    {
+        Bool,
+        Int,
+        Double,
+        String,
     }
 }

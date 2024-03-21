@@ -16,6 +16,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private List<string> _buttonFeatureIdIndex = new List<string>();
         private System.ComponentModel.ComponentResourceManager resources;
         public ControllerSetupForm ControllerSetupForm;
+        private List<string> _AtsExValueKey = new List<string>();
 
         public ConfigForm()
         {
@@ -69,6 +70,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             comPortInputReplaceTextBox.Height = (int)(comPortInputReplaceTextBox.Height / DpiScale);
             comPortOutputReplaceTextBox.Height = (int)(comPortOutputReplaceTextBox.Height / DpiScale);
             buttonList.Height = (int)(buttonList.Height / DpiScale);
+            dataOutputListBox.Height = (int)(dataOutputListBox.Height / DpiScale);
         }
 
         public void updateControllers()
@@ -176,6 +178,20 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 removeBreakButton.Enabled = GetController().GetBreakCount() == 0;
 
                 settingsTabControl.Enabled = true;
+
+                if (NumerousControllerInterface.AtsExPluginVersion != null && GetController().GetOutputs() != null)
+                {
+                    dataOutputListBox.Items.Clear();
+                    foreach (var pair in GetController().GetOutputs())
+                    {
+                        dataOutputListBox.Items.Add(pair.Key);
+                    }
+                    atsExConfigurationTabItem.Enabled = true;
+                }
+                else
+                {
+                    atsExConfigurationTabItem.Enabled = false;
+                }
             } else
             {
                 settingsTabControl.Enabled = false;
@@ -978,6 +994,64 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             if (profile != null)
             {
                 profile.PowerCenterPosition = (int)powerCenterPositionNumericUpDown.Value;
+            }
+        }
+
+        private void dataOutputListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dataOutputListBox.SelectedItem != null)
+            {
+                dataAtsExValueComboBox.Items.Clear();
+                _AtsExValueKey.Clear();
+                OutputType outputType = GetController().GetOutputs()[dataOutputListBox.SelectedItem.ToString()];
+                foreach (var value in NumerousControllerInterface.AtsExPluginAvailableValues)
+                {
+                    if ((outputType == OutputType.Int && (value.Item2 == typeof(int) || value.Item2 == typeof(double) || value.Item2 == typeof(float))) ||
+                        (outputType == OutputType.Double && (value.Item2 == typeof(int) || value.Item2 == typeof(double) || value.Item2 == typeof(float))) ||
+                        (outputType == OutputType.Bool && (value.Item2 == typeof(bool))))
+                    {
+                        dataAtsExValueComboBox.Items.Add(value.Item3);
+                        _AtsExValueKey.Add(value.Item1);
+                    }
+                }
+                if (GetProfile().AtsExValue == null)
+                {
+                    GetProfile().AtsExValue = new Dictionary<string, string>();
+                }
+                if (GetProfile().AtsExValue.ContainsKey(dataOutputListBox.SelectedItem.ToString()))
+                {
+                    string valueKey = GetProfile().AtsExValue[dataOutputListBox.SelectedItem.ToString()];
+                    int index =_AtsExValueKey.FindIndex(val => val == valueKey);
+                    if (index >= 0)
+                    {
+                        dataAtsExValueComboBox.SelectedIndex = index;
+                    }
+                } else
+                {
+                    dataAtsExValueComboBox.SelectedIndex = -1;
+                }
+                dataAtsExValueComboBox.Enabled = true;
+            } else
+            {
+                dataAtsExValueComboBox.Enabled = false;
+            }
+        }
+
+        private void dataAtsExValueComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dataOutputListBox.SelectedItem != null && dataAtsExValueComboBox.SelectedIndex != -1)
+            {
+                if (GetProfile().AtsExValue == null)
+                {
+                    GetProfile().AtsExValue = new Dictionary<string, string>();
+                }
+                if (!GetProfile().AtsExValue.ContainsKey(dataOutputListBox.SelectedItem.ToString()))
+                {
+                    GetProfile().AtsExValue.Add(dataOutputListBox.SelectedItem.ToString(), _AtsExValueKey[dataAtsExValueComboBox.SelectedIndex]);
+                } else
+                {
+                    GetProfile().AtsExValue[dataOutputListBox.SelectedItem.ToString()] = _AtsExValueKey[dataAtsExValueComboBox.SelectedIndex];
+                }
             }
         }
     }

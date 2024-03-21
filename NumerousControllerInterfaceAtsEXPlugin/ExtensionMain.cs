@@ -9,6 +9,8 @@ using System.Reflection;
 using System.Diagnostics;
 using System.Threading;
 using FastMember;
+using AtsEx.PluginHost;
+using MonoMod.Utils;
 
 namespace Kusaanko.Bvets.NumerousControllerInterface.AtsEXPlugin
 {
@@ -18,6 +20,13 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.AtsEXPlugin
         private Assembly NumerousControllerInterfaceAssembly;
         private Type NumerousControllerInterfaceType;
         private Dictionary<string, FastMethod> Methods;
+        private Dictionary<string, FastMethod> GetterMethods;
+        private bool IsLoaded = false;
+        private Dictionary<string, PropertyInfo> RetrievableValuesFromKey;
+        private Dictionary<string, PropertyInfo> RetrievableValues;
+        private Dictionary<string, PropertyInfo> Getters;
+        private Dictionary<string, object> PreValue;
+        private List<string> RetriveValues;
         public ExtensionMain(PluginBuilder builder) : base(builder)
         {
             // NumerousControllerInterfaceがなくてもエラーを出さないようにリフレクションを使用
@@ -37,10 +46,79 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.AtsEXPlugin
                 string[] methods = {
                     "SetVersion",
                     "Disposed",
+                    "ReportAvailableValues",
+                    "ReportValueChanged",
+                    "GetUseValueList",
                 };
                 SetMethods(methods);
+            }
+            if (IsLoaded)
+            {
                 // NumerousController側にAtsExPluginの起動完了を通知
                 Invoke("SetVersion", Assembly.GetExecutingAssembly().GetName().Version);
+
+                // 取得可能な値を列挙
+                RetrievableValues = new Dictionary<string, PropertyInfo>();
+                Getters = new Dictionary<string, PropertyInfo>();
+                RetrievableValuesFromKey = new Dictionary<string, PropertyInfo>();
+                GetterMethods = new Dictionary<string, FastMethod>();
+                GetAllRetrievableProperties(typeof(IBveHacker), null);
+                // 取得可能な値の一覧を通知
+                List<Tuple<string, Type, string>> values = new List<Tuple<string, Type, string>>
+                {
+                    { Tuple.Create("Standard.SpeedKmPerHour", typeof(double), "時速") },
+                    { Tuple.Create("Standard.DoorClosed", typeof(bool), "戸閉灯") },
+                    { Tuple.Create("Standard.BcPressure", typeof(double), "ブレーキシリンダ圧力[kPa]") },
+                    { Tuple.Create("Standard.BpPressure", typeof(double), "ブレーキ管圧力[kPa]") },
+                    { Tuple.Create("Standard.Current", typeof(double), "電流[A]") },
+                };
+                foreach (var item in RetrievableValuesFromKey.OrderBy(pair => pair.Key))
+                {
+                    var info = item.Key;
+                    values.Add(Tuple.Create(info, item.Value.PropertyType, item.Value.DeclaringType.Name + "." + item.Value.Name));
+                }
+                Invoke("ReportAvailableValues", values);
+            }
+        }
+
+        private void GetAllRetrievableProperties(Type findTarget, PropertyInfo instance)
+        {
+            // 取得可能な値を列挙
+            foreach (var property in findTarget.GetProperties())
+            {
+                if ((property.PropertyType.Namespace == "BveTypes.ClassWrappers") && 
+                    !property.PropertyType.IsArray && !property.PropertyType.Name.Contains("List") && !property.PropertyType.Name.Contains("Form"))
+                {
+                    string key = GetKey(property);
+                    if (!Getters.ContainsKey(key))
+                    {
+                        Getters.Add(key, instance);
+                        FastMethod fastMethod = FastMethod.Create(property.GetMethod);
+                        GetterMethods[key] = fastMethod;
+                    }
+                    GetAllRetrievableProperties(property.PropertyType, property);
+                } else
+                {
+                    switch (Type.GetTypeCode(property.PropertyType))
+                    {
+                        case TypeCode.Boolean:
+                        case TypeCode.Char:
+                        case TypeCode.Single:
+                        case TypeCode.Decimal:
+                        case TypeCode.Double:
+                        case TypeCode.String:
+                        case TypeCode.Int32:
+                            string key = GetKey(property);
+                            if (!RetrievableValuesFromKey.ContainsKey(key))
+                            {
+                                RetrievableValues.Add(key, instance);
+                                RetrievableValuesFromKey.Add(key, property);
+                                FastMethod fastMethod = FastMethod.Create(property.GetMethod);
+                                GetterMethods[key] = fastMethod;
+                            }
+                            break;
+                    }
+                }
             }
         }
 
@@ -59,6 +137,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.AtsEXPlugin
                     break;
                 }
             }
+            if (Methods != null)
+            {
+                IsLoaded = true;
+            }
         }
 
         private void Invoke(string methodName, params object[] args)
@@ -76,7 +158,107 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.AtsEXPlugin
 
         public override TickResult Tick(TimeSpan elapsed)
         {
+            if (IsLoaded)
+            {
+                if (RetriveValues == null)
+                {
+                    List<string> useValueList = (List<string>)Methods["GetUseValueList"].Invoke(null, new object[0]);
+                    RetriveValues = new List<string>();
+                    RetriveValues.AddRange(useValueList);
+                    PreValue = new Dictionary<string, object>();
+                }
+                if (PreValue != null)
+                {
+                    foreach (string key in RetriveValues)
+                    {
+                        object value = GetValue(key);
+                        if (value != null)
+                        {
+                            if (PreValue.ContainsKey(key))
+                            {
+                                if (PreValue[key] != value)
+                                {
+                                    Invoke("ReportValueChanged", key, value);
+                                }
+                                PreValue[key] = value;
+                            }
+                            else
+                            {
+                                Invoke("ReportValueChanged", key, value);
+                                PreValue.Add(key, value);
+                            }
+                        }
+                    }
+                }
+            }
             return new ExtensionTickResult();
+        }
+
+        private object GetInstance(PropertyInfo key, PropertyInfo target)
+        {
+            if (target == null)
+            {
+                if (key.DeclaringType.Namespace == "BveTypes.ClassWrappers")
+                {
+                    return BveHacker;
+                }
+            }
+            if (Getters.ContainsKey(GetKey(target)))
+            {
+                object instance = GetInstance(key, Getters[GetKey(target)]);
+                if (instance != null)
+                {
+                    return GetterMethods[GetKey(target)].Invoke(instance, null);
+                }
+            }
+            return null;
+        }
+
+        private object GetValue(string key)
+        {
+            if (key.StartsWith("Standard"))
+            {
+                if (key == "Standard.SpeedKmPerHour")
+                {
+                    return BveHacker.Scenario.LocationManager.SpeedMeterPerSecond * 3600 / 1000;
+                }
+                if (key == "Standard.DoorClosed")
+                {
+                    return BveHacker.Scenario.Vehicle.Doors.AreAllClosingOrClosed;
+                }
+                if (key == "Standard.BcPressure")
+                {
+                    if (BveHacker.Scenario.Vehicle.Instruments.PluginLoader.StateStore.BcPressure.Length > 0)
+                        return BveHacker.Scenario.Vehicle.Instruments.PluginLoader.StateStore.BcPressure[0];
+                }
+                if (key == "Standard.BpPressure")
+                {
+                    if (BveHacker.Scenario.Vehicle.Instruments.PluginLoader.StateStore.BpPressure.Length > 0)
+                        return BveHacker.Scenario.Vehicle.Instruments.PluginLoader.StateStore.BpPressure[0];
+                }
+                if (key == "Standard.Current")
+                {
+                    if (BveHacker.Scenario.Vehicle.Instruments.PluginLoader.StateStore.Current.Length > 0)
+                        return BveHacker.Scenario.Vehicle.Instruments.PluginLoader.StateStore.Current[0];
+                }
+            } else
+            {
+                PropertyInfo info = RetrievableValuesFromKey[key];
+                PropertyInfo instanceInfo = RetrievableValues[key];
+                object instance = GetInstance(info, instanceInfo);
+                if (instance == null)
+                {
+                    return null;
+                }
+                return info.GetValue(instance);
+            }
+            return null;
+        }
+
+        private string GetKey(PropertyInfo property)
+        {
+            if (property == null) return "null";
+            return property.DeclaringType.Namespace + "." + property.DeclaringType.Name + "." + property.Name;
         }
     }
 }
