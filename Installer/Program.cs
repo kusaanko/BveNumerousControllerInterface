@@ -67,6 +67,11 @@ namespace Installer
                     }
                     else if (majorVersion == 5 || majorVersion == 6)
                     {
+                        // .NET4版バイナリを削除
+                        if (File.Exists(Path.Combine(installDir, "Kusaanko.NumerousControllerInterface.NET4.dll")))
+                        {
+                            File.Delete(Path.Combine(installDir, "Kusaanko.NumerousControllerInterface.NET4.dll"));
+                        }
                         string[] installFiles = new string[] {
                             "Installer.Kusaanko.NumerousControllerInterface.dll", Path.Combine(installDir, "Kusaanko.NumerousControllerInterface.dll"),
                             "Installer.LibUsbDotNet.dll", Path.Combine(bveInstallDir, "LibUsbDotNet.dll"),
