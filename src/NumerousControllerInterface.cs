@@ -113,17 +113,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private static void CheckUpdates()
         {
-            string tempDir = Path.GetTempPath();
-            string downloadTmpDir = Path.Combine(tempDir, "NumerousControllerInterface");
-            try
-            {
-                if (Directory.Exists(downloadTmpDir))
-                {
-                    DirectoryInfo info = new DirectoryInfo(downloadTmpDir);
-                    info.Delete(true);
-                }
-            }
-            catch (Exception) { }
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | (SecurityProtocolType)768 | (SecurityProtocolType)3072;
             string targetArch = BinaryInfo.arch;
             string net_ver = BinaryInfo.net_ver;
@@ -153,6 +142,17 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             int intVersion = int.Parse(target.Element("IntVersion").Value);
                             if (intVersion > IntVersion)
                             {
+                                string tempDir = Path.GetTempPath();
+                                string downloadTmpDir = Path.Combine(tempDir, "NumerousControllerInterface");
+                                try
+                                {
+                                    if (Directory.Exists(downloadTmpDir))
+                                    {
+                                        DirectoryInfo info = new DirectoryInfo(downloadTmpDir);
+                                        info.Delete(true);
+                                    }
+                                }
+                                catch (Exception) { }
                                 string downloadFilePath = Path.Combine(downloadTmpDir, target.Element("Asset").Value);
                                 string installer = "";
 
