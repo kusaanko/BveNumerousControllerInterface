@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumerousControllerInterface", "NumerousControllerInterface.csproj", "{7B46C49E-4431-47C5-BBF5-85C39B1B012B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer", "..\Installer\Installer.csproj", "{68CC5C53-21A8-4154-AB6F-904EF502E584}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7B46C49E-4431-47C5-BBF5-85C39B1B012B} = {7B46C49E-4431-47C5-BBF5-85C39B1B012B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumerousControllerInterfaceAtsEXPlugin", "..\NumerousControllerInterfaceAtsEXPlugin\NumerousControllerInterfaceAtsEXPlugin.csproj", "{DCF047B7-4400-45ED-A449-A2CD65A32099}"
 EndProject
