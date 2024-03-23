@@ -57,22 +57,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             atsExStatusLabel.Text = NumerousControllerInterface.AtsExPluginVersion != null ? "AtsEXプラグイン読み込み済み(" + NumerousControllerInterface.AtsExPluginVersion.ToString() + ")" : "AtsEXプラグイン未検出";
         }
 
-        private void ConfigForm_Load(object sender, EventArgs e)
-        {
-            // HiDPIサポート
-            float DpiScale = this.CreateGraphics().DpiX / 96f;
-            controllerList.Height = (int)(controllerList.Height / DpiScale);
-            availableComPortList.Height = (int)(availableComPortList.Height / DpiScale);
-            usingComPortList.Height = (int)(usingComPortList.Height / DpiScale);
-            comPortInformationLabel.Width = (int)(comPortInformationLabel.Width / DpiScale);
-            comPortInformationLabel.Height = (int)(comPortInformationLabel.Height / DpiScale);
-            comPortOnInitTextBox.Height = (int)(comPortOnInitTextBox.Height / DpiScale);
-            comPortInputReplaceTextBox.Height = (int)(comPortInputReplaceTextBox.Height / DpiScale);
-            comPortOutputReplaceTextBox.Height = (int)(comPortOutputReplaceTextBox.Height / DpiScale);
-            buttonList.Height = (int)(buttonList.Height / DpiScale);
-            dataOutputListBox.Height = (int)(dataOutputListBox.Height / DpiScale);
-        }
-
         public void updateControllers()
         {
             timer1.Stop();

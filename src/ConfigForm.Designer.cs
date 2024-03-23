@@ -118,6 +118,11 @@
             this.pluginSettingButton = new System.Windows.Forms.Button();
             this.showLoadedPlugins = new System.Windows.Forms.Button();
             this.pluginConfigComboBox = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -136,6 +141,11 @@
             this.tabPage8.SuspendLayout();
             this.tabPage10.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // okButton
@@ -190,8 +200,8 @@
             // 
             // controllerList
             // 
-            this.controllerList.FormattingEnabled = true;
             resources.ApplyResources(this.controllerList, "controllerList");
+            this.controllerList.FormattingEnabled = true;
             this.controllerList.Name = "controllerList";
             this.controllerList.SelectedIndexChanged += new System.EventHandler(this.controllerList_SelectedIndexChanged);
             // 
@@ -255,8 +265,8 @@
             // 
             // buttonList
             // 
-            this.buttonList.FormattingEnabled = true;
             resources.ApplyResources(this.buttonList, "buttonList");
+            this.buttonList.FormattingEnabled = true;
             this.buttonList.Name = "buttonList";
             this.buttonList.Sorted = true;
             this.buttonList.SelectedIndexChanged += new System.EventHandler(this.buttonList_SelectedIndexChanged);
@@ -371,9 +381,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.panel2);
             this.tabPage2.Controls.Add(this.settingsTabControl);
             this.tabPage2.Controls.Add(this.controllerAssignmentLabel);
-            this.tabPage2.Controls.Add(this.controllerList);
             this.tabPage2.Controls.Add(this.removeProfileButton);
             this.tabPage2.Controls.Add(this.selectControllerLabel);
             this.tabPage2.Controls.Add(this.changeNameButton);
@@ -475,10 +485,10 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.panel4);
             this.tabPage5.Controls.Add(this.removeButtonButton);
             this.tabPage5.Controls.Add(this.buttonsAssignmentLabel);
             this.tabPage5.Controls.Add(this.addButtonButton);
-            this.tabPage5.Controls.Add(this.buttonList);
             this.tabPage5.Controls.Add(this.buttonFunctionLabel);
             this.tabPage5.Controls.Add(this.buttonFunctionComboBox);
             resources.ApplyResources(this.tabPage5, "tabPage5");
@@ -487,9 +497,9 @@
             // 
             // atsExConfigurationTabItem
             // 
+            this.atsExConfigurationTabItem.Controls.Add(this.panel3);
             this.atsExConfigurationTabItem.Controls.Add(this.label10);
             this.atsExConfigurationTabItem.Controls.Add(this.dataAtsExValueComboBox);
-            this.atsExConfigurationTabItem.Controls.Add(this.dataOutputListBox);
             this.atsExConfigurationTabItem.Controls.Add(this.label9);
             resources.ApplyResources(this.atsExConfigurationTabItem, "atsExConfigurationTabItem");
             this.atsExConfigurationTabItem.Name = "atsExConfigurationTabItem";
@@ -511,8 +521,8 @@
             // 
             // dataOutputListBox
             // 
-            this.dataOutputListBox.FormattingEnabled = true;
             resources.ApplyResources(this.dataOutputListBox, "dataOutputListBox");
+            this.dataOutputListBox.FormattingEnabled = true;
             this.dataOutputListBox.Name = "dataOutputListBox";
             this.dataOutputListBox.Sorted = true;
             this.dataOutputListBox.SelectedIndexChanged += new System.EventHandler(this.dataOutputListBox_SelectedIndexChanged);
@@ -534,13 +544,13 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.panel6);
+            this.tabPage6.Controls.Add(this.panel5);
             this.tabPage6.Controls.Add(this.comPortApplyButton);
             this.tabPage6.Controls.Add(this.comPortInformationLabel);
             this.tabPage6.Controls.Add(this.comPortSettingGroupBox);
             this.tabPage6.Controls.Add(this.comPortDeleteButton);
             this.tabPage6.Controls.Add(this.comportUseButton);
-            this.tabPage6.Controls.Add(this.usingComPortList);
-            this.tabPage6.Controls.Add(this.availableComPortList);
             this.tabPage6.Controls.Add(this.label4);
             this.tabPage6.Controls.Add(this.label3);
             resources.ApplyResources(this.tabPage6, "tabPage6");
@@ -558,6 +568,7 @@
             // 
             resources.ApplyResources(this.comPortInformationLabel, "comPortInformationLabel");
             this.comPortInformationLabel.Name = "comPortInformationLabel";
+            this.comPortInformationLabel.UseCompatibleTextRendering = true;
             // 
             // comPortSettingGroupBox
             // 
@@ -737,15 +748,15 @@
             // 
             // usingComPortList
             // 
-            this.usingComPortList.FormattingEnabled = true;
             resources.ApplyResources(this.usingComPortList, "usingComPortList");
+            this.usingComPortList.FormattingEnabled = true;
             this.usingComPortList.Name = "usingComPortList";
             this.usingComPortList.SelectedIndexChanged += new System.EventHandler(this.usingComPortList_SelectedIndexChanged);
             // 
             // availableComPortList
             // 
-            this.availableComPortList.FormattingEnabled = true;
             resources.ApplyResources(this.availableComPortList, "availableComPortList");
+            this.availableComPortList.FormattingEnabled = true;
             this.availableComPortList.Name = "availableComPortList";
             // 
             // label4
@@ -806,6 +817,36 @@
             resources.ApplyResources(this.pluginConfigComboBox, "pluginConfigComboBox");
             this.pluginConfigComboBox.Name = "pluginConfigComboBox";
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.controllerList);
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.Name = "panel2";
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.dataOutputListBox);
+            resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.Name = "panel3";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.buttonList);
+            resources.ApplyResources(this.panel4, "panel4");
+            this.panel4.Name = "panel4";
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.availableComPortList);
+            resources.ApplyResources(this.panel5, "panel5");
+            this.panel5.Name = "panel5";
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.usingComPortList);
+            resources.ApplyResources(this.panel6, "panel6");
+            this.panel6.Name = "panel6";
+            // 
             // ConfigForm
             // 
             this.AcceptButton = this.okButton;
@@ -821,7 +862,6 @@
             this.Name = "ConfigForm";
             this.ShowInTaskbar = false;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConfigForm_FormClosing);
-            this.Load += new System.EventHandler(this.ConfigForm_Load);
             this.panel1.ResumeLayout(false);
             this.profileContextMenuStrip.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
@@ -851,6 +891,11 @@
             this.tabPage10.ResumeLayout(false);
             this.tabPage10.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -944,5 +989,10 @@
         private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.Label atsExStatusLabel;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
     }
 }
