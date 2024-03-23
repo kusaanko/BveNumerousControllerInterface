@@ -1,13 +1,18 @@
 # BveNumerousControllerInterface
-![](https://img.shields.io/badge/-C%23-512BD4?logo=csharp&style=for-the-badge)
-![](https://img.shields.io/badge/-.NET%20Framework-512BD4?logo=.NET&style=for-the-badge)
-![](https://img.shields.io/badge/supports-Bve5-green?style=for-the-badge)
-![](https://img.shields.io/badge/supports-Bve6-orange?style=for-the-badge)
-![](https://img.shields.io/badge/work%20with-AtsEX-68EDD1?style=for-the-badge)
+![C#](https://img.shields.io/badge/-C%23-512BD4?logo=csharp&style=for-the-badge)
+![.NET Framework](https://img.shields.io/badge/-.NET%20Framework-512BD4?logo=.NET&style=for-the-badge)
+![Supports BVE5](https://img.shields.io/badge/supports-Bve5-green?style=for-the-badge)
+![Supports BVE6](https://img.shields.io/badge/supports-Bve6-orange?style=for-the-badge)
+![Works with AtsEX](https://img.shields.io/badge/works%20with-AtsEX-68EDD1?style=for-the-badge)
 ![Release](https://img.shields.io/github/v/release/kusaanko/bvenumerouscontrollerinterface?style=for-the-badge)
 ![Downloads](https://img.shields.io/github/downloads/kusaanko/bvenumerouscontrollerinterface/total?style=for-the-badge)
 
-Bve5、6用のコントローラー入力プラグイン  
+BVE5、6用のコントローラー入力プラグイン
+
+BVEで様々なコントローラーを使えるようにするプラグインです。
+
+Supported language is only Japanese now.
+
 コントローラーごとに入力プラグインが不要になり、このプラグインだけであらゆるコントローラーが使えるようにするのが目標です。
 
 コントローラーはマスコンタイプやボタンを押してノッチを操作するなどの様々な操作方法に対応します。
@@ -25,6 +30,7 @@ Bve5、6用のコントローラー入力プラグイン
 |マルチトレインコントローラー P5B7|はい|はい|100%|
 |マルチトレインコントローラー P5B8|いいえ|はい|動作しないデバイスあり|
 |マルチトレインコントローラー P13B7|はい|はい|100%|
+|シリアル通信コントローラー|はい|いいえ|100%|
 |Xbox用のコントローラー|はい|いいえ|100%|
 |その他DirectInputに対応したコントローラー|はい|いいえ|100%|
 
@@ -37,9 +43,10 @@ Bve5、6用のコントローラー入力プラグイン
 ※「電車で GO！」は、日本およびその他の国における株式会社 タイトーの商標または登録商標です。
 
 ※その他記載されている商品名は各社の商標または登録商標です。
+
 # 機能
-* 電車でGO!コントローラー等のマスコンをBveで使用可能にする
-* Bve起動中にコントローラが切断後、再接続された場合自動復帰します
+* 電車でGO!コントローラー等のマスコンをBVEで使用可能にする
+* BVE起動中にコントローラが切断後、再接続された場合自動復帰します
 * 各ボタンに機能が割り当てられます
 * 複数のコントローラーが接続中でも動作します(ただし、同じ名前のコントローラーが複数接続中だとうまくコントローラーを選択できません)
 * ATC操作専用コントローラーが使えます
@@ -102,6 +109,6 @@ NumerousControllerInterfaceを選択してプロパティーをクリックし�
 # ライセンス
 [SlimDX](https://github.com/SlimDX/slimdx) - Copyright (c) 2007-2012 SlimDX Group [MIT License](https://github.com/SlimDX/slimdx/blob/master/License.txt)
 
-[Json.NET](https://github.com/JamesNK/Newtonsoft.Json) - Copyright (c) 2007 James Newton-King [MIT License](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)
+[MIT License](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)
 
 [LibUsbDotNet](https://github.com/LibUsbDotNet/LibUsbDotNet) - [GNU Lesser General Public License v3.0](https://github.com/LibUsbDotNet/LibUsbDotNet/blob/master/LICENSE)
