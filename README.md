@@ -3,6 +3,7 @@
 ![](https://img.shields.io/badge/-.NET%20Framework-512BD4?logo=.NET&style=for-the-badge)
 ![](https://img.shields.io/badge/supports-Bve5-green?style=for-the-badge)
 ![](https://img.shields.io/badge/supports-Bve6-orange?style=for-the-badge)
+![](https://img.shields.io/badge/work%20with-AtsEX-68EDD1?style=for-the-badge)
 ![Release](https://img.shields.io/github/v/release/kusaanko/bvenumerouscontrollerinterface?style=for-the-badge)
 ![Downloads](https://img.shields.io/github/downloads/kusaanko/bvenumerouscontrollerinterface/total?style=for-the-badge)
 
