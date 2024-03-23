@@ -11,4 +11,6 @@ cd Installer\bin\Release
 cd ..\..\..\
 copy "Installer\bin\Release\Installer.zip" "bin" /Y
 del "Installer\bin\Release\Installer.zip"
+"C:\Program Files\7-Zip\7z.exe" a bin/Installer.zip library_license.txt
+"C:\Program Files\7-Zip\7z.exe" a bin/NumerousControllerInterface.zip library_license.txt
 pause
