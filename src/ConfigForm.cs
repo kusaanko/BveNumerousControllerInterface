@@ -1038,5 +1038,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
             }
         }
+
+        private void atsExHelpLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/kusaanko/BveNumerousControllerInterface/wiki/AtsEX");
+        }
     }
 }

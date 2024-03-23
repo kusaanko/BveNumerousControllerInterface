@@ -123,6 +123,7 @@
             this.pluginSettingButton = new System.Windows.Forms.Button();
             this.showLoadedPlugins = new System.Windows.Forms.Button();
             this.pluginConfigComboBox = new System.Windows.Forms.ComboBox();
+            this.atsExHelpLinkLabel = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -801,6 +802,7 @@
             // 
             // tabPage10
             // 
+            this.tabPage10.Controls.Add(this.atsExHelpLinkLabel);
             this.tabPage10.Controls.Add(this.atsExStatusLabel);
             this.tabPage10.Controls.Add(this.label6);
             resources.ApplyResources(this.tabPage10, "tabPage10");
@@ -846,6 +848,13 @@
             this.pluginConfigComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.pluginConfigComboBox, "pluginConfigComboBox");
             this.pluginConfigComboBox.Name = "pluginConfigComboBox";
+            // 
+            // atsExHelpLinkLabel
+            // 
+            resources.ApplyResources(this.atsExHelpLinkLabel, "atsExHelpLinkLabel");
+            this.atsExHelpLinkLabel.Name = "atsExHelpLinkLabel";
+            this.atsExHelpLinkLabel.TabStop = true;
+            this.atsExHelpLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.atsExHelpLinkLabel_LinkClicked);
             // 
             // ConfigForm
             // 
@@ -994,5 +1003,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.LinkLabel atsExHelpLinkLabel;
     }
 }
