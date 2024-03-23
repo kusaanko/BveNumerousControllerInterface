@@ -1,26 +1,6 @@
 <Root>
     <ReleaseUrl>https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases</ReleaseUrl>
     <Targets>
-        <Target arch="32bit" dotnet=".net3.5">
-            <Latest>v0.11</Latest>
-            <Version>0.11</Version>
-            <IntVersion>12</IntVersion>
-            <Asset>NumerousControllerInterface_Bve5.zip</Asset>
-            <DownloadPage>https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.11</DownloadPage>
-            <ReleaseUrl>https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases/76816756</ReleaseUrl>
-            <DownloadUrl>https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.11/NumerousControllerInterface_Bve5.zip</DownloadUrl>
-            <Installer>install.bat &lt;installDir&gt; &lt;exeFile&gt;</Installer>
-        </Target>
-        <Target arch="64bit" dotnet=".net4">
-            <Latest>v0.11</Latest>
-            <Version>0.11</Version>
-            <IntVersion>12</IntVersion>
-            <Asset>NumerousControllerInterface_Bve6.zip</Asset>
-            <DownloadPage>https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.11</DownloadPage>
-            <ReleaseUrl>https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases/76816756</ReleaseUrl>
-            <DownloadUrl>https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.11/NumerousControllerInterface_Bve6.zip</DownloadUrl>
-            <Installer>install.bat &lt;installDir&gt; &lt;exeFile&gt;</Installer>
-        </Target>
         <Target arch="anycpu" dotnet=".net3.5">
             <Latest>v0.12</Latest>
             <Version>0.12</Version>
