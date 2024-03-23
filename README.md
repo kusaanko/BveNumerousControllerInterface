@@ -1,4 +1,8 @@
 # BveNumerousControllerInterface
+![](https://img.shields.io/badge/-C%23-512BD4?logo=csharp&style=for-the-badge)
+![](https://img.shields.io/badge/-.NET%20Framework-512BD4?logo=.NET&style=for-the-badge)
+![](https://img.shields.io/badge/supports-Bve5-green?style=for-the-badge)
+![](https://img.shields.io/badge/supports-Bve6-orange?style=for-the-badge)
 ![Release](https://img.shields.io/github/v/release/kusaanko/bvenumerouscontrollerinterface?style=for-the-badge)
 ![Downloads](https://img.shields.io/github/downloads/kusaanko/bvenumerouscontrollerinterface/total?style=for-the-badge)
 
@@ -13,6 +17,7 @@ Bve5、6用のコントローラー入力プラグイン
 |TCPP-20001 電車でGO!コントローラー ワンハンドルタイプ|はい|いいえ|力行1と4の判定が曖昧|
 |SLPH-00051 電車でGO!コントローラー ツーハンドルタイプ|はい|いいえ|力行1と4の判定が曖昧|
 |TCPP-20001 電車でGO!コントローラー TYPE2|はい|はい|100%|
+|TCPP-20011 電車でGO!新幹線 専用コントローラ|はい|はい|100%|
 |マルチトレインコントローラー P4B6|はい|はい|100%|
 |マルチトレインコントローラー P4B7|はい|はい|100%|
 |マルチトレインコントローラー P5B5|はい|はい|100%|
