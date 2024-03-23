@@ -17,6 +17,9 @@ Supported language is only Japanese now.
 
 コントローラーはマスコンタイプやボタンを押してノッチを操作するなどの様々な操作方法に対応します。
 
+> [!WARNING]
+> AtsEXとの連携機能はまだまだ不安定であり、手動でのインストールが必要です。詳しくは下の項目をご覧ください。
+
 # 対応コントローラー
 |コントローラー|テスト済み|ドライバー必須|状態|
 |:--|:--|:--|:--|
@@ -40,6 +43,14 @@ Supported language is only Japanese now.
 
 対応コントローラーの追加要望にも対応します。[Issues](https://github.com/kusaanko/BveNumerousControllerInterface/issues)ページで報告していただけるとありがたいです。[Twitter](https://twitter.com/kusaanko)での報告でも可能です。
 
+> [!IMPORTANT]
+> ドライバーが必要と書かれたコントローラーは下のドライバーをインストールする項目を参照してください。
+> 
+> ドライバーをインストールしなかった場合、設定画面でコントローラーが表示されません。
+
+> [!IMPORTANT]
+> 必ず使用するコントローラーには設定画面で「有効にする」にチェックを入れてください。
+
 ※「電車で GO！」は、日本およびその他の国における株式会社 タイトーの商標または登録商標です。
 
 ※その他記載されている商品名は各社の商標または登録商標です。
@@ -55,21 +66,33 @@ Supported language is only Japanese now.
 # インストール
 [Releases](https://github.com/kusaanko/BveNumerousControllerInterface/releases)ページから最新版をダウンロードします。
 
-Bve5.8以前なら`NumerousControllerInterface_Bve5.zip`、Bve6.0以降なら`NumerousControllerInterface_Bve6.zip`をダウンロードして下さい。
+`Installer.zip`をダウンロードして下さい。もしインストーラーがうまくいかない場合は`NumerousControllerInterface.zip`をダウンロードし、`BveTs.exe`のあるフォルダ上に展開してください。
 
-## インストールスクリプトを使用したインストール
-install.batをダブルクリックします。セキュリティについて聞かれるので詳細情報を押して、実行してください。
-![詳細情報](pic/2.jpg)  
-![実行](pic/3.jpg)  
+<img src="pic/スクリーンショット 2024-03-23 223048.png" alt="Chromeによる警告1" width="400px"></img>
+
+<img src="pic/スクリーンショット 2024-03-23 223125.png" alt="Chromeによる警告2" width="400px"></img>
+
+このような警告が出てきた際は`不審なファイルをダウンロード`を押してください。署名などをしていないため出る警告です。
+
+## インストーラーによる自動インストール
+NumerousControllerInterfaceInstaller.exeをダブルクリックします。セキュリティについて聞かれるので詳細情報を押して、実行してください。
+
+<img src="pic/スクリーンショット 2024-03-23 223152.png" alt="許可1" width="400px"></img>
+
+<img src="pic/スクリーンショット 2024-03-23 223334.png" alt="許可2" width="400px"></img>
+
+BVEを起動し、設定画面を開き、入力デバイスを開きます。
+
+`NumerousControllerInterface`にチェックを入れ、その他の不要な入力プラグインを無効化します。
 
 ## 手動でインストール
-Bve5.8以前なら`C:\Program Files (x86)\mackoy\BveTs5`、Bve6.0以降なら`C:\Program Files\mackoy\BveTs6`を開き(もしくはBveをインストールしたディレクトリ)、ダウンロードしたzipファイルを展開し、中身を配置します。
+BVE5.8以前なら`C:\Program Files (x86)\mackoy\BveTs5`、BVE6以降なら`C:\Program Files\mackoy\BveTs6`を開き(もしくはBVEをインストールしたディレクトリ)、ダウンロードしたzipファイルを展開し、中身を配置します。
 
-配置したdllファイルを右クリックしてプロパティを開きます。(Newtonsoft.Json.dll、LibUsbDotNet.dll、Input Devices\Kusaanko.NumerousControllerInterface.dll)  
+配置したdllファイルを右クリックしてプロパティを開きます。(LibUsbDotNet.dll、Input Devices\Kusaanko.NumerousControllerInterface.dll)  
 セキュリティを許可して下さい。
 
 ![許可](pic/1.jpg)  
-Bveを起動し、設定画面を開き、入力デバイスを開きます。
+BVEを起動し、設定画面を開き、入力デバイスを開きます。
 
 NumerousControllerInterfaceにチェックを入れ、その他の不要な入力プラグインを無効化します。
 
@@ -93,6 +116,17 @@ NumerousControllerInterfaceを選択してプロパティーをクリックし�
 コントローラーから使いたいコントローラーを選択して、出てきた画面の指示に従って下さい 。
 
 コントローラーを使用するには、コントローラーvを有効にするにチェックを入れる必要があります。
+
+# AtsEXとの連携機能
+まだこの機能は不安定のためインストーラーから自動でインストールできません。
+
+`NumerousControllerInterfaceAtsEXPlugin.zip`をダウンロードし、中にある`NumerousControllerInterfaceAtsEXPlugin.dll`のプロパティを開き、セキュリティを許可して下さい。
+
+![許可](pic/1.jpg)  
+
+そして、このファイルを`C:\User\Public\Documents\AtsEX\1.0\Extensions`もしくは`Input Devices\AtsEX\1.0\Extensions`に入れてください。
+
+NumerousControllerInterfaceの設定画面のタブから`AtsEX`より、正常に読み込めたかどうかが確認できます。また、正常に読み込めていた場合にはコントローラー設定のAtsEXが選択可能になっています。
 
 # プラグインについて(試験的機能)
 プラグイン機能を用意していますが、これはNumerousControllerInterfaceに統合するほどの機能でないコントローラー、完全プライベート用のコントローラーにのみ使用してください。よって、プラグインに対しては高機能な機能を提供していません。（プライベート用に対しては十分な機能ですが）このプラグインはこのプラグインのみを導入することでたくさんのコントローラーに対応できることを目的にしています。可能な限りプルリクエストお願いします！！
