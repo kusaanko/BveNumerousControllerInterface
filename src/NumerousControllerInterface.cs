@@ -140,7 +140,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         {
                             string latestTag = target.Element("Latest").Value;
                             int intVersion = int.Parse(target.Element("IntVersion").Value);
-                            if (intVersion > IntVersion)
+                            if (intVersion > IntVersion || DebugUpdater)
                             {
                                 string tempDir = Path.GetTempPath();
                                 string downloadTmpDir = Path.Combine(tempDir, "NumerousControllerInterface");
