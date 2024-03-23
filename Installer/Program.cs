@@ -31,18 +31,21 @@ namespace Installer
             if (arg.Count > 0 && arg.ContainsKey("installDir") && arg.ContainsKey("exeFile"))
             {
                 // Update
-                InstallResult result = Install(arg["exeFile"]);
-                if (result.IsSuccess)
+                if (MessageBox.Show("NumerousControllerInterfaceのアップデートを開始します", "NumerousControllerInterfaceインストーラー", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    MessageBox.Show("正常にNumerousControllerInterfaceのアップデートが完了しました。");
-                    // 管理者権限を取って実行
-                    Process.Start("explorer.exe", arg["exeFile"]);
-                    Application.Exit();
-                } else
-                {
-                    MessageBox.Show("NumerousControllerInterfaceのアップデートに失敗しました。\n" + result.errorMsg);
-                    Application.Exit();
+                    InstallResult result = Install(arg["exeFile"]);
+                    if (result.IsSuccess)
+                    {
+                        MessageBox.Show("正常にNumerousControllerInterfaceのアップデートが完了しました。");
+                        // 管理者権限を取って実行
+                        Process.Start("explorer.exe", arg["exeFile"]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("NumerousControllerInterfaceのアップデートに失敗しました。\n" + result.errorMsg);
+                    }
                 }
+                Environment.Exit(0);
             } else
             {
                 Application.Run(new Form1());
