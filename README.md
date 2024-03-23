@@ -1,4 +1,7 @@
 # BveNumerousControllerInterface
+![Release](https://img.shields.io/github/v/release/kusaanko/bvenumerouscontrollerinterface?style=for-the-badge)
+![Downloads](https://img.shields.io/github/downloads/kusaanko/bvenumerouscontrollerinterface/total?style=for-the-badge)
+
 Bve5、6用のコントローラー入力プラグイン  
 コントローラーごとに入力プラグインが不要になり、このプラグインだけであらゆるコントローラーが使えるようにするのが目標です。
 
