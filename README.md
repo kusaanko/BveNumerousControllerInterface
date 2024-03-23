@@ -18,7 +18,7 @@ Supported language is only Japanese now.
 コントローラーはマスコンタイプやボタンを押してノッチを操作するなどの様々な操作方法に対応します。
 
 > [!WARNING]
-> AtsEXとの連携機能はまだまだ不安定であり、手動でのインストールが必要です。詳しくは下の項目をご覧ください。
+> AtsEXとの連携機能はまだまだ不安定であり、手動でのインストールが必要です。詳しくは下の項目または[Wiki](https://github.com/kusaanko/BveNumerousControllerInterface/wiki/AtsEX)をご覧ください。
 
 # 対応コントローラー
 |コントローラー|テスト済み|ドライバー必須|状態|
