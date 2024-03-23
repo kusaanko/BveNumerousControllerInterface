@@ -13,6 +13,10 @@
     </Targets>
     <ReleaseNotes>
         <Release>
+            <Title>0.12</Title>
+            <Context># 注意\nこのバージョンから以前のプロファイルが削除されます。お手数ですが再度プロファイルを作成してください。\n# 新機能\n* COMポートコントローラーに対応\n* 電車でGO!新幹線専用コントローラーに対応\n* マスコンの逆回しに対応\n* ボタンにキーボードの割り当てが可能に\n* AtsEXとの連携機能を追加\n* 設定画面の配置を刷新\n* ボタンの表示名に対応\n* 高DPIに対応\n* BVE5と6で同一のバイナリに\n* インストーラーを刷新\n\n# 修正\n* MTC P5B8および電車でGO!TYPE 2で力行3が入力できていなかった問題を修正\n* 設定ファイルをxml化\n* プロファイルを持たないようにできるように変更\n\n**Full Changelog**: https://github.com/kusaanko/BveNumerousControllerInterface/compare/v0.11...v0.12</Context>
+        </Release>
+        <Release>
             <Title>0.11</Title>
             <Context># 新機能\n* インストールスクリプトを使用した自動更新を追加</Context>
         </Release>
