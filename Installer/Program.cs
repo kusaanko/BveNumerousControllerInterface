@@ -38,6 +38,10 @@ namespace Installer
                     // 管理者権限を取って実行
                     Process.Start("explorer.exe", arg["exeFile"]);
                     Application.Exit();
+                } else
+                {
+                    MessageBox.Show("NumerousControllerInterfaceのアップデートに失敗しました。\n" + result.errorMsg);
+                    Application.Exit();
                 }
             } else
             {
@@ -51,47 +55,68 @@ namespace Installer
             bool installSucceeded = false;
             bool unsupportedVersion = false;
             string errorMsg = "";
-            // インストール開始
-            FileVersionInfo info = FileVersionInfo.GetVersionInfo(bveTsExe);
-            string version = info.FileVersion;
-            string bveInstallDir = new DirectoryInfo(bveTsExe).Parent.FullName;
-            string installDir = Path.Combine(bveInstallDir, "Input Devices");
-            if (version.Contains("."))
+            try
             {
-                try
+                // インストール開始
+                FileVersionInfo info = FileVersionInfo.GetVersionInfo(bveTsExe);
+                string version = info.FileVersion;
+                string bveInstallDir = new DirectoryInfo(bveTsExe).Parent.FullName;
+                string installDir = Path.Combine(bveInstallDir, "Input Devices");
+                if (version.Contains("."))
                 {
-                    int majorVersion = Convert.ToInt32(version.Substring(0, version.IndexOf(".")));
-                    if (majorVersion != 5 && majorVersion != 6)
+                    try
                     {
-                        unsupportedVersion = true;
-                    }
-                    else if (majorVersion == 5 || majorVersion == 6)
-                    {
-                        // .NET4版バイナリを削除
-                        if (File.Exists(Path.Combine(installDir, "Kusaanko.NumerousControllerInterface.NET4.dll")))
+                        int majorVersion = Convert.ToInt32(version.Substring(0, version.IndexOf(".")));
+                        if (majorVersion != 5 && majorVersion != 6)
                         {
-                            File.Delete(Path.Combine(installDir, "Kusaanko.NumerousControllerInterface.NET4.dll"));
+                            unsupportedVersion = true;
                         }
-                        string[] installFiles = new string[] {
+                        else if (majorVersion == 5 || majorVersion == 6)
+                        {
+                            // ファイルがロックされているか確認
+                            bool unlocked = true;
+                            while (IsFileExistsAndLocked(Path.Combine(installDir, "BveTs.exe")))
+                            {
+                                if (MessageBox.Show("BVEを終了してください。", "NumerousControllerInterfaceインストーラー", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                                {
+                                    errorMsg = "BVEもしくはその他のプロセスが起動中です。";
+                                    installSucceeded = false;
+                                    unlocked = false;
+                                    break;
+                                }
+                            }
+                            if (unlocked)
+                            {
+                                // .NET4版バイナリを削除
+                                if (File.Exists(Path.Combine(installDir, "Kusaanko.NumerousControllerInterface.NET4.dll")))
+                                {
+                                    File.Delete(Path.Combine(installDir, "Kusaanko.NumerousControllerInterface.NET4.dll"));
+                                }
+                                string[] installFiles = new string[] {
                             "Installer.Kusaanko.NumerousControllerInterface.dll", Path.Combine(installDir, "Kusaanko.NumerousControllerInterface.dll"),
                             "Installer.LibUsbDotNet.dll", Path.Combine(bveInstallDir, "LibUsbDotNet.dll"),
                         };
-                        ExtractFiles(installFiles);
-                        installSucceeded = true;
+                                ExtractFiles(installFiles);
+                                installSucceeded = true;
+                            }
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        unsupportedVersion = true;
                     }
                 }
-                catch (FormatException)
+                else
                 {
                     unsupportedVersion = true;
                 }
-            }
-            else
+                if (unsupportedVersion)
+                {
+                    errorMsg = "非対応のバージョンです。(" + version + ")";
+                }
+            } catch (Exception ex)
             {
-                unsupportedVersion = true;
-            }
-            if (unsupportedVersion)
-            {
-                errorMsg = "非対応のバージョンです。(" + version + ")";
+                errorMsg += ex.ToString();
             }
             result.IsSuccess = installSucceeded;
             result.errorMsg = errorMsg;
@@ -113,6 +138,48 @@ namespace Installer
                     }
                 }
             }
+        }
+        private static bool IsFileExistsAndLocked(string path)
+        {
+            if (File.Exists(path))
+            {
+                FileStream stream = null;
+
+                try
+                {
+                    stream = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+                }
+                catch (DirectoryNotFoundException e)
+                {
+                    return false;
+                }
+                catch (FileNotFoundException e)
+                {
+                    return false;
+                }
+                catch (IOException e)
+                {
+                    if (File.Exists(path))
+                    {
+                        return true;
+                    }
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+                finally
+                {
+                    if (stream != null)
+                    {
+                        stream.Close();
+                    }
+                }
+
+                return false;
+            }
+
+            return false;
         }
     }
 
