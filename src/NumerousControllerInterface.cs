@@ -18,7 +18,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 {
     public class NumerousControllerInterface : IInputDevice
     {
-        private static bool DebugUpdater = false;
+        private static bool DebugUpdater = true;
         public static int IntVersion { get { return 13; } }
         public static string UserAgent = "NumerousContollerInterfaceUpdater v" + IntVersion;
 
@@ -169,7 +169,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                                     installer
                                     ))
                                 {
-                                    form.Show();
+                                    form.ShowDialog();
                                 }
                             }
                         }
@@ -440,7 +440,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 {
                     int waitCount = 0;
                     // BVEのメインフォームが開くまで待機
-                    while (Application.OpenForms.Count < 0)
+                    while (Application.OpenForms.Count == 0)
                     {
                         Thread.Sleep(100);
                         waitCount++;
@@ -449,6 +449,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             break;
                         }
                     }
+                    Thread.Sleep(500);
                     CheckUpdates();
                 })).Start();
             }

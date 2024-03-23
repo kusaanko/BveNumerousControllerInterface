@@ -103,7 +103,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         }
                         cmd.StartInfo.Arguments = arg;
                         cmd.Start();
-                        Application.Exit();
+                        Environment.Exit(0);
                     }
                     else
                     {
