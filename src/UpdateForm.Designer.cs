@@ -147,6 +147,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NumerousControllerInterface";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.UpdateForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

@@ -155,16 +155,26 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                                 catch (Exception) { }
                                 string downloadFilePath = Path.Combine(downloadTmpDir, target.Element("Asset").Value);
                                 string installer = "";
+                                string downloadPage = null;
+                                string downloadUrl = null;
 
                                 if (target.Element("Installer") != null)
                                 {
                                     installer = target.Element("Installer").Value;
                                 }
+                                if (target.Element("DownloadPage") != null)
+                                {
+                                    downloadPage = target.Element("DownloadPage").Value;
+                                }
+                                if (target.Element("DownloadUrl") != null)
+                                {
+                                    downloadUrl = target.Element("DownloadUrl").Value;
+                                }
                                 using (UpdateForm form = new UpdateForm(
                                     target.Element("Version").Value,
                                     history,
-                                    target.Element("DownloadPage").Value,
-                                    target.Element("DownloadUrl").Value,
+                                    downloadPage,
+                                    downloadUrl,
                                     downloadFilePath,
                                     installer
                                     ))

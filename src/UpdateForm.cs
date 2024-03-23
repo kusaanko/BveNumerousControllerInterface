@@ -37,6 +37,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
+        private void UpdateForm_Load(object sender, EventArgs e)
+        {
+            openDownloadPageButton.Enabled = _downloadPageURL != null;
+            autoDownloadButton.Enabled = _downloadURL != null;
+        }
+
         private void ignoreButton_Click(object sender, EventArgs e)
         {
             Close();
@@ -44,6 +50,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void openDownloadPageButton_Click(object sender, EventArgs e)
         {
+            if (_downloadPageURL == null) { return; }
             ProcessStartInfo info = new ProcessStartInfo()
             {
                 FileName = _downloadPageURL,
@@ -55,6 +62,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void autoDownloadButton_Click(object sender, EventArgs e)
         {
+            if (_downloadURL == null)
+            {
+                return;
+            }
             autoDownloadButton.Visible = openDownloadPageButton.Visible = ignoreButton.Visible = false;
             statusLabel.Text = "ファイルをダウンロード中";
             Update();
