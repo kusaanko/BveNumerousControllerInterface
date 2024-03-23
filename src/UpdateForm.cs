@@ -86,28 +86,15 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         cmd = new Process();
                         cmd.StartInfo.WorkingDirectory = _filePath.Substring(0, _filePath.Length - 4);
                         cmd.StartInfo.FileName = _installer.Substring(0, _installer.IndexOf(" "));
-                        cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                        string arg = "";
-                        foreach(string a in _installer.Substring(_installer.IndexOf(" ") + 1).Split(' '))
-                        {
-                            if(a == "<installDir>")
-                            {
-                                arg += "\"" + Application.StartupPath + "\" ";
-                            }else if (a == "<exeFile>")
-                            {
-                                arg += "\"" + Application.ExecutablePath + "\" ";
-                            }else
-                            {
-                                break;
-                            }
-                        }
+                        string arg = _installer.Replace("<installDir>", "\"" + Application.StartupPath + "\"").Replace("<exeFile>", "\"" + Application.ExecutablePath + "\"");
                         cmd.StartInfo.Arguments = arg;
                         cmd.Start();
+                        Close();
                         Environment.Exit(0);
                     }
                     else
                     {
-                        MessageBox.Show("ダウンロードしたファイルとインストールディレクトリが開かれるので、ファイルを開いて中のファイルをインストールディレクトリにコピー、もしくはファイルを展開してinstall.batを実行してBveを再起動してください。");
+                        MessageBox.Show("ダウンロードしたファイルとインストールディレクトリが開かれるので、ファイルを開いて中のファイルをインストールディレクトリにコピーしてBveを再起動してください。");
                         Close();
 
                         Assembly assembly = Assembly.GetEntryAssembly();
