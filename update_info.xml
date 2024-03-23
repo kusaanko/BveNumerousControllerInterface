@@ -1,5 +1,4 @@
 <Root>
-    <ReleaseUrl>https://api.github.com/repos/kusaanko/BveNumerousControllerInterface/releases</ReleaseUrl>
     <Targets>
         <Target arch="anycpu" dotnet=".net3.5">
             <Latest>v0.12</Latest>
