@@ -100,24 +100,27 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.AtsEXPlugin
                     GetAllRetrievableProperties(property.PropertyType, property);
                 } else
                 {
-                    switch (Type.GetTypeCode(property.PropertyType))
+                    if (property.GetMethod != null)
                     {
-                        case TypeCode.Boolean:
-                        case TypeCode.Char:
-                        case TypeCode.Single:
-                        case TypeCode.Decimal:
-                        case TypeCode.Double:
-                        case TypeCode.String:
-                        case TypeCode.Int32:
-                            string key = GetKey(property);
-                            if (!RetrievableValuesFromKey.ContainsKey(key))
-                            {
-                                RetrievableValues.Add(key, instance);
-                                RetrievableValuesFromKey.Add(key, property);
-                                FastMethod fastMethod = FastMethod.Create(property.GetMethod);
-                                GetterMethods[key] = fastMethod;
-                            }
-                            break;
+                        switch (Type.GetTypeCode(property.PropertyType))
+                        {
+                            case TypeCode.Boolean:
+                            case TypeCode.Char:
+                            case TypeCode.Single:
+                            case TypeCode.Decimal:
+                            case TypeCode.Double:
+                            case TypeCode.String:
+                            case TypeCode.Int32:
+                                string key = GetKey(property);
+                                if (!RetrievableValuesFromKey.ContainsKey(key))
+                                {
+                                    RetrievableValues.Add(key, instance);
+                                    RetrievableValuesFromKey.Add(key, property);
+                                    FastMethod fastMethod = FastMethod.Create(property.GetMethod);
+                                    GetterMethods[key] = fastMethod;
+                                }
+                                break;
+                        }
                     }
                 }
             }
