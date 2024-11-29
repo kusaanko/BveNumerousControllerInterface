@@ -25,7 +25,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public static ButtonFeature ReverserForward = new ButtonFeature("35b63bba", "リバーサー前進", 0, 1);
         public static ButtonFeature ElectricHorn = new ButtonFeature("3d444081", "電笛", -1, 0);
         public static ButtonFeature Horn = new ButtonFeature("cb8902d9", "空笛", -1, 1);
-        public static ButtonFeature SlowDrive = new ButtonFeature("f1038bc4", "低速運転", -1, 2);
+        public static ButtonFeature FixedSpeedDrive = new ButtonFeature("f1038bc4", "定速運転", -1, 2);
         public static ButtonFeature BoardingAlightingPromotion = new ButtonFeature("74e90822", "乗降促進", -1, 3);
         public static ButtonFeature Ats0 = new ButtonFeature("6ab2c164", "ATS0(ATS確認)(S)(Space)", -2, 0);
         public static ButtonFeature Ats1 = new ButtonFeature("ed8ae4b4", "ATS1(警報維持)(A1)(Insert)", -2, 1);
