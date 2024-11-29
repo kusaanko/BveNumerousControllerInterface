@@ -154,16 +154,16 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     if (_setupPower)
                     {
                         _powerButtons = _useButtons.ToArray();
-                        _powerButtonStatus = new List<List<bool>>(new List<bool>[]{ new List<bool>(new bool[_powerButtons.Length]) });
+                        _powerButtonStatus = new List<List<bool>>();
                         _powerAxises = _useSliders.ToArray();
-                        _powerAxisStatus = new List<List<int>>(new List<int>[] { new List<int>(new int[_powerAxises.Length]) });
+                        _powerAxisStatus = new List<List<int>>();
                     }
                     else
                     {
                         _breakButtons = _useButtons.ToArray();
-                        _breakButtonStatus = new List<List<bool>>(new List<bool>[] { new List<bool>(new bool[_breakButtons.Length]) });
+                        _breakButtonStatus = new List<List<bool>>();
                         _breakAxises = _useSliders.ToArray();
-                        _breakAxisStatus = new List<List<int>>(new List<int>[] { new List<int>(new int[_breakAxises.Length]) });
+                        _breakAxisStatus = new List<List<int>>();
                     }
                     _step++;
                     infoLabel.Text = (_setupPower ? "力行" : "制動") + "を切から順番に入れ、次へをクリックして下さい。\n終了時は2回次へをクリックして下さい。";
@@ -173,36 +173,39 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 {
                     if (_setupPower)
                     {
-                        int k = _powerButtonStatus.Count - 1;
-                        int match = 0;
-                        for (int i = 0; i < _powerButtons.Length; i++)
+                        if (_powerButtonStatus.Count > 0)
                         {
-                            if (_powerButtonStatus[k][i] == _buttons[_powerButtons[i]])
+                            int k = _powerButtonStatus.Count - 1;
+                            int match = 0;
+                            for (int i = 0; i < _powerButtons.Length; i++)
                             {
-                                match++;
+                                if (_powerButtonStatus[k][i] == _buttons[_powerButtons[i]])
+                                {
+                                    match++;
+                                }
                             }
-                        }
-                        for (int i = 0; i < _powerAxises.Length; i++)
-                        {
-                            if (_powerAxisStatus[k][i] == _sliders[_powerAxises[i]])
+                            for (int i = 0; i < _powerAxises.Length; i++)
                             {
-                                match++;
+                                if (_powerAxisStatus[k][i] == _sliders[_powerAxises[i]])
+                                {
+                                    match++;
+                                }
                             }
-                        }
-                        if (match == _powerButtons.Length + _powerAxises.Length)
-                        {
-                            //終了
-                            if (k == _notchPos - 1)
+                            if (match == _powerButtons.Length + _powerAxises.Length)
                             {
-                                _step++;
-                                infoLabel.Text = "完了しました。次へを押して終了";
-                                _profile.PowerButtons = _powerButtons;
-                                _profile.PowerButtonStatus = _powerButtonStatus;
-                                _profile.PowerAxises = _powerAxises;
-                                _profile.PowerAxisStatus = _powerAxisStatus;
-                                _profile.InaccuracyModePower = false;
-                                _profile.CalcDuplicated();
-                                return;
+                                //終了
+                                if (k == _notchPos - 1)
+                                {
+                                    _step++;
+                                    infoLabel.Text = "完了しました。次へを押して終了";
+                                    _profile.PowerButtons = _powerButtons;
+                                    _profile.PowerButtonStatus = _powerButtonStatus;
+                                    _profile.PowerAxises = _powerAxises;
+                                    _profile.PowerAxisStatus = _powerAxisStatus;
+                                    _profile.InaccuracyModePower = false;
+                                    _profile.CalcDuplicated();
+                                    return;
+                                }
                             }
                         }
                         _powerButtonStatus.Add(new List<bool>(new bool[_powerButtons.Length]));
@@ -220,40 +223,43 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     }
                     else
                     {
-                        int k = _breakButtonStatus.Count - 1;
-                        int match = 0;
-                        for (int i = 0; i < _breakButtons.Length; i++)
+                        if (_breakButtonStatus.Count > 0)
                         {
-                            if (_breakButtonStatus[k][i] == _buttons[_breakButtons[i]])
+                            int k = _breakButtonStatus.Count - 1;
+                            int match = 0;
+                            for (int i = 0; i < _breakButtons.Length; i++)
                             {
-                                match++;
+                                if (_breakButtonStatus[k][i] == _buttons[_breakButtons[i]])
+                                {
+                                    match++;
+                                }
                             }
-                        }
-                        for (int i = 0; i < _breakAxises.Length; i++)
-                        {
-                            if (_breakAxisStatus[k][i] == _sliders[_breakAxises[i]])
+                            for (int i = 0; i < _breakAxises.Length; i++)
                             {
-                                match++;
+                                if (_breakAxisStatus[k][i] == _sliders[_breakAxises[i]])
+                                {
+                                    match++;
+                                }
                             }
-                        }
-                        if (match == _breakButtons.Length + _breakAxises.Length)
-                        {
-                            //終了
-                            if (k == _notchPos - 1)
+                            if (match == _breakButtons.Length + _breakAxises.Length)
                             {
-                                _step++;
-                                infoLabel.Text = "完了しました。次へを押して終了";
-                                _profile.BreakButtons = _breakButtons;
-                                _profile.BreakButtonStatus = _breakButtonStatus;
-                                _profile.BreakAxises = _breakAxises;
-                                _profile.BreakAxisStatus = _breakAxisStatus;
-                                _profile.InaccuracyModeBreak = false;
-                                _profile.CalcDuplicated();
-                                return;
+                                //終了
+                                if (k == _notchPos - 1)
+                                {
+                                    _step++;
+                                    infoLabel.Text = "完了しました。次へを押して終了";
+                                    _profile.BreakButtons = _breakButtons;
+                                    _profile.BreakButtonStatus = _breakButtonStatus;
+                                    _profile.BreakAxises = _breakAxises;
+                                    _profile.BreakAxisStatus = _breakAxisStatus;
+                                    _profile.InaccuracyModeBreak = false;
+                                    _profile.CalcDuplicated();
+                                    return;
+                                }
                             }
                         }
                         _breakButtonStatus.Add(new List<bool>(new bool[_breakButtons.Length]));
-                        _breakAxisStatus.Add(new List<int>(new int[_breakButtons.Length]));
+                        _breakAxisStatus.Add(new List<int>(new int[_breakAxises.Length]));
                         for (int i = 0; i < _breakButtons.Length; i++)
                         {
                             _breakButtonStatus[_notchPos][i] =
