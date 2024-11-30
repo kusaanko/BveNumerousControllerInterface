@@ -18,7 +18,7 @@ Supported language is only Japanese now.
 コントローラーはマスコンタイプやボタンを押してノッチを操作するなどの様々な操作方法に対応します。
 
 > [!WARNING]
-> AtsEXとの連携機能はまだまだ不安定であり、手動でのインストールが必要です。詳しくは下の項目または[Wiki](https://github.com/kusaanko/BveNumerousControllerInterface/wiki/AtsEX)をご覧ください。
+> AtsEXとの連携機能はまだまだ不安定であり、手動でのインストールが必要です。[こちら](https://github.com/kusaanko/BveNCIAtsExPlugin)をご覧ください。
 
 # 対応コントローラー
 |コントローラー|テスト済み|ドライバー必須|状態|
@@ -118,15 +118,7 @@ NumerousControllerInterfaceを選択してプロパティーをクリックし�
 コントローラーを使用するには、コントローラーvを有効にするにチェックを入れる必要があります。
 
 # AtsEXとの連携機能
-まだこの機能は不安定のためインストーラーから自動でインストールできません。
-
-`NumerousControllerInterfaceAtsEXPlugin.zip`をダウンロードし、中にある`NumerousControllerInterfaceAtsEXPlugin.dll`のプロパティを開き、セキュリティを許可して下さい。
-
-![許可](pic/1.jpg)  
-
-そして、このファイルを`C:\User\Public\Documents\AtsEX\1.0\Extensions`もしくは`Input Devices\AtsEX\1.0\Extensions`に入れてください。
-
-NumerousControllerInterfaceの設定画面のタブから`AtsEX`より、正常に読み込めたかどうかが確認できます。また、正常に読み込めていた場合にはコントローラー設定のAtsEXが選択可能になっています。
+[こちら](https://github.com/kusaanko/BveNCIAtsExPlugin)
 
 # プラグインについて(試験的機能)
 プラグイン機能を用意していますが、これはNumerousControllerInterfaceに統合するほどの機能でないコントローラー、完全プライベート用のコントローラーにのみ使用してください。よって、プラグインに対しては高機能な機能を提供していません。（プライベート用に対しては十分な機能ですが）このプラグインはこのプラグインのみを導入することでたくさんのコントローラーに対応できることを目的にしています。可能な限りプルリクエストお願いします！！
