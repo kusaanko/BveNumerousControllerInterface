@@ -36,7 +36,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         [DataMember]
         public bool CheckUpdates;
         [DataMember]
-        public int IgnoreUpdate = 0;
+        public int IgnoreUpdate;
         [IgnoreDataMember]
         public Dictionary<string, COMControllerSettings> COMControllerSettings = new Dictionary<string, COMControllerSettings>();
         [IgnoreDataMember]

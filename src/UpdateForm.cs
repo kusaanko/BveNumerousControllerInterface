@@ -132,6 +132,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private void ignoreThisVersionButton_Click(object sender, EventArgs e)
         {
             NumerousControllerInterface.SettingsInstance.IgnoreUpdate = _version;
+            Close();
         }
     }
 }
