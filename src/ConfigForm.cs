@@ -1043,5 +1043,16 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             Process.Start("https://github.com/kusaanko/BveNCIAtsExPlugin");
         }
+
+        private void checkUpdateButton_Click(object sender, EventArgs e)
+        {
+            if (!NumerousControllerInterface.CheckUpdates(true))
+            {
+                MessageBox.Show("更新はありません", "NumerousControllerInterface");
+            } else
+            {
+                NumerousControllerInterface.SettingsInstance.IgnoreUpdate = 0;
+            }
+        }
     }
 }

@@ -117,13 +117,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.atsExHelpLinkLabel = new System.Windows.Forms.LinkLabel();
             this.atsExStatusLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.pluginSettingButton = new System.Windows.Forms.Button();
             this.showLoadedPlugins = new System.Windows.Forms.Button();
             this.pluginConfigComboBox = new System.Windows.Forms.ComboBox();
-            this.atsExHelpLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.checkUpdateButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -554,6 +555,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.checkUpdateButton);
             this.tabPage1.Controls.Add(this.alertNoCountrollerFoundCheckBox);
             this.tabPage1.Controls.Add(this.checkUpdatesCheckBox);
             this.tabPage1.Controls.Add(this.settingsOfNumerousControllerInterfaceLabel);
@@ -809,6 +811,13 @@
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
+            // atsExHelpLinkLabel
+            // 
+            resources.ApplyResources(this.atsExHelpLinkLabel, "atsExHelpLinkLabel");
+            this.atsExHelpLinkLabel.Name = "atsExHelpLinkLabel";
+            this.atsExHelpLinkLabel.TabStop = true;
+            this.atsExHelpLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.atsExHelpLinkLabel_LinkClicked);
+            // 
             // atsExStatusLabel
             // 
             resources.ApplyResources(this.atsExStatusLabel, "atsExStatusLabel");
@@ -849,12 +858,12 @@
             resources.ApplyResources(this.pluginConfigComboBox, "pluginConfigComboBox");
             this.pluginConfigComboBox.Name = "pluginConfigComboBox";
             // 
-            // atsExHelpLinkLabel
+            // checkUpdateButton
             // 
-            resources.ApplyResources(this.atsExHelpLinkLabel, "atsExHelpLinkLabel");
-            this.atsExHelpLinkLabel.Name = "atsExHelpLinkLabel";
-            this.atsExHelpLinkLabel.TabStop = true;
-            this.atsExHelpLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.atsExHelpLinkLabel_LinkClicked);
+            resources.ApplyResources(this.checkUpdateButton, "checkUpdateButton");
+            this.checkUpdateButton.Name = "checkUpdateButton";
+            this.checkUpdateButton.UseVisualStyleBackColor = true;
+            this.checkUpdateButton.Click += new System.EventHandler(this.checkUpdateButton_Click);
             // 
             // ConfigForm
             // 
@@ -1004,5 +1013,6 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.LinkLabel atsExHelpLinkLabel;
+        private System.Windows.Forms.Button checkUpdateButton;
     }
 }

@@ -37,6 +37,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             this.ignoreButton = new System.Windows.Forms.Button();
             this.statusLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ignoreThisVersionButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,11 +128,23 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             this.panel1.Size = new System.Drawing.Size(964, 468);
             this.panel1.TabIndex = 7;
             // 
+            // ignoreThisVersionButton
+            // 
+            this.ignoreThisVersionButton.Location = new System.Drawing.Point(776, 636);
+            this.ignoreThisVersionButton.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.ignoreThisVersionButton.Name = "ignoreThisVersionButton";
+            this.ignoreThisVersionButton.Size = new System.Drawing.Size(214, 34);
+            this.ignoreThisVersionButton.TabIndex = 8;
+            this.ignoreThisVersionButton.Text = "このバージョンを無視する";
+            this.ignoreThisVersionButton.UseVisualStyleBackColor = true;
+            this.ignoreThisVersionButton.Click += new System.EventHandler(this.ignoreThisVersionButton_Click);
+            // 
             // UpdateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1015, 640);
+            this.ClientSize = new System.Drawing.Size(1015, 683);
+            this.Controls.Add(this.ignoreThisVersionButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.ignoreButton);
@@ -165,5 +178,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private System.Windows.Forms.Button ignoreButton;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button ignoreThisVersionButton;
     }
 }

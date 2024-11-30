@@ -19,7 +19,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private string _downloadURL;
         private string _filePath;
         private string _installer;
-        public UpdateForm(string version, string history, string downloadPageURL, string downloadURL, string filePath, string installer)
+        private int _version;
+        public UpdateForm(string version, string history, string downloadPageURL, string downloadURL, string filePath, string installer, int intVersion)
         {
             InitializeComponent();
             newVersionLabel.Text = "新しいバージョン:" + version;
@@ -30,6 +31,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             _downloadURL = downloadURL;
             _filePath = filePath;
             _installer = installer;
+            _version = intVersion;
 
             if(_installer.Length > 0)
             {
@@ -125,6 +127,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     ignoreButton.Text = "閉じる";
                 }
             }
+        }
+
+        private void ignoreThisVersionButton_Click(object sender, EventArgs e)
+        {
+            NumerousControllerInterface.SettingsInstance.IgnoreUpdate = _version;
         }
     }
 }

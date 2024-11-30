@@ -111,7 +111,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return null;
         }
 
-        private static void CheckUpdates()
+        public static bool CheckUpdates(bool forceUpdate)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | (SecurityProtocolType)768 | (SecurityProtocolType)3072;
             string targetArch = BinaryInfo.arch;
@@ -140,7 +140,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         {
                             string latestTag = target.Element("Latest").Value;
                             int intVersion = int.Parse(target.Element("IntVersion").Value);
-                            if (intVersion > IntVersion || DebugUpdater)
+                            if ((intVersion > IntVersion && (SettingsInstance.IgnoreUpdate < intVersion || forceUpdate)) || DebugUpdater)
                             {
                                 string tempDir = Path.GetTempPath();
                                 string downloadTmpDir = Path.Combine(tempDir, "NumerousControllerInterface");
@@ -176,10 +176,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                                     downloadPage,
                                     downloadUrl,
                                     downloadFilePath,
-                                    installer
+                                    installer,
+                                    intVersion
                                     ))
                                 {
                                     form.ShowDialog();
+                                    return true;
                                 }
                             }
                         }
@@ -187,6 +189,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
                 catch (Exception) { }
             }
+            return false;
         }
 
         // コントローラー更新用のタイマー
@@ -460,7 +463,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         }
                     }
                     Thread.Sleep(500);
-                    CheckUpdates();
+                    CheckUpdates(false);
                 })).Start();
             }
         }

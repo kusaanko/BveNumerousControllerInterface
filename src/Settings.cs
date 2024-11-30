@@ -35,6 +35,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public bool AlertNoControllerFound;
         [DataMember]
         public bool CheckUpdates;
+        [DataMember]
+        public int IgnoreUpdate = 0;
         [IgnoreDataMember]
         public Dictionary<string, COMControllerSettings> COMControllerSettings = new Dictionary<string, COMControllerSettings>();
         [IgnoreDataMember]
@@ -197,6 +199,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             AlertNoControllerFound = true;
             CheckUpdates = true;
+            IgnoreUpdate = 0;
         }
 
         public void SaveToXml()
