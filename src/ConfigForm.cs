@@ -49,15 +49,15 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             base.OnLoad(e);
 
             ControllerProfile.GetAllControllers();
-            updateControllers();
+            UpdateControllers();
             timer1.Start();
             alertNoCountrollerFoundCheckBox.Checked = NumerousControllerInterface.SettingsInstance.AlertNoControllerFound;
             checkUpdatesCheckBox.Checked = NumerousControllerInterface.SettingsInstance.CheckUpdates;
-            setComPortEnabled(false);
+            SetComPortEnabled(false);
             atsExStatusLabel.Text = NumerousControllerInterface.AtsExPluginVersion != null ? "AtsEXプラグイン読み込み済み(" + NumerousControllerInterface.AtsExPluginVersion.ToString() + ")" : "AtsEXプラグイン未検出";
         }
 
-        public void updateControllers()
+        public void UpdateControllers()
         {
             timer1.Stop();
             controllerList.Items.Clear();
@@ -67,8 +67,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 controllerList.Items.Add(controller.GetName());
                 _controllers.Add(controller.GetName(), controller);
             }
-            updateProfile();
-            setEnabled(false);
+            UpdateProfile();
+            SetEnabled(false);
             // COMポートを更新
             availableComPortList.Items.Clear();
             usingComPortList.Items.Clear();
@@ -82,11 +82,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     availableComPortList.Items.Add(port);
                 }
             }
-            updateCOMControllerSettings();
+            UpdateCOMControllerSettings();
             timer1.Start();
         }
 
-        private void setEnabled(bool enabled)
+        private void SetEnabled(bool enabled)
         {
             isEnabledCheckBox.Enabled = enabled;
             profileComboBox.Enabled = enabled;
@@ -96,7 +96,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             removeProfileButton.Enabled = enabled;
         }
 
-        private void setComPortEnabled(bool enabled)
+        private void SetComPortEnabled(bool enabled)
         {
             comPortProfileComboBox.Enabled = enabled;
             comPortNewProfileButton.Enabled = enabled;
@@ -106,12 +106,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             comPortNotSupportedCheckBox.Enabled = enabled;
         }
 
-        private void selectDropDownList(ComboBox list, ButtonFeature assign)
+        private void SelectDropDownList(ComboBox list, ButtonFeature assign)
         {
             list.SelectedIndex = _buttonFeatureIdIndex.IndexOf(assign.Id);
         }
 
-        private void updateProfile()
+        private void UpdateProfile()
         {
             profileComboBox.Items.Clear();
             foreach (string name in NumerousControllerInterface.SettingsInstance.Profiles.Keys)
@@ -120,7 +120,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void selectProfile(string profile)
+        private void SelectProfile(string profile)
         {
             if (profile == null)
             {
@@ -136,11 +136,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     }
                 }
             }
-            loadFromProfile();
-            setEnabled(true);
+            LoadFromProfile();
+            SetEnabled(true);
         }
 
-        private void loadFromProfile()
+        private void LoadFromProfile()
         {
             if (profileComboBox.SelectedIndex != -1)
             {
@@ -182,33 +182,33 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void loadControllerEnabled()
+        private void LoadControllerEnabled()
         {
             isEnabledCheckBox.Checked = NumerousControllerInterface.SettingsInstance.GetIsEnabled(controllerList.Text);
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void controllerList_SelectedIndexChanged(object sender, EventArgs e)
+        private void ControllerList_SelectedIndexChanged(object sender, EventArgs e)
         {
             string controller = controllerList.Text;
             if (controller == null || controller.Equals("")) return;
             if (NumerousControllerInterface.SettingsInstance.ProfileMap.ContainsKey(controller))
             {
-                selectProfile(NumerousControllerInterface.SettingsInstance.ProfileMap[controller]);
+                SelectProfile(NumerousControllerInterface.SettingsInstance.ProfileMap[controller]);
             } else
             {
-                selectProfile(null);
+                SelectProfile(null);
             }
-            loadFromProfile();
-            loadControllerEnabled();
+            LoadFromProfile();
+            LoadControllerEnabled();
             controllerTypeLabel.Text = this.resources.GetString("controllerTypeLabel.Text") + GetController().GetControllerType();
         }
-        private void updateCOMControllerSettings()
+        private void UpdateCOMControllerSettings()
         {
             comPortProfileComboBox.Items.Clear();
             foreach (string name in NumerousControllerInterface.SettingsInstance.COMControllerSettings.Keys)
@@ -217,7 +217,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void selectCOMControllerSettings(string settings)
+        private void SelectCOMControllerSettings(string settings)
         {
             if (settings == null)
             {
@@ -232,11 +232,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     }
                 }
             }
-            loadFromCOMControllerSettings();
-            setComPortEnabled(true);
+            LoadFromCOMControllerSettings();
+            SetComPortEnabled(true);
         }
 
-        private void loadFromCOMControllerSettings()
+        private void LoadFromCOMControllerSettings()
         {
             if (comPortProfileComboBox.SelectedIndex != -1)
             {
@@ -244,7 +244,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 comPortDtrCheckBox.Checked = settings.DtrEnable;
                 comPortRtsCheckBox.Checked = settings.RtsEnable;
                 comPortNotSupportedCheckBox.Checked = settings.IsNotSupported;
-                selectCOMPortBaudRate(settings.BaudRate);
+                SelectCOMPortBaudRate(settings.BaudRate);
 
                 comPortDtrCheckBox.Enabled = true;
                 comPortRtsCheckBox.Enabled = true;
@@ -259,7 +259,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void selectCOMPortBaudRate(int baudRate)
+        private void SelectCOMPortBaudRate(int baudRate)
         {
             foreach (string rate in comPortBaudRateComboBox.Items)
             {
@@ -314,13 +314,13 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return Convert.ToInt32(name);
         }
 
-        private void isTwoHandleComboBox_CheckedChanged(object sender, EventArgs e)
+        private void IsTwoHandleComboBox_CheckedChanged(object sender, EventArgs e)
         {
             GetProfile().IsTwoHandle = isTwoHandleComboBox.Checked;
             powerCenterPositionNumericUpDown.Enabled = isTwoHandleComboBox.Checked;
         }
 
-        private void addButtonButton_Click(object sender, EventArgs e)
+        private void AddButtonButton_Click(object sender, EventArgs e)
         {
             timer1.Stop();
             NCIController controller = GetController();
@@ -364,7 +364,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             thread.Start();
         }
 
-        private void buttonList_SelectedIndexChanged(object sender, EventArgs e)
+        private void ButtonList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(buttonList.SelectedIndex < 0)
             {
@@ -376,7 +376,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             holdToRepeatButtonCheckBox.Enabled = true;
             var profile = GetProfile();
             var buttonIndex = GetButtonIndex((string)buttonList.SelectedItem);
-            selectDropDownList(buttonFunctionComboBox, profile.KeyMap[buttonIndex]);
+            SelectDropDownList(buttonFunctionComboBox, profile.KeyMap[buttonIndex]);
             if (profile.HoldToRepeat.ContainsKey(buttonIndex))
             {
                 holdToRepeatButtonCheckBox.Checked = profile.HoldToRepeat[buttonIndex];
@@ -394,16 +394,16 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void removeButtonButton_Click(object sender, EventArgs e)
+        private void RemoveButtonButton_Click(object sender, EventArgs e)
         {
             if (buttonList.SelectedIndex >= 0)
             {
                 GetProfile().KeyMap.Remove(GetButtonIndex((string)buttonList.SelectedItem));
-                loadFromProfile();
+                LoadFromProfile();
             }
         }
 
-        private void buttonFunctionComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ButtonFunctionComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (buttonList.SelectedItem == null) return;
             if (GetProfile().KeyMap.ContainsKey(GetButtonIndex((string)buttonList.SelectedItem)))
@@ -412,7 +412,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void settingPowerButton_Click(object sender, EventArgs e)
+        private void SettingPowerButton_Click(object sender, EventArgs e)
         {
             using (ControllerSetupForm = new ControllerSetupForm(
                 _controllers[controllerList.Text],
@@ -423,7 +423,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void settingBreakButton_Click(object sender, EventArgs e)
+        private void SettingBreakButton_Click(object sender, EventArgs e)
         {
             using (ControllerSetupForm = new ControllerSetupForm(
                 _controllers[controllerList.Text], 
@@ -434,7 +434,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             NCIController controller = GetController();
             ControllerProfile profile = GetProfile();
@@ -458,9 +458,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             NumerousControllerInterface.IsMasterControllerUpdateRequested = true;
         }
 
-        private void profileComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ProfileComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadFromProfile();
+            LoadFromProfile();
             if(NumerousControllerInterface.SettingsInstance.ProfileMap.ContainsKey(controllerList.Text))
             {
                 NumerousControllerInterface.SettingsInstance.ProfileMap[controllerList.Text] = profileComboBox.Text;
@@ -471,7 +471,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void newProfileButton_Click(object sender, EventArgs e)
+        private void NewProfileButton_Click(object sender, EventArgs e)
         {
             string name = controllerList.Text;
             int i = 1;
@@ -498,8 +498,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     newProfile.Name = s;
                     NumerousControllerInterface.SettingsInstance.Profiles.Add(s, newProfile);
                 }
-                updateProfile();
-                selectProfile(s);
+                UpdateProfile();
+                SelectProfile(s);
                 return true;
             }))
             {
@@ -507,7 +507,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void changeNameButton_Click(object sender, EventArgs e)
+        private void ChangeNameButton_Click(object sender, EventArgs e)
         {
             string oldName = profileComboBox.Text;
             using (NewNameDialog dialog = new NewNameDialog(profileComboBox.Text, (s) =>
@@ -537,8 +537,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         NumerousControllerInterface.SettingsInstance.ProfileMap[key] = s;
                     }
                     NumerousControllerInterface.SettingsInstance.removeProfilesList.Remove(s);
-                    updateProfile();
-                    selectProfile(s);
+                    UpdateProfile();
+                    SelectProfile(s);
                 }
                 return true;
             }))
@@ -548,7 +548,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         }
 
-        private void duplicateProfileButton_Click(object sender, EventArgs e)
+        private void DuplicateProfileButton_Click(object sender, EventArgs e)
         {
             using (NewNameDialog dialog = new NewNameDialog(profileComboBox.Text, (s) =>
             {
@@ -562,8 +562,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     ControllerProfile newProfile = GetProfile().Clone();
                     newProfile.Name = s;
                     NumerousControllerInterface.SettingsInstance.Profiles.Add(s, newProfile);
-                    updateProfile();
-                    selectProfile(s);
+                    UpdateProfile();
+                    SelectProfile(s);
                 }
                 return true;
             }))
@@ -572,7 +572,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void removeProfileButton_Click(object sender, EventArgs e)
+        private void RemoveProfileButton_Click(object sender, EventArgs e)
         {
             string name = profileComboBox.Text;
             if (MessageBox.Show("本当に " + name + " を削除しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -591,12 +591,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     NumerousControllerInterface.SettingsInstance.ProfileMap.Remove(key);
                 }
                 if (!NumerousControllerInterface.SettingsInstance.removeProfilesList.Contains(name)) NumerousControllerInterface.SettingsInstance.removeProfilesList.Add(name);
-                updateProfile();
-                selectProfile(null);
+                UpdateProfile();
+                SelectProfile(null);
             }
         }
 
-        private void isEnabledCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void IsEnabledCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (!NumerousControllerInterface.SettingsInstance.IsEnabled.ContainsKey(controllerList.Text))
             {
@@ -608,12 +608,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void alertNoCountrollerFoundCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void AlertNoCountrollerFoundCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             NumerousControllerInterface.SettingsInstance.AlertNoControllerFound = alertNoCountrollerFoundCheckBox.Checked;
         }
 
-        private void openProfileInExplorer_Click(object sender, EventArgs e)
+        private void OpenProfileInExplorer_Click(object sender, EventArgs e)
         {
             string filePath = NumerousControllerInterface.SettingsInstance.GetProfileSavePath(GetProfile());
             if (!File.Exists(filePath))
@@ -628,7 +628,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             catch (Exception) { }
         }
 
-        private void removePowerButton_Click(object sender, EventArgs e)
+        private void RemovePowerButton_Click(object sender, EventArgs e)
         {
             if(MessageBox.Show("本当に力行を削除しますか？", "NumerousControllerInput", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -636,7 +636,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void removeBreakButton_Click(object sender, EventArgs e)
+        private void RemoveBreakButton_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("本当に制動を削除しますか？", "NumerousControllerInput", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -644,12 +644,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void checkUpdatesCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void CheckUpdatesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             NumerousControllerInterface.SettingsInstance.CheckUpdates = checkUpdatesCheckBox.Checked;
         }
 
-        private void flexiblePowerModeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void FlexiblePowerModeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             foreach (int key in ControllerProfile.FlexibleNotchModeStrings.Keys)
             {
@@ -662,7 +662,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void flexibleBreakModeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void FlexibleBreakModeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             foreach(int key in ControllerProfile.FlexibleNotchModeStrings.Keys)
             {
@@ -675,7 +675,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void showLoadedPlugins_Click(object sender, EventArgs e)
+        private void ShowLoadedPlugins_Click(object sender, EventArgs e)
         {
             string str = "";
             foreach (NumerousControllerPlugin plugin in NumerousControllerInterface.Plugins)
@@ -685,19 +685,19 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             MessageBox.Show(str, "NumerousControllerInterface");
         }
 
-        private void pluginSettingButton_Click(object sender, EventArgs e)
+        private void PluginSettingButton_Click(object sender, EventArgs e)
         {
             if (pluginConfigComboBox.SelectedIndex < 0) return;
             NumerousControllerInterface.Plugins[pluginConfigComboBox.SelectedIndex].ShowConfigForm();
         }
 
-        private void comPortNotSupportedCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void ComPortNotSupportedCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             bool enabled = comPortNotSupportedCheckBox.Checked;
             comPortTabControl.Enabled = enabled;
         }
 
-        private void comportUseButton_Click(object sender, EventArgs e)
+        private void ComportUseButton_Click(object sender, EventArgs e)
         {
             if (availableComPortList.SelectedIndex < 0) return;
             NumerousControllerInterface.SettingsInstance.EnabledComPorts.Add(availableComPortList.SelectedItem.ToString());
@@ -726,18 +726,18 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
 
             }
-            updateControllers();
+            UpdateControllers();
         }
 
-        private void comPortDeleteButton_Click(object sender, EventArgs e)
+        private void ComPortDeleteButton_Click(object sender, EventArgs e)
         {
             if (usingComPortList.SelectedIndex < 0) return;
             NumerousControllerInterface.SettingsInstance.EnabledComPorts.Remove(usingComPortList.SelectedItem.ToString());
             NumerousControllerInterface.SettingsInstance.COMControllerSettingMap.Remove(usingComPortList.SelectedItem.ToString());
-            updateControllers();
+            UpdateControllers();
         }
 
-        private void comPortNewProfileButton_Click(object sender, EventArgs e)
+        private void ComPortNewProfileButton_Click(object sender, EventArgs e)
         {
             string name = "無名のプロファイル";
             int i = 1;
@@ -767,8 +767,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     NumerousControllerInterface.SettingsInstance.COMControllerSettings.Add(s, settings);
                     NumerousControllerInterface.SettingsInstance.COMControllerSettingMap.Add(usingComPortList.Text, s);
                 }
-                updateCOMControllerSettings();
-                selectCOMControllerSettings(s);
+                UpdateCOMControllerSettings();
+                SelectCOMControllerSettings(s);
                 COMController.IsUpdateNeeded = true;
                 return true;
             }))
@@ -777,7 +777,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void comPortChangeProfileNameButton_Click(object sender, EventArgs e)
+        private void ComPortChangeProfileNameButton_Click(object sender, EventArgs e)
         {
             string oldName = comPortProfileComboBox.Text;
             using (NewNameDialog dialog = new NewNameDialog(comPortProfileComboBox.Text, (s) =>
@@ -807,8 +807,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         NumerousControllerInterface.SettingsInstance.COMControllerSettingMap[key] = s;
                     }
                     NumerousControllerInterface.SettingsInstance.removeCOMControllerProfilesList.Remove(s);
-                    updateCOMControllerSettings();
-                    selectCOMControllerSettings(s);
+                    UpdateCOMControllerSettings();
+                    SelectCOMControllerSettings(s);
                     COMController.IsUpdateNeeded = true;
                 }
                 return true;
@@ -818,22 +818,22 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void usingComPortList_SelectedIndexChanged(object sender, EventArgs e)
+        private void UsingComPortList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (usingComPortList.SelectedIndex != -1)
             {
-                setComPortEnabled(true);
+                SetComPortEnabled(true);
                 if (NumerousControllerInterface.SettingsInstance.COMControllerSettingMap.ContainsKey(usingComPortList.SelectedItem.ToString()))
                 {
-                    selectCOMControllerSettings(NumerousControllerInterface.SettingsInstance.COMControllerSettingMap[usingComPortList.SelectedItem.ToString()]);
+                    SelectCOMControllerSettings(NumerousControllerInterface.SettingsInstance.COMControllerSettingMap[usingComPortList.SelectedItem.ToString()]);
                 } else
                 {
-                    selectCOMControllerSettings(null);
+                    SelectCOMControllerSettings(null);
                 }
             }
         }
 
-        private void comPortApplyButton_Click(object sender, EventArgs e)
+        private void ComPortApplyButton_Click(object sender, EventArgs e)
         {
             if (usingComPortList.SelectedIndex != -1)
             {
@@ -841,7 +841,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void comPortBaudRateComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComPortBaudRateComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             COMControllerSettings settings = GetCOMControllerSettings();
             if (settings != null && comPortBaudRateComboBox.SelectedItem != null)
@@ -854,7 +854,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void comPortDtrCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void ComPortDtrCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             COMControllerSettings settings = GetCOMControllerSettings();
             if (settings != null)
@@ -863,7 +863,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void comPortRtsCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void ComPortRtsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             COMControllerSettings settings = GetCOMControllerSettings();
             if (settings != null)
@@ -872,7 +872,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void comPortOnInitTextBox_TextChanged(object sender, EventArgs e)
+        private void ComPortOnInitTextBox_TextChanged(object sender, EventArgs e)
         {
             COMControllerSettings settings = GetCOMControllerSettings();
             if (settings != null)
@@ -881,7 +881,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void comPortInputReplaceTextBox_TextChanged(object sender, EventArgs e)
+        private void ComPortInputReplaceTextBox_TextChanged(object sender, EventArgs e)
         {
             COMControllerSettings settings = GetCOMControllerSettings();
             if (settings != null)
@@ -904,7 +904,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void comPortOutputReplaceTextBox_TextChanged(object sender, EventArgs e)
+        private void ComPortOutputReplaceTextBox_TextChanged(object sender, EventArgs e)
         {
             COMControllerSettings settings = GetCOMControllerSettings();
             if (settings != null)
@@ -927,17 +927,17 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void comPortProfileComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComPortProfileComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (availableComPortList.SelectedItem != null)
             {
                 NumerousControllerInterface.SettingsInstance.COMControllerSettingMap.Add(availableComPortList.SelectedItem.ToString(), comPortProfileComboBox.SelectedItem.ToString());
-                loadFromCOMControllerSettings();
-                setComPortEnabled(true);
+                LoadFromCOMControllerSettings();
+                SetComPortEnabled(true);
             }
         }
 
-        private void comPortDuplicateProfileButton_Click(object sender, EventArgs e)
+        private void ComPortDuplicateProfileButton_Click(object sender, EventArgs e)
         {
             if (comPortProfileComboBox.SelectedItem != null)
             {
@@ -953,8 +953,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         COMControllerSettings newProfile = GetCOMControllerSettings().Clone();
                         newProfile.Name = s;
                         NumerousControllerInterface.SettingsInstance.COMControllerSettings.Add(s, newProfile);
-                        updateCOMControllerSettings();
-                        selectCOMControllerSettings(s);
+                        UpdateCOMControllerSettings();
+                        SelectCOMControllerSettings(s);
                     }
                     return true;
                 }))
@@ -964,7 +964,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void comPortDeleteProfileButton_Click(object sender, EventArgs e)
+        private void ComPortDeleteProfileButton_Click(object sender, EventArgs e)
         {
             if (comPortProfileComboBox.SelectedItem != null)
             {
@@ -985,13 +985,13 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         NumerousControllerInterface.SettingsInstance.COMControllerSettingMap.Remove(key);
                     }
                     if (!NumerousControllerInterface.SettingsInstance.removeCOMSettingsList.Contains(name)) NumerousControllerInterface.SettingsInstance.removeCOMSettingsList.Add(name);
-                    updateCOMControllerSettings();
+                    UpdateCOMControllerSettings();
                     profileComboBox.SelectedIndex = -1;
                 }
             }
         }
 
-        private void powerCenterPositionNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void PowerCenterPositionNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             ControllerProfile profile = GetProfile();
             if (profile != null)
@@ -1000,7 +1000,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void dataOutputListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void DataOutputListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dataOutputListBox.SelectedItem != null)
             {
@@ -1040,7 +1040,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void dataAtsExValueComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void DataAtsExValueComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dataOutputListBox.SelectedItem != null && dataAtsExValueComboBox.SelectedIndex != -1)
             {
@@ -1058,12 +1058,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void atsExHelpLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void AtsExHelpLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/kusaanko/BveNCIAtsExPlugin");
         }
 
-        private void checkUpdateButton_Click(object sender, EventArgs e)
+        private void CheckUpdateButton_Click(object sender, EventArgs e)
         {
             if (!NumerousControllerInterface.CheckUpdates(true))
             {
@@ -1074,7 +1074,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void holdToRepeatButtonCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void HoldToRepeatButtonCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             var buttonIndex = GetButtonIndex((string)buttonList.SelectedItem);
             var profile = GetProfile();
@@ -1085,7 +1085,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             timeToRepeatPressNumericUpDown.Enabled = holdToRepeatButtonCheckBox.Checked;
         }
 
-        private void timeToRepeatPressNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void TimeToRepeatPressNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             var buttonIndex = GetButtonIndex((string)buttonList.SelectedItem);
             var profile = GetProfile();

@@ -159,7 +159,7 @@
             resources.ApplyResources(this.okButton, "okButton");
             this.okButton.Name = "okButton";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // panel1
             // 
@@ -187,7 +187,7 @@
             resources.ApplyResources(this.flexibleBreakModeComboBox, "flexibleBreakModeComboBox");
             this.flexibleBreakModeComboBox.Name = "flexibleBreakModeComboBox";
             this.toolTip1.SetToolTip(this.flexibleBreakModeComboBox, resources.GetString("flexibleBreakModeComboBox.ToolTip"));
-            this.flexibleBreakModeComboBox.SelectedIndexChanged += new System.EventHandler(this.flexibleBreakModeComboBox_SelectedIndexChanged);
+            this.flexibleBreakModeComboBox.SelectedIndexChanged += new System.EventHandler(this.FlexibleBreakModeComboBox_SelectedIndexChanged);
             // 
             // flexiblePowerModeComboBox
             // 
@@ -196,7 +196,7 @@
             resources.ApplyResources(this.flexiblePowerModeComboBox, "flexiblePowerModeComboBox");
             this.flexiblePowerModeComboBox.Name = "flexiblePowerModeComboBox";
             this.toolTip1.SetToolTip(this.flexiblePowerModeComboBox, resources.GetString("flexiblePowerModeComboBox.ToolTip"));
-            this.flexiblePowerModeComboBox.SelectedIndexChanged += new System.EventHandler(this.flexiblePowerModeComboBox_SelectedIndexChanged);
+            this.flexiblePowerModeComboBox.SelectedIndexChanged += new System.EventHandler(this.FlexiblePowerModeComboBox_SelectedIndexChanged);
             // 
             // controllerAssignmentLabel
             // 
@@ -209,7 +209,7 @@
             resources.ApplyResources(this.controllerList, "controllerList");
             this.controllerList.FormattingEnabled = true;
             this.controllerList.Name = "controllerList";
-            this.controllerList.SelectedIndexChanged += new System.EventHandler(this.controllerList_SelectedIndexChanged);
+            this.controllerList.SelectedIndexChanged += new System.EventHandler(this.ControllerList_SelectedIndexChanged);
             // 
             // selectControllerLabel
             // 
@@ -241,14 +241,14 @@
             resources.ApplyResources(this.removeButtonButton, "removeButtonButton");
             this.removeButtonButton.Name = "removeButtonButton";
             this.removeButtonButton.UseVisualStyleBackColor = true;
-            this.removeButtonButton.Click += new System.EventHandler(this.removeButtonButton_Click);
+            this.removeButtonButton.Click += new System.EventHandler(this.RemoveButtonButton_Click);
             // 
             // addButtonButton
             // 
             resources.ApplyResources(this.addButtonButton, "addButtonButton");
             this.addButtonButton.Name = "addButtonButton";
             this.addButtonButton.UseVisualStyleBackColor = true;
-            this.addButtonButton.Click += new System.EventHandler(this.addButtonButton_Click);
+            this.addButtonButton.Click += new System.EventHandler(this.AddButtonButton_Click);
             // 
             // buttonFunctionLabel
             // 
@@ -261,7 +261,7 @@
             resources.ApplyResources(this.buttonFunctionComboBox, "buttonFunctionComboBox");
             this.buttonFunctionComboBox.FormattingEnabled = true;
             this.buttonFunctionComboBox.Name = "buttonFunctionComboBox";
-            this.buttonFunctionComboBox.SelectedIndexChanged += new System.EventHandler(this.buttonFunctionComboBox_SelectedIndexChanged);
+            this.buttonFunctionComboBox.SelectedIndexChanged += new System.EventHandler(this.ButtonFunctionComboBox_SelectedIndexChanged);
             // 
             // buttonsAssignmentLabel
             // 
@@ -275,14 +275,14 @@
             this.buttonList.FormattingEnabled = true;
             this.buttonList.Name = "buttonList";
             this.buttonList.Sorted = true;
-            this.buttonList.SelectedIndexChanged += new System.EventHandler(this.buttonList_SelectedIndexChanged);
+            this.buttonList.SelectedIndexChanged += new System.EventHandler(this.ButtonList_SelectedIndexChanged);
             // 
             // isEnabledCheckBox
             // 
             resources.ApplyResources(this.isEnabledCheckBox, "isEnabledCheckBox");
             this.isEnabledCheckBox.Name = "isEnabledCheckBox";
             this.isEnabledCheckBox.UseVisualStyleBackColor = true;
-            this.isEnabledCheckBox.CheckedChanged += new System.EventHandler(this.isEnabledCheckBox_CheckedChanged);
+            this.isEnabledCheckBox.CheckedChanged += new System.EventHandler(this.IsEnabledCheckBox_CheckedChanged);
             // 
             // profileToUseLabel
             // 
@@ -296,7 +296,7 @@
             this.profileComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.profileComboBox, "profileComboBox");
             this.profileComboBox.Name = "profileComboBox";
-            this.profileComboBox.SelectedIndexChanged += new System.EventHandler(this.profileComboBox_SelectedIndexChanged);
+            this.profileComboBox.SelectedIndexChanged += new System.EventHandler(this.ProfileComboBox_SelectedIndexChanged);
             // 
             // profileContextMenuStrip
             // 
@@ -310,28 +310,28 @@
             // 
             this.openProfileInExplorer.Name = "openProfileInExplorer";
             resources.ApplyResources(this.openProfileInExplorer, "openProfileInExplorer");
-            this.openProfileInExplorer.Click += new System.EventHandler(this.openProfileInExplorer_Click);
+            this.openProfileInExplorer.Click += new System.EventHandler(this.OpenProfileInExplorer_Click);
             // 
             // newProfileButton
             // 
             resources.ApplyResources(this.newProfileButton, "newProfileButton");
             this.newProfileButton.Name = "newProfileButton";
             this.newProfileButton.UseVisualStyleBackColor = true;
-            this.newProfileButton.Click += new System.EventHandler(this.newProfileButton_Click);
+            this.newProfileButton.Click += new System.EventHandler(this.NewProfileButton_Click);
             // 
             // removeProfileButton
             // 
             resources.ApplyResources(this.removeProfileButton, "removeProfileButton");
             this.removeProfileButton.Name = "removeProfileButton";
             this.removeProfileButton.UseVisualStyleBackColor = true;
-            this.removeProfileButton.Click += new System.EventHandler(this.removeProfileButton_Click);
+            this.removeProfileButton.Click += new System.EventHandler(this.RemoveProfileButton_Click);
             // 
             // duplicateProfileButton
             // 
             resources.ApplyResources(this.duplicateProfileButton, "duplicateProfileButton");
             this.duplicateProfileButton.Name = "duplicateProfileButton";
             this.duplicateProfileButton.UseVisualStyleBackColor = true;
-            this.duplicateProfileButton.Click += new System.EventHandler(this.duplicateProfileButton_Click);
+            this.duplicateProfileButton.Click += new System.EventHandler(this.DuplicateProfileButton_Click);
             // 
             // controllerTypeLabel
             // 
@@ -343,7 +343,7 @@
             resources.ApplyResources(this.changeNameButton, "changeNameButton");
             this.changeNameButton.Name = "changeNameButton";
             this.changeNameButton.UseVisualStyleBackColor = true;
-            this.changeNameButton.Click += new System.EventHandler(this.changeNameButton_Click);
+            this.changeNameButton.Click += new System.EventHandler(this.ChangeNameButton_Click);
             // 
             // settingsOfNumerousControllerInterfaceLabel
             // 
@@ -358,12 +358,12 @@
             this.alertNoCountrollerFoundCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.alertNoCountrollerFoundCheckBox.Name = "alertNoCountrollerFoundCheckBox";
             this.alertNoCountrollerFoundCheckBox.UseVisualStyleBackColor = true;
-            this.alertNoCountrollerFoundCheckBox.CheckedChanged += new System.EventHandler(this.alertNoCountrollerFoundCheckBox_CheckedChanged);
+            this.alertNoCountrollerFoundCheckBox.CheckedChanged += new System.EventHandler(this.AlertNoCountrollerFoundCheckBox_CheckedChanged);
             // 
             // timer1
             // 
             this.timer1.Interval = 16;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // checkUpdatesCheckBox
             // 
@@ -372,7 +372,7 @@
             this.checkUpdatesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkUpdatesCheckBox.Name = "checkUpdatesCheckBox";
             this.checkUpdatesCheckBox.UseVisualStyleBackColor = true;
-            this.checkUpdatesCheckBox.CheckedChanged += new System.EventHandler(this.checkUpdatesCheckBox_CheckedChanged);
+            this.checkUpdatesCheckBox.CheckedChanged += new System.EventHandler(this.CheckUpdatesCheckBox_CheckedChanged);
             // 
             // tabControl1
             // 
@@ -443,7 +443,7 @@
             // 
             resources.ApplyResources(this.powerCenterPositionNumericUpDown, "powerCenterPositionNumericUpDown");
             this.powerCenterPositionNumericUpDown.Name = "powerCenterPositionNumericUpDown";
-            this.powerCenterPositionNumericUpDown.ValueChanged += new System.EventHandler(this.powerCenterPositionNumericUpDown_ValueChanged);
+            this.powerCenterPositionNumericUpDown.ValueChanged += new System.EventHandler(this.PowerCenterPositionNumericUpDown_ValueChanged);
             // 
             // label5
             // 
@@ -465,35 +465,35 @@
             resources.ApplyResources(this.removeBreakButton, "removeBreakButton");
             this.removeBreakButton.Name = "removeBreakButton";
             this.removeBreakButton.UseVisualStyleBackColor = true;
-            this.removeBreakButton.Click += new System.EventHandler(this.removeBreakButton_Click);
+            this.removeBreakButton.Click += new System.EventHandler(this.RemoveBreakButton_Click);
             // 
             // removePowerButton
             // 
             resources.ApplyResources(this.removePowerButton, "removePowerButton");
             this.removePowerButton.Name = "removePowerButton";
             this.removePowerButton.UseVisualStyleBackColor = true;
-            this.removePowerButton.Click += new System.EventHandler(this.removePowerButton_Click);
+            this.removePowerButton.Click += new System.EventHandler(this.RemovePowerButton_Click);
             // 
             // isTwoHandleComboBox
             // 
             resources.ApplyResources(this.isTwoHandleComboBox, "isTwoHandleComboBox");
             this.isTwoHandleComboBox.Name = "isTwoHandleComboBox";
             this.isTwoHandleComboBox.UseVisualStyleBackColor = true;
-            this.isTwoHandleComboBox.CheckedChanged += new System.EventHandler(this.isTwoHandleComboBox_CheckedChanged);
+            this.isTwoHandleComboBox.CheckedChanged += new System.EventHandler(this.IsTwoHandleComboBox_CheckedChanged);
             // 
             // settingBreakButton
             // 
             resources.ApplyResources(this.settingBreakButton, "settingBreakButton");
             this.settingBreakButton.Name = "settingBreakButton";
             this.settingBreakButton.UseVisualStyleBackColor = true;
-            this.settingBreakButton.Click += new System.EventHandler(this.settingBreakButton_Click);
+            this.settingBreakButton.Click += new System.EventHandler(this.SettingBreakButton_Click);
             // 
             // settingPowerButton
             // 
             resources.ApplyResources(this.settingPowerButton, "settingPowerButton");
             this.settingPowerButton.Name = "settingPowerButton";
             this.settingPowerButton.UseVisualStyleBackColor = true;
-            this.settingPowerButton.Click += new System.EventHandler(this.settingPowerButton_Click);
+            this.settingPowerButton.Click += new System.EventHandler(this.SettingPowerButton_Click);
             // 
             // tabPage5
             // 
@@ -535,14 +535,14 @@
             0,
             0,
             65536});
-            this.timeToRepeatPressNumericUpDown.ValueChanged += new System.EventHandler(this.timeToRepeatPressNumericUpDown_ValueChanged);
+            this.timeToRepeatPressNumericUpDown.ValueChanged += new System.EventHandler(this.TimeToRepeatPressNumericUpDown_ValueChanged);
             // 
             // holdToRepeatButtonCheckBox
             // 
             resources.ApplyResources(this.holdToRepeatButtonCheckBox, "holdToRepeatButtonCheckBox");
             this.holdToRepeatButtonCheckBox.Name = "holdToRepeatButtonCheckBox";
             this.holdToRepeatButtonCheckBox.UseVisualStyleBackColor = true;
-            this.holdToRepeatButtonCheckBox.CheckedChanged += new System.EventHandler(this.holdToRepeatButtonCheckBox_CheckedChanged);
+            this.holdToRepeatButtonCheckBox.CheckedChanged += new System.EventHandler(this.HoldToRepeatButtonCheckBox_CheckedChanged);
             // 
             // panel4
             // 
@@ -572,7 +572,7 @@
             this.dataOutputListBox.FormattingEnabled = true;
             this.dataOutputListBox.Name = "dataOutputListBox";
             this.dataOutputListBox.Sorted = true;
-            this.dataOutputListBox.SelectedIndexChanged += new System.EventHandler(this.dataOutputListBox_SelectedIndexChanged);
+            this.dataOutputListBox.SelectedIndexChanged += new System.EventHandler(this.DataOutputListBox_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -586,7 +586,7 @@
             this.dataAtsExValueComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.dataAtsExValueComboBox, "dataAtsExValueComboBox");
             this.dataAtsExValueComboBox.Name = "dataAtsExValueComboBox";
-            this.dataAtsExValueComboBox.SelectedIndexChanged += new System.EventHandler(this.dataAtsExValueComboBox_SelectedIndexChanged);
+            this.dataAtsExValueComboBox.SelectedIndexChanged += new System.EventHandler(this.DataAtsExValueComboBox_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -609,7 +609,7 @@
             resources.ApplyResources(this.checkUpdateButton, "checkUpdateButton");
             this.checkUpdateButton.Name = "checkUpdateButton";
             this.checkUpdateButton.UseVisualStyleBackColor = true;
-            this.checkUpdateButton.Click += new System.EventHandler(this.checkUpdateButton_Click);
+            this.checkUpdateButton.Click += new System.EventHandler(this.CheckUpdateButton_Click);
             // 
             // tabPage6
             // 
@@ -637,7 +637,7 @@
             resources.ApplyResources(this.usingComPortList, "usingComPortList");
             this.usingComPortList.FormattingEnabled = true;
             this.usingComPortList.Name = "usingComPortList";
-            this.usingComPortList.SelectedIndexChanged += new System.EventHandler(this.usingComPortList_SelectedIndexChanged);
+            this.usingComPortList.SelectedIndexChanged += new System.EventHandler(this.UsingComPortList_SelectedIndexChanged);
             // 
             // panel5
             // 
@@ -656,7 +656,7 @@
             resources.ApplyResources(this.comPortApplyButton, "comPortApplyButton");
             this.comPortApplyButton.Name = "comPortApplyButton";
             this.comPortApplyButton.UseVisualStyleBackColor = true;
-            this.comPortApplyButton.Click += new System.EventHandler(this.comPortApplyButton_Click);
+            this.comPortApplyButton.Click += new System.EventHandler(this.ComPortApplyButton_Click);
             // 
             // comPortInformationLabel
             // 
@@ -704,35 +704,35 @@
             resources.GetString("comPortBaudRateComboBox.Items14")});
             resources.ApplyResources(this.comPortBaudRateComboBox, "comPortBaudRateComboBox");
             this.comPortBaudRateComboBox.Name = "comPortBaudRateComboBox";
-            this.comPortBaudRateComboBox.SelectedIndexChanged += new System.EventHandler(this.comPortBaudRateComboBox_SelectedIndexChanged);
+            this.comPortBaudRateComboBox.SelectedIndexChanged += new System.EventHandler(this.ComPortBaudRateComboBox_SelectedIndexChanged);
             // 
             // comPortDuplicateProfileButton
             // 
             resources.ApplyResources(this.comPortDuplicateProfileButton, "comPortDuplicateProfileButton");
             this.comPortDuplicateProfileButton.Name = "comPortDuplicateProfileButton";
             this.comPortDuplicateProfileButton.UseVisualStyleBackColor = true;
-            this.comPortDuplicateProfileButton.Click += new System.EventHandler(this.comPortDuplicateProfileButton_Click);
+            this.comPortDuplicateProfileButton.Click += new System.EventHandler(this.ComPortDuplicateProfileButton_Click);
             // 
             // comPortChangeProfileNameButton
             // 
             resources.ApplyResources(this.comPortChangeProfileNameButton, "comPortChangeProfileNameButton");
             this.comPortChangeProfileNameButton.Name = "comPortChangeProfileNameButton";
             this.comPortChangeProfileNameButton.UseVisualStyleBackColor = true;
-            this.comPortChangeProfileNameButton.Click += new System.EventHandler(this.comPortChangeProfileNameButton_Click);
+            this.comPortChangeProfileNameButton.Click += new System.EventHandler(this.ComPortChangeProfileNameButton_Click);
             // 
             // comPortDeleteProfileButton
             // 
             resources.ApplyResources(this.comPortDeleteProfileButton, "comPortDeleteProfileButton");
             this.comPortDeleteProfileButton.Name = "comPortDeleteProfileButton";
             this.comPortDeleteProfileButton.UseVisualStyleBackColor = true;
-            this.comPortDeleteProfileButton.Click += new System.EventHandler(this.comPortDeleteProfileButton_Click);
+            this.comPortDeleteProfileButton.Click += new System.EventHandler(this.ComPortDeleteProfileButton_Click);
             // 
             // comPortNewProfileButton
             // 
             resources.ApplyResources(this.comPortNewProfileButton, "comPortNewProfileButton");
             this.comPortNewProfileButton.Name = "comPortNewProfileButton";
             this.comPortNewProfileButton.UseVisualStyleBackColor = true;
-            this.comPortNewProfileButton.Click += new System.EventHandler(this.comPortNewProfileButton_Click);
+            this.comPortNewProfileButton.Click += new System.EventHandler(this.ComPortNewProfileButton_Click);
             // 
             // label8
             // 
@@ -745,14 +745,14 @@
             this.comPortProfileComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.comPortProfileComboBox, "comPortProfileComboBox");
             this.comPortProfileComboBox.Name = "comPortProfileComboBox";
-            this.comPortProfileComboBox.SelectedIndexChanged += new System.EventHandler(this.comPortProfileComboBox_SelectedIndexChanged);
+            this.comPortProfileComboBox.SelectedIndexChanged += new System.EventHandler(this.ComPortProfileComboBox_SelectedIndexChanged);
             // 
             // comPortRtsCheckBox
             // 
             resources.ApplyResources(this.comPortRtsCheckBox, "comPortRtsCheckBox");
             this.comPortRtsCheckBox.Name = "comPortRtsCheckBox";
             this.comPortRtsCheckBox.UseVisualStyleBackColor = true;
-            this.comPortRtsCheckBox.CheckedChanged += new System.EventHandler(this.comPortRtsCheckBox_CheckedChanged);
+            this.comPortRtsCheckBox.CheckedChanged += new System.EventHandler(this.ComPortRtsCheckBox_CheckedChanged);
             // 
             // comPortDtrCheckBox
             // 
@@ -761,7 +761,7 @@
             this.comPortDtrCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.comPortDtrCheckBox.Name = "comPortDtrCheckBox";
             this.comPortDtrCheckBox.UseVisualStyleBackColor = true;
-            this.comPortDtrCheckBox.CheckedChanged += new System.EventHandler(this.comPortDtrCheckBox_CheckedChanged);
+            this.comPortDtrCheckBox.CheckedChanged += new System.EventHandler(this.ComPortDtrCheckBox_CheckedChanged);
             // 
             // label7
             // 
@@ -789,7 +789,7 @@
             this.comPortOnInitTextBox.AcceptsReturn = true;
             resources.ApplyResources(this.comPortOnInitTextBox, "comPortOnInitTextBox");
             this.comPortOnInitTextBox.Name = "comPortOnInitTextBox";
-            this.comPortOnInitTextBox.TextChanged += new System.EventHandler(this.comPortOnInitTextBox_TextChanged);
+            this.comPortOnInitTextBox.TextChanged += new System.EventHandler(this.ComPortOnInitTextBox_TextChanged);
             // 
             // tabPage7
             // 
@@ -803,7 +803,7 @@
             this.comPortInputReplaceTextBox.AcceptsReturn = true;
             resources.ApplyResources(this.comPortInputReplaceTextBox, "comPortInputReplaceTextBox");
             this.comPortInputReplaceTextBox.Name = "comPortInputReplaceTextBox";
-            this.comPortInputReplaceTextBox.TextChanged += new System.EventHandler(this.comPortInputReplaceTextBox_TextChanged);
+            this.comPortInputReplaceTextBox.TextChanged += new System.EventHandler(this.ComPortInputReplaceTextBox_TextChanged);
             // 
             // tabPage8
             // 
@@ -817,28 +817,28 @@
             this.comPortOutputReplaceTextBox.AcceptsReturn = true;
             resources.ApplyResources(this.comPortOutputReplaceTextBox, "comPortOutputReplaceTextBox");
             this.comPortOutputReplaceTextBox.Name = "comPortOutputReplaceTextBox";
-            this.comPortOutputReplaceTextBox.TextChanged += new System.EventHandler(this.comPortOutputReplaceTextBox_TextChanged);
+            this.comPortOutputReplaceTextBox.TextChanged += new System.EventHandler(this.ComPortOutputReplaceTextBox_TextChanged);
             // 
             // comPortNotSupportedCheckBox
             // 
             resources.ApplyResources(this.comPortNotSupportedCheckBox, "comPortNotSupportedCheckBox");
             this.comPortNotSupportedCheckBox.Name = "comPortNotSupportedCheckBox";
             this.comPortNotSupportedCheckBox.UseVisualStyleBackColor = true;
-            this.comPortNotSupportedCheckBox.CheckedChanged += new System.EventHandler(this.comPortNotSupportedCheckBox_CheckedChanged);
+            this.comPortNotSupportedCheckBox.CheckedChanged += new System.EventHandler(this.ComPortNotSupportedCheckBox_CheckedChanged);
             // 
             // comPortDeleteButton
             // 
             resources.ApplyResources(this.comPortDeleteButton, "comPortDeleteButton");
             this.comPortDeleteButton.Name = "comPortDeleteButton";
             this.comPortDeleteButton.UseVisualStyleBackColor = true;
-            this.comPortDeleteButton.Click += new System.EventHandler(this.comPortDeleteButton_Click);
+            this.comPortDeleteButton.Click += new System.EventHandler(this.ComPortDeleteButton_Click);
             // 
             // comportUseButton
             // 
             resources.ApplyResources(this.comportUseButton, "comportUseButton");
             this.comportUseButton.Name = "comportUseButton";
             this.comportUseButton.UseVisualStyleBackColor = true;
-            this.comportUseButton.Click += new System.EventHandler(this.comportUseButton_Click);
+            this.comportUseButton.Click += new System.EventHandler(this.ComportUseButton_Click);
             // 
             // label4
             // 
@@ -864,7 +864,7 @@
             resources.ApplyResources(this.atsExHelpLinkLabel, "atsExHelpLinkLabel");
             this.atsExHelpLinkLabel.Name = "atsExHelpLinkLabel";
             this.atsExHelpLinkLabel.TabStop = true;
-            this.atsExHelpLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.atsExHelpLinkLabel_LinkClicked);
+            this.atsExHelpLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AtsExHelpLinkLabel_LinkClicked);
             // 
             // atsExStatusLabel
             // 
@@ -890,14 +890,14 @@
             resources.ApplyResources(this.pluginSettingButton, "pluginSettingButton");
             this.pluginSettingButton.Name = "pluginSettingButton";
             this.pluginSettingButton.UseVisualStyleBackColor = true;
-            this.pluginSettingButton.Click += new System.EventHandler(this.pluginSettingButton_Click);
+            this.pluginSettingButton.Click += new System.EventHandler(this.PluginSettingButton_Click);
             // 
             // showLoadedPlugins
             // 
             resources.ApplyResources(this.showLoadedPlugins, "showLoadedPlugins");
             this.showLoadedPlugins.Name = "showLoadedPlugins";
             this.showLoadedPlugins.UseVisualStyleBackColor = true;
-            this.showLoadedPlugins.Click += new System.EventHandler(this.showLoadedPlugins_Click);
+            this.showLoadedPlugins.Click += new System.EventHandler(this.ShowLoadedPlugins_Click);
             // 
             // pluginConfigComboBox
             // 

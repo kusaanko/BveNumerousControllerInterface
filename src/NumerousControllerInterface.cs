@@ -265,7 +265,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (ConfigFormInstance != null && !ConfigFormInstance.IsDisposed && ControllerProfile.controllers.Count != s_preControllerCount)
             {
-                ConfigFormInstance.updateControllers();
+                ConfigFormInstance.UpdateControllers();
             }
             if (Controllers.Count == 0)
             {
@@ -574,11 +574,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         if (two)
                         {
                             // 逆回しのために中央位置分だけ減らす
-                            onLeverMoved(1, powerLevel - profile.PowerCenterPosition);
+                            OnLeverMoved(1, powerLevel - profile.PowerCenterPosition);
                         }
                         else
                         {
-                            onLeverMoved(3, powerLevel);
+                            OnLeverMoved(3, powerLevel);
                         }
                     }
                     _prePowerLevel[controller] = powerLevel;
@@ -602,11 +602,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     {
                         if (two)
                         {
-                            onLeverMoved(2, breakLevel);
+                            OnLeverMoved(2, breakLevel);
                         }
                         else
                         {
-                            onLeverMoved(3, -breakLevel);
+                            OnLeverMoved(3, -breakLevel);
                         }
                     }
                     _preBreakLevel[controller] = breakLevel;
@@ -640,12 +640,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         {
                             rev = 1;
                         }
-                        onLeverMoved(0, rev);
+                        OnLeverMoved(0, rev);
                     }
                     _preReverser[controller] = reverserPos;
                 }
                 // ボタン
-                processControllerButtonInput(profile, controller);
+                ProcessControllerButtonInput(profile, controller);
             }
         }
 
@@ -673,7 +673,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             _isDisposeRequested = true;
         }
 
-        private void onLeverMoved(int axis, int notch)
+        private void OnLeverMoved(int axis, int notch)
         {
             if (LeverMoved != null)
             {
@@ -693,7 +693,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void processControllerButtonInput(ControllerProfile profile, NCIController controller)
+        private void ProcessControllerButtonInput(ControllerProfile profile, NCIController controller)
         {
             List<int> buttons = profile.GetButtons(controller);
             if (!_preButtons.ContainsKey(controller))
@@ -719,8 +719,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     if (!_lastButtonPressedTime[controller].ContainsKey(i))
                     {
                         ButtonFeature key = profile.KeyMap[i];
-                        onKeyDown(key.Axis, key.Value, false);
-                        onKeyUp(key.Axis, key.Value);
+                        OnKeyDown(key.Axis, key.Value, false);
+                        OnKeyUp(key.Axis, key.Value);
                         _isButtonRepeating[controller][i] = false;
                         // ボタンの押した時間を記録
                         _lastButtonPressedTime[controller][i] = DateTime.Now;
@@ -746,8 +746,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         {
                             // 一定時間経過したら再度ボタンを押す
                             ButtonFeature key = profile.KeyMap[i];
-                            onKeyDown(key.Axis, key.Value, true);
-                            onKeyUp(key.Axis, key.Value);
+                            OnKeyDown(key.Axis, key.Value, true);
+                            OnKeyUp(key.Axis, key.Value);
                             _isButtonRepeating[controller][i] = true;
                             // ボタンの押した時間を記録
                             _lastButtonPressedTime[controller][i] = DateTime.Now;
@@ -762,7 +762,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         if (profile.KeyMap.ContainsKey(i))
                         {
                             ButtonFeature key = profile.KeyMap[i];
-                            onKeyDown(key.Axis, key.Value, false);
+                            OnKeyDown(key.Axis, key.Value, false);
                         }
                     }
                 }
@@ -774,7 +774,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     if (profile.KeyMap.ContainsKey(i))
                     {
                         ButtonFeature key = profile.KeyMap[i];
-                        onKeyUp(key.Axis, key.Value);
+                        OnKeyUp(key.Axis, key.Value);
                     }
                     if (_isButtonRepeating[controller].ContainsKey(i))
                     {
@@ -789,7 +789,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             _preButtons[controller] = buttons;
         }
 
-        private void onKeyDown(int axis, int keyCode, bool isRepeating)
+        private void OnKeyDown(int axis, int keyCode, bool isRepeating)
         {
             if (LeverMoved != null)
             {
@@ -910,33 +910,33 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     {
                         if (two)
                         {
-                            onLeverMoved(1, 0);
-                            onLeverMoved(2, 0);
+                            OnLeverMoved(1, 0);
+                            OnLeverMoved(2, 0);
                         }
                         else
                         {
-                            onLeverMoved(3, 0);
+                            OnLeverMoved(3, 0);
                         }
                     }else if(_breakNotch > 0)
                     {
                         if (two)
                         {
-                            onLeverMoved(2, _breakNotch);
+                            OnLeverMoved(2, _breakNotch);
                         }
                         else
                         {
-                            onLeverMoved(3, -_breakNotch);
+                            OnLeverMoved(3, -_breakNotch);
                         }
                     }
                     else
                     {
                         if (two)
                         {
-                            onLeverMoved(1, _powerNotch);
+                            OnLeverMoved(1, _powerNotch);
                         }
                         else
                         {
-                            onLeverMoved(3, _powerNotch);
+                            OnLeverMoved(3, _powerNotch);
                         }
                     }
                 }
@@ -954,7 +954,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void onKeyUp(int axis, int keyCode)
+        private void OnKeyUp(int axis, int keyCode)
         {
             if (LeverMoved != null)
             {

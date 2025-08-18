@@ -654,7 +654,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (profile.PowerButtonStatus != null)
             {
-                profile.PowerButtonStatus = cloneList(PowerButtonStatus);
+                profile.PowerButtonStatus = CloneList(PowerButtonStatus);
             }
             if (profile.PowerAxises != null)
             {
@@ -662,7 +662,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (profile.PowerAxisStatus != null)
             {
-                profile.PowerAxisStatus = cloneList(PowerAxisStatus);
+                profile.PowerAxisStatus = CloneList(PowerAxisStatus);
             }
             if (profile.BreakButtons != null)
             {
@@ -670,7 +670,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (profile.BreakButtonStatus != null)
             {
-                profile.BreakButtonStatus = cloneList(BreakButtonStatus);
+                profile.BreakButtonStatus = CloneList(BreakButtonStatus);
             }
             if (profile.BreakAxises != null)
             {
@@ -678,7 +678,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (profile.BreakAxisStatus != null)
             {
-                profile.BreakAxisStatus = cloneList(BreakAxisStatus);
+                profile.BreakAxisStatus = CloneList(BreakAxisStatus);
             }
             if (profile.KeyMap != null)
             {
@@ -700,7 +700,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return profile;
         }
         
-        private static List<List<T>> cloneList<T>(List<List<T>> list)
+        private static List<List<T>> CloneList<T>(List<List<T>> list)
         {
             List<List<T>> result = new List<List<T>>(list.Count);
             foreach (var item in list)
