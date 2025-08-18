@@ -35,6 +35,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private Dictionary<NCIController, int> _prePowerLevel;
         private Dictionary<NCIController, int> _preBreakLevel;
         private Dictionary<NCIController, List<int>> _preButtons;
+        // ボタンのID、押した時間
+        private Dictionary<NCIController, Dictionary<int, DateTime>> _lastButtonPressedTime;
+        // ボタンのID、連打中かどうか
+        private Dictionary<NCIController, Dictionary<int, bool>> _isButtonRepeating;
         private Dictionary<NCIController, Reverser> _preReverser;
 
         public static List<NumerousControllerPlugin> Plugins;
@@ -76,6 +80,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             _preBreakLevel = new Dictionary<NCIController, int>();
             _preButtons = new Dictionary<NCIController, List<int>>();
             _preReverser = new Dictionary<NCIController, Reverser>();
+            _lastButtonPressedTime = new Dictionary<NCIController, Dictionary<int, DateTime>>();
+            _isButtonRepeating = new Dictionary<NCIController, Dictionary<int, bool>>();
             Plugins = new List<NumerousControllerPlugin>();
             s_powerController = "";
             s_breakController = "";
@@ -638,36 +644,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     }
                     _preReverser[controller] = reverserPos;
                 }
-                // ボタン 一瞬だけ押すために前Tickでボタンを押していたかどうかを判定
-                List<int> buttons = profile.GetButtons(controller);
-                if(!_preButtons.ContainsKey(controller))
-                {
-                    _preButtons.Add(controller, new List<int>());
-                }
-                List<int> preButton = _preButtons[controller];
-                foreach(int i in buttons)
-                {
-                    if(!preButton.Contains(i))
-                    {
-                        if (profile.KeyMap.ContainsKey(i))
-                        {
-                            ButtonFeature key = profile.KeyMap[i];
-                            onKeyDown(key.Axis, key.Value);
-                        }
-                    }
-                }
-                foreach (int i in preButton)
-                {
-                    if (!buttons.Contains(i))
-                    {
-                        if (profile.KeyMap.ContainsKey(i))
-                        {
-                            ButtonFeature key = profile.KeyMap[i];
-                            onKeyUp(key.Axis, key.Value);
-                        }
-                    }
-                }
-                _preButtons[controller] = buttons;
+                // ボタン
+                processControllerButtonInput(profile, controller);
             }
         }
 
@@ -715,7 +693,103 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void onKeyDown(int axis, int keyCode)
+        private void processControllerButtonInput(ControllerProfile profile, NCIController controller)
+        {
+            List<int> buttons = profile.GetButtons(controller);
+            if (!_preButtons.ContainsKey(controller))
+            {
+                _preButtons.Add(controller, new List<int>());
+            }
+            if (!_lastButtonPressedTime.ContainsKey(controller))
+            {
+                _lastButtonPressedTime.Add(controller, new Dictionary<int, DateTime>());
+            }
+            if (!_isButtonRepeating.ContainsKey(controller))
+            {
+                _isButtonRepeating.Add(controller, new Dictionary<int, bool>());
+            }
+            List<int> preButton = _preButtons[controller];
+            foreach (int i in buttons)
+            {
+                var buttonRepeat = profile.HoldToRepeat.ContainsKey(i) ? profile.HoldToRepeat[i] : false;
+                var buttonRepeatTime = profile.HoldToRepeatTime.ContainsKey(i) ? profile.HoldToRepeatTime[i] : 0.5;
+                if (buttonRepeat)
+                {
+                    // 初回ボタン投下処理
+                    if (!_lastButtonPressedTime[controller].ContainsKey(i))
+                    {
+                        ButtonFeature key = profile.KeyMap[i];
+                        onKeyDown(key.Axis, key.Value, false);
+                        onKeyUp(key.Axis, key.Value);
+                        _isButtonRepeating[controller][i] = false;
+                        // ボタンの押した時間を記録
+                        _lastButtonPressedTime[controller][i] = DateTime.Now;
+                    } else
+                    {
+                        // 連打中なら前回のボタン投下からの時間を計測
+                        DateTime lastPressedTime = _lastButtonPressedTime[controller][i];
+                        TimeSpan timeSinceLastPressed = DateTime.Now - lastPressedTime;
+
+                        var targetTime = buttonRepeatTime;
+                        var isButtonRepeating = _isButtonRepeating[controller].ContainsKey(i) ? _isButtonRepeating[controller][i] : false;
+
+                        if (isButtonRepeating)
+                        {
+                            targetTime = 0.05;
+                        }
+
+                        if (!_isButtonRepeating[controller].ContainsKey(i))
+                        {
+                            _isButtonRepeating[controller][i] = false;
+                        }
+                        if (timeSinceLastPressed.TotalSeconds >= targetTime)
+                        {
+                            // 一定時間経過したら再度ボタンを押す
+                            ButtonFeature key = profile.KeyMap[i];
+                            onKeyDown(key.Axis, key.Value, true);
+                            onKeyUp(key.Axis, key.Value);
+                            _isButtonRepeating[controller][i] = true;
+                            // ボタンの押した時間を記録
+                            _lastButtonPressedTime[controller][i] = DateTime.Now;
+                        }
+                    }
+                }
+                else
+                {
+                    // リピートしないなら投下した瞬間だけボタンを押す
+                    if (!preButton.Contains(i))
+                    {
+                        if (profile.KeyMap.ContainsKey(i))
+                        {
+                            ButtonFeature key = profile.KeyMap[i];
+                            onKeyDown(key.Axis, key.Value, false);
+                        }
+                    }
+                }
+            }
+            foreach (int i in preButton)
+            {
+                if (!buttons.Contains(i))
+                {
+                    if (profile.KeyMap.ContainsKey(i))
+                    {
+                        ButtonFeature key = profile.KeyMap[i];
+                        onKeyUp(key.Axis, key.Value);
+                    }
+                    if (_isButtonRepeating[controller].ContainsKey(i))
+                    {
+                        _isButtonRepeating[controller].Remove(i);
+                    }
+                    if (_lastButtonPressedTime[controller].ContainsKey(i))
+                    {
+                        _lastButtonPressedTime[controller].Remove(i);
+                    }
+                }
+            }
+            _preButtons[controller] = buttons;
+        }
+
+        private void onKeyDown(int axis, int keyCode, bool isRepeating)
         {
             if (LeverMoved != null)
             {
@@ -770,7 +844,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             _breakNotch = 0;
                             break;
                         case 3:// 制動上げ
-                            _breakNotch++;
+                            // リピート入力時は非常の前で止まるように
+                            _breakNotch = isRepeating
+                                ? Math.Min(_breakNotch + 1, GetBreakMax() - 2)
+                                : _breakNotch + 1;
                             break;
                         case 4:// 制動下げ
                             _breakNotch--;
@@ -804,7 +881,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             }
                             else
                             {
-                                _breakNotch++;
+                                // リピート入力時は非常の前で止まるように
+                                _breakNotch = isRepeating
+                                    ? Math.Min(_breakNotch + 1, GetBreakMax() - 2)
+                                    : _breakNotch + 1;
                                 _powerNotch = 0;
                             }
                             break;

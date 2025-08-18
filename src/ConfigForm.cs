@@ -369,10 +369,29 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             if(buttonList.SelectedIndex < 0)
             {
                 buttonFunctionComboBox.Enabled = false;
+                holdToRepeatButtonCheckBox.Enabled = false;
                 return;
             }
             buttonFunctionComboBox.Enabled = true;
-            selectDropDownList(buttonFunctionComboBox, GetProfile().KeyMap[GetButtonIndex((string)buttonList.SelectedItem)]);
+            holdToRepeatButtonCheckBox.Enabled = true;
+            var profile = GetProfile();
+            var buttonIndex = GetButtonIndex((string)buttonList.SelectedItem);
+            selectDropDownList(buttonFunctionComboBox, profile.KeyMap[buttonIndex]);
+            if (profile.HoldToRepeat.ContainsKey(buttonIndex))
+            {
+                holdToRepeatButtonCheckBox.Checked = profile.HoldToRepeat[buttonIndex];
+            } else
+            {
+                holdToRepeatButtonCheckBox.Checked = false;
+            }
+            if (profile.HoldToRepeatTime.ContainsKey(buttonIndex))
+            {
+                timeToRepeatPressNumericUpDown.Value = (decimal) profile.HoldToRepeatTime[buttonIndex];
+            }
+            else
+            {
+                timeToRepeatPressNumericUpDown.Value = (decimal) 0.5;
+            }
         }
 
         private void removeButtonButton_Click(object sender, EventArgs e)
@@ -1052,6 +1071,35 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             } else
             {
                 NumerousControllerInterface.SettingsInstance.IgnoreUpdate = 0;
+            }
+        }
+
+        private void holdToRepeatButtonCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            var buttonIndex = GetButtonIndex((string)buttonList.SelectedItem);
+            var profile = GetProfile();
+            if (profile.KeyMap.ContainsKey(buttonIndex))
+            {
+                profile.HoldToRepeat[buttonIndex] = holdToRepeatButtonCheckBox.Checked;
+            }
+            timeToRepeatPressNumericUpDown.Enabled = holdToRepeatButtonCheckBox.Checked;
+        }
+
+        private void timeToRepeatPressNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            var buttonIndex = GetButtonIndex((string)buttonList.SelectedItem);
+            var profile = GetProfile();
+            if (profile.KeyMap.ContainsKey(buttonIndex))
+            {
+                var value = (float)timeToRepeatPressNumericUpDown.Value;
+                if (value < 0.1f)
+                {
+                    value = 0.1f;
+                } else if (value > 1.0f)
+                {
+                    value = 1.0f;
+                }
+                profile.HoldToRepeatTime[buttonIndex] = value;
             }
         }
     }

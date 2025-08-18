@@ -78,6 +78,9 @@
             this.settingBreakButton = new System.Windows.Forms.Button();
             this.settingPowerButton = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.timeToRepeatPressNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.holdToRepeatButtonCheckBox = new System.Windows.Forms.CheckBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.atsExConfigurationTabItem = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -86,6 +89,7 @@
             this.dataAtsExValueComboBox = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkUpdateButton = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
             this.usingComPortList = new System.Windows.Forms.ListBox();
@@ -124,7 +128,6 @@
             this.pluginSettingButton = new System.Windows.Forms.Button();
             this.showLoadedPlugins = new System.Windows.Forms.Button();
             this.pluginConfigComboBox = new System.Windows.Forms.ComboBox();
-            this.checkUpdateButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -134,6 +137,7 @@
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.powerCenterPositionNumericUpDown)).BeginInit();
             this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.timeToRepeatPressNumericUpDown)).BeginInit();
             this.panel4.SuspendLayout();
             this.atsExConfigurationTabItem.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -493,6 +497,9 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.label11);
+            this.tabPage5.Controls.Add(this.timeToRepeatPressNumericUpDown);
+            this.tabPage5.Controls.Add(this.holdToRepeatButtonCheckBox);
             this.tabPage5.Controls.Add(this.panel4);
             this.tabPage5.Controls.Add(this.removeButtonButton);
             this.tabPage5.Controls.Add(this.buttonsAssignmentLabel);
@@ -502,6 +509,40 @@
             resources.ApplyResources(this.tabPage5, "tabPage5");
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // timeToRepeatPressNumericUpDown
+            // 
+            this.timeToRepeatPressNumericUpDown.DecimalPlaces = 1;
+            resources.ApplyResources(this.timeToRepeatPressNumericUpDown, "timeToRepeatPressNumericUpDown");
+            this.timeToRepeatPressNumericUpDown.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.timeToRepeatPressNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.timeToRepeatPressNumericUpDown.Name = "timeToRepeatPressNumericUpDown";
+            this.timeToRepeatPressNumericUpDown.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.timeToRepeatPressNumericUpDown.ValueChanged += new System.EventHandler(this.timeToRepeatPressNumericUpDown_ValueChanged);
+            // 
+            // holdToRepeatButtonCheckBox
+            // 
+            resources.ApplyResources(this.holdToRepeatButtonCheckBox, "holdToRepeatButtonCheckBox");
+            this.holdToRepeatButtonCheckBox.Name = "holdToRepeatButtonCheckBox";
+            this.holdToRepeatButtonCheckBox.UseVisualStyleBackColor = true;
+            this.holdToRepeatButtonCheckBox.CheckedChanged += new System.EventHandler(this.holdToRepeatButtonCheckBox_CheckedChanged);
             // 
             // panel4
             // 
@@ -562,6 +603,13 @@
             resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // checkUpdateButton
+            // 
+            resources.ApplyResources(this.checkUpdateButton, "checkUpdateButton");
+            this.checkUpdateButton.Name = "checkUpdateButton";
+            this.checkUpdateButton.UseVisualStyleBackColor = true;
+            this.checkUpdateButton.Click += new System.EventHandler(this.checkUpdateButton_Click);
             // 
             // tabPage6
             // 
@@ -858,13 +906,6 @@
             resources.ApplyResources(this.pluginConfigComboBox, "pluginConfigComboBox");
             this.pluginConfigComboBox.Name = "pluginConfigComboBox";
             // 
-            // checkUpdateButton
-            // 
-            resources.ApplyResources(this.checkUpdateButton, "checkUpdateButton");
-            this.checkUpdateButton.Name = "checkUpdateButton";
-            this.checkUpdateButton.UseVisualStyleBackColor = true;
-            this.checkUpdateButton.Click += new System.EventHandler(this.checkUpdateButton_Click);
-            // 
             // ConfigForm
             // 
             this.AcceptButton = this.okButton;
@@ -892,6 +933,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.powerCenterPositionNumericUpDown)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.timeToRepeatPressNumericUpDown)).EndInit();
             this.panel4.ResumeLayout(false);
             this.atsExConfigurationTabItem.ResumeLayout(false);
             this.atsExConfigurationTabItem.PerformLayout();
@@ -1014,5 +1056,8 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.LinkLabel atsExHelpLinkLabel;
         private System.Windows.Forms.Button checkUpdateButton;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown timeToRepeatPressNumericUpDown;
+        private System.Windows.Forms.CheckBox holdToRepeatButtonCheckBox;
     }
 }

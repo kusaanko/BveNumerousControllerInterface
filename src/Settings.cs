@@ -363,6 +363,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                                     profile.KeyMap.Remove(button);
                                 }
                             }
+                            profile.InitializeNullVariables();
                             settings.Profiles.Add(profile.Name, profile);
                             profile.CalcDuplicated();
                         }

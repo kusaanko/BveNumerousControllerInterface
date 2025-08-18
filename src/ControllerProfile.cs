@@ -26,8 +26,15 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
     {
         [DataMember]
         public string Name;
+        // ボタンのマッピング
         [DataMember]
         public Dictionary<int, ButtonFeature> KeyMap;
+        // ボタンを押し続けると繰り返し入力するかどうか
+        [DataMember]
+        public Dictionary<int, bool> HoldToRepeat;
+        // ボタンを押し続けると繰り返し入力するまでの時間
+        [DataMember]
+        public Dictionary<int, float> HoldToRepeatTime;
         // それぞれノッチでどのボタンを組み合わせとして使うか
         [DataMember]
         public int[] PowerButtons;
@@ -98,6 +105,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             Name = name;
             KeyMap = new Dictionary<int, ButtonFeature>();
+            HoldToRepeat = new Dictionary<int, bool>();
+            HoldToRepeatTime = new Dictionary<int, float>();
             PowerAxises = new int[0];
             PowerAxisStatus = new List<List<int>>();
             PowerButtons = new int[0];
@@ -113,6 +122,23 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             InaccuracyModePower = false;
             InaccuracyModeBreak = false;
             AtsExValue = new Dictionary<string, string>();
+        }
+
+        public void InitializeNullVariables()
+        {
+            if (KeyMap == null) KeyMap = new Dictionary<int, ButtonFeature>();
+            if (HoldToRepeat == null) HoldToRepeat = new Dictionary<int, bool>();
+            if (HoldToRepeatTime == null) HoldToRepeatTime = new Dictionary<int, float>();
+            if (PowerAxises == null) PowerAxises = new int[0];
+            if (PowerAxisStatus == null) PowerAxisStatus = new List<List<int>>();
+            if (PowerButtons == null) PowerButtons = new int[0];
+            if (PowerButtonStatus == null) PowerButtonStatus = new List<List<bool>>();
+            if (PowerDuplicated == null) PowerDuplicated = new bool[0];
+            if (BreakAxises == null) BreakAxises = new int[0];
+            if (BreakAxisStatus == null) BreakAxisStatus = new List<List<int>>();
+            if (BreakButtons == null) BreakButtons = new int[0];
+            if (BreakButtonStatus == null) BreakButtonStatus = new List<List<bool>>();
+            if (BreakDuplicated == null) BreakDuplicated = new bool[0];
         }
 
         public void ResetPower()
@@ -657,6 +683,14 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             if (profile.KeyMap != null)
             {
                 profile.KeyMap = new Dictionary<int, ButtonFeature>(KeyMap);
+            }
+            if (profile.HoldToRepeat != null)
+            {
+                profile.HoldToRepeat = new Dictionary<int, bool>(HoldToRepeat);
+            }
+            if (profile.HoldToRepeatTime != null)
+            {
+                profile.HoldToRepeatTime = new Dictionary<int, float>(HoldToRepeatTime);
             }
             if (profile.AtsExValue != null)
             {
