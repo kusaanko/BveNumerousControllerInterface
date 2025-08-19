@@ -55,12 +55,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
             return 0;
         }
 
-        public virtual int GetBreakCount()
+        public virtual int GetBrakeCount()
         {
             return 0;
         }
 
-        public virtual int GetBreak()
+        public virtual int GetBrake()
         {
             return 0;
         }
@@ -113,7 +113,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
     {
         SpeedMeter,
         PowerNotch,
-        BreakNotch,
+        BrakeNotch,
         ATC,
         DoorLamp,
     }

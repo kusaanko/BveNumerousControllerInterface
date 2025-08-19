@@ -29,10 +29,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             flexiblePowerModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.None]);
             flexiblePowerModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.Flexible]);
             flexiblePowerModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.LastMax]);
-            flexibleBreakModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.None]);
-            flexibleBreakModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.EBFixed]);
-            flexibleBreakModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.FlexibleWithoutEB]);
-            flexibleBreakModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.Flexible]);
+            flexibleBrakeModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.None]);
+            flexibleBrakeModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.EBFixed]);
+            flexibleBrakeModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.FlexibleWithoutEB]);
+            flexibleBrakeModeComboBox.Items.Add(ControllerProfile.FlexibleNotchModeStrings[(int)FlexibleNotchMode.Flexible]);
             foreach (NumerousControllerPlugin plugin in NumerousControllerInterface.Plugins)
             {
                 pluginConfigComboBox.Items.Add(plugin.GetName());
@@ -149,7 +149,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 powerCenterPositionNumericUpDown.Enabled = profile.IsTwoHandle;
                 powerCenterPositionNumericUpDown.Value = profile.PowerCenterPosition;
                 flexiblePowerModeComboBox.SelectedItem = ControllerProfile.FlexibleNotchModeStrings[(int)profile.FlexiblePower];
-                flexibleBreakModeComboBox.SelectedItem = ControllerProfile.FlexibleNotchModeStrings[(int)profile.FlexibleBreak];
+                flexibleBrakeModeComboBox.SelectedItem = ControllerProfile.FlexibleNotchModeStrings[(int)profile.FlexibleBrake];
                 powerCenterPositionNumericUpDown.Value = profile.PowerCenterPosition;
                 buttonList.Items.Clear();
                 foreach (int i in profile.KeyMap.Keys)
@@ -157,9 +157,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     buttonList.Items.Add(GetButtonName(i));
                 }
                 settingPowerButton.Enabled = GetController().GetPowerCount() == 0;
-                settingBreakButton.Enabled = GetController().GetBreakCount() == 0;
+                settingBrakeButton.Enabled = GetController().GetBrakeCount() == 0;
                 removePowerButton.Enabled = GetController().GetPowerCount() == 0;
-                removeBreakButton.Enabled = GetController().GetBreakCount() == 0;
+                removeBrakeButton.Enabled = GetController().GetBrakeCount() == 0;
 
                 settingsTabControl.Enabled = true;
 
@@ -423,7 +423,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        private void SettingBreakButton_Click(object sender, EventArgs e)
+        private void SettingBrakeButton_Click(object sender, EventArgs e)
         {
             using (ControllerSetupForm = new ControllerSetupForm(
                 _controllers[controllerList.Text], 
@@ -439,7 +439,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             NCIController controller = GetController();
             ControllerProfile profile = GetProfile();
             if (controller == null || profile == null) return;
-            breakLabel.Text = this.resources.GetString("breakLabel.Text") + profile.GetBreak(controller, profile.GetBreakCount(controller) + 1);
+            brakeLabel.Text = this.resources.GetString("brakeLabel.Text") + profile.GetBrake(controller, profile.GetBrakeCount(controller) + 1);
             powerLabel.Text = this.resources.GetString("powerLabel.Text") + profile.GetPower(controller, profile.GetPowerCount(controller) + 1);
             buttonLabel.Text = this.resources.GetString("buttonLabel.Text");
             foreach (int i in profile.GetButtons(controller))
@@ -643,7 +643,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             if (MessageBox.Show("本当に制動を削除しますか？", "NumerousControllerInput", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                GetProfile().ResetBreak();
+                GetProfile().ResetBrake();
             }
         }
 
@@ -670,9 +670,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             foreach(int key in ControllerProfile.FlexibleNotchModeStrings.Keys)
             {
                 string value = ControllerProfile.FlexibleNotchModeStrings[key];
-                if(value.Equals(flexibleBreakModeComboBox.Text))
+                if(value.Equals(flexibleBrakeModeComboBox.Text))
                 {
-                    GetProfile().FlexibleBreak = (FlexibleNotchMode)key;
+                    GetProfile().FlexibleBrake = (FlexibleNotchMode)key;
                     break;
                 }
             }

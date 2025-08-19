@@ -284,7 +284,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
             return _settings.PowerCount;
         }
 
-        public override int GetBreakCount()
+        public override int GetBrakeCount()
         {
             return _settings.BreakCount;
         }
@@ -294,7 +294,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
             return _power;
         }
 
-        public override int GetBreak()
+        public override int GetBrake()
         {
             return _break;
         }

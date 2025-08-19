@@ -69,8 +69,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     { false },
                     { true }
                 });
-                profile.BreakButtons = new int[] { 4, 5, 6, 7};
-                profile.SetBreakButtonStatus(new bool[,] { 
+                profile.BrakeButtons = new int[] { 4, 5, 6, 7};
+                profile.SetBrakeButtonStatus(new bool[,] { 
                     { true, true, false, true },
                     { false, true, true, true },
                     { false, true, false, true },
@@ -99,8 +99,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 profile.KeyMap.Add(128, ButtonFeature.BringPowerDown);
                 profile.KeyMap.Add(130, ButtonFeature.BringPowerUp);
                 //制動
-                profile.KeyMap.Add(2, ButtonFeature.BringBreakDown);
-                profile.KeyMap.Add(3, ButtonFeature.BringBreakUp);
+                profile.KeyMap.Add(2, ButtonFeature.BringBrakeDown);
+                profile.KeyMap.Add(3, ButtonFeature.BringBrakeUp);
                 //非常
                 profile.KeyMap.Add(0, ButtonFeature.SetNotchEB);
                 //警笛

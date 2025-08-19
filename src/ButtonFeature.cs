@@ -58,9 +58,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public static ButtonFeature Pause = new ButtonFeature("98f3cd0b", "一時停止", -3, 12);
         public static ButtonFeature SetNotchEB = new ButtonFeature("75c2d2b2", "非常にする", 99, 0);
         public static ButtonFeature SetNotchOff = new ButtonFeature("6d3ce4ce", "全て切にする", 99, 1);
-        public static ButtonFeature SetBreakOff = new ButtonFeature("b2aeefcd", "制動切", 99, 2);
-        public static ButtonFeature BringBreakUp = new ButtonFeature("d59267da", "制動上げ", 99, 3);
-        public static ButtonFeature BringBreakDown = new ButtonFeature("88f99f21", "制動下げ", 99, 4);
+        public static ButtonFeature SetBrakeOff = new ButtonFeature("b2aeefcd", "制動切", 99, 2);
+        public static ButtonFeature BringBrakeUp = new ButtonFeature("d59267da", "制動上げ", 99, 3);
+        public static ButtonFeature BringBrakeDown = new ButtonFeature("88f99f21", "制動下げ", 99, 4);
         public static ButtonFeature SetPowerOff = new ButtonFeature("f620a3af", "力行切", 99, 5);
         public static ButtonFeature BringPowerUp = new ButtonFeature("28f07705", "力行上げ", 99, 6);
         public static ButtonFeature BringPowerDown = new ButtonFeature("32f8feb0", "力行下げ", 99, 7);

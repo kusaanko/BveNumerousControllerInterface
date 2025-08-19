@@ -34,10 +34,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private List<List<bool>> _powerButtonStatus = new List<List<bool>>();
         private int[] _powerAxises = new int[0];
         private List<List<int>> _powerAxisStatus = new List<List<int>>();
-        private int[] _breakButtons = new int[0];
-        private List<List<bool>> _breakButtonStatus = new List<List<bool>>();
-        private int[] _breakAxises = new int[0];
-        private List<List<int>> _breakAxisStatus = new List<List<int>>();
+        private int[] _brakeButtons = new int[0];
+        private List<List<bool>> _brakeButtonStatus = new List<List<bool>>();
+        private int[] _brakeAxises = new int[0];
+        private List<List<int>> _brakeAxisStatus = new List<List<int>>();
         public ControllerSetupForm(NCIController controller, ControllerProfile profile, bool setupPower)
         {
             _stick = controller;
@@ -103,7 +103,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     }
                 }else if(_step == 2)
                 {
-                    countLabel.Text = "現在のノッチ:" + (_setupPower ? _profile.GetPower(_stick, 99) : _profile.GetBreak(_stick, 99));
+                    countLabel.Text = "現在のノッチ:" + (_setupPower ? _profile.GetPower(_stick, 99) : _profile.GetBrake(_stick, 99));
                     InaccuracyModeCheckBox.Visible = true;
                 }
                 else if (_step == 3)
@@ -133,11 +133,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         _profile.InaccuracyModePower = false;
                     }else
                     {
-                        _profile.BreakButtons = new int[0];
-                        _profile.BreakButtonStatus = new List<List<bool>>();
-                        _profile.BreakAxises = new int[] { _useAxis };
-                        _profile.BreakAxisStatus = new List<List<int>>(new List<int>[] { new List<int>(new int[] { _axisMin, _axisMax }) });
-                        _profile.InaccuracyModeBreak = false;
+                        _profile.BrakeButtons = new int[0];
+                        _profile.BrakeButtonStatus = new List<List<bool>>();
+                        _profile.BrakeAxises = new int[] { _useAxis };
+                        _profile.BrakeAxisStatus = new List<List<int>>(new List<int>[] { new List<int>(new int[] { _axisMin, _axisMax }) });
+                        _profile.InaccuracyModeBrake = false;
                     }
                     _profile.CalcDuplicated();
                     countLabel.Text = "";
@@ -160,10 +160,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     }
                     else
                     {
-                        _breakButtons = _useButtons.ToArray();
-                        _breakButtonStatus = new List<List<bool>>();
-                        _breakAxises = _useSliders.ToArray();
-                        _breakAxisStatus = new List<List<int>>();
+                        _brakeButtons = _useButtons.ToArray();
+                        _brakeButtonStatus = new List<List<bool>>();
+                        _brakeAxises = _useSliders.ToArray();
+                        _brakeAxisStatus = new List<List<int>>();
                     }
                     _step++;
                     infoLabel.Text = (_setupPower ? "力行" : "制動") + "を切から順番に入れ、次へをクリックして下さい。\n終了時は2回次へをクリックして下さい。";
@@ -223,51 +223,51 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     }
                     else
                     {
-                        if (_breakButtonStatus.Count > 0)
+                        if (_brakeButtonStatus.Count > 0)
                         {
-                            int k = _breakButtonStatus.Count - 1;
+                            int k = _brakeButtonStatus.Count - 1;
                             int match = 0;
-                            for (int i = 0; i < _breakButtons.Length; i++)
+                            for (int i = 0; i < _brakeButtons.Length; i++)
                             {
-                                if (_breakButtonStatus[k][i] == _buttons[_breakButtons[i]])
+                                if (_brakeButtonStatus[k][i] == _buttons[_brakeButtons[i]])
                                 {
                                     match++;
                                 }
                             }
-                            for (int i = 0; i < _breakAxises.Length; i++)
+                            for (int i = 0; i < _brakeAxises.Length; i++)
                             {
-                                if (_breakAxisStatus[k][i] == _sliders[_breakAxises[i]])
+                                if (_brakeAxisStatus[k][i] == _sliders[_brakeAxises[i]])
                                 {
                                     match++;
                                 }
                             }
-                            if (match == _breakButtons.Length + _breakAxises.Length)
+                            if (match == _brakeButtons.Length + _brakeAxises.Length)
                             {
                                 //終了
                                 if (k == _notchPos - 1)
                                 {
                                     _step++;
                                     infoLabel.Text = "完了しました。次へを押して終了";
-                                    _profile.BreakButtons = _breakButtons;
-                                    _profile.BreakButtonStatus = _breakButtonStatus;
-                                    _profile.BreakAxises = _breakAxises;
-                                    _profile.BreakAxisStatus = _breakAxisStatus;
-                                    _profile.InaccuracyModeBreak = false;
+                                    _profile.BrakeButtons = _brakeButtons;
+                                    _profile.BrakeButtonStatus = _brakeButtonStatus;
+                                    _profile.BrakeAxises = _brakeAxises;
+                                    _profile.BrakeAxisStatus = _brakeAxisStatus;
+                                    _profile.InaccuracyModeBrake = false;
                                     _profile.CalcDuplicated();
                                     return;
                                 }
                             }
                         }
-                        _breakButtonStatus.Add(new List<bool>(new bool[_breakButtons.Length]));
-                        _breakAxisStatus.Add(new List<int>(new int[_breakAxises.Length]));
-                        for (int i = 0; i < _breakButtons.Length; i++)
+                        _brakeButtonStatus.Add(new List<bool>(new bool[_brakeButtons.Length]));
+                        _brakeAxisStatus.Add(new List<int>(new int[_brakeAxises.Length]));
+                        for (int i = 0; i < _brakeButtons.Length; i++)
                         {
-                            _breakButtonStatus[_notchPos][i] =
-                                _buttons[_breakButtons[i]];
+                            _brakeButtonStatus[_notchPos][i] =
+                                _buttons[_brakeButtons[i]];
                         }
-                        for (int i = 0; i < _breakAxises.Length; i++)
+                        for (int i = 0; i < _brakeAxises.Length; i++)
                         {
-                            _breakAxisStatus[_notchPos][i] = _sliders[_breakAxises[i]];
+                            _brakeAxisStatus[_notchPos][i] = _sliders[_brakeAxises[i]];
                         }
                     }
                     _notchPos++;
@@ -307,10 +307,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             if(_setupPower)
             {
-                this._profile.InaccuracyModeBreak = InaccuracyModeCheckBox.Checked;
+                this._profile.InaccuracyModeBrake = InaccuracyModeCheckBox.Checked;
             }else
             {
-                this._profile.InaccuracyModeBreak = InaccuracyModeCheckBox.Checked;
+                this._profile.InaccuracyModeBrake = InaccuracyModeCheckBox.Checked;
             }
         }
     }
