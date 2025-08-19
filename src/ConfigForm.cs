@@ -456,6 +456,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private void ConfigForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             NumerousControllerInterface.IsMasterControllerUpdateRequested = true;
+
+            // 設定を保存
+            NumerousControllerInterface.SettingsInstance?.SaveToXml();
         }
 
         private void ProfileComboBox_SelectedIndexChanged(object sender, EventArgs e)
