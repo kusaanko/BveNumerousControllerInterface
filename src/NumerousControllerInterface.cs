@@ -33,7 +33,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public event InputEventHandler LeverMoved;
 
         private Dictionary<NCIController, int> _prePowerLevel;
-        private Dictionary<NCIController, int> _preBreakLevel;
+        private Dictionary<NCIController, int> _preBrakeLevel;
         private Dictionary<NCIController, List<int>> _preButtons;
         // ボタンのID、押した時間
         private Dictionary<NCIController, Dictionary<int, DateTime>> _lastButtonPressedTime;
@@ -43,18 +43,18 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public static List<NumerousControllerPlugin> Plugins;
 
-        private int _onePowerMax;
-        private int _oneBreakMax;
-        private int _twoPowerMax;
-        private int _twoBreakMax;
-        private int _powerNotch;
-        private int _breakNotch;
+        private static int s_onePowerMax;
+        private static int s_oneBrakeMax;
+        private static int s_twoPowerMax;
+        private static int s_twoBrakeMax;
+        private static int s_powerNotch;
+        private static int s_brakeNotch;
 
         private static int s_preControllerCount;
         private static int s_preEnabledMasterControllerCount;
 
         private static string s_powerController;
-        private static string s_breakController;
+        private static string s_brakeController;
         private static string s_reverserController;
 
         public static bool IsMasterControllerUpdateRequested;
@@ -77,14 +77,14 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             ButtonFeature.Initialize();
             Controllers = new List<NCIController>();
             _prePowerLevel = new Dictionary<NCIController, int>();
-            _preBreakLevel = new Dictionary<NCIController, int>();
+            _preBrakeLevel = new Dictionary<NCIController, int>();
             _preButtons = new Dictionary<NCIController, List<int>>();
             _preReverser = new Dictionary<NCIController, Reverser>();
             _lastButtonPressedTime = new Dictionary<NCIController, Dictionary<int, DateTime>>();
             _isButtonRepeating = new Dictionary<NCIController, Dictionary<int, bool>>();
             Plugins = new List<NumerousControllerPlugin>();
             s_powerController = "";
-            s_breakController = "";
+            s_brakeController = "";
             s_reverserController = "";
             s_preControllerCount = -1;
             if (TimerController == null)
@@ -231,7 +231,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 {
                     isPowerControllerExists = true;
                 }
-                if (s_breakController.Equals(controller.GetName()) && profile.HasBreak(controller))
+                if (s_brakeController.Equals(controller.GetName()) && profile.HasBreak(controller))
                 {
                     isBreakControllerExists = true;
                 }
@@ -246,7 +246,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (!isBreakControllerExists)
             {
-                s_breakController = "";
+                s_brakeController = "";
             }
             if (!isReverserControllerExists)
             {
@@ -382,7 +382,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             using (s_selectMasterControllerForm = new SelectMasterControllerForm(masterControllerList, "マスコン", controller =>
                             {
                                 s_powerController = controller;
-                                s_breakController = controller;
+                                s_brakeController = controller;
                             }))
                             {
                                 s_selectMasterControllerForm.ShowDialog();
@@ -391,7 +391,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         else if (masterControllerList.Count == 1)
                         {
                             s_powerController = masterControllerList[0];
-                            s_breakController = masterControllerList[0];
+                            s_brakeController = masterControllerList[0];
                         }
                     }
                     else
@@ -414,7 +414,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         {
                             using (s_selectMasterControllerForm = new SelectMasterControllerForm(breakControllerList, "制動のみ持つコントローラー", controller =>
                             {
-                                s_breakController = controller;
+                                s_brakeController = controller;
                             }))
                             {
                                 s_selectMasterControllerForm.ShowDialog();
@@ -422,7 +422,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         }
                         else if (breakControllerList.Count == 1)
                         {
-                            s_breakController = breakControllerList[0];
+                            s_brakeController = breakControllerList[0];
                         }
                     }
                 }
@@ -493,40 +493,40 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public void SetAxisRanges(int[][] ranges)
         {
-            _onePowerMax = ranges[3][1] + 1;
-            _oneBreakMax = -ranges[3][0] + 1;
-            _twoPowerMax = ranges[2][1] + 1;
-            _twoBreakMax = -ranges[2][0] + 1;
+            s_onePowerMax = ranges[3][1] + 1;
+            s_oneBrakeMax = -ranges[3][0] + 1;
+            s_twoPowerMax = ranges[2][1] + 1;
+            s_twoBrakeMax = -ranges[2][0] + 1;
 
             // 力行と制動をリセット
-            _powerNotch = 0;
-            _breakNotch = GetBreakMax() - 1;
+            s_powerNotch = 0;
+            s_brakeNotch = GetBreakMax() - 1;
         }
 
         // 力行の最大を取得
-        public int GetPowerMax()
+        public static int GetPowerMax()
         {
-            if(_onePowerMax > 1)
+            if(s_onePowerMax > 1)
             {
-                return _onePowerMax;
+                return s_onePowerMax;
             }
-            return _twoPowerMax;
+            return s_twoPowerMax;
         }
 
         // 制動の最大を取得
-        public int GetBreakMax()
+        public static int GetBreakMax()
         {
-            if (_oneBreakMax > 1)
+            if (s_oneBrakeMax > 1)
             {
-                return _oneBreakMax;
+                return s_oneBrakeMax;
             }
-            return _twoBreakMax;
+            return s_twoBrakeMax;
         }
 
         // 運転中の車両がツーハンドルかどうか
-        public bool IsTwoHandle()
+        public static bool IsTwoHandle()
         {
-            if (_oneBreakMax > 1)
+            if (s_oneBrakeMax > 1)
             {
                 return false;
             }
@@ -588,18 +588,18 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     _prePowerLevel[controller] = powerLevel;
                 }
                 // 制動
-                if (controller.GetName().Equals(s_breakController))
+                if (controller.GetName().Equals(s_brakeController))
                 {
                     int breakLevel = profile.GetBreak(controller, GetBreakMax());
                     int preBreak;
-                    if (!_preBreakLevel.ContainsKey(controller))
+                    if (!_preBrakeLevel.ContainsKey(controller))
                     {
-                        _preBreakLevel.Add(controller, -1);
+                        _preBrakeLevel.Add(controller, -1);
                         preBreak = -1;
                     }
                     else
                     {
-                        preBreak = _preBreakLevel[controller];
+                        preBreak = _preBrakeLevel[controller];
                     }
                     bool two = IsTwoHandle();
                     if (preBreak != breakLevel)
@@ -613,7 +613,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             OnLeverMoved(3, -breakLevel);
                         }
                     }
-                    _preBreakLevel[controller] = breakLevel;
+                    _preBrakeLevel[controller] = breakLevel;
                 }
                 // リバーサー
                 if (controller.GetName().Equals(s_reverserController))
@@ -685,12 +685,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 {
                     if(notch < 0)
                     {
-                        _breakNotch = -notch;
-                        _powerNotch = 0;
+                        s_brakeNotch = -notch;
+                        s_powerNotch = 0;
                     }else
                     {
-                        _breakNotch = 0;
-                        _powerNotch = notch;
+                        s_brakeNotch = 0;
+                        s_powerNotch = notch;
                     }
                 }
                 LeverMoved(this, new InputEventArgs(axis, notch));
@@ -837,80 +837,80 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     switch(keyCode)
                     {
                         case 0:// 非常にする
-                            _breakNotch = GetBreakMax() - 1;
-                            _powerNotch = 0;
+                            s_brakeNotch = GetBreakMax() - 1;
+                            s_powerNotch = 0;
                             break;
                         case 1:// 全て切にする
-                            _breakNotch = 0;
-                            _powerNotch = 0;
+                            s_brakeNotch = 0;
+                            s_powerNotch = 0;
                             break;
                         case 2:// 制動切
-                            _breakNotch = 0;
+                            s_brakeNotch = 0;
                             break;
                         case 3:// 制動上げ
                             // リピート入力時は非常の前で止まるように
-                            _breakNotch = isRepeating
-                                ? Math.Min(_breakNotch + 1, GetBreakMax() - 2)
-                                : _breakNotch + 1;
+                            s_brakeNotch = isRepeating
+                                ? Math.Min(s_brakeNotch + 1, GetBreakMax() - 2)
+                                : s_brakeNotch + 1;
                             break;
                         case 4:// 制動下げ
-                            _breakNotch--;
+                            s_brakeNotch--;
                             break;
                         case 5:// 力行切
-                            _powerNotch = 0;
+                            s_powerNotch = 0;
                             break;
                         case 6:// 力行上げ
-                            _powerNotch++;
+                            s_powerNotch++;
                             break;
                         case 7:// 力行下げ
-                            _powerNotch--;
+                            s_powerNotch--;
                             break;
                         case 8:// ノッチ上げ
-                            if (_breakNotch > 0)
+                            if (s_brakeNotch > 0)
                             {
-                                _breakNotch--;
-                                _powerNotch = 0;
+                                s_brakeNotch--;
+                                s_powerNotch = 0;
                             }
                             else
                             {
-                                _breakNotch = 0;
-                                _powerNotch++;
+                                s_brakeNotch = 0;
+                                s_powerNotch++;
                             }
                             break;
                         case 9://ノッチ下げ
-                            if (_powerNotch > 0)
+                            if (s_powerNotch > 0)
                             {
-                                _breakNotch = 0;
-                                _powerNotch--;
+                                s_brakeNotch = 0;
+                                s_powerNotch--;
                             }
                             else
                             {
                                 // リピート入力時は非常の前で止まるように
-                                _breakNotch = isRepeating
-                                    ? Math.Min(_breakNotch + 1, GetBreakMax() - 2)
-                                    : _breakNotch + 1;
-                                _powerNotch = 0;
+                                s_brakeNotch = isRepeating
+                                    ? Math.Min(s_brakeNotch + 1, GetBreakMax() - 2)
+                                    : s_brakeNotch + 1;
+                                s_powerNotch = 0;
                             }
                             break;
                     }
-                    if(_breakNotch < 0)
+                    if(s_brakeNotch < 0)
                     {
-                        _breakNotch = 0;
+                        s_brakeNotch = 0;
                     }
-                    if(_breakNotch >= GetBreakMax())
+                    if(s_brakeNotch >= GetBreakMax())
                     {
-                        _breakNotch = GetBreakMax() - 1;
+                        s_brakeNotch = GetBreakMax() - 1;
                     }
-                    if (_powerNotch < 0)
+                    if (s_powerNotch < 0)
                     {
-                        _powerNotch = 0;
+                        s_powerNotch = 0;
                     }
-                    if (_powerNotch>= GetPowerMax())
+                    if (s_powerNotch>= GetPowerMax())
                     {
-                        _powerNotch = GetPowerMax() - 1;
+                        s_powerNotch = GetPowerMax() - 1;
                     }
                     bool two = IsTwoHandle();
-                    if (_breakNotch == 0 && _powerNotch == 0)
+                    if (s_brakeNotch == 0 && s_powerNotch == 0)
                     {
                         if (two)
                         {
@@ -921,26 +921,26 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         {
                             OnLeverMoved(3, 0);
                         }
-                    }else if(_breakNotch > 0)
+                    }else if(s_brakeNotch > 0)
                     {
                         if (two)
                         {
-                            OnLeverMoved(2, _breakNotch);
+                            OnLeverMoved(2, s_brakeNotch);
                         }
                         else
                         {
-                            OnLeverMoved(3, -_breakNotch);
+                            OnLeverMoved(3, -s_brakeNotch);
                         }
                     }
                     else
                     {
                         if (two)
                         {
-                            OnLeverMoved(1, _powerNotch);
+                            OnLeverMoved(1, s_powerNotch);
                         }
                         else
                         {
-                            OnLeverMoved(3, _powerNotch);
+                            OnLeverMoved(3, s_powerNotch);
                         }
                     }
                 }
@@ -1023,6 +1023,24 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         // キー、値
         public static void BveExPluginReportValueChanged(string key, object value)
         {
+            if (key == "BveTypes.ClassWrappers.HandleSet.PowerNotch" && value.GetType() == typeof(int))
+            {
+                var val = (int)value;
+                if (0 <= val && GetPowerMax() >= val)
+                {
+                    s_powerNotch = val;
+                    s_brakeNotch = 0; // 力行を上げたら制動は切る
+                }
+            }
+            if (key == "BveTypes.ClassWrappers.HandleSet.BrakeNotch" && value.GetType() == typeof(int))
+            {
+                var val = (int)value;
+                if (0 <= val && GetBreakMax() > val)
+                {
+                    s_brakeNotch = val;
+                    s_powerNotch = 0; // 制動を上げたら力行は切る
+                }
+            }
             foreach (NCIController controller in Controllers)
             {
                 ControllerProfile profile = SettingsInstance.GetProfile(controller);
@@ -1103,7 +1121,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         // NumerousControllerInterfaceが使用する機能の一覧を取得
         public static List<string> BveExPluginGetUseValueList()
         {
-            List<string> values = new List<string>();
+            List<string> values = new List<string>
+            {
+                "BveTypes.ClassWrappers.HandleSet.PowerNotch",
+                "BveTypes.ClassWrappers.HandleSet.BrakeNotch"
+            };
             foreach (NCIController controller in Controllers)
             {
                 if (SettingsInstance.GetIsEnabled(controller.GetName()))
