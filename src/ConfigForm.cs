@@ -16,7 +16,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private List<string> _buttonFeatureIdIndex = new List<string>();
         private System.ComponentModel.ComponentResourceManager resources;
         public ControllerSetupForm ControllerSetupForm;
-        private List<string> _AtsExValueKey = new List<string>();
+        private List<string> _BveExValueKey = new List<string>();
 
         public ConfigForm()
         {
@@ -54,7 +54,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             alertNoCountrollerFoundCheckBox.Checked = NumerousControllerInterface.SettingsInstance.AlertNoControllerFound;
             checkUpdatesCheckBox.Checked = NumerousControllerInterface.SettingsInstance.CheckUpdates;
             SetComPortEnabled(false);
-            atsExStatusLabel.Text = NumerousControllerInterface.AtsExPluginVersion != null ? "AtsEXプラグイン読み込み済み(" + NumerousControllerInterface.AtsExPluginVersion.ToString() + ")" : "AtsEXプラグイン未検出";
+            bveExStatusLabel.Text = NumerousControllerInterface.BveExPluginVersion != null ? "BveEXプラグイン読み込み済み(" + NumerousControllerInterface.BveExPluginVersion.ToString() + ")" : "BveEXプラグイン未検出";
         }
 
         public void UpdateControllers()
@@ -163,18 +163,18 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
                 settingsTabControl.Enabled = true;
 
-                if (NumerousControllerInterface.AtsExPluginVersion != null && GetController().HasOutputs())
+                if (NumerousControllerInterface.BveExPluginVersion != null && GetController().HasOutputs())
                 {
                     dataOutputListBox.Items.Clear();
                     foreach (var pair in GetController().GetOutputs())
                     {
                         dataOutputListBox.Items.Add(pair.Key);
                     }
-                    atsExConfigurationTabItem.Enabled = true;
+                    bveExConfigurationTabItem.Enabled = true;
                 }
                 else
                 {
-                    atsExConfigurationTabItem.Enabled = false;
+                    bveExConfigurationTabItem.Enabled = false;
                 }
             } else
             {
@@ -1007,63 +1007,63 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             if (dataOutputListBox.SelectedItem != null)
             {
-                dataAtsExValueComboBox.Items.Clear();
-                _AtsExValueKey.Clear();
+                dataBveExValueComboBox.Items.Clear();
+                _BveExValueKey.Clear();
                 OutputType outputType = GetController().GetOutputs()[dataOutputListBox.SelectedItem.ToString()];
-                foreach (var value in NumerousControllerInterface.AtsExPluginAvailableValues)
+                foreach (var value in NumerousControllerInterface.BveExPluginAvailableValues)
                 {
                     if ((outputType == OutputType.Int && (value[1] == typeof(int) || value[1] == typeof(double) || value[1] == typeof(float))) ||
                         (outputType == OutputType.Double && (value[1] == typeof(int) || value[1] == typeof(double) || value[1] == typeof(float))) ||
                         (outputType == OutputType.Bool && (value[1] == typeof(bool))))
                     {
-                        dataAtsExValueComboBox.Items.Add(value[2]);
-                        _AtsExValueKey.Add((string)value[0]);
+                        dataBveExValueComboBox.Items.Add(value[2]);
+                        _BveExValueKey.Add((string)value[0]);
                     }
                 }
-                if (GetProfile().AtsExValue == null)
+                if (GetProfile().BveExValue == null)
                 {
-                    GetProfile().AtsExValue = new Dictionary<string, string>();
+                    GetProfile().BveExValue = new Dictionary<string, string>();
                 }
-                if (GetProfile().AtsExValue.ContainsKey(dataOutputListBox.SelectedItem.ToString()))
+                if (GetProfile().BveExValue.ContainsKey(dataOutputListBox.SelectedItem.ToString()))
                 {
-                    string valueKey = GetProfile().AtsExValue[dataOutputListBox.SelectedItem.ToString()];
-                    int index =_AtsExValueKey.FindIndex(val => val == valueKey);
+                    string valueKey = GetProfile().BveExValue[dataOutputListBox.SelectedItem.ToString()];
+                    int index =_BveExValueKey.FindIndex(val => val == valueKey);
                     if (index >= 0)
                     {
-                        dataAtsExValueComboBox.SelectedIndex = index;
+                        dataBveExValueComboBox.SelectedIndex = index;
                     }
                 } else
                 {
-                    dataAtsExValueComboBox.SelectedIndex = -1;
+                    dataBveExValueComboBox.SelectedIndex = -1;
                 }
-                dataAtsExValueComboBox.Enabled = true;
+                dataBveExValueComboBox.Enabled = true;
             } else
             {
-                dataAtsExValueComboBox.Enabled = false;
+                dataBveExValueComboBox.Enabled = false;
             }
         }
 
-        private void DataAtsExValueComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void DataBveExValueComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (dataOutputListBox.SelectedItem != null && dataAtsExValueComboBox.SelectedIndex != -1)
+            if (dataOutputListBox.SelectedItem != null && dataBveExValueComboBox.SelectedIndex != -1)
             {
-                if (GetProfile().AtsExValue == null)
+                if (GetProfile().BveExValue == null)
                 {
-                    GetProfile().AtsExValue = new Dictionary<string, string>();
+                    GetProfile().BveExValue = new Dictionary<string, string>();
                 }
-                if (!GetProfile().AtsExValue.ContainsKey(dataOutputListBox.SelectedItem.ToString()))
+                if (!GetProfile().BveExValue.ContainsKey(dataOutputListBox.SelectedItem.ToString()))
                 {
-                    GetProfile().AtsExValue.Add(dataOutputListBox.SelectedItem.ToString(), _AtsExValueKey[dataAtsExValueComboBox.SelectedIndex]);
+                    GetProfile().BveExValue.Add(dataOutputListBox.SelectedItem.ToString(), _BveExValueKey[dataBveExValueComboBox.SelectedIndex]);
                 } else
                 {
-                    GetProfile().AtsExValue[dataOutputListBox.SelectedItem.ToString()] = _AtsExValueKey[dataAtsExValueComboBox.SelectedIndex];
+                    GetProfile().BveExValue[dataOutputListBox.SelectedItem.ToString()] = _BveExValueKey[dataBveExValueComboBox.SelectedIndex];
                 }
             }
         }
 
-        private void AtsExHelpLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void BveExHelpLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/kusaanko/BveNCIAtsExPlugin");
+            Process.Start("https://github.com/kusaanko/BveNCIBveExPlugin");
         }
 
         private void CheckUpdateButton_Click(object sender, EventArgs e)

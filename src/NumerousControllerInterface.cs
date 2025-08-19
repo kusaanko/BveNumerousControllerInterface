@@ -63,9 +63,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private bool _isUpdateController;
         private bool _isDisposeRequested;
         private static bool s_isRunningGetAllControllers;
-        public static Version AtsExPluginVersion;
+        public static Version BveExPluginVersion;
         // string, Type, string
-        public static List<object[]> AtsExPluginAvailableValues;
+        public static List<object[]> BveExPluginAvailableValues;
         private static Thread _ControllerOutputThread;
         private static bool _ControllerOutputThreadAlive;
 
@@ -969,8 +969,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        // AtsEx連携機能
-        private static void AtsExPluginSendOutputThreadFrame()
+        // BveEx連携機能
+        private static void BveExPluginSendOutputThreadFrame()
         {
             while (_ControllerOutputThreadAlive)
             {
@@ -992,36 +992,36 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        public static void AtsExPluginSetVersion(Version version)
+        public static void BveExPluginSetVersion(Version version)
         {
-            AtsExPluginVersion = version;
-            _ControllerOutputThread = new Thread(AtsExPluginSendOutputThreadFrame);
+            BveExPluginVersion = version;
+            _ControllerOutputThread = new Thread(BveExPluginSendOutputThreadFrame);
             _ControllerOutputThread.Start();
             _ControllerOutputThreadAlive = true;
         }
 
-        public static void AtsExPluginDisposed()
+        public static void BveExPluginDisposed()
         {
             _ControllerOutputThreadAlive = false;
         }
 
         // 利用可能な機能の一覧を設定
         // キー、値の型、表示名
-        public static void AtsExPluginReportAvailableValues(List<object[]> values)
+        public static void BveExPluginReportAvailableValues(List<object[]> values)
         {
-            AtsExPluginAvailableValues = values;
+            BveExPluginAvailableValues = values;
         }
 
         // 値の変更を通知
         // キー、値
-        public static void AtsExPluginReportValueChanged(string key, object value)
+        public static void BveExPluginReportValueChanged(string key, object value)
         {
             foreach (NCIController controller in Controllers)
             {
                 ControllerProfile profile = SettingsInstance.GetProfile(controller);
                 if (SettingsInstance.GetIsEnabled(controller.GetName()) && profile != null && controller.HasOutputs())
                 {
-                    foreach (var atsValue in profile.AtsExValue)
+                    foreach (var atsValue in profile.BveExValue)
                     {
                         if (key == atsValue.Value)
                         {
@@ -1088,13 +1088,13 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         // イベントの発生を通知
         // キー
-        public static void AtsExPluginReportEventFired(string key)
+        public static void BveExPluginReportEventFired(string key)
         {
 
         }
 
         // NumerousControllerInterfaceが使用する機能の一覧を取得
-        public static List<string> AtsExPluginGetUseValueList()
+        public static List<string> BveExPluginGetUseValueList()
         {
             List<string> values = new List<string>();
             foreach (NCIController controller in Controllers)
@@ -1104,12 +1104,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     ControllerProfile profile = SettingsInstance.GetProfile(controller);
                     if (profile != null)
                     {
-                        if (profile.AtsExValue != null) {
-                            foreach (string key in profile.AtsExValue.Values)
+                        if (profile.BveExValue != null) {
+                            foreach (string key in profile.BveExValue.Values)
                             {
                                 if (!values.Contains(key))
                                 {
-                                    values.AddRange(profile.AtsExValue.Values);
+                                    values.AddRange(profile.BveExValue.Values);
                                 }
                             }
                         }

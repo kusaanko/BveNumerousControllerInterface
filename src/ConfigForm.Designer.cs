@@ -82,11 +82,11 @@
             this.timeToRepeatPressNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.holdToRepeatButtonCheckBox = new System.Windows.Forms.CheckBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.atsExConfigurationTabItem = new System.Windows.Forms.TabPage();
+            this.bveExConfigurationTabItem = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataOutputListBox = new System.Windows.Forms.ListBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.dataAtsExValueComboBox = new System.Windows.Forms.ComboBox();
+            this.dataBveExValueComboBox = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.checkUpdateButton = new System.Windows.Forms.Button();
@@ -121,8 +121,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.atsExHelpLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.atsExStatusLabel = new System.Windows.Forms.Label();
+            this.bveExHelpLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.bveExStatusLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.pluginSettingButton = new System.Windows.Forms.Button();
@@ -139,7 +139,7 @@
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeToRepeatPressNumericUpDown)).BeginInit();
             this.panel4.SuspendLayout();
-            this.atsExConfigurationTabItem.SuspendLayout();
+            this.bveExConfigurationTabItem.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -417,7 +417,7 @@
             // 
             this.settingsTabControl.Controls.Add(this.tabPage3);
             this.settingsTabControl.Controls.Add(this.tabPage5);
-            this.settingsTabControl.Controls.Add(this.atsExConfigurationTabItem);
+            this.settingsTabControl.Controls.Add(this.bveExConfigurationTabItem);
             resources.ApplyResources(this.settingsTabControl, "settingsTabControl");
             this.settingsTabControl.Name = "settingsTabControl";
             this.settingsTabControl.SelectedIndex = 0;
@@ -550,15 +550,15 @@
             resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Name = "panel4";
             // 
-            // atsExConfigurationTabItem
+            // bveExConfigurationTabItem
             // 
-            this.atsExConfigurationTabItem.Controls.Add(this.panel3);
-            this.atsExConfigurationTabItem.Controls.Add(this.label10);
-            this.atsExConfigurationTabItem.Controls.Add(this.dataAtsExValueComboBox);
-            this.atsExConfigurationTabItem.Controls.Add(this.label9);
-            resources.ApplyResources(this.atsExConfigurationTabItem, "atsExConfigurationTabItem");
-            this.atsExConfigurationTabItem.Name = "atsExConfigurationTabItem";
-            this.atsExConfigurationTabItem.UseVisualStyleBackColor = true;
+            this.bveExConfigurationTabItem.Controls.Add(this.panel3);
+            this.bveExConfigurationTabItem.Controls.Add(this.label10);
+            this.bveExConfigurationTabItem.Controls.Add(this.dataBveExValueComboBox);
+            this.bveExConfigurationTabItem.Controls.Add(this.label9);
+            resources.ApplyResources(this.bveExConfigurationTabItem, "bveExConfigurationTabItem");
+            this.bveExConfigurationTabItem.Name = "bveExConfigurationTabItem";
+            this.bveExConfigurationTabItem.UseVisualStyleBackColor = true;
             // 
             // panel3
             // 
@@ -579,14 +579,14 @@
             resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
             // 
-            // dataAtsExValueComboBox
+            // dataBveExValueComboBox
             // 
-            this.dataAtsExValueComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dataAtsExValueComboBox.DropDownWidth = 350;
-            this.dataAtsExValueComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.dataAtsExValueComboBox, "dataAtsExValueComboBox");
-            this.dataAtsExValueComboBox.Name = "dataAtsExValueComboBox";
-            this.dataAtsExValueComboBox.SelectedIndexChanged += new System.EventHandler(this.DataAtsExValueComboBox_SelectedIndexChanged);
+            this.dataBveExValueComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dataBveExValueComboBox.DropDownWidth = 350;
+            this.dataBveExValueComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.dataBveExValueComboBox, "dataBveExValueComboBox");
+            this.dataBveExValueComboBox.Name = "dataBveExValueComboBox";
+            this.dataBveExValueComboBox.SelectedIndexChanged += new System.EventHandler(this.DataBveExValueComboBox_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -852,24 +852,24 @@
             // 
             // tabPage10
             // 
-            this.tabPage10.Controls.Add(this.atsExHelpLinkLabel);
-            this.tabPage10.Controls.Add(this.atsExStatusLabel);
+            this.tabPage10.Controls.Add(this.bveExHelpLinkLabel);
+            this.tabPage10.Controls.Add(this.bveExStatusLabel);
             this.tabPage10.Controls.Add(this.label6);
             resources.ApplyResources(this.tabPage10, "tabPage10");
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
-            // atsExHelpLinkLabel
+            // bveExHelpLinkLabel
             // 
-            resources.ApplyResources(this.atsExHelpLinkLabel, "atsExHelpLinkLabel");
-            this.atsExHelpLinkLabel.Name = "atsExHelpLinkLabel";
-            this.atsExHelpLinkLabel.TabStop = true;
-            this.atsExHelpLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AtsExHelpLinkLabel_LinkClicked);
+            resources.ApplyResources(this.bveExHelpLinkLabel, "bveExHelpLinkLabel");
+            this.bveExHelpLinkLabel.Name = "bveExHelpLinkLabel";
+            this.bveExHelpLinkLabel.TabStop = true;
+            this.bveExHelpLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BveExHelpLinkLabel_LinkClicked);
             // 
-            // atsExStatusLabel
+            // bveExStatusLabel
             // 
-            resources.ApplyResources(this.atsExStatusLabel, "atsExStatusLabel");
-            this.atsExStatusLabel.Name = "atsExStatusLabel";
+            resources.ApplyResources(this.bveExStatusLabel, "bveExStatusLabel");
+            this.bveExStatusLabel.Name = "bveExStatusLabel";
             // 
             // label6
             // 
@@ -935,8 +935,8 @@
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeToRepeatPressNumericUpDown)).EndInit();
             this.panel4.ResumeLayout(false);
-            this.atsExConfigurationTabItem.ResumeLayout(false);
-            this.atsExConfigurationTabItem.PerformLayout();
+            this.bveExConfigurationTabItem.ResumeLayout(false);
+            this.bveExConfigurationTabItem.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -1041,20 +1041,20 @@
         private System.Windows.Forms.ComboBox comPortBaudRateComboBox;
         private System.Windows.Forms.NumericUpDown powerCenterPositionNumericUpDown;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TabPage atsExConfigurationTabItem;
+        private System.Windows.Forms.TabPage bveExConfigurationTabItem;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox dataAtsExValueComboBox;
+        private System.Windows.Forms.ComboBox dataBveExValueComboBox;
         private System.Windows.Forms.ListBox dataOutputListBox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.Label atsExStatusLabel;
+        private System.Windows.Forms.Label bveExStatusLabel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.LinkLabel atsExHelpLinkLabel;
+        private System.Windows.Forms.LinkLabel bveExHelpLinkLabel;
         private System.Windows.Forms.Button checkUpdateButton;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.NumericUpDown timeToRepeatPressNumericUpDown;

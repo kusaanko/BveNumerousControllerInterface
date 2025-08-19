@@ -78,7 +78,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         [DataMember]
         public int PowerCenterPosition;
         [DataMember]
-        public Dictionary<string, string> AtsExValue;
+        public Dictionary<string, string> BveExValue;
         private int prePowerNotch;
         private int preBreakNotch;
         private static int s_preDirectInputCount = -1;
@@ -121,7 +121,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             FlexibleBreak = FlexibleNotchMode.EBFixed;
             InaccuracyModePower = false;
             InaccuracyModeBreak = false;
-            AtsExValue = new Dictionary<string, string>();
+            BveExValue = new Dictionary<string, string>();
         }
 
         public void InitializeNullVariables()
@@ -692,9 +692,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 profile.HoldToRepeatTime = new Dictionary<int, float>(HoldToRepeatTime);
             }
-            if (profile.AtsExValue != null)
+            if (profile.BveExValue != null)
             {
-                profile.AtsExValue = new Dictionary<string, string>(AtsExValue);
+                profile.BveExValue = new Dictionary<string, string>(BveExValue);
             }
             profile.CalcDuplicated();
             return profile;
