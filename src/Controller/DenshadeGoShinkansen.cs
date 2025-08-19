@@ -150,6 +150,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface.Controller
             _loop = false;
             int transferLength;
             var packet = new UsbSetupPacket(0x40, 0x09, 0x301, 0x0, 0x8);
+            for (int i = 0; i < _SendData.Length; i++)
+            {
+                _SendData[i] = 0x00; // Reset the send data
+            }
             _device.ControlTransfer(ref packet, new byte[_SendData.Length], _SendData.Length, out transferLength);
         }
 
