@@ -497,6 +497,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             _oneBreakMax = -ranges[3][0] + 1;
             _twoPowerMax = ranges[2][1] + 1;
             _twoBreakMax = -ranges[2][0] + 1;
+
+            // 力行と制動をリセット
+            _powerNotch = 0;
+            _breakNotch = GetBreakMax() - 1;
         }
 
         // 力行の最大を取得
@@ -978,9 +982,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 {
                     continue;
                 }
+                // リストの改変を防ぐため一度コピーする
                 List<NCIController> controllers = new List<NCIController>();
                 controllers.AddRange(Controllers);
-                // リストの改変を防ぐため一度コピーする
                 foreach (NCIController controller in controllers)
                 {
                     if (SettingsInstance != null)
