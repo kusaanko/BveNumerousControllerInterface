@@ -1028,20 +1028,20 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 ControllerProfile profile = SettingsInstance.GetProfile(controller);
                 if (SettingsInstance.GetIsEnabled(controller.GetName()) && profile != null && controller.HasOutputs())
                 {
-                    foreach (var atsValue in profile.BveExValue)
+                    foreach (var bveExValue in profile.BveExValue)
                     {
-                        if (key == atsValue.Value)
+                        if (key == bveExValue.Value)
                         {
-                            OutputType outputType = controller.GetOutputs()[atsValue.Key];
+                            OutputType outputType = controller.GetOutputs()[bveExValue.Key];
                             if (value.GetType() == typeof(int))
                             {
                                 switch (outputType)
                                 {
                                     case OutputType.Int:
-                                        controller.SetOutput(atsValue.Key, (int)value);
+                                        controller.SetOutput(bveExValue.Key, (int)value);
                                         break;
                                     case OutputType.Double:
-                                        controller.SetOutput(atsValue.Key, (double)(int)value);
+                                        controller.SetOutput(bveExValue.Key, (double)(int)value);
                                         break;
                                 }
                             }
@@ -1050,10 +1050,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                                 switch (outputType)
                                 {
                                     case OutputType.Int:
-                                        controller.SetOutput(atsValue.Key, (int)(float)value);
+                                        controller.SetOutput(bveExValue.Key, (int)(float)value);
                                         break;
                                     case OutputType.Double:
-                                        controller.SetOutput(atsValue.Key, (double)(float)value);
+                                        controller.SetOutput(bveExValue.Key, (double)(float)value);
                                         break;
                                 }
                             }
@@ -1062,10 +1062,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                                 switch (outputType)
                                 {
                                     case OutputType.Int:
-                                        controller.SetOutput(atsValue.Key, (int)(double)value);
+                                        controller.SetOutput(bveExValue.Key, (int)(double)value);
                                         break;
                                     case OutputType.Double:
-                                        controller.SetOutput(atsValue.Key, (double)value);
+                                        controller.SetOutput(bveExValue.Key, (double)value);
                                         break;
                                 }
                             }
@@ -1074,7 +1074,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                                 switch (outputType)
                                 {
                                     case OutputType.Bool:
-                                        controller.SetOutput(atsValue.Key, (bool)value);
+                                        controller.SetOutput(bveExValue.Key, (bool)value);
                                         break;
                                 }
                             }
@@ -1083,7 +1083,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                                 switch (outputType)
                                 {
                                     case OutputType.String:
-                                        controller.SetOutput(atsValue.Key, (string)value);
+                                        controller.SetOutput(bveExValue.Key, (string)value);
                                         break;
                                 }
                             }
