@@ -983,9 +983,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 // リストの改変を防ぐため一度コピーする
                 foreach (NCIController controller in controllers)
                 {
-                    if (SettingsInstance.GetIsEnabled(controller.GetName()))
+                    if (SettingsInstance != null)
                     {
-                        controller.SendOutput();
+                        if (SettingsInstance.GetIsEnabled(controller.GetName()))
+                        {
+                            controller.SendOutput();
+                        }
                     }
                 }
                 Thread.Sleep(10);
