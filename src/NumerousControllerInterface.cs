@@ -795,7 +795,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void OnKeyDown(int axis, int keyCode, bool isRepeating)
         {
-            if (LeverMoved != null)
+            if (LeverMoved != null && KeyDown != null)
             {
                 if (axis == 100)
                 {
@@ -960,7 +960,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         private void OnKeyUp(int axis, int keyCode)
         {
-            if (LeverMoved != null)
+            if (KeyUp != null)
             {
                 if (axis == 99)
                 {
