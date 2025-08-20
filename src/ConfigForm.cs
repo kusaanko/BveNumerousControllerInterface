@@ -441,27 +441,47 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             if (controller == null || profile == null) return;
             if (profile.HasBrake(controller))
             {
-                brakeLabel.Text = this.resources.GetString("brakeLabel.Text") + profile.GetBrake(controller, profile.GetBrakeCount(controller) + 1);
+                var newText = this.resources.GetString("brakeLabel.Text") + profile.GetBrake(controller, profile.GetBrakeCount(controller) + 1);
+                if (brakeLabel.Text != newText)
+                {
+                    brakeLabel.Text = newText;
+                }
             } else
             {
-                brakeLabel.Text = this.resources.GetString("brakeLabel.Text") + "なし";
+                var newText = this.resources.GetString("brakeLabel.Text") + "なし";
+                if (brakeLabel.Text != newText)
+                {
+                    brakeLabel.Text = newText;
+                }
             }
             if (profile.HasPower(controller))
             {
-                powerLabel.Text = this.resources.GetString("powerLabel.Text") + profile.GetPower(controller, profile.GetPowerCount(controller) + 1);
+                var newText = this.resources.GetString("powerLabel.Text") + profile.GetPower(controller, profile.GetPowerCount(controller) + 1);
+                if (powerLabel.Text != newText)
+                {
+                    powerLabel.Text = newText;
+                }
             } else
             {
-                powerLabel.Text = this.resources.GetString("powerLabel.Text") + "なし";
+                var newText = this.resources.GetString("powerLabel.Text") + "なし";
+                if (powerLabel.Text != newText)
+                {
+                    powerLabel.Text = newText;
+                }
             }
-                buttonLabel.Text = this.resources.GetString("buttonLabel.Text");
+            var buttonText = this.resources.GetString("buttonLabel.Text");
             foreach (int i in profile.GetButtons(controller))
             {
-                buttonLabel.Text += GetButtonName(i) + " ";
+                buttonText += GetButtonName(i) + " ";
                 if (buttonList.Items.Contains(GetButtonName(i)))
                 {
                     buttonList.SelectedItem = GetButtonName(i);
                     break;
                 }
+            }
+            if (buttonLabel.Text != buttonText)
+            {
+                buttonLabel.Text = buttonText;
             }
         }
 
