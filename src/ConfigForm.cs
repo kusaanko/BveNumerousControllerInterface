@@ -439,9 +439,21 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             NCIController controller = GetController();
             ControllerProfile profile = GetProfile();
             if (controller == null || profile == null) return;
-            brakeLabel.Text = this.resources.GetString("brakeLabel.Text") + profile.GetBrake(controller, profile.GetBrakeCount(controller) + 1);
-            powerLabel.Text = this.resources.GetString("powerLabel.Text") + profile.GetPower(controller, profile.GetPowerCount(controller) + 1);
-            buttonLabel.Text = this.resources.GetString("buttonLabel.Text");
+            if (profile.HasBrake(controller))
+            {
+                brakeLabel.Text = this.resources.GetString("brakeLabel.Text") + profile.GetBrake(controller, profile.GetBrakeCount(controller) + 1);
+            } else
+            {
+                brakeLabel.Text = this.resources.GetString("brakeLabel.Text") + "なし";
+            }
+            if (profile.HasPower(controller))
+            {
+                powerLabel.Text = this.resources.GetString("powerLabel.Text") + profile.GetPower(controller, profile.GetPowerCount(controller) + 1);
+            } else
+            {
+                powerLabel.Text = this.resources.GetString("powerLabel.Text") + "なし";
+            }
+                buttonLabel.Text = this.resources.GetString("buttonLabel.Text");
             foreach (int i in profile.GetButtons(controller))
             {
                 buttonLabel.Text += GetButtonName(i) + " ";
