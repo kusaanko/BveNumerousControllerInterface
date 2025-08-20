@@ -218,11 +218,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 serializer.WriteObject(writer, this);
             }
-            if (!Directory.Exists(Path.Combine(_directory, _profileDirectory))) Directory.CreateDirectory(Path.Combine(_directory, _profileDirectory));
+            if (!Directory.Exists(Path.Combine(_directory, _profileDirectory + ControllerProfile.s_Version + "\\"))) Directory.CreateDirectory(Path.Combine(_directory, _profileDirectory + ControllerProfile.s_Version + "\\"));
             foreach (string name in removeProfilesList)
             {
-                File.Delete(Path.Combine(_directory, _profileDirectory + name + ".xml"));
-                File.Delete(Path.Combine(_directory, _profileDirectory + GetSHA256Hash(name) + ".xml"));
+                File.Delete(Path.Combine(GetProfileDirectory(), name + ".xml"));
+                File.Delete(Path.Combine(GetProfileDirectory(), GetSHA256Hash(name) + ".xml"));
             }
             foreach (string name in Profiles.Keys)
             {
@@ -252,7 +252,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             };
 
             DataContractSerializer serializer = new DataContractSerializer(typeof(ControllerProfile));
-            using (XmlWriter writer = XmlWriter.Create(Path.Combine(_directory, _profileDirectory + GetSHA256Hash(profile.Name) + ".xml"), settings))
+            using (XmlWriter writer = XmlWriter.Create(Path.Combine(GetProfileDirectory(), GetSHA256Hash(profile.Name) + ".xml"), settings))
             {
                 serializer.WriteObject(writer, profile);
             }
@@ -260,12 +260,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public string GetProfileSavePath(ControllerProfile profile)
         {
-            return Path.Combine(_directory, _profileDirectory + GetSHA256Hash(profile.Name) + ".xml");
+            return Path.Combine(GetProfileDirectory(), GetSHA256Hash(profile.Name) + ".xml");
         }
 
         public string GetProfileDirectory()
         {
-            return Path.Combine(_directory, _profileDirectory);
+            return Path.Combine(_directory, _profileDirectory + ControllerProfile.s_Version + "\\");
         }
 
         public void SaveCOMSettingToXml(COMControllerSettings setting)
@@ -316,10 +316,17 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             if (!Directory.Exists(Path.Combine(directory, _profileDirectory))) Directory.CreateDirectory(Path.Combine(directory, _profileDirectory));
             if (!Directory.Exists(Path.Combine(directory, _COMSettingDirectory))) Directory.CreateDirectory(Path.Combine(directory, _COMSettingDirectory));
 
+            string readFromDirectory = Path.Combine(directory, _profileDirectory + ControllerProfile.s_Version + "\\");
+            if (!Directory.Exists(Path.Combine(directory, _profileDirectory + ControllerProfile.s_Version + "\\")))
+            {
+                readFromDirectory = Path.Combine(directory, _profileDirectory);
+                Directory.CreateDirectory(Path.Combine(directory, _profileDirectory + ControllerProfile.s_Version + "\\"));
+            }
+
             // プロファイル
             DataContractSerializer controllerProfileSerializer = new DataContractSerializer(typeof(ControllerProfile));
 
-            foreach (string file in Directory.GetFiles(Path.Combine(directory, _profileDirectory)))
+            foreach (string file in Directory.GetFiles(readFromDirectory))
             {
                 if(file.EndsWith(".xml"))
                 {
@@ -341,7 +348,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             {
                                 profile.Name = key;
                             }
-                            if (!key.Equals(GetSHA256Hash(key)))
+                            if (!key.Equals(GetSHA256Hash(profile.Name)))
                             {
                                 File.Delete(Path.Combine(directory, _profileDirectory + key + ".xml"));
                                 settings.SaveProfileToXml(profile);

@@ -25,7 +25,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
     [DataContract]
     public class ControllerProfile
     {
-        private static int s_Version = 1;
+        public static int s_Version = 1;
 
         [DataMember]
         public int Version;
@@ -142,6 +142,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             InaccuracyModePower = false;
             InaccuracyModeBrake = false;
             BveExValue = new Dictionary<string, string>();
+            Version = s_Version;
         }
 
         public void InitializeNullVariables()
