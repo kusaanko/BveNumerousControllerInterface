@@ -980,6 +980,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 if (ConfigFormInstance != null && !ConfigFormInstance.IsDisposed)
                 {
+                    Thread.Sleep(100);
                     continue;
                 }
                 // リストの改変を防ぐため一度コピーする
