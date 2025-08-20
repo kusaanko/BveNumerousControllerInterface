@@ -318,7 +318,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     return 5;
                 }
             }
-            return PowerButtonStatus.Count - 1;
+            return Math.Max(PowerButtonStatus.Count - 1, 0);
         }
 
         public int GetBrakeCount(NCIController controller)
@@ -335,7 +335,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     return 9;
                 }
             }
-            return BrakeButtonStatus.Count - 1;
+            return Math.Max(BrakeButtonStatus.Count - 1, 0);
         }
 
         public int GetPower(NCIController controller, int maxStep)
