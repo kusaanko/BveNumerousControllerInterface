@@ -19,7 +19,7 @@ Supported language is only Japanese now.
 コントローラーはマスコンタイプやボタンを押してノッチを操作するなどの様々な操作方法に対応します。
 
 > [!WARNING]
-> AtsEXとの連携機能はまだまだ不安定であり、手動でのインストールが必要です。[こちら](https://github.com/kusaanko/BveNCIAtsExPlugin)をご覧ください。
+> BveEX との連携機能はまだまだ不安定であり、手動でのインストールが必要です。[こちら](https://github.com/kusaanko/BveNCIBveExPlugin)をご覧ください。
 
 # 対応コントローラー
 
@@ -126,9 +126,9 @@ NumerousControllerInterface を選択してプロパティーをクリックし�
 
 コントローラーを使用するには、コントローラー v を有効にするにチェックを入れる必要があります。
 
-# AtsEX との連携機能
+# BveEX との連携機能
 
-[こちら](https://github.com/kusaanko/BveNCIAtsExPlugin)
+[こちら](https://github.com/kusaanko/BveNCIBveExPlugin)
 
 # プラグインについて(試験的機能)
 
