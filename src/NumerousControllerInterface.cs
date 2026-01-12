@@ -1052,7 +1052,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 if (0 <= val && GetPowerMax() >= val)
                 {
                     s_powerNotch = val;
-                    s_brakeNotch = 0; // 力行を上げたら制動は切る
+                    //s_brakeNotch = 0; // 力行を上げたら制動は切る
                 }
             }
             if (key == "BveTypes.ClassWrappers.HandleSet.BrakeNotch" && value.GetType() == typeof(int))
@@ -1061,7 +1061,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 if (0 <= val && GetBrakeMax() >= val)
                 {
                     s_brakeNotch = val;
-                    s_powerNotch = 0; // 制動を上げたら力行は切る
+                    //s_powerNotch = 0; // 制動を上げたら力行は切る
                 }
             }
             foreach (NCIController controller in Controllers)
