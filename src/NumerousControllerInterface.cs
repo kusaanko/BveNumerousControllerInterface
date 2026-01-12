@@ -604,7 +604,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         }
                         else
                         {
-                            OnLeverMoved(3, powerLevel);
+                            OnLeverMoved(3, Math.Max(powerLevel, 0));
                         }
                     }
                     _prePowerLevel[controller] = powerLevel;
