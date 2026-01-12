@@ -47,6 +47,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private static int s_oneBrakeMax;
         private static int s_twoPowerMax;
         private static int s_twoBrakeMax;
+        private static int s_twoPowerMin;
         private static int s_powerNotch;
         private static int s_brakeNotch;
 
@@ -493,14 +494,30 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
 
         public void SetAxisRanges(int[][] ranges)
         {
+            // ranges
+            // ranges[axis][0] = min
+            // ranges[axis][1] = max
+
+            // Axis3 = One Handle
+            // notch > 0 ... Power
+            // notch < 0 ... Brake
             s_onePowerMax = ranges[3][1] + 1;
             s_oneBrakeMax = -ranges[3][0] + 1;
-            s_twoPowerMax = ranges[2][1] + 1;
-            s_twoBrakeMax = -ranges[2][0] + 1;
+            // Axis2 = Two Handle Brake
+            s_twoBrakeMax = ranges[2][1] + 1;
+            // Axis1 = Two Handle Power
+            s_twoPowerMax = ranges[1][1] + 1;
+            s_twoPowerMin = -ranges[1][0];
 
             // 力行と制動をリセット
             s_powerNotch = 0;
             s_brakeNotch = GetBrakeMax() - 1;
+
+            Debug.WriteLine("One Power Max: " + s_onePowerMax);
+            Debug.WriteLine("One Brake Max: " + s_oneBrakeMax);
+            Debug.WriteLine("Two Power Max: " + s_twoPowerMax);
+            Debug.WriteLine("Two Power Min: " + s_twoPowerMin);
+            Debug.WriteLine("Two Brake Max: " + s_twoBrakeMax);
         }
 
         // 力行の最大を取得
