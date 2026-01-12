@@ -441,7 +441,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             if (controller == null || profile == null) return;
             if (profile.HasBrake(controller))
             {
-                var newText = this.resources.GetString("brakeLabel.Text") + profile.GetBrake(controller, profile.GetBrakeCount(controller) + 1);
+                var newText = this.resources.GetString("brakeLabel.Text") + profile.GetBrake(controller, profile.GetBrakeCount(controller));
                 if (brakeLabel.Text != newText)
                 {
                     brakeLabel.Text = newText;
@@ -456,7 +456,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (profile.HasPower(controller))
             {
-                var newText = this.resources.GetString("powerLabel.Text") + profile.GetPower(controller, profile.GetPowerCount(controller) + 1);
+                var newText = this.resources.GetString("powerLabel.Text") + profile.GetPower(controller, profile.GetPowerCount(controller));
                 if (powerLabel.Text != newText)
                 {
                     powerLabel.Text = newText;

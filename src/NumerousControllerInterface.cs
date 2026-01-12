@@ -501,17 +501,17 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             // Axis3 = One Handle
             // notch > 0 ... Power
             // notch < 0 ... Brake
-            s_onePowerMax = ranges[3][1] + 1;
-            s_oneBrakeMax = -ranges[3][0] + 1;
+            s_onePowerMax = ranges[3][1];
+            s_oneBrakeMax = -ranges[3][0];
             // Axis2 = Two Handle Brake
-            s_twoBrakeMax = ranges[2][1] + 1;
+            s_twoBrakeMax = ranges[2][1];
             // Axis1 = Two Handle Power
-            s_twoPowerMax = ranges[1][1] + 1;
+            s_twoPowerMax = ranges[1][1];
             s_twoPowerMin = -ranges[1][0];
 
             // 力行と制動をリセット
             s_powerNotch = 0;
-            s_brakeNotch = GetBrakeMax() - 1;
+            s_brakeNotch = GetBrakeMax();
 
             Debug.WriteLine("One Power Max: " + s_onePowerMax);
             Debug.WriteLine("One Brake Max: " + s_oneBrakeMax);
@@ -523,31 +523,37 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         // 力行の最大を取得
         public static int GetPowerMax()
         {
-            if(s_onePowerMax > 1)
+            if(IsTwoHandle())
             {
-                return s_onePowerMax;
+                return s_twoPowerMax;
             }
-            return s_twoPowerMax;
+            return s_onePowerMax;
+        }
+
+        // 力行の最小を取得
+        public static int GetPowerMin()
+        {
+            if (IsTwoHandle())
+            {
+                return s_twoPowerMin;
+            }
+            return 0;
         }
 
         // 制動の最大を取得
         public static int GetBrakeMax()
         {
-            if (s_oneBrakeMax > 1)
+            if (IsTwoHandle())
             {
-                return s_oneBrakeMax;
+                return s_twoBrakeMax;
             }
-            return s_twoBrakeMax;
+            return s_oneBrakeMax;
         }
 
-        // 運転中の車両がツーハンドルかどうか
+        // 運転中の車両がツーハンドルかどうか(Bveはワンハンドル、ツーハンドル関係なくaxis1～3に値が設定される）
         public static bool IsTwoHandle()
         {
-            if (s_oneBrakeMax > 1)
-            {
-                return false;
-            }
-            return true;
+            return s_twoPowerMax > 0;
         }
 
         public void Tick()
@@ -854,7 +860,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     switch(keyCode)
                     {
                         case 0:// 非常にする
-                            s_brakeNotch = GetBrakeMax() - 1;
+                            s_brakeNotch = GetBrakeMax();
                             s_powerNotch = 0;
                             break;
                         case 1:// 全て切にする
@@ -867,7 +873,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         case 3:// 制動上げ
                             // リピート入力時は非常の前で止まるように
                             s_brakeNotch = isRepeating
-                                ? Math.Min(s_brakeNotch + 1, GetBrakeMax() - 2)
+                                ? Math.Min(s_brakeNotch + 1, GetBrakeMax() - 1)
                                 : s_brakeNotch + 1;
                             break;
                         case 4:// 制動下げ
@@ -904,7 +910,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             {
                                 // リピート入力時は非常の前で止まるように
                                 s_brakeNotch = isRepeating
-                                    ? Math.Min(s_brakeNotch + 1, GetBrakeMax() - 2)
+                                    ? Math.Min(s_brakeNotch + 1, GetBrakeMax() - 1)
                                     : s_brakeNotch + 1;
                                 s_powerNotch = 0;
                             }
@@ -914,17 +920,17 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     {
                         s_brakeNotch = 0;
                     }
-                    if(s_brakeNotch >= GetBrakeMax())
+                    if(s_brakeNotch > GetBrakeMax())
                     {
-                        s_brakeNotch = GetBrakeMax() - 1;
+                        s_brakeNotch = GetBrakeMax();
                     }
                     if (s_powerNotch < 0)
                     {
                         s_powerNotch = 0;
                     }
-                    if (s_powerNotch>= GetPowerMax())
+                    if (s_powerNotch > GetPowerMax())
                     {
-                        s_powerNotch = GetPowerMax() - 1;
+                        s_powerNotch = GetPowerMax();
                     }
                     bool two = IsTwoHandle();
                     if (s_brakeNotch == 0 && s_powerNotch == 0)
@@ -1053,7 +1059,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             if (key == "BveTypes.ClassWrappers.HandleSet.BrakeNotch" && value.GetType() == typeof(int))
             {
                 var val = (int)value;
-                if (0 <= val && GetBrakeMax() > val)
+                if (0 <= val && GetBrakeMax() >= val)
                 {
                     s_brakeNotch = val;
                     s_powerNotch = 0; // 制動を上げたら力行は切る

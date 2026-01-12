@@ -338,7 +338,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return Math.Max(BrakeButtonStatus.Count - 1, 0);
         }
 
-        public int GetPower(NCIController controller, int maxStep)
+        public int GetPower(NCIController controller, int maxValue)
         {
             if (controller.GetPowerCount() > 0)
             {
@@ -358,7 +358,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 {
                     pos = sliders[PowerAxises[0]] - PowerAxisStatus[0][0];
                 }
-                prePowerNotch = (int)(((float)pos / range) * (maxStep - 1));
+                prePowerNotch = (int)(((float)pos / range) * maxValue);
                 if (prePowerNotch < 0) prePowerNotch = 0;
                 return prePowerNotch;
             }
@@ -433,17 +433,17 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         ret:
             if (FlexiblePower == FlexibleNotchMode.Flexible)
             {
-                if (prePowerNotch == GetPowerCount(controller))
+                if (prePowerNotch >= GetPowerCount(controller))
                 {
-                    return maxStep - 1;
+                    return maxValue;
                 }
-                return (int)Math.Floor(prePowerNotch * ((float) maxStep / GetPowerCount(controller)));
+                return (int)Math.Floor(prePowerNotch * ((float) maxValue / (Math.Max(GetPowerCount(controller) - 1, 0))));
             }
             else if (FlexiblePower == FlexibleNotchMode.LastMax)
             {
-                if (prePowerNotch == GetPowerCount(controller))
+                if (prePowerNotch >= GetPowerCount(controller))
                 {
-                    return maxStep - 1;
+                    return maxValue;
                 }
                 return prePowerNotch;
             }
@@ -453,7 +453,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
-        public int GetBrake(NCIController controller, int maxStep)
+        public int GetBrake(NCIController controller, int maxValue)
         {
             if(controller.GetBrakeCount() > 0)
             {
@@ -473,7 +473,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 {
                     pos = sliders[BrakeAxises[0]] - BrakeAxisStatus[0][0];
                 }
-                preBrakeNotch = (int)(((float)pos / range) * (maxStep - 1));
+                preBrakeNotch = (int)(((float)pos / range) * maxValue);
                 if (preBrakeNotch < 0) preBrakeNotch = 0;
                 return preBrakeNotch;
             }
@@ -540,31 +540,31 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         ret:
             if (FlexibleBrake == FlexibleNotchMode.Flexible)
             {
-                if(preBrakeNotch == GetBrakeCount(controller))
+                if(preBrakeNotch >= GetBrakeCount(controller))
                 {
-                    return maxStep - 1;
+                    return maxValue;
                 }
-                return (int)Math.Floor(preBrakeNotch * ((float) maxStep / GetBrakeCount(controller)));
+                return (int)Math.Floor(preBrakeNotch * ((float) maxValue / Math.Max(GetBrakeCount(controller) - 1, 0)));
             }
             else if(FlexibleBrake == FlexibleNotchMode.EBFixed)
             {
-                if(preBrakeNotch == GetBrakeCount(controller))
+                if(preBrakeNotch >= GetBrakeCount(controller))
                 {
-                    return maxStep - 1;
+                    return maxValue;
                 }
-                else if(preBrakeNotch >= maxStep - 2)
+                else if(preBrakeNotch >= maxValue - 1)
                 {
-                    return maxStep - 2;
+                    return maxValue - 1;
                 }
                 return preBrakeNotch;
             }
             else if (FlexibleBrake == FlexibleNotchMode.FlexibleWithoutEB)
             {
-                if (preBrakeNotch == GetBrakeCount(controller))
+                if (preBrakeNotch >= GetBrakeCount(controller))
                 {
-                    return maxStep - 1;
+                    return maxValue;
                 }
-                return (int)Math.Floor(preBrakeNotch * ((float)(maxStep - 1) / GetBrakeCount(controller)));
+                return (int)Math.Floor(preBrakeNotch * ((float)maxValue / Math.Max(GetBrakeCount(controller) - 1, 0)));
             }
             else
             {
