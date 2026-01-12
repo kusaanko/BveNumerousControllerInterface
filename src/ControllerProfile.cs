@@ -358,9 +358,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 {
                     pos = sliders[PowerAxises[0]] - PowerAxisStatus[0][0];
                 }
-                prePowerNotch = (int)(((float)pos / range) * maxValue);
+                prePowerNotch = (int)(((float)pos / range) * (maxValue + (this.IsTwoHandle ? this.PowerCenterPosition : 0)));
                 if (prePowerNotch < 0) prePowerNotch = 0;
-                return prePowerNotch;
+                return prePowerNotch - (this.IsTwoHandle ? this.PowerCenterPosition : 0);
             }
             else
             {
