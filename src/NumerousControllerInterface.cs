@@ -507,7 +507,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             s_twoBrakeMax = ranges[2][1];
             // Axis1 = Two Handle Power
             s_twoPowerMax = ranges[1][1];
-            s_twoPowerMin = -ranges[1][0];
+            s_twoPowerMin = ranges[1][0];
 
             // 力行と制動をリセット
             s_powerNotch = 0;
