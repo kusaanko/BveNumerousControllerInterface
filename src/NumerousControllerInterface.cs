@@ -923,9 +923,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     {
                         s_brakeNotch = GetBrakeMax();
                     }
-                    if (s_powerNotch < 0)
+                    if (s_powerNotch < GetPowerMin())
                     {
-                        s_powerNotch = 0;
+                        s_powerNotch = GetPowerMin();
                     }
                     if (s_powerNotch > GetPowerMax())
                     {
