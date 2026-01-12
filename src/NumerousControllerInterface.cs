@@ -600,8 +600,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     {
                         if (two)
                         {
-                            // 逆回しのために中央位置分だけ減らす
-                            OnLeverMoved(1, powerLevel - profile.PowerCenterPosition);
+                            OnLeverMoved(1, Math.Max(powerLevel, GetPowerMin()));
                         }
                         else
                         {

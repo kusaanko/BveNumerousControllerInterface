@@ -431,25 +431,35 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
             }
         ret:
+            int returnNotch = 0;
             if (FlexiblePower == FlexibleNotchMode.Flexible)
             {
                 if (prePowerNotch >= GetPowerCount(controller))
                 {
-                    return maxValue;
+                    returnNotch = maxValue;
                 }
-                return (int)Math.Floor(prePowerNotch * ((float) maxValue / (Math.Max(GetPowerCount(controller) - 1, 0))));
+                returnNotch = (int)Math.Floor(prePowerNotch * ((float) maxValue / (Math.Max(GetPowerCount(controller) - 1, 0))));
             }
             else if (FlexiblePower == FlexibleNotchMode.LastMax)
             {
                 if (prePowerNotch >= GetPowerCount(controller))
                 {
-                    return maxValue;
+                    returnNotch = maxValue;
                 }
-                return prePowerNotch;
+                returnNotch = prePowerNotch;
             }
             else
             {
-                return prePowerNotch;
+                returnNotch = prePowerNotch;
+            }
+
+            // 逆回し
+            if (IsTwoHandle)
+            {
+                return returnNotch - PowerCenterPosition;
+            } else
+            {
+                return returnNotch;
             }
         }
 
