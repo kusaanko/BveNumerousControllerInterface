@@ -506,36 +506,46 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
             }
         ret:
-            int returnNotch = 0;
-            if (FlexiblePower == FlexibleNotchMode.Flexible)
-            {
-                if (prePowerNotch >= GetPowerCount(controller))
-                {
-                    returnNotch = maxValue;
-                }
-                returnNotch = (int)Math.Floor(prePowerNotch * ((float) maxValue / (Math.Max(GetPowerCount(controller) - 1, 0))));
-            }
-            else if (FlexiblePower == FlexibleNotchMode.LastMax)
-            {
-                if (prePowerNotch >= GetPowerCount(controller))
-                {
-                    returnNotch = maxValue;
-                }
-                returnNotch = prePowerNotch;
-            }
-            else
-            {
-                returnNotch = prePowerNotch;
-            }
-
+            int currentNotch = prePowerNotch;
             // 逆回し
             if (IsTwoHandle)
             {
-                return returnNotch - PowerCenterPosition;
-            } else
-            {
-                return returnNotch;
+                currentNotch = currentNotch - PowerCenterPosition;
             }
+            int returnNotch = 0;
+            if (FlexiblePower == FlexibleNotchMode.Flexible)
+            {
+                if (currentNotch >= (GetPowerCount(controller) - PowerCenterPosition))
+                {
+                    returnNotch = maxValue;
+                }
+                if (currentNotch >= 0)
+                {
+                    returnNotch = (int)Math.Floor(currentNotch * ((float)maxValue / (Math.Max(GetPowerCount(controller) - PowerCenterPosition, 1))));
+                } else
+                {
+                    returnNotch = (int)Math.Floor(currentNotch * ((float)revCount / (Math.Max(PowerCenterPosition, 1))));
+                }
+            }
+            else if (FlexiblePower == FlexibleNotchMode.LastMax)
+            {
+                if (currentNotch >= (GetPowerCount(controller) - PowerCenterPosition))
+                {
+                    returnNotch = maxValue;
+                } else if (PowerCenterPosition > 0 && currentNotch <= -PowerCenterPosition)
+                {
+                    returnNotch = -revCount;
+                } else
+                {
+                    returnNotch = currentNotch;
+                }
+            }
+            else
+            {
+                returnNotch = currentNotch;
+            }
+
+            return returnNotch;
         }
 
         public int GetBrake(NCIController controller, int maxValue)
