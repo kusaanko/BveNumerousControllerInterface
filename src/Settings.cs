@@ -319,8 +319,22 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             string readFromDirectory = Path.Combine(directory, _profileDirectory + ControllerProfile.s_Version + "\\");
             if (!Directory.Exists(Path.Combine(directory, _profileDirectory + ControllerProfile.s_Version + "\\")))
             {
-                readFromDirectory = Path.Combine(directory, _profileDirectory);
-                Directory.CreateDirectory(Path.Combine(directory, _profileDirectory + ControllerProfile.s_Version + "\\"));
+                // バージョンを下げて探していく
+                int currentVersion = ControllerProfile.s_Version - 1;
+                while (currentVersion > 0)
+                {
+                    readFromDirectory = Path.Combine(directory, _profileDirectory + currentVersion + "\\");
+                    if (Directory.Exists(readFromDirectory))
+                    {
+                        break;
+                    }
+                    currentVersion--;
+                }
+                if (!Directory.Exists(readFromDirectory))
+                {
+                    readFromDirectory = Path.Combine(directory, _profileDirectory);
+                    Directory.CreateDirectory(Path.Combine(directory, _profileDirectory + ControllerProfile.s_Version + "\\"));
+                }
             }
 
             // プロファイル
