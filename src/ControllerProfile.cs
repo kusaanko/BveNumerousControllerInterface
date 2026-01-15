@@ -62,6 +62,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         /// </summary>
         [DataMember]
         public List<List<int>> PowerAxisStatus;
+        /// <summary>
+        /// 力行の軸をそのまま使うモードでの切位置のデッドゾーン
+        /// </summary>
+        [DataMember]
+        public int PowerAxisDeadZone;
         [IgnoreDataMember]
         public ArrayList[] PowerAxisUsedNumbers;
         [IgnoreDataMember]
@@ -77,6 +82,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         // それぞれのノッチで軸の値の組み合わせを保存している
         [DataMember]
         public List<List<int>> BrakeAxisStatus;
+        /// <summary>
+        /// 制動の軸をそのまま使うモードでの切位置のデッドゾーン
+        /// </summary>
+        [DataMember]
+        public int BrakeAxisDeadZone;
         [IgnoreDataMember]
         public ArrayList[] BrakeAxisUsedNumbers;
         [IgnoreDataMember]
@@ -372,23 +382,39 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             // 軸の値をそのまま使うモード
             if (IsPowerUseRawAxisValueMode())
             {
-                int pos = -sliders[PowerAxises[0]] + PowerAxisStatus[0][0];
-                int range = Math.Abs(PowerAxisStatus[0][1] - PowerAxisStatus[0][0]);
-                if (PowerAxisStatus[0][0] < PowerAxisStatus[0][1])
+                int rangeMin = PowerAxisStatus[0][0];
+                int rangeMax = PowerAxisStatus[0][1];
+                int pos = -sliders[PowerAxises[0]] + rangeMin;
+                // デッドゾーンの処理
+                if (rangeMin - Math.Abs(PowerAxisDeadZone) < sliders[PowerAxises[0]] && rangeMin + Math.Abs(PowerAxisDeadZone) > sliders[PowerAxises[0]])
                 {
-                    pos = sliders[PowerAxises[0]] - PowerAxisStatus[0][0];
+                    prePowerNotch = 0;
+                    return prePowerNotch;
+                }
+                // デッドゾーンだけ範囲を狭める
+                if (Math.Abs(PowerAxisDeadZone) > 0)
+                {
+                    rangeMin += Math.Abs(PowerAxisDeadZone) * Math.Sign(rangeMax - rangeMin);
+                }
+                int range = Math.Abs(rangeMax - rangeMin);
+                if (rangeMin < rangeMax)
+                {
+                    pos = sliders[PowerAxises[0]] - rangeMin;
                 }
                 if (PowerAxisStatus[0].Count >= 3)
                 {
                     // 逆回しの範囲内に入っているか否か
                     int rawPos = sliders[PowerAxises[0]];
-                    int rangeMin = Math.Min(PowerAxisStatus[0][0], PowerAxisStatus[0][2]);
-                    int rangeMax = Math.Max(PowerAxisStatus[0][0], PowerAxisStatus[0][2]);
-                    if (rangeMin <= rawPos && rawPos <= rangeMax)
+                    int revRangeMin = PowerAxisStatus[0][2];
+                    int revRangeMax = PowerAxisStatus[0][0];
+                    // デッドゾーンだけ範囲を狭める
+                    if (Math.Abs(PowerAxisDeadZone) > 0)
+                    {
+                        revRangeMax += Math.Abs(PowerAxisDeadZone) * Math.Sign(revRangeMin - revRangeMax);
+                    }
+                    if (Math.Min(revRangeMin, revRangeMax) <= rawPos && rawPos <= Math.Max(revRangeMin, revRangeMax))
                     {
                         // 逆回し
-                        int revRangeMin = PowerAxisStatus[0][2];
-                        int revRangeMax = PowerAxisStatus[0][0];
                         int revRange = Math.Abs(revRangeMax - revRangeMin);
                         if (revRangeMin < revRangeMax)
                         {

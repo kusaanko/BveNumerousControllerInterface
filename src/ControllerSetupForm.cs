@@ -85,6 +85,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 {
                     _axisReverse = _sliders[_useAxis];
                     countLabel.Text = "現在の値:" + _sliders[_useAxis];
+                } else if (_step == 4)
+                {
+                    countLabel.Text = "現在のノッチ:" + (_setupPower ? _profile.GetPower(_stick, 5, 5) : _profile.GetBrake(_stick, 9));
                 }
             }
             else if (_mode == 1)
@@ -177,6 +180,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     _profile.CalcDuplicated();
                     countLabel.Text = "";
                     infoLabel.Text = "完了しました。次へを押して終了します。";
+                    deadZoneLabel.Visible = true;
+                    deadZoneNumericUpDown.Visible = true;
                 }
                 else if (_step == 4)
                 {
@@ -347,6 +352,18 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }else
             {
                 this._profile.InaccuracyModeBrake = InaccuracyModeCheckBox.Checked;
+            }
+        }
+
+        private void deadZoneNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (_setupPower)
+            {
+                this._profile.PowerAxisDeadZone = (int) deadZoneNumericUpDown.Value;
+            }
+            else
+            {
+                this._profile.BrakeAxisDeadZone = (int) deadZoneNumericUpDown.Value;
             }
         }
     }

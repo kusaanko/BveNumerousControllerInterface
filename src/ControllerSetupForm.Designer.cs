@@ -39,6 +39,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             this.useAxisButton = new System.Windows.Forms.Button();
             this.useButtonAxisButton = new System.Windows.Forms.Button();
             this.InaccuracyModeCheckBox = new System.Windows.Forms.CheckBox();
+            this.deadZoneLabel = new System.Windows.Forms.Label();
+            this.deadZoneNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.deadZoneNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -47,10 +50,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(107, 12);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(86, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(377, 46);
+            this.label1.Size = new System.Drawing.Size(302, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "コントローラーのセットアップ";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -60,10 +62,9 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             this.infoLabel.AutoEllipsis = true;
             this.infoLabel.AutoSize = true;
             this.infoLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoLabel.Location = new System.Drawing.Point(17, 173);
-            this.infoLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.infoLabel.Location = new System.Drawing.Point(14, 138);
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(229, 28);
+            this.infoLabel.Size = new System.Drawing.Size(196, 21);
             this.infoLabel.TabIndex = 1;
             this.infoLabel.Text = "どちらの方法を使いますか？";
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -71,10 +72,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             // cacelButton
             // 
             this.cacelButton.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cacelButton.Location = new System.Drawing.Point(17, 268);
-            this.cacelButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cacelButton.Location = new System.Drawing.Point(14, 214);
+            this.cacelButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cacelButton.Name = "cacelButton";
-            this.cacelButton.Size = new System.Drawing.Size(160, 38);
+            this.cacelButton.Size = new System.Drawing.Size(128, 30);
             this.cacelButton.TabIndex = 2;
             this.cacelButton.Text = "キャンセル";
             this.cacelButton.UseVisualStyleBackColor = true;
@@ -88,20 +89,19 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             // 
             this.countLabel.AutoSize = true;
             this.countLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.countLabel.Location = new System.Drawing.Point(250, 125);
-            this.countLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.countLabel.Location = new System.Drawing.Point(200, 100);
             this.countLabel.Name = "countLabel";
-            this.countLabel.Size = new System.Drawing.Size(23, 28);
+            this.countLabel.Size = new System.Drawing.Size(19, 21);
             this.countLabel.TabIndex = 3;
             this.countLabel.Text = "0";
             // 
             // nextButton
             // 
             this.nextButton.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nextButton.Location = new System.Drawing.Point(468, 268);
-            this.nextButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.nextButton.Location = new System.Drawing.Point(374, 214);
+            this.nextButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(160, 38);
+            this.nextButton.Size = new System.Drawing.Size(128, 30);
             this.nextButton.TabIndex = 4;
             this.nextButton.Text = "次へ";
             this.nextButton.UseVisualStyleBackColor = true;
@@ -110,10 +110,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             // useAxisButton
             // 
             this.useAxisButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.useAxisButton.Location = new System.Drawing.Point(17, 232);
-            this.useAxisButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.useAxisButton.Location = new System.Drawing.Point(14, 186);
+            this.useAxisButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.useAxisButton.Name = "useAxisButton";
-            this.useAxisButton.Size = new System.Drawing.Size(311, 28);
+            this.useAxisButton.Size = new System.Drawing.Size(249, 22);
             this.useAxisButton.TabIndex = 5;
             this.useAxisButton.Text = "軸をそのまま使う";
             this.useAxisButton.UseVisualStyleBackColor = true;
@@ -122,10 +122,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             // useButtonAxisButton
             // 
             this.useButtonAxisButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.useButtonAxisButton.Location = new System.Drawing.Point(336, 232);
-            this.useButtonAxisButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.useButtonAxisButton.Location = new System.Drawing.Point(269, 186);
+            this.useButtonAxisButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.useButtonAxisButton.Name = "useButtonAxisButton";
-            this.useButtonAxisButton.Size = new System.Drawing.Size(292, 28);
+            this.useButtonAxisButton.Size = new System.Drawing.Size(234, 22);
             this.useButtonAxisButton.TabIndex = 6;
             this.useButtonAxisButton.Text = "ボタン・軸の組み合わせを使う";
             this.useButtonAxisButton.UseVisualStyleBackColor = true;
@@ -135,21 +135,50 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             // 
             this.InaccuracyModeCheckBox.AutoSize = true;
             this.InaccuracyModeCheckBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InaccuracyModeCheckBox.Location = new System.Drawing.Point(468, 177);
-            this.InaccuracyModeCheckBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.InaccuracyModeCheckBox.Location = new System.Drawing.Point(374, 142);
+            this.InaccuracyModeCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InaccuracyModeCheckBox.Name = "InaccuracyModeCheckBox";
-            this.InaccuracyModeCheckBox.Size = new System.Drawing.Size(122, 27);
+            this.InaccuracyModeCheckBox.Size = new System.Drawing.Size(111, 21);
             this.InaccuracyModeCheckBox.TabIndex = 7;
             this.InaccuracyModeCheckBox.Text = "不正確モード";
             this.InaccuracyModeCheckBox.UseVisualStyleBackColor = true;
             this.InaccuracyModeCheckBox.Visible = false;
             this.InaccuracyModeCheckBox.CheckedChanged += new System.EventHandler(this.InaccuracyModeCheckBox_CheckedChanged);
             // 
+            // deadZoneLabel
+            // 
+            this.deadZoneLabel.AutoEllipsis = true;
+            this.deadZoneLabel.AutoSize = true;
+            this.deadZoneLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deadZoneLabel.Location = new System.Drawing.Point(14, 163);
+            this.deadZoneLabel.Name = "deadZoneLabel";
+            this.deadZoneLabel.Size = new System.Drawing.Size(87, 21);
+            this.deadZoneLabel.TabIndex = 8;
+            this.deadZoneLabel.Text = "デッドゾーン";
+            this.deadZoneLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.deadZoneLabel.Visible = false;
+            // 
+            // deadZoneNumericUpDown
+            // 
+            this.deadZoneNumericUpDown.Location = new System.Drawing.Point(107, 165);
+            this.deadZoneNumericUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.deadZoneNumericUpDown.Name = "deadZoneNumericUpDown";
+            this.deadZoneNumericUpDown.Size = new System.Drawing.Size(120, 19);
+            this.deadZoneNumericUpDown.TabIndex = 9;
+            this.deadZoneNumericUpDown.Visible = false;
+            this.deadZoneNumericUpDown.ValueChanged += new System.EventHandler(this.deadZoneNumericUpDown_ValueChanged);
+            // 
             // ControllerSetupForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(644, 322);
+            this.ClientSize = new System.Drawing.Size(515, 258);
+            this.Controls.Add(this.deadZoneNumericUpDown);
+            this.Controls.Add(this.deadZoneLabel);
             this.Controls.Add(this.InaccuracyModeCheckBox);
             this.Controls.Add(this.useButtonAxisButton);
             this.Controls.Add(this.useAxisButton);
@@ -159,13 +188,14 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             this.Controls.Add(this.infoLabel);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ControllerSetupForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ControllerSetupForm";
+            ((System.ComponentModel.ISupportInitialize)(this.deadZoneNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,5 +212,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private System.Windows.Forms.Button useAxisButton;
         private System.Windows.Forms.Button useButtonAxisButton;
         private System.Windows.Forms.CheckBox InaccuracyModeCheckBox;
+        private System.Windows.Forms.Label deadZoneLabel;
+        private System.Windows.Forms.NumericUpDown deadZoneNumericUpDown;
     }
 }
