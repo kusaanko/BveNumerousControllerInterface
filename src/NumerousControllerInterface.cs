@@ -882,11 +882,29 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             s_powerNotch = 0;
                             break;
                         case 6:// 力行上げ
-                            s_powerNotch++;
+                            if (s_powerNotch <= 0)
+                            {
+                                // リピート入力時は切の前で止まるように
+                                s_powerNotch = isRepeating
+                                    ? Math.Min(s_powerNotch + 1, 0)
+                                    : s_powerNotch + 1;
+                            } else
+                            {
+                                s_powerNotch++;
+                            }
                             break;
                         case 7:// 力行下げ
-                            s_powerNotch--;
-                            break;
+                            if (s_powerNotch >= 0)
+                            {
+                                // リピート入力時は切で止まるように
+                                s_powerNotch = isRepeating
+                                    ? Math.Max(s_powerNotch - 1, 0)
+                                    : s_powerNotch - 1;
+                            } else
+                            {
+                                s_powerNotch--;
+                            }
+                                break;
                         case 8:// ノッチ上げ
                             if (s_brakeNotch > 0)
                             {
@@ -919,7 +937,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     {
                         s_brakeNotch = 0;
                     }
-                    if(s_brakeNotch > GetBrakeMax())
+                    if (s_brakeNotch > GetBrakeMax())
                     {
                         s_brakeNotch = GetBrakeMax();
                     }
@@ -932,33 +950,28 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         s_powerNotch = GetPowerMax();
                     }
                     bool two = IsTwoHandle();
-                    if (s_brakeNotch == 0 && s_powerNotch == 0)
+                    if (two)
                     {
-                        if (two)
+                        if (s_brakeNotch == 0 && s_powerNotch == 0)
                         {
                             OnLeverMoved(1, 0);
                             OnLeverMoved(2, 0);
                         }
                         else
                         {
-                            OnLeverMoved(3, 0);
-                        }
-                    }else if(s_brakeNotch > 0)
-                    {
-                        if (two)
-                        {
+                            OnLeverMoved(1, s_powerNotch);
                             OnLeverMoved(2, s_brakeNotch);
-                        }
-                        else
-                        {
-                            OnLeverMoved(3, -s_brakeNotch);
                         }
                     }
                     else
                     {
-                        if (two)
+                        if (s_brakeNotch == 0 && s_powerNotch == 0)
                         {
-                            OnLeverMoved(1, s_powerNotch);
+                            OnLeverMoved(3, 0);
+                        }
+                        if (s_brakeNotch > 0)
+                        {
+                            OnLeverMoved(3, -s_brakeNotch);
                         }
                         else
                         {
