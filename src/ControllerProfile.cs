@@ -25,7 +25,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
     [DataContract]
     public class ControllerProfile
     {
-        public static int s_Version = 1;
+        public static int s_Version = 2;
 
         [DataMember]
         public int Version;
