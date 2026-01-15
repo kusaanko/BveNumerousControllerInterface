@@ -1046,24 +1046,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         // キー、値
         public static void BveExPluginReportValueChanged(string key, object value)
         {
-            if (key == "BveTypes.ClassWrappers.HandleSet.PowerNotch" && value.GetType() == typeof(int))
-            {
-                var val = (int)value;
-                if (0 <= val && GetPowerMax() >= val)
-                {
-                    s_powerNotch = val;
-                    //s_brakeNotch = 0; // 力行を上げたら制動は切る
-                }
-            }
-            if (key == "BveTypes.ClassWrappers.HandleSet.BrakeNotch" && value.GetType() == typeof(int))
-            {
-                var val = (int)value;
-                if (0 <= val && GetBrakeMax() >= val)
-                {
-                    s_brakeNotch = val;
-                    //s_powerNotch = 0; // 制動を上げたら力行は切る
-                }
-            }
             foreach (NCIController controller in Controllers)
             {
                 ControllerProfile profile = SettingsInstance.GetProfile(controller);
