@@ -60,11 +60,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             // infoLabel
             // 
             this.infoLabel.AutoEllipsis = true;
-            this.infoLabel.AutoSize = true;
             this.infoLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoLabel.Location = new System.Drawing.Point(14, 138);
+            this.infoLabel.Location = new System.Drawing.Point(14, 98);
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(196, 21);
+            this.infoLabel.Size = new System.Drawing.Size(354, 64);
             this.infoLabel.TabIndex = 1;
             this.infoLabel.Text = "どちらの方法を使いますか？";
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -89,7 +88,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             // 
             this.countLabel.AutoSize = true;
             this.countLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.countLabel.Location = new System.Drawing.Point(200, 100);
+            this.countLabel.Location = new System.Drawing.Point(196, 62);
             this.countLabel.Name = "countLabel";
             this.countLabel.Size = new System.Drawing.Size(19, 21);
             this.countLabel.TabIndex = 3;
