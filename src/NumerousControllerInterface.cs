@@ -745,7 +745,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     if (!_lastButtonPressedTime[controller].ContainsKey(i))
                     {
                         ButtonFeature key = profile.KeyMap[i];
-                        OnKeyDown(key.Axis, key.Value, false);
+                        OnKeyDown(key.Axis, key.Value, false, profile.IsTwoHandle);
                         OnKeyUp(key.Axis, key.Value);
                         _isButtonRepeating[controller][i] = false;
                         // ボタンの押した時間を記録
@@ -772,7 +772,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         {
                             // 一定時間経過したら再度ボタンを押す
                             ButtonFeature key = profile.KeyMap[i];
-                            OnKeyDown(key.Axis, key.Value, true);
+                            OnKeyDown(key.Axis, key.Value, true, profile.IsTwoHandle);
                             OnKeyUp(key.Axis, key.Value);
                             _isButtonRepeating[controller][i] = true;
                             // ボタンの押した時間を記録
@@ -788,7 +788,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                         if (profile.KeyMap.ContainsKey(i))
                         {
                             ButtonFeature key = profile.KeyMap[i];
-                            OnKeyDown(key.Axis, key.Value, false);
+                            OnKeyDown(key.Axis, key.Value, false, profile.IsTwoHandle);
                         }
                     }
                 }
@@ -815,7 +815,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             _preButtons[controller] = buttons;
         }
 
-        private void OnKeyDown(int axis, int keyCode, bool isRepeating)
+        private void OnKeyDown(int axis, int keyCode, bool isRepeating, bool isControllerTwoHandle)
         {
             if (LeverMoved != null && KeyDown != null)
             {
@@ -868,18 +868,34 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             break;
                         case 2:// 制動切
                             s_brakeNotch = 0;
+                            if (!isControllerTwoHandle)
+                            {
+                                s_powerNotch = 0;
+                            }
                             break;
                         case 3:// 制動上げ
                             // リピート入力時は非常の前で止まるように
                             s_brakeNotch = isRepeating
                                 ? Math.Min(s_brakeNotch + 1, GetBrakeMax() - 1)
                                 : s_brakeNotch + 1;
+                            if (!isControllerTwoHandle)
+                            {
+                                s_powerNotch = 0;
+                            }
                             break;
                         case 4:// 制動下げ
                             s_brakeNotch--;
+                            if (!isControllerTwoHandle)
+                            {
+                                s_powerNotch = 0;
+                            }
                             break;
                         case 5:// 力行切
                             s_powerNotch = 0;
+                            if (!isControllerTwoHandle)
+                            {
+                                s_brakeNotch = 0;
+                            }
                             break;
                         case 6:// 力行上げ
                             if (s_powerNotch <= 0)
@@ -891,6 +907,10 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             } else
                             {
                                 s_powerNotch++;
+                            }
+                            if (!isControllerTwoHandle)
+                            {
+                                s_brakeNotch = 0;
                             }
                             break;
                         case 7:// 力行下げ
@@ -904,7 +924,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             {
                                 s_powerNotch--;
                             }
-                                break;
+                            if (!isControllerTwoHandle)
+                            {
+                                s_brakeNotch = 0;
+                            }
+                            break;
                         case 8:// ノッチ上げ
                             if (s_brakeNotch > 0)
                             {
