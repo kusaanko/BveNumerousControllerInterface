@@ -456,7 +456,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (profile.HasPower(controller))
             {
-                var newText = this.resources.GetString("powerLabel.Text") + profile.GetPower(controller, profile.GetPowerCount(controller));
+                var newText = this.resources.GetString("powerLabel.Text") + profile.GetPower(controller, profile.GetPowerCount(controller), 5);
                 if (powerLabel.Text != newText)
                 {
                     powerLabel.Text = newText;

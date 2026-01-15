@@ -46,9 +46,20 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         // それぞれのノッチでボタンの組み合わせを保存している
         [DataMember]
         public List<List<bool>> PowerButtonStatus;
+        /// <summary>
+        /// ノッチごとの軸の組み合わせで使用する軸インデックスを保持する
+        /// 
+        /// この配列のサイズがPowerAxisStatusと異なる場合、軸の値をそのまま使うモードになる
+        /// </summary>
         [DataMember]
         public int[] PowerAxises;
-        // それぞれのノッチで軸の値の組み合わせを保存している
+        /// <summary>
+        /// それぞれのノッチで軸の値の組み合わせを保存している
+        /// 
+        /// 軸とボタンの組み合わせの場合、各ノッチごとに軸の値を保存する
+        /// 
+        /// 軸の値をそのまま使うモードの場合、切、最大、逆回し最大の位置を保存する。
+        /// </summary>
         [DataMember]
         public List<List<int>> PowerAxisStatus;
         [IgnoreDataMember]
@@ -206,6 +217,15 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 FlexibleBrake = FlexibleBreak;
             }
             Version = s_Version;
+
+            // 軸をそのまま使うモードの逆回し設定追加
+            if (IsPowerUseRawAxisValueMode() && PowerAxisStatus.Count == 1)
+            {
+                if (PowerAxisStatus[0].Count == 2)
+                {
+                    PowerAxisStatus[0].Add(PowerAxisStatus[0][0]);
+                }
+            }
         }
 
         public void ResetPower()
@@ -338,7 +358,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return Math.Max(BrakeButtonStatus.Count - 1, 0);
         }
 
-        public int GetPower(NCIController controller, int maxValue)
+        public int GetPower(NCIController controller, int maxValue, int revCount)
         {
             if (controller.GetPowerCount() > 0)
             {
@@ -358,9 +378,38 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 {
                     pos = sliders[PowerAxises[0]] - PowerAxisStatus[0][0];
                 }
-                prePowerNotch = (int)(((float)pos / range) * (maxValue + (this.IsTwoHandle ? this.PowerCenterPosition : 0)));
+                if (PowerAxisStatus[0].Count >= 3)
+                {
+                    // 逆回しの範囲内に入っているか否か
+                    int rawPos = sliders[PowerAxises[0]];
+                    int rangeMin = Math.Min(PowerAxisStatus[0][0], PowerAxisStatus[0][2]);
+                    int rangeMax = Math.Max(PowerAxisStatus[0][0], PowerAxisStatus[0][2]);
+                    if (rangeMin <= rawPos && rawPos <= rangeMax)
+                    {
+                        // 逆回し
+                        int revRangeMin = PowerAxisStatus[0][2];
+                        int revRangeMax = PowerAxisStatus[0][0];
+                        int revRange = Math.Abs(revRangeMax - revRangeMin);
+                        if (revRangeMin < revRangeMax)
+                        {
+                            pos = sliders[PowerAxises[0]] - revRangeMin;
+                        }
+                        else
+                        {
+                            pos = -sliders[PowerAxises[0]] + revRangeMin;
+                        }
+                        prePowerNotch = -(int)Math.Round((1.0 - Math.Min((float)pos / revRange, 1.0)) * revCount);
+                        if (Math.Abs(prePowerNotch) > revCount)
+                        {
+                            prePowerNotch = -revCount;
+                        }
+                        return prePowerNotch;
+                    }
+                }
+                prePowerNotch = (int)Math.Round(((float)pos / range) * maxValue);
                 if (prePowerNotch < 0) prePowerNotch = 0;
-                return prePowerNotch - (this.IsTwoHandle ? this.PowerCenterPosition : 0);
+                if (prePowerNotch > maxValue) prePowerNotch = maxValue;
+                return prePowerNotch;
             }
             else
             {

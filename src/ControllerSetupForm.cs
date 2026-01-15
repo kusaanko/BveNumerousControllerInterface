@@ -28,6 +28,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         private ControllerProfile _profile;
         private int _mode;
         private int _useAxis;
+        private int _axisReverse;
         private int _axisMin;
         private int _axisMax;
         private int[] _powerButtons = new int[0];
@@ -80,6 +81,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     _axisMax = _sliders[_useAxis];
                     countLabel.Text = "現在の値:" + _sliders[_useAxis];
                 }
+                else if (_step == 3)
+                {
+                    _axisReverse = _sliders[_useAxis];
+                    countLabel.Text = "現在の値:" + _sliders[_useAxis];
+                }
             }
             else if (_mode == 1)
             {
@@ -103,7 +109,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     }
                 }else if(_step == 2)
                 {
-                    countLabel.Text = "現在のノッチ:" + (_setupPower ? _profile.GetPower(_stick, 99) : _profile.GetBrake(_stick, 99));
+                    countLabel.Text = "現在のノッチ:" + (_setupPower ? _profile.GetPower(_stick, 99, 0) : _profile.GetBrake(_stick, 99));
                     InaccuracyModeCheckBox.Visible = true;
                 }
                 else if (_step == 3)
@@ -117,21 +123,50 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         {
             if(_mode == 0)
             {
-                if(_step == 1)
+                if (_step == 1)
                 {
                     _step++;
                     infoLabel.Text = (_setupPower ? "力行" : "制動") + "を最大にして次へを押してください。";
-                }else if(_step == 2)
+
+                    if (!_setupPower)
+                    {
+                        _step++;
+                    }
+                }
+                else if (_step == 2)
                 {
                     _step++;
-                    if(_setupPower)
+                    if (_setupPower)
+                    {
+                        infoLabel.Text = "力行を逆回しの方向に最大にして次へを押してください。(逆回しを設定しない場合は切の位置にしてください)";
+                    }
+                }
+                else if (_step == 3)
+                {
+                    _step++;
+                    if (_setupPower)
                     {
                         _profile.PowerButtons = new int[0];
                         _profile.PowerButtonStatus = new List<List<bool>>();
                         _profile.PowerAxises = new int[] { _useAxis };
-                        _profile.PowerAxisStatus = new List<List<int>>( new List<int>[] { new List<int>(new int[] { _axisMin, _axisMax }) }) ;
+                        // _axisReverse < _axisMin < _axisMax  or  _axisMax < _axisMin < _axisReverseになることを保証する
+                        if (_axisMin < _axisMax)
+                        {
+                            if (_axisReverse > _axisMin)
+                            {
+                                _axisReverse = _axisMin;
+                            }
+                        } else if (_axisMin > _axisMax)
+                        {
+                            if (_axisReverse < _axisMin)
+                            {
+                                _axisReverse = _axisMin;
+                            }
+                        }
+                            _profile.PowerAxisStatus = new List<List<int>>(new List<int>[] { new List<int>(new int[] { _axisMin, _axisMax, _axisReverse }) });
                         _profile.InaccuracyModePower = false;
-                    }else
+                    }
+                    else
                     {
                         _profile.BrakeButtons = new int[0];
                         _profile.BrakeButtonStatus = new List<List<bool>>();
@@ -142,7 +177,8 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     _profile.CalcDuplicated();
                     countLabel.Text = "";
                     infoLabel.Text = "完了しました。次へを押して終了します。";
-                }else if(_step == 3)
+                }
+                else if (_step == 4)
                 {
                     Close();
                 }

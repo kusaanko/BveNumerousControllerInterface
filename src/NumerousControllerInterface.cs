@@ -584,7 +584,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 // 力行
                 if(controller.GetName().Equals(s_powerController))
                 {
-                    int powerLevel = profile.GetPower(controller, GetPowerMax());
+                    int powerLevel = profile.GetPower(controller, GetPowerMax(), Math.Abs(GetPowerMin()));
                     int prePower;
                     if (!_prePowerLevel.ContainsKey(controller))
                     {
