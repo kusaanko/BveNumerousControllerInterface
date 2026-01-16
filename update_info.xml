@@ -1,16 +1,24 @@
 <Root>
     <Targets>
         <Target arch="anycpu" dotnet=".net3.5">
-            <Latest>v0.14</Latest>
-            <Version>0.14</Version>
-            <IntVersion>15</IntVersion>
+            <Latest>v0.16</Latest>
+            <Version>0.16</Version>
+            <IntVersion>16</IntVersion>
             <Asset>NumerousControllerInterfaceInstaller.zip</Asset>
-            <DownloadPage>https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.14</DownloadPage>
-            <DownloadUrl>https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.14/NumerousControllerInterfaceInstaller.zip</DownloadUrl>
+            <DownloadPage>https://github.com/kusaanko/BveNumerousControllerInterface/releases/tag/v0.16</DownloadPage>
+            <DownloadUrl>https://github.com/kusaanko/BveNumerousControllerInterface/releases/download/v0.16/NumerousControllerInterfaceInstaller.zip</DownloadUrl>
             <Installer>NumerousControllerInterfaceInstaller.exe --installDir &lt;installDir&gt; --exeFile &lt;exeFile&gt;</Installer>
         </Target>
     </Targets>
     <ReleaseNotes>
+        <Release>
+            <Title>0.16</Title>
+            <Context># 修正\n* 軸をそのまま使うモードのコントローラーが存在するときにエラーが出て実行できなかった問題を修正 #14\n\n**Full Changelog**: https://github.com/kusaanko/BveNumerousControllerInterface/compare/v0.15...v0.16</Context>
+        </Release>
+        <Release>
+            <Title>0.15</Title>
+            <Context># 新機能\n* DirectInputによるマスコンにて逆回し（抑速）に対応しました #14 \n* 軸を直接使うモードでデッドゾーンに対応しました\n* ボタン操作によるノッチ操作で逆回しに対応しました\n\n# 修正\n* ツーハンドルで適切に力行と制動を個別に操作できるようにしました #14 \n* BveExプラグイン導入時にボタン操作がうまくいかない問題を修正しました\n* 逆回しにノッチの伸縮が適用されるようになりました\n\n**Full Changelog**: https://github.com/kusaanko/BveNumerousControllerInterface/compare/v0.14...v0.15</Context>
+        </Release>
         <Release>
             <Title>0.14</Title>
             <Context># 新機能\n* ボタンを長押しで連打する機能を追加しました。設定画面からボタンごとに有効化できます。\n* BveEXをサポートするようになりました。連携機能の利用には手動での追加設定が必要です。\n\n# 修正\n* 設定画面を開いている間CPU使用率が高くなる問題を修正しました。\n* 設定画面で力行と制動を持たない場合、数値が表示されないようにしました。\n* BveEXプラグインが読み込まれていればコントローラーのボタン操作によるノッチ操作が現在のノッチ数と連動するようにしました。\n\n**Full Changelog**: https://github.com/kusaanko/BveNumerousControllerInterface/compare/v0.13...v0.14</Context>
