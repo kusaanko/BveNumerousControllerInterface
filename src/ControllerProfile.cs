@@ -397,6 +397,12 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     rangeMin += Math.Abs(PowerAxisDeadZone) * Math.Sign(rangeMax - rangeMin);
                 }
                 int range = Math.Abs(rangeMax - rangeMin);
+                // 範囲がない
+                if (range <= 0)
+                {
+                    prePowerNotch = 0;
+                    return prePowerNotch;
+                }
                 if (rangeMin < rangeMax)
                 {
                     pos = sliders[PowerAxises[0]] - rangeMin;
@@ -412,24 +418,28 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     {
                         revRangeMax += Math.Abs(PowerAxisDeadZone) * Math.Sign(revRangeMin - revRangeMax);
                     }
-                    if (Math.Min(revRangeMin, revRangeMax) <= rawPos && rawPos <= Math.Max(revRangeMin, revRangeMax))
+                    if (Math.Min(revRangeMin, revRangeMax) < rawPos && rawPos < Math.Max(revRangeMin, revRangeMax))
                     {
                         // 逆回し
                         int revRange = Math.Abs(revRangeMax - revRangeMin);
-                        if (revRangeMin < revRangeMax)
+                        // 逆回しが正常な範囲を持つ場合のみ処理を続行
+                        if (revRange > 0)
                         {
-                            pos = sliders[PowerAxises[0]] - revRangeMin;
+                            if (revRangeMin < revRangeMax)
+                            {
+                                pos = sliders[PowerAxises[0]] - revRangeMin;
+                            }
+                            else
+                            {
+                                pos = -sliders[PowerAxises[0]] + revRangeMin;
+                            }
+                            prePowerNotch = -(int)Math.Round((1.0 - Math.Min((float)pos / revRange, 1.0)) * revCount);
+                            if (Math.Abs(prePowerNotch) > revCount)
+                            {
+                                prePowerNotch = -revCount;
+                            }
+                            return prePowerNotch;
                         }
-                        else
-                        {
-                            pos = -sliders[PowerAxises[0]] + revRangeMin;
-                        }
-                        prePowerNotch = -(int)Math.Round((1.0 - Math.Min((float)pos / revRange, 1.0)) * revCount);
-                        if (Math.Abs(prePowerNotch) > revCount)
-                        {
-                            prePowerNotch = -revCount;
-                        }
-                        return prePowerNotch;
                     }
                 }
                 prePowerNotch = (int)Math.Round(((float)pos / range) * maxValue);
