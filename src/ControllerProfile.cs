@@ -227,15 +227,6 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 FlexibleBrake = FlexibleBreak;
             }
             Version = s_Version;
-
-            // 軸をそのまま使うモードの逆回し設定追加
-            if (IsPowerUseRawAxisValueMode() && PowerAxisStatus.Count == 1)
-            {
-                if (PowerAxisStatus[0].Count == 2)
-                {
-                    PowerAxisStatus[0].Add(PowerAxisStatus[0][0]);
-                }
-            }
         }
 
         public void ResetPower()
