@@ -357,11 +357,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             {
                 if (SwapPowerAndBrake)
                 {
-                    return controller.GetBrakeCount();
+                    return controller.GetBrakeCount() - Math.Abs(PowerCenterPosition);
                 }
                 else
                 {
-                    return controller.GetPowerCount();
+                    return controller.GetPowerCount() - Math.Abs(PowerCenterPosition);
                 }
             }
             // 軸の値をそのまま使うモード
@@ -426,7 +426,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
                 else
                 {
-                    prePowerNotch = controller.GetPowerCount() - controller.GetPower();
+                    prePowerNotch = controller.GetPower();
                     goto ret;
                 }
             }
@@ -580,7 +580,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             int returnNotch = 0;
             if (FlexiblePower == FlexibleNotchMode.Flexible)
             {
-                if (currentNotch >= (GetPowerCount(controller) - PowerCenterPosition))
+                if (currentNotch >= (GetPowerCount(controller)))
                 {
                     returnNotch = maxValue;
                 }
