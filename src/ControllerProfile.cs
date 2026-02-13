@@ -409,7 +409,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                     {
                         revRangeMax += Math.Abs(PowerAxisDeadZone) * Math.Sign(revRangeMin - revRangeMax);
                     }
-                    if (Math.Min(revRangeMin, revRangeMax) < rawPos && rawPos < Math.Max(revRangeMin, revRangeMax))
+                    if (Math.Min(revRangeMin, revRangeMax) <= rawPos && rawPos <= Math.Max(revRangeMin, revRangeMax))
                     {
                         // 逆回し
                         int revRange = Math.Abs(revRangeMax - revRangeMin);
