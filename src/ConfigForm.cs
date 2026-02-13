@@ -151,6 +151,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 flexiblePowerModeComboBox.SelectedItem = ControllerProfile.FlexibleNotchModeStrings[(int)profile.FlexiblePower];
                 flexibleBrakeModeComboBox.SelectedItem = ControllerProfile.FlexibleNotchModeStrings[(int)profile.FlexibleBrake];
                 powerCenterPositionNumericUpDown.Value = profile.PowerCenterPosition;
+                SwapPowerAndBrakeCheckBox.Checked = profile.SwapPowerAndBrake;
                 buttonList.Items.Clear();
                 foreach (int i in profile.KeyMap.Keys)
                 {
