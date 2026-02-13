@@ -129,23 +129,36 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 if (_step == 1)
                 {
                     _step++;
+                    // ステップ2のテキスト
                     infoLabel.Text = (_setupPower ? "力行" : "制動") + "を最大にして次へを押してください。";
-
-                    if (!_setupPower)
-                    {
-                        _step++;
-                    }
                 }
                 else if (_step == 2)
                 {
                     _step++;
                     if (_setupPower)
                     {
+                        // ステップ3のテキスト(逆回し)
                         infoLabel.Text = "力行を逆回しの方向に最大にして次へを押してください。(逆回しを設定しない場合は切の位置にしてください)";
+                    }
+                    else
+                    {
+                        _step++;
+                        // 制動設定完了後
+                        _profile.BrakeButtons = new int[0];
+                        _profile.BrakeButtonStatus = new List<List<bool>>();
+                        _profile.BrakeAxises = new int[] { _useAxis };
+                        _profile.BrakeAxisStatus = new List<List<int>>(new List<int>[] { new List<int>(new int[] { _axisMin, _axisMax }) });
+                        _profile.InaccuracyModeBrake = false;
+                        _profile.CalcDuplicated();
+                        countLabel.Text = "";
+                        infoLabel.Text = "完了しました。次へを押して終了します。";
+                        deadZoneLabel.Visible = true;
+                        deadZoneNumericUpDown.Visible = true;
                     }
                 }
                 else if (_step == 3)
                 {
+                    // 力行の逆回し設定後
                     _step++;
                     if (_setupPower)
                     {
@@ -159,25 +172,18 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                             {
                                 _axisReverse = _axisMin;
                             }
-                        } else if (_axisMin > _axisMax)
+                        }
+                        else if (_axisMin > _axisMax)
                         {
                             if (_axisReverse < _axisMin)
                             {
                                 _axisReverse = _axisMin;
                             }
                         }
-                            _profile.PowerAxisStatus = new List<List<int>>(new List<int>[] { new List<int>(new int[] { _axisMin, _axisMax, _axisReverse }) });
+                        _profile.PowerAxisStatus = new List<List<int>>(new List<int>[] { new List<int>(new int[] { _axisMin, _axisMax, _axisReverse }) });
                         _profile.InaccuracyModePower = false;
+                        _profile.CalcDuplicated();
                     }
-                    else
-                    {
-                        _profile.BrakeButtons = new int[0];
-                        _profile.BrakeButtonStatus = new List<List<bool>>();
-                        _profile.BrakeAxises = new int[] { _useAxis };
-                        _profile.BrakeAxisStatus = new List<List<int>>(new List<int>[] { new List<int>(new int[] { _axisMin, _axisMax }) });
-                        _profile.InaccuracyModeBrake = false;
-                    }
-                    _profile.CalcDuplicated();
                     countLabel.Text = "";
                     infoLabel.Text = "完了しました。次へを押して終了します。";
                     deadZoneLabel.Visible = true;
