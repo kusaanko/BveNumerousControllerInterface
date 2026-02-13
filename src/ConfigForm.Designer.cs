@@ -128,6 +128,7 @@
             this.pluginSettingButton = new System.Windows.Forms.Button();
             this.showLoadedPlugins = new System.Windows.Forms.Button();
             this.pluginConfigComboBox = new System.Windows.Forms.ComboBox();
+            this.SwapPowerAndBrakeCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -424,6 +425,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.SwapPowerAndBrakeCheckBox);
             this.tabPage3.Controls.Add(this.powerCenterPositionNumericUpDown);
             this.tabPage3.Controls.Add(this.label5);
             this.tabPage3.Controls.Add(this.flexibleBrakeModeComboBox);
@@ -906,6 +908,13 @@
             resources.ApplyResources(this.pluginConfigComboBox, "pluginConfigComboBox");
             this.pluginConfigComboBox.Name = "pluginConfigComboBox";
             // 
+            // SwapPowerAndBrakeCheckBox
+            // 
+            resources.ApplyResources(this.SwapPowerAndBrakeCheckBox, "SwapPowerAndBrakeCheckBox");
+            this.SwapPowerAndBrakeCheckBox.Name = "SwapPowerAndBrakeCheckBox";
+            this.SwapPowerAndBrakeCheckBox.UseVisualStyleBackColor = true;
+            this.SwapPowerAndBrakeCheckBox.CheckedChanged += new System.EventHandler(this.SwapPowerAndBrakeCheckBox_CheckedChanged);
+            // 
             // ConfigForm
             // 
             this.AcceptButton = this.okButton;
@@ -1059,5 +1068,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.NumericUpDown timeToRepeatPressNumericUpDown;
         private System.Windows.Forms.CheckBox holdToRepeatButtonCheckBox;
+        private System.Windows.Forms.CheckBox SwapPowerAndBrakeCheckBox;
     }
 }

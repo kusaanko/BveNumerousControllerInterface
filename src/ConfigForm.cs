@@ -1137,5 +1137,14 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 profile.HoldToRepeatTime[buttonIndex] = value;
             }
         }
+
+        private void SwapPowerAndBrakeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            var profile = GetProfile();
+            if (profile != null)
+            {
+                profile.SwapPowerAndBrake = SwapPowerAndBrakeCheckBox.Checked;
+            }
+        }
     }
 }

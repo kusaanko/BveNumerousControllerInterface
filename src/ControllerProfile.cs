@@ -25,7 +25,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
     [DataContract]
     public class ControllerProfile
     {
-        public static int s_Version = 2;
+        public static int s_Version = 3;
 
         [DataMember]
         public int Version;
@@ -119,6 +119,11 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         public FlexibleNotchMode FlexibleBreak;
         [DataMember(EmitDefaultValue = false)]
         public bool InaccuracyModeBreak;
+        /// <summary>
+        /// 力行と制動を入れ替える設定
+        /// </summary>
+        [DataMember(EmitDefaultValue = false)]
+        public bool SwapPowerAndBrake;
 
         private int prePowerNotch;
         private int preBrakeNotch;
@@ -305,11 +310,25 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
         }
 
+        /// <summary>
+        /// 力行をもつかどうか
+        /// 
+        /// 物理的に力行を持っている場合、力行と制動を入れ替えるオプションが考慮されます。
+        /// </summary>
+        /// <param name="controller"></param>
+        /// <returns></returns>
         public bool HasPower(NCIController controller)
         {
             return GetPowerCount(controller) > 0;
         }
 
+        /// <summary>
+        /// 制動をもつかどうか
+        /// 
+        /// 物理的に制動を持っている場合、力行と制動を入れ替えるオプションが考慮されます。
+        /// </summary>
+        /// <param name="controller"></param>
+        /// <returns></returns>
         public bool HasBrake(NCIController controller)
         {
             return GetBrakeCount(controller) > 0;
@@ -325,11 +344,25 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return controller.GetSlidersSafe();
         }
 
+        /// <summary>
+        /// 力行の段数を取得する
+        /// 
+        /// 物理的に制動を持っている場合、力行と制動を入れ替えるオプションが考慮されます。
+        /// </summary>
+        /// <param name="controller"></param>
+        /// <returns></returns>
         public int GetPowerCount(NCIController controller)
         {
             if (controller.GetPowerCount() > 0)
             {
-                return controller.GetPowerCount();
+                if (SwapPowerAndBrake)
+                {
+                    return controller.GetBrakeCount();
+                }
+                else
+                {
+                    return controller.GetPowerCount();
+                }
             }
             // 軸の値をそのまま使うモード
             foreach (List<int> status in PowerAxisStatus)
@@ -342,11 +375,25 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return Math.Max(PowerButtonStatus.Count - 1, 0);
         }
 
+        /// <summary>
+        /// 制動の段数を取得する
+        /// 
+        /// 物理的に制動を持っている場合、力行と制動を入れ替えるオプションが考慮されます。
+        /// </summary>
+        /// <param name="controller"></param>
+        /// <returns></returns>
         public int GetBrakeCount(NCIController controller)
         {
             if (controller.GetBrakeCount() > 0)
             {
-                return controller.GetBrakeCount();
+                if (SwapPowerAndBrake)
+                {
+                    return controller.GetPowerCount();
+                }
+                else
+                {
+                    return controller.GetBrakeCount();
+                }
             }
             // 軸の値をそのまま使うモード
             foreach (List<int> status in BrakeAxisStatus)
@@ -359,12 +406,29 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return Math.Max(BrakeButtonStatus.Count - 1, 0);
         }
 
+        /// <summary>
+        /// 力行の値を取得する
+        /// 
+        /// 力行と制動を入れ替えるオプションが考慮されます。
+        /// </summary>
+        /// <param name="controller"></param>
+        /// <param name="maxValue"></param>
+        /// <param name="revCount"></param>
+        /// <returns></returns>
         public int GetPower(NCIController controller, int maxValue, int revCount)
         {
-            if (controller.GetPowerCount() > 0)
+            if ((SwapPowerAndBrake ? controller.GetBrakeCount() : controller.GetPowerCount()) > 0)
             {
-                prePowerNotch = controller.GetPower();
-                goto ret;
+                if (SwapPowerAndBrake)
+                {
+                    prePowerNotch = controller.GetBrakeCount() - controller.GetBrake();
+                    goto ret;
+                }
+                else
+                {
+                    prePowerNotch = controller.GetPowerCount() - controller.GetPower();
+                    goto ret;
+                }
             }
             if (GetPowerCount(controller) == 0) return 0;
             bool[] buttons = controller.GetButtonsSafe();
@@ -549,12 +613,28 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             return returnNotch;
         }
 
+        /// <summary>
+        /// 現在の制動の値を取得する
+        /// 
+        /// 力行と制動を入れ替えるオプションが考慮されます。
+        /// </summary>
+        /// <param name="controller"></param>
+        /// <param name="maxValue"></param>
+        /// <returns></returns>
         public int GetBrake(NCIController controller, int maxValue)
         {
-            if(controller.GetBrakeCount() > 0)
+            if((SwapPowerAndBrake ? controller.GetPowerCount() : controller.GetBrakeCount()) > 0)
             {
-                preBrakeNotch = controller.GetBrake();
-                goto ret;
+                if (SwapPowerAndBrake)
+                {
+                    preBrakeNotch = controller.GetPowerCount() - controller.GetPower();
+                    goto ret;
+                }
+                else
+                {
+                    preBrakeNotch = controller.GetBrakeCount() - controller.GetBrake();
+                    goto ret;
+                }
             }
             if (GetBrakeCount(controller) == 0) return 0;
             bool[] buttons = controller.GetButtonsSafe();
