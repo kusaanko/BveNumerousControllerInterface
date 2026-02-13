@@ -457,7 +457,17 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             if (profile.HasPower(controller))
             {
-                var newText = this.resources.GetString("powerLabel.Text") + profile.GetPower(controller, profile.GetPowerCount(controller), 5);
+                // 逆回しを考慮して力行段数と逆回し段数を決める
+                int reverseCount = 0;
+                if (profile.HasReversePower(controller))
+                {
+                    reverseCount = profile.GetReversePowerCount(controller);
+                    if (reverseCount == 0)
+                    {
+                        reverseCount = 5;
+                    }
+                }
+                var newText = this.resources.GetString("powerLabel.Text") + profile.GetPower(controller, profile.GetPowerCount(controller), reverseCount);
                 if (powerLabel.Text != newText)
                 {
                     powerLabel.Text = newText;

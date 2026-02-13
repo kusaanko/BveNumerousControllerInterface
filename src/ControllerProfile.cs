@@ -323,6 +323,30 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
         }
 
         /// <summary>
+        /// 力行が逆回しをもつかどうか
+        /// </summary>
+        /// <param name="controller"></param>
+        /// <returns></returns>
+        public bool HasReversePower(NCIController controller)
+        {
+            if (HasPower(controller))
+            {
+                if (PowerCenterPosition != 0)
+                {
+                    return true;
+                }
+                if (IsPowerUseRawAxisValueMode() && PowerAxisStatus.Count > 0)
+                {
+                    if (PowerAxisStatus[0].Count >= 3 && PowerAxisStatus[0][0] != PowerAxisStatus[0][2])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
         /// 制動をもつかどうか
         /// 
         /// 物理的に制動を持っている場合、力行と制動を入れ替えるオプションが考慮されます。
@@ -404,6 +428,25 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
             }
             return Math.Max(BrakeButtonStatus.Count - 1, 0);
+        }
+
+        /// <summary>
+        /// 逆回しの段数を取得します。
+        /// 
+        /// 軸をそのまま使うモードでは0を返します。
+        /// </summary>
+        /// <param name="controller"></param>
+        /// <returns></returns>
+        public int GetReversePowerCount(NCIController controller)
+        {
+            if (HasReversePower(controller))
+            {
+                if (PowerCenterPosition != 0)
+                {
+                    return Math.Abs(PowerCenterPosition);
+                }
+            }
+            return 0;
         }
 
         /// <summary>
@@ -586,7 +629,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
                 if (currentNotch >= 0)
                 {
-                    returnNotch = (int)Math.Floor(currentNotch * ((float)maxValue / (Math.Max(GetPowerCount(controller) - PowerCenterPosition, 1))));
+                    returnNotch = (int)Math.Floor(currentNotch * ((float)maxValue / (Math.Max(GetPowerCount(controller), 1))));
                 } else
                 {
                     returnNotch = (int)Math.Floor(currentNotch * ((float)revCount / (Math.Max(PowerCenterPosition, 1))));
@@ -594,7 +637,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
             }
             else if (FlexiblePower == FlexibleNotchMode.LastMax)
             {
-                if (currentNotch >= (GetPowerCount(controller) - PowerCenterPosition))
+                if (currentNotch >= (GetPowerCount(controller)))
                 {
                     returnNotch = maxValue;
                 } else if (PowerCenterPosition > 0 && currentNotch <= -PowerCenterPosition)
@@ -632,7 +675,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
                 }
                 else
                 {
-                    preBrakeNotch = controller.GetBrakeCount() - controller.GetBrake();
+                    preBrakeNotch = controller.GetBrake();
                     goto ret;
                 }
             }
