@@ -31,7 +31,7 @@ namespace Installer
                 listBox1.Items.Add("C:\\Program Files (x86)\\mackoy\\BveTs5\\BveTs.exe");
             }
             listBox1.Items.Add("その他");
-            label3.Text = "本体バージョン: 0.16 , インストーラーバージョン：" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            label3.Text = "本体バージョン: 0.17 , インストーラーバージョン：" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -19,7 +19,7 @@ namespace Kusaanko.Bvets.NumerousControllerInterface
     public class NumerousControllerInterface : IInputDevice
     {
         private static bool DebugUpdater = false;
-        public static int IntVersion { get { return 17; } }
+        public static int IntVersion { get { return 18; } }
         public static string UserAgent = "NumerousContollerInterfaceUpdater v" + IntVersion;
 
         public static List<NCIController> Controllers;
